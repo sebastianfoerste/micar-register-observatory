@@ -1,4 +1,4 @@
-"""Register sources for the ESMA interim MiCA register.
+"""Register sources for the ESMA interim MiCAR register.
 
 ESMA publishes the interim register as CSV files at stable URLs and updates
 them in place (Art. 109 MiCAR). The `2024-12` path segment is part of the

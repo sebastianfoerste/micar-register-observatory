@@ -1,13 +1,13 @@
 # MiCAR Register Observatory
 
-A living dashboard of the **ESMA interim MiCA register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, withdrawals, and how many white papers are published in a machine-readable format.
+A living dashboard of the **ESMA interim MiCAR register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, withdrawals, and how many white papers are published in a machine-readable format.
 
 The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requires ESMA to publish white papers and authorisations in a machine-readable register. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
 
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-07-07** (refreshed weekly from the public ESMA interim MiCA register)
+**Register snapshot: 2026-07-07** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 

@@ -2,7 +2,7 @@
 
 ## Sources
 
-The ESMA interim MiCA register, published as CSV exports at stable URLs and updated in place (the `2024-12` path segment is part of the URL, not a data date; freshness comes from the HTTP `Last-Modified` header):
+The ESMA interim MiCAR register, published as CSV exports at stable URLs and updated in place (the `2024-12` path segment is part of the URL, not a data date; freshness comes from the HTTP `Last-Modified` header):
 
 | Register | Export |
 | --- | --- |

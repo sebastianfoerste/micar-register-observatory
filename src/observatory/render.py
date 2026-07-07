@@ -36,7 +36,7 @@ def _linkify(wp_url: str) -> str:
 def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
     lines: list[str] = []
     lines.append(f"**Register snapshot: {snapshot.snapshot_date}** "
-                 "(refreshed weekly from the public ESMA interim MiCA register)")
+                 "(refreshed weekly from the public ESMA interim MiCAR register)")
     lines.append("")
 
     lines.append("### Register totals")
