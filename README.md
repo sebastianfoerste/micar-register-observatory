@@ -4,7 +4,7 @@ A quarterly data report on the EU's crypto-asset white paper register. It answer
 
 The current finding, from the latest snapshot: **of the crypto-asset white papers on the register, only about 12% are published in a structured machine-readable format, and around 61% link nothing but a landing page.**
 
-Latest edition: **[editions/2026-Q3.md](editions/2026-Q3.md)** · shareable page: **[docs/index.html](docs/index.html)**
+Latest edition: **[editions/2026-Q3.md](editions/2026-Q3.md)** · shareable page: **<https://sebastianfoerste.github.io/state-of-the-micar-register/>**
 
 ## Why it exists
 
