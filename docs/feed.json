@@ -1,5 +1,9 @@
 {
  "snapshot_date": "2026-07-07",
+ "methodology": {
+  "register_link_classification_basis": "URL shape only",
+  "content_verification_basis": "bounded response bytes and structure"
+ },
  "registers": [
   {
    "slug": "other-wp",
@@ -32,6 +36,25 @@
    "fetched": true
   }
  ],
+ "whitepaper_register_link_classes": {
+  "none": 1,
+  "pdf": 254,
+  "unspecified": 584,
+  "xhtml/html": 114
+ },
+ "content_verification": {
+  "linked_register_rows": 952,
+  "unique_link_targets": 924,
+  "checked_register_rows": 0,
+  "checked_unique_targets": 0,
+  "complete_targets": 0,
+  "too_large_targets": 0,
+  "failed_targets": 0,
+  "inline_xbrl_targets": 0,
+  "latest_verified_at": null,
+  "status_counts": {},
+  "verified_format_counts": {}
+ },
  "recent_changes": [
   {
    "snapshot_date": "2026-07-07",
