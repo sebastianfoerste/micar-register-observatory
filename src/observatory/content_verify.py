@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import hashlib
 import io
+import ipaddress
 import json
+import socket
 import urllib.error
+import urllib.parse
 import urllib.request
 import zipfile
 from datetime import UTC, datetime
@@ -17,7 +20,7 @@ DEFAULT_MAX_BYTES = 25 * 1024 * 1024
 
 
 def detect_document_format(data: bytes, content_type: str = "") -> dict[str, Any]:
-    """Detect the byte-level format without trusting a URL suffix."""
+    """Detect the byte-level format without trusting a URL suffix or MIME claim."""
     content_type = content_type.partition(";")[0].strip().lower()
     sample = data[:2_000_000]
     stripped = sample.lstrip(b"\xef\xbb\xbf\x00\t\r\n ")
@@ -47,7 +50,7 @@ def detect_document_format(data: bytes, content_type: str = "") -> dict[str, Any
         ixbrl_markers = (
             b"<ix:" in lowered
             or b"xmlns:ix=" in lowered
-            or b"inlineXBRL".lower() in lowered
+            or b"inlinexbrl" in lowered
             or b"www.xbrl.org/2013/inlinexbrl" in lowered
         )
         detected = "inline-xbrl-xhtml" if ixbrl_markers else "xhtml/html"
@@ -64,18 +67,22 @@ def verify_url(
     max_bytes: int = DEFAULT_MAX_BYTES,
 ) -> dict[str, Any]:
     """Fetch one public URL and return bounded, hash-based verification metadata."""
-    requested_url = _normalise_url(url)
+    requested_url = normalise_url(url)
     verified_at = datetime.now(UTC).isoformat()
-    request = urllib.request.Request(
-        requested_url,
-        headers={
-            "User-Agent": USER_AGENT,
-            "Accept": "application/xhtml+xml,text/html,application/pdf,application/json,*/*;q=0.5",
-        },
-    )
-
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        _validate_public_url(requested_url)
+        request = urllib.request.Request(
+            requested_url,
+            headers={
+                "User-Agent": USER_AGENT,
+                "Accept": (
+                    "application/xhtml+xml,text/html,application/pdf,"
+                    "application/json,*/*;q=0.5"
+                ),
+            },
+        )
+        opener = urllib.request.build_opener(_PublicRedirectHandler())
+        with opener.open(request, timeout=timeout) as response:
             body = response.read(max_bytes + 1)
             truncated = len(body) > max_bytes
             inspected = body[:max_bytes]
@@ -88,7 +95,9 @@ def verify_url(
                 "final_url": response.geturl(),
                 "http_status": getattr(response, "status", response.getcode()),
                 "content_type": content_type,
-                "declared_content_length": _as_int(response.headers.get("Content-Length")),
+                "declared_content_length": _as_int(
+                    response.headers.get("Content-Length")
+                ),
                 "bytes_read": len(inspected),
                 "content_truncated": truncated,
                 "content_sha256": (
@@ -103,8 +112,42 @@ def verify_url(
             }
     except urllib.error.HTTPError as error:
         return _error_result(requested_url, verified_at, f"http_{error.code}", str(error))
-    except (urllib.error.URLError, TimeoutError, OSError) as error:
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as error:
         return _error_result(requested_url, verified_at, "fetch_error", str(error))
+
+
+class _PublicRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Reject redirects away from public HTTP(S) targets."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: ANN001
+        _validate_public_url(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _validate_public_url(url: str) -> None:
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme not in {"http", "https"}:
+        raise ValueError("only public http(s) URLs may be fetched")
+    if not parsed.hostname or parsed.username or parsed.password:
+        raise ValueError("URL must contain a hostname and no user credentials")
+
+    try:
+        addresses = {
+            item[4][0]
+            for item in socket.getaddrinfo(
+                parsed.hostname,
+                parsed.port or (443 if parsed.scheme == "https" else 80),
+                type=socket.SOCK_STREAM,
+            )
+        }
+    except socket.gaierror as error:
+        raise ValueError(f"hostname did not resolve: {parsed.hostname}") from error
+    if not addresses:
+        raise ValueError(f"hostname did not resolve: {parsed.hostname}")
+    for address in addresses:
+        ip = ipaddress.ip_address(address)
+        if not ip.is_global:
+            raise ValueError("URL resolved to a non-public IP address")
 
 
 def _detection(
@@ -134,6 +177,7 @@ def _error_result(
         "final_url": "",
         "http_status": None,
         "content_type": "",
+        "declared_content_type": "",
         "declared_content_length": None,
         "bytes_read": 0,
         "content_truncated": False,
@@ -141,12 +185,12 @@ def _error_result(
         "verified_format": "",
         "inline_xbrl": False,
         "detection_basis": "",
-        "declared_content_type": "",
         "verification_error": message[:500],
     }
 
 
-def _normalise_url(url: str) -> str:
+def normalise_url(url: str) -> str:
+    """Return the canonical request target used for grouping and evidence."""
     value = url.strip()
     if value and "://" not in value:
         return "https://" + value
