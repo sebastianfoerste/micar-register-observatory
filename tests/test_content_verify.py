@@ -1,7 +1,7 @@
 import io
 import zipfile
 
-from observatory.content_verify import detect_document_format
+from observatory.content_verify import detect_document_format, verify_url
 
 
 def test_detects_pdf_by_signature_not_suffix():
@@ -36,7 +36,19 @@ def test_detects_docx_by_zip_structure():
     assert result["verified_format"] == "docx"
 
 
-def test_unknown_bytes_remain_unknown():
+def test_unknown_bytes_remain_unknown_despite_declared_pdf_type():
     result = detect_document_format(b"not a recognised document", "application/pdf")
     assert result["verified_format"] == "unknown"
     assert result["declared_content_type"] == "application/pdf"
+
+
+def test_non_http_scheme_is_rejected_without_a_request():
+    result = verify_url("file:///etc/passwd")
+    assert result["content_verification_status"] == "fetch_error"
+    assert "http(s)" in result["verification_error"]
+
+
+def test_loopback_target_is_rejected_without_a_request():
+    result = verify_url("http://127.0.0.1/document.pdf")
+    assert result["content_verification_status"] == "fetch_error"
+    assert "non-public" in result["verification_error"]
