@@ -1,7 +1,7 @@
 [project]
 name = "micar-register-observatory"
-version = "0.1.0"
-description = "Living dashboard of the ESMA interim MiCAR register: weekly snapshots, diffs, and white paper format coverage."
+version = "0.2.0"
+description = "Reproducible ESMA MiCAR register diffs with URL-shape and byte-level white-paper format evidence."
 readme = "README.md"
 requires-python = ">=3.12"
 license = { file = "LICENSE" }
