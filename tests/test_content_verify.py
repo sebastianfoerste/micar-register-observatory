@@ -1,7 +1,9 @@
 import io
+import socket
 import zipfile
 
-from observatory.content_verify import detect_document_format, verify_url
+import observatory.content_verify as content_verify
+from observatory.content_verify import detect_document_format, normalise_url, verify_url
 
 
 def test_detects_pdf_by_signature_not_suffix():
@@ -28,6 +30,11 @@ def test_detects_json_by_parse():
     assert result["verified_format"] == "json"
 
 
+def test_strips_only_a_complete_utf8_bom():
+    assert detect_document_format(b"\xef\xbb\xbf%PDF-1.7")["verified_format"] == "pdf"
+    assert detect_document_format(b"\xef%PDF-1.7")["verified_format"] == "unknown"
+
+
 def test_detects_docx_by_zip_structure():
     target = io.BytesIO()
     with zipfile.ZipFile(target, "w") as archive:
@@ -52,3 +59,56 @@ def test_loopback_target_is_rejected_without_a_request():
     result = verify_url("http://127.0.0.1/document.pdf")
     assert result["content_verification_status"] == "fetch_error"
     assert "non-public" in result["verification_error"]
+
+
+def test_scheme_and_hostname_are_canonicalized_for_url_deduplication():
+    assert normalise_url(" HTTPS://Example.COM/path#fragment ") == "https://example.com/path"
+    assert normalise_url("example.com/path") == "https://example.com/path"
+    assert normalise_url("https://example.com/") == normalise_url("example.com")
+
+
+def test_approved_numeric_address_is_dialed_without_dns_rebinding(monkeypatch):
+    resolutions = 0
+
+    def resolve(*args, **kwargs):
+        nonlocal resolutions
+        resolutions += 1
+        address = "93.184.216.34" if resolutions == 1 else "127.0.0.1"
+        return [(socket.AF_INET, socket.SOCK_STREAM, 6, "", (address, 443))]
+
+    captured = []
+
+    def request(parsed, addresses, **kwargs):
+        captured.append((parsed.hostname, addresses))
+        return {"status": 200, "headers": {"Content-Type": "application/pdf"}, "body": b"%PDF-1.7"}
+
+    monkeypatch.setattr(content_verify.socket, "getaddrinfo", resolve)
+    monkeypatch.setattr(content_verify, "_request_approved_address", request)
+    result = verify_url("https://EXAMPLE.com/document")
+    assert result["content_verification_status"] == "verified"
+    assert captured == [("example.com", ["93.184.216.34"])]
+    assert resolutions == 1
+
+
+def test_redirect_target_is_resolved_and_validated_again(monkeypatch):
+    resolved_hosts = []
+
+    def resolve(host, *args, **kwargs):
+        resolved_hosts.append(host)
+        return [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("93.184.216.34", 443))]
+
+    responses = iter(
+        [
+            {"status": 302, "headers": {"Location": "https://FILES.example/whitepaper"}, "body": b""},
+            {"status": 200, "headers": {"Content-Type": "application/pdf"}, "body": b"%PDF-1.7"},
+        ]
+    )
+    monkeypatch.setattr(content_verify.socket, "getaddrinfo", resolve)
+    monkeypatch.setattr(
+        content_verify,
+        "_request_approved_address",
+        lambda *args, **kwargs: next(responses),
+    )
+    result = verify_url("https://example.com/start")
+    assert result["final_url"] == "https://files.example/whitepaper"
+    assert resolved_hosts == ["example.com", "files.example"]
