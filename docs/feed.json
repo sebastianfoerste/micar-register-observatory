@@ -1,5 +1,5 @@
 {
- "snapshot_date": "2026-07-07",
+ "snapshot_date": "2026-07-13",
  "methodology": {
   "register_link_classification_basis": "URL shape only",
   "content_verification_basis": "bounded response bytes and structure"

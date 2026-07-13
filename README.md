@@ -9,7 +9,7 @@ MiCAR Article 109 requires ESMA to maintain the public register. The legal requi
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-07-07** (refreshed weekly from the public ESMA interim MiCAR register)
+**Register snapshot: 2026-07-13** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 
@@ -63,13 +63,9 @@ No linked documents have been content-verified in the committed snapshot yet. Ru
 | FI | 9 |
 | ...and 11 more | |
 
-### Changes in this snapshot (2026-07-07)
+### Changes in this snapshot (2026-07-13)
 
-- `other-wp`: baseline established with 912 entries.
-- `emt-wp`: baseline established with 41 entries.
-- `art-wp`: baseline established with 0 entries.
-- `casps`: baseline established with 283 entries.
-- `ncasp`: baseline established with 162 entries.
+No register changes since the previous snapshot.
 <!-- dashboard:end -->
 
 ## Reproduce it
