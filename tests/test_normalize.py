@@ -19,6 +19,8 @@ def test_normalize_other_wp_handles_bom_and_fields():
     assert first.entity_name == "SKYGATE Network GmbH"
     assert first.lei == "984500BBFE52FE449926"
     assert first.format_class == "unspecified"
+    assert first.content_verification_status == "not_checked"
+    assert first.content_sha256 is None
     assert entries[1].format_class == "xhtml/html"
 
 

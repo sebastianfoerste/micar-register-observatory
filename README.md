@@ -1,8 +1,10 @@
 # MiCAR Register Observatory
 
-A living dashboard of the **ESMA interim MiCAR register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, withdrawals, and how many white papers are published in a machine-readable format.
+A reproducible monitor of the **ESMA interim MiCAR register**. A scheduled job pulls the public register exports, normalizes and diffs every row, and publishes a machine-readable change feed. A separate verification pipeline inspects the bytes served by white-paper links and records hash-based evidence without treating a URL suffix or HTTP header as proof of document format.
 
-The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requires ESMA to publish white papers and authorisations in a machine-readable register. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
+The distinction matters. The register tells us which URL was filed. Only a bounded fetch can tell us what that URL actually serves. This repository keeps those two observations separate.
+
+MiCAR Article 109 requires ESMA to maintain the public register. The legal requirements governing white-paper machine readability sit in the relevant white-paper provisions and implementing technical standards; the observatory reports technical observations and does not make compliance findings.
 
 ## Dashboard
 
@@ -13,22 +15,37 @@ The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requ
 
 | Register | Entries | Source status |
 | --- | ---: | --- |
-| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 912 | ok |
-| [White papers — e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 41 | ok |
-| [White papers — asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | ok |
+| [White papers - other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 912 | ok |
+| [White papers - e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 41 | ok |
+| [White papers - asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | ok |
 | [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 283 | ok |
 | [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 162 | ok |
 
-### White paper format coverage
+### White-paper register-link coverage
 
-Classified by link shape only; a format is a deep-lint candidate, not a verified fact, until the document is fetched.
+These classes describe the URL recorded by ESMA, not the bytes served by that URL. They identify crawl candidates and must not be reported as document-format prevalence.
 
-| Linked format | Count | Deep-lint candidate |
+| Register-link class | Count | Deep-lint candidate |
 | --- | ---: | --- |
 | Unspecified (landing page or bare domain) | 584 | no |
-| PDF | 254 | no |
-| XHTML / HTML | 114 | yes |
+| PDF-shaped link | 254 | no |
+| XHTML / HTML-shaped link | 114 | yes |
 | No link in register | 1 | no |
+
+### Content verification
+
+Byte-level checks use bounded downloads, redirects, response metadata, file signatures, ZIP structure, JSON parsing, markup signatures, and Inline XBRL namespace or element markers. URL suffixes and declared Content-Type are not accepted as proof.
+
+**Checked: 0/924 unique link targets (0.0%), covering 0/952 linked register rows.**
+
+| Outcome | Count |
+| --- | ---: |
+| Complete response with SHA-256 | 0 |
+| Exceeded byte limit | 0 |
+| Fetch or HTTP failure | 0 |
+| Verified Inline XBRL document | 0 |
+
+No linked documents have been content-verified in the committed snapshot yet. Run `python -m observatory verify-content --limit 25` to create the first auditable batch.
 
 ### Home Member States (white papers)
 
@@ -51,29 +68,38 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 No register changes since the previous snapshot.
 <!-- dashboard:end -->
 
-## Run it
+## Reproduce it
 
 ```bash
 git clone https://github.com/sebastianfoerste/micar-register-observatory
 cd micar-register-observatory
 make install && make test
 make refresh
+
+# Verify the next 25 unchecked white-paper URLs.
+python -m observatory verify-content --limit 25
+
+# Verify every remaining URL and retry earlier failures.
+python -m observatory verify-content --limit 0 --retry-failures
 ```
 
-`make refresh` fetches the five register CSVs from esma.europa.eu, writes a dated snapshot under `data/snapshots/`, appends changes to `data/changelog.jsonl`, and regenerates this README and `docs/feed.json`. The test suite runs offline against committed fixtures.
+`make refresh` fetches the five register CSVs, writes a dated snapshot under `data/snapshots/`, appends changes to `data/changelog.jsonl`, and regenerates this README and `docs/feed.json`. Content evidence is retained across refreshes only when the source row is unchanged. A changed row returns to `not_checked`.
+
+The content verifier is intentionally bounded. It accepts only public HTTP(S) destinations, rejects user credentials and non-public resolved IP addresses, rechecks redirect targets, applies a per-request timeout and 25 MiB byte ceiling, and records a complete-content SHA-256 only when the response was not truncated.
 
 ## What this tracks
 
-- **New, changed, and removed register entries** per weekly snapshot — including white paper withdrawals, which the register itself does not announce.
-- **Format coverage**: how many linked white papers are XHTML/HTML, JSON, or DOCX (candidates for deterministic linting with [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)) versus PDF or a bare landing-page domain. Classification is by link shape only and is marked as candidate, not verified, until a document is fetched.
-- **Machine-readable feed**: `docs/feed.json` carries the current totals and recent changes for anyone building on top.
+- **Register movement:** added, changed, and removed rows per weekly snapshot. Removal is an observation about the export, not automatically a legal withdrawal.
+- **Register-link classes:** URL-shape candidates such as `.xhtml`, `.pdf`, and landing pages. These are navigation metadata, not verified formats.
+- **Content evidence:** requested and final URLs, verification timestamp, HTTP status, declared Content-Type and length, bytes inspected, truncation state, complete-response SHA-256, detected format, detection basis, and Inline XBRL markers.
+- **Machine-readable feed:** `docs/feed.json` carries register totals, link-shape counts, content-verification coverage, and recent changes.
 
-Deep-lint findings on individual white papers are deliberately **not** auto-published here. Rule findings against named issuers go through human legal review first; the review-gated study lives in the [linter repository](https://github.com/sebastianfoerste/micar-whitepaper-linter). A flag from a deterministic rule is a candidate gap in extracted text, not a confirmed deficiency by the named issuer.
+Deterministic lint flags about individual white papers are deliberately not auto-published here. Named-issuer findings require human legal review in the [MiCAR white-paper linter study](https://github.com/sebastianfoerste/micar-whitepaper-linter). A rule flag is a candidate gap in extracted text, not a confirmed deficiency.
 
 ## Method and limits
 
-See [docs/methodology.md](docs/methodology.md) for sources, normalization, change detection, and known limitations. Two that matter most: the observatory reflects the register exports as published (upstream corrections appear as "changed" entries), and format classification is a URL-shape heuristic until documents are fetched.
+See [docs/methodology.md](docs/methodology.md) for source definitions, normalization, change detection, content-verification rules, and prohibited inferences. In particular, do not infer document-format prevalence from register-link shapes, and do not generalize verified-format shares until the content audit has stated coverage, failure rates, and a reproducible denominator.
 
 ## Legal
 
-The underlying data is ESMA's public register. This repository records factual observations about that register; it contains no legal assessment of any issuer or service provider and is not legal advice. Code is MIT-licensed.
+The underlying data is ESMA's public register. This repository records factual, reproducible observations about that register; it contains no legal assessment of any issuer or service provider and is not legal advice. Code is MIT-licensed.
