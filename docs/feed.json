@@ -1,10 +1,10 @@
 {
- "snapshot_date": "2026-07-13",
+ "snapshot_date": "2026-07-20",
  "registers": [
   {
    "slug": "other-wp",
    "title": "White papers — other crypto-assets (Title II)",
-   "entries": 912,
+   "entries": 926,
    "fetched": true
   },
   {
@@ -22,13 +22,13 @@
   {
    "slug": "casps",
    "title": "Authorised crypto-asset service providers (CASPs)",
-   "entries": 283,
+   "entries": 297,
    "fetched": true
   },
   {
    "slug": "ncasp",
    "title": "Non-compliant entities flagged by NCAs",
-   "entries": 162,
+   "entries": 164,
    "fetched": true
   }
  ],
@@ -82,6 +82,386 @@
    "member_state": "-",
    "wp_url": "",
    "detail": "baseline established with 162 entries"
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "6d55960c34582b4e",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://white-paper.crypto-risk-metrics.com/en/official-trump-ffg-ljdpgnxxk/index.html",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "7db6d6bc63bbe863",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://white-paper.crypto-risk-metrics.com/en/pepe-ffg-j41r6pf81/index.html",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "ff1fac3d9f01eeea",
+   "entity_name": "Injective Foundation",
+   "member_state": "DK",
+   "wp_url": "https://injective.com/research",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "a07746d4efb54ed5",
+   "entity_name": "SBorg SA",
+   "member_state": "FR",
+   "wp_url": "https://swissborg.com",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "5bb44ff1df20b28f",
+   "entity_name": "TCG-VAULT",
+   "member_state": "FR",
+   "wp_url": "https://www.tcg-vault.io/livre-blanc-mica",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "5ec2148c0ebf83ab",
+   "entity_name": "Axon Tech Ltd.",
+   "member_state": "IE",
+   "wp_url": "https://paper.chainopera.ai",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "4b99e9bf6ab03692",
+   "entity_name": "ICON Foundation",
+   "member_state": "IE",
+   "wp_url": "https://www.icon.foundation/publications/soda-mica-whitepaper/soda-mica-whitepaper-3532007.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "4256392baad28940",
+   "entity_name": "Wojak CTO LLC",
+   "member_state": "IE",
+   "wp_url": "https://wojakcto.com/whitepaper",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "0a66e0b1eea0501e",
+   "entity_name": "Grove (BVI) Ltd.",
+   "member_state": "IE",
+   "wp_url": "grove.micarwhitepapers.eu",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "6328ee50d2821c0a",
+   "entity_name": "New Frame Limited",
+   "member_state": "LU",
+   "wp_url": "https://checkmate.foundation/MiCA Whitepaper - Checkmate - CHECK.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "e8df43e3629766c5",
+   "entity_name": "BlockBen SIA",
+   "member_state": "LV",
+   "wp_url": "https://blockben.com/en/products/ebso",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "43213dda2e9686b7",
+   "entity_name": "Based Foundation",
+   "member_state": "MT",
+   "wp_url": "https://my.okx.com/whitepaper/based-based.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "0af898d534e66b13",
+   "entity_name": "Open Oracle Association",
+   "member_state": "MT",
+   "wp_url": "https://www.seda.xyz/whitepaper",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "27226e3ad4e26cbd",
+   "entity_name": "Opentensor Foundation",
+   "member_state": "MT",
+   "wp_url": "https://my.okx.com/whitepaper/bittensor-tao.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "248080c94fd7192d",
+   "entity_name": "TownSquare Services Ltd.",
+   "member_state": "NL",
+   "wp_url": "https://townsquare.micarwhitepapers.eu",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "ebb5f8abcfb3fde4",
+   "entity_name": "Dac Labs Sagl",
+   "member_state": "NL",
+   "wp_url": "https://dact.micarwhitepapers.eu/",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "2da12e97625be6b3",
+   "entity_name": "Genius Foundation",
+   "member_state": "NL",
+   "wp_url": "https://www.tradegenius.com/micaeucompliance",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "4e1256d0f9260198",
+   "entity_name": "Ethos Foundation",
+   "member_state": "NL",
+   "wp_url": "https://ethos.micarwhitepapers.eu/",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "removed",
+   "entry_id": "fa54ab7959b707fd",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://crypto-risk-metrics.com/en/white-paper-official-trump-ffg-ljdpgnxxk/",
+   "detail": "entry no longer present in the register export"
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "other-wp",
+   "change": "removed",
+   "entry_id": "786cbff638e1f1d9",
+   "entity_name": "Injective Foundation",
+   "member_state": "DK",
+   "wp_url": "https://injective.com/",
+   "detail": "entry no longer present in the register export"
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "3e33449597235927",
+   "entity_name": "OSL EU GmbH",
+   "member_state": "AT",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "d45bd7cdf16594bd",
+   "entity_name": "Brilliantscope Trading Limited",
+   "member_state": "CY",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "e9846ada8702c171",
+   "entity_name": "Volksbank Schwarzwald-Donau-Neckar eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "dcfffce94187021e",
+   "entity_name": "Raiffeisebank Auerbach-Freihung eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "393bbcff8cf5a091",
+   "entity_name": "IQANA TECHNOLOGIES S.L.",
+   "member_state": "ES",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "21a510f9c1b328a7",
+   "entity_name": "Hrvatska poštanska banka d.d.",
+   "member_state": "HR",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "c1dc270103fc267b",
+   "entity_name": "HERCLE S.R.L.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "6ff626ced0884b28",
+   "entity_name": "SMART VALOR AG",
+   "member_state": "LI",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "2f28e88aa52a782d",
+   "entity_name": "Kaiser Partner Privatbank AG",
+   "member_state": "LI",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "418cdc64b4198d28",
+   "entity_name": "CPS Europe S.A.",
+   "member_state": "LU",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "ad01a9b70cd8de80",
+   "entity_name": "Ripple Payments Europe S.A.",
+   "member_state": "LU",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "4f56ceb6c33ab8c6",
+   "entity_name": "SIA \"Paybis Europe\"",
+   "member_state": "LV",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "5cfed2459cb077f8",
+   "entity_name": "Hodleris SIA",
+   "member_state": "LV",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "ad30b03f01826e0d",
+   "entity_name": "BARE BITCOIN AS",
+   "member_state": "NO",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "e23ddbc23a3f513a",
+   "entity_name": "NORWEGIAN BLOCK EXCHANGE AS",
+   "member_state": "NO",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "e5001b86862baf64",
+   "entity_name": "Bison Bank, S.A.",
+   "member_state": "PT",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "b18d21ca92153d5d",
+   "entity_name": "Reversal Investment Group",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-07-20",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "3e0a817173f70b94",
+   "entity_name": "Kortex",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": ""
   }
  ]
 }
