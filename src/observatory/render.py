@@ -33,7 +33,15 @@ def _linkify(wp_url: str) -> str:
     return f"[{label}]({href})"
 
 
-def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
+def _display_title(title: str) -> str:
+    return title.replace("\u2014", "-")
+
+
+def render_dashboard(
+    snapshot: Snapshot,
+    changes: list[ChangeRecord],
+    signal_room: dict | None = None,
+) -> str:
     lines: list[str] = []
     lines.append(f"**Register snapshot: {snapshot.snapshot_date}** "
                  "(refreshed weekly from the public ESMA interim MiCAR register)")
@@ -46,7 +54,7 @@ def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
     for register in snapshot.registers:
         status = "ok" if register.fetched else f"fetch failed: {register.fetch_error}"
         lines.append(
-            f"| [{register.title}]({register.source_url}) "
+            f"| [{_display_title(register.title)}]({register.source_url}) "
             f"| {len(register.entries)} | {status} |"
         )
     lines.append("")
@@ -73,6 +81,39 @@ def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
             label = _FORMAT_LABELS.get(format_class, format_class)
             lines.append(f"| {label} | {count} | {candidate} |")
         lines.append("")
+
+    if signal_room:
+        lines.append("### Register signal room")
+        lines.append("")
+        lines.append(
+            "Movement and integrity signals are deterministic review prompts. "
+            "They are not findings about a named entity or authority."
+        )
+        lines.append("")
+        lines.append(f"**Status: {signal_room['status']}**")
+        lines.append("")
+        lines.append("| Register | Signal | Added | Changed | Removed | Churn |")
+        lines.append("| --- | --- | ---: | ---: | ---: | ---: |")
+        for signal in signal_room["register_signals"]:
+            lines.append(
+                f"| {signal['register_slug']} | {signal['severity']} "
+                f"| {signal['added']} | {signal['changed']} | {signal['removed']} "
+                f"| {signal['churn_rate'] * 100:.1f}% |"
+            )
+        concentration, formats = signal_room["market_structure_signals"]
+        lines.extend(
+            [
+                "",
+                f"- Top home Member State share: "
+                f"{concentration['top_member_state']} "
+                f"({concentration['top_member_state_share'] * 100:.1f}%)",
+                f"- Deep-lint candidates by URL shape: "
+                f"{formats['deep_lint_candidates']}/{formats['whitepapers']} "
+                f"({formats['deep_lint_candidate_share'] * 100:.1f}%)",
+                f"- Signal proof: `{signal_room['signal_room_sha256']}`",
+                "",
+            ]
+        )
 
         lines.append("### Home Member States (white papers)")
         lines.append("")
@@ -129,20 +170,26 @@ def update_readme(readme_path: Path, dashboard: str) -> None:
     )
 
 
-def write_feed(feed_path: Path, snapshot: Snapshot, changes: list[ChangeRecord]) -> None:
+def write_feed(
+    feed_path: Path,
+    snapshot: Snapshot,
+    changes: list[ChangeRecord],
+    signal_room: dict | None = None,
+) -> None:
     recent = [change.model_dump() for change in changes[-200:]]
     payload = {
         "snapshot_date": snapshot.snapshot_date,
         "registers": [
             {
                 "slug": register.slug,
-                "title": register.title,
+                "title": _display_title(register.title),
                 "entries": len(register.entries),
                 "fetched": register.fetched,
             }
             for register in snapshot.registers
         ],
         "recent_changes": recent,
+        "signal_room": signal_room,
     }
     feed_path.parent.mkdir(parents=True, exist_ok=True)
     feed_path.write_text(

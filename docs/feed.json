@@ -3,19 +3,19 @@
  "registers": [
   {
    "slug": "other-wp",
-   "title": "White papers — other crypto-assets (Title II)",
+   "title": "White papers - other crypto-assets (Title II)",
    "entries": 941,
    "fetched": true
   },
   {
    "slug": "emt-wp",
-   "title": "White papers — e-money tokens (Title IV)",
+   "title": "White papers - e-money tokens (Title IV)",
    "entries": 41,
    "fetched": true
   },
   {
    "slug": "art-wp",
-   "title": "White papers — asset-referenced tokens (Title III)",
+   "title": "White papers - asset-referenced tokens (Title III)",
    "entries": 0,
    "fetched": true
   },
@@ -983,5 +983,127 @@
    "wp_url": "",
    "detail": "entry no longer present in the register export"
   }
- ]
+ ],
+ "signal_room": {
+  "schema": "micar-register-observatory.signal-room.v1",
+  "snapshot_date": "2026-07-27",
+  "status": "REVIEW_REQUIRED",
+  "summary": {
+   "critical_signals": 0,
+   "review_signals": 4,
+   "monitor_signals": 0,
+   "source_failures": 0,
+   "current_change_records": 52
+  },
+  "register_signals": [
+   {
+    "signal_id": "REGISTER.MOVEMENT.OTHER-WP",
+    "register_slug": "other-wp",
+    "severity": "review",
+    "reasons": [
+     "13 non-unique stable entry IDs handled by multiset diff"
+    ],
+    "current_entries": 941,
+    "estimated_previous_entries": 927,
+    "added": 16,
+    "changed": 0,
+    "removed": 2,
+    "removal_rate": 0.0022,
+    "churn_rate": 0.0194,
+    "duplicate_entry_ids": 13,
+    "source_fetched": true
+   },
+   {
+    "signal_id": "REGISTER.MOVEMENT.EMT-WP",
+    "register_slug": "emt-wp",
+    "severity": "review",
+    "reasons": [
+     "11 non-unique stable entry IDs handled by multiset diff"
+    ],
+    "current_entries": 41,
+    "estimated_previous_entries": 41,
+    "added": 0,
+    "changed": 1,
+    "removed": 0,
+    "removal_rate": 0.0,
+    "churn_rate": 0.0244,
+    "duplicate_entry_ids": 11,
+    "source_fetched": true
+   },
+   {
+    "signal_id": "REGISTER.MOVEMENT.ART-WP",
+    "register_slug": "art-wp",
+    "severity": "stable",
+    "reasons": [
+     "no row movement detected"
+    ],
+    "current_entries": 0,
+    "estimated_previous_entries": 0,
+    "added": 0,
+    "changed": 0,
+    "removed": 0,
+    "removal_rate": 0.0,
+    "churn_rate": 0.0,
+    "duplicate_entry_ids": 0,
+    "source_fetched": true
+   },
+   {
+    "signal_id": "REGISTER.MOVEMENT.CASPS",
+    "register_slug": "casps",
+    "severity": "review",
+    "reasons": [
+     "4 non-unique stable entry IDs handled by multiset diff"
+    ],
+    "current_entries": 312,
+    "estimated_previous_entries": 297,
+    "added": 16,
+    "changed": 16,
+    "removed": 1,
+    "removal_rate": 0.0034,
+    "churn_rate": 0.1111,
+    "duplicate_entry_ids": 4,
+    "source_fetched": true
+   },
+   {
+    "signal_id": "REGISTER.MOVEMENT.NCASP",
+    "register_slug": "ncasp",
+    "severity": "review",
+    "reasons": [
+     "5 non-unique stable entry IDs handled by multiset diff"
+    ],
+    "current_entries": 164,
+    "estimated_previous_entries": 164,
+    "added": 0,
+    "changed": 0,
+    "removed": 0,
+    "removal_rate": 0.0,
+    "churn_rate": 0.0,
+    "duplicate_entry_ids": 5,
+    "source_fetched": true
+   }
+  ],
+  "market_structure_signals": [
+   {
+    "signal_id": "WHITEPAPER.HOME_STATE.CONCENTRATION",
+    "severity": "information",
+    "top_member_state": "IE",
+    "top_member_state_entries": 353,
+    "top_member_state_share": 0.3595,
+    "herfindahl_hirschman_index": 0.1963,
+    "interpretation": "Descriptive register concentration only. It is not a market-share or supervisory conclusion."
+   },
+   {
+    "signal_id": "WHITEPAPER.FORMAT.DEEP_LINT_CANDIDATES",
+    "severity": "information",
+    "whitepapers": 982,
+    "deep_lint_candidates": 123,
+    "deep_lint_candidate_share": 0.1253,
+    "interpretation": "Candidate status is inferred from URL shape and requires document fetch verification."
+   }
+  ],
+  "input_sha256": "6a9e21b587f6ea3717b696c1026331baef8931532f4c07651387d314f0449449",
+  "review_gate": "Signals describe register movement and data integrity. Any conclusion about an issuer, service provider, market, or authority requires human review.",
+  "external_actions_allowed": false,
+  "signal_room_sha256": "8412faf681b4994db88cba404b1a2df1feecfcd6480a25c7c1e8462d6b133937"
+ }
 }
