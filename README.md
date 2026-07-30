@@ -46,7 +46,18 @@ Movement and integrity signals are deterministic review prompts. They are not fi
 
 - Top home Member State share: IE (35.9%)
 - Deep-lint candidates by URL shape: 123/982 (12.5%)
-- Signal proof: `8412faf681b4994db88cba404b1a2df1feecfcd6480a25c7c1e8462d6b133937`
+- Signal proof: `0a5478c503c7e02e57365f67a74b081b2a6bb80e45009bacf426ad6686d9ace6`
+
+#### Recent movement context
+
+| Snapshot | Added | Changed | Removed | Total movement |
+| --- | ---: | ---: | ---: | ---: |
+| 2026-07-07 | 0 | 0 | 0 | 0 |
+| 2026-07-13 | 0 | 0 | 0 | 0 |
+| 2026-07-20 | 32 | 4 | 2 | 38 |
+| 2026-07-27 | 32 | 17 | 3 | 52 |
+
+Current movement is `increased` versus the prior available snapshot. Counts describe register-row movement only.
 
 ### Home Member States (white papers)
 
@@ -114,8 +125,10 @@ make refresh
 - **Machine-readable feed**: `docs/feed.json` carries the current totals and recent changes for anyone building on top.
 - **Register signal room**: [`docs/signals.json`](docs/signals.json) records source failures,
   duplicate IDs, removal and churn thresholds, home-state concentration, and
-  deep-lint candidate coverage with an input-bound SHA-256 proof. Signals remain
-  review prompts and do not make findings about named entities.
+  deep-lint candidate coverage with an input-bound SHA-256 proof. A recent
+  movement window separates one-week noise from the available multi-snapshot
+  context. Signals remain review prompts and do not make findings about named
+  entities.
 
 Deep-lint findings on individual white papers are deliberately **not** auto-published here. Rule findings against named issuers go through human legal review first; the review-gated study lives in the [linter repository](https://github.com/sebastianfoerste/micar-whitepaper-linter). A flag from a deterministic rule is a candidate gap in extracted text, not a confirmed deficiency by the named issuer.
 

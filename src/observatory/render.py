@@ -114,6 +114,25 @@ def render_dashboard(
                 "",
             ]
         )
+        movement = signal_room["movement_context"]
+        lines.append("#### Recent movement context")
+        lines.append("")
+        lines.append("| Snapshot | Added | Changed | Removed | Total movement |")
+        lines.append("| --- | ---: | ---: | ---: | ---: |")
+        for period in movement["history"]:
+            lines.append(
+                f"| {period['snapshot_date']} | {period['added']} "
+                f"| {period['changed']} | {period['removed']} "
+                f"| {period['movement_records']} |"
+            )
+        lines.extend(
+            [
+                "",
+                f"Current movement is `{movement['direction']}` versus the prior "
+                "available snapshot. Counts describe register-row movement only.",
+                "",
+            ]
+        )
 
         lines.append("### Home Member States (white papers)")
         lines.append("")

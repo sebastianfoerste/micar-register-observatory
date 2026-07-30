@@ -1101,9 +1101,48 @@
     "interpretation": "Candidate status is inferred from URL shape and requires document fetch verification."
    }
   ],
-  "input_sha256": "6a9e21b587f6ea3717b696c1026331baef8931532f4c07651387d314f0449449",
+  "movement_context": {
+   "window_size": 4,
+   "periods_available": 4,
+   "history": [
+    {
+     "snapshot_date": "2026-07-07",
+     "added": 0,
+     "changed": 0,
+     "removed": 0,
+     "movement_records": 0
+    },
+    {
+     "snapshot_date": "2026-07-13",
+     "added": 0,
+     "changed": 0,
+     "removed": 0,
+     "movement_records": 0
+    },
+    {
+     "snapshot_date": "2026-07-20",
+     "added": 32,
+     "changed": 4,
+     "removed": 2,
+     "movement_records": 38
+    },
+    {
+     "snapshot_date": "2026-07-27",
+     "added": 32,
+     "changed": 17,
+     "removed": 3,
+     "movement_records": 52
+    }
+   ],
+   "current_movement_records": 52,
+   "previous_movement_records": 38,
+   "current_vs_previous_delta": 14,
+   "direction": "increased",
+   "interpretation": "Counts describe register-row movement only. They do not measure authorisation activity, market growth, or supervisory intensity."
+  },
+  "input_sha256": "a39cc27d0144a06ec70969878cbeb24f2b702c6d8e638d6c657b7cdc3c82753f",
   "review_gate": "Signals describe register movement and data integrity. Any conclusion about an issuer, service provider, market, or authority requires human review.",
   "external_actions_allowed": false,
-  "signal_room_sha256": "8412faf681b4994db88cba404b1a2df1feecfcd6480a25c7c1e8462d6b133937"
+  "signal_room_sha256": "0a5478c503c7e02e57365f67a74b081b2a6bb80e45009bacf426ad6686d9ace6"
  }
 }

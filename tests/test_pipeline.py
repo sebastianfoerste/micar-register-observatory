@@ -50,6 +50,9 @@ def test_refresh_twice_renders_dashboard_and_changelog(tmp_path: Path) -> None:
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "Register snapshot: 2026-07-14" in readme
     assert "New Issuer Ltd" in readme
+    assert "Recent movement context" in readme
+    assert "| 2026-07-07 | 0 | 0 | 0 | 0 |" in readme
+    assert "| 2026-07-14 | 1 | 0 | 0 | 1 |" in readme
 
     changes = read_changelog(tmp_path / "data")
     assert any(c.change == "added" and c.entity_name == "New Issuer Ltd" for c in changes)

@@ -24,6 +24,7 @@ from observatory.render import render_dashboard, update_readme, write_feed
 from observatory.signals import build_signal_room, write_signal_room
 from observatory.store import (
     append_changelog,
+    list_snapshot_dates,
     load_latest,
     read_changelog,
     save_snapshot,
@@ -79,7 +80,11 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     append_changelog(data_dir, changes)
 
     changelog = read_changelog(data_dir)
-    signal_room = build_signal_room(current, changelog)
+    signal_room = build_signal_room(
+        current,
+        changelog,
+        list_snapshot_dates(data_dir),
+    )
     update_readme(
         Path(args.readme),
         render_dashboard(current, changelog, signal_room),
@@ -106,7 +111,11 @@ def cmd_render(args: argparse.Namespace) -> int:
         print("no snapshot found; run refresh first", file=sys.stderr)
         return 1
     changelog = read_changelog(data_dir)
-    signal_room = build_signal_room(snapshot, changelog)
+    signal_room = build_signal_room(
+        snapshot,
+        changelog,
+        list_snapshot_dates(data_dir),
+    )
     update_readme(
         Path(args.readme),
         render_dashboard(snapshot, changelog, signal_room),

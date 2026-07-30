@@ -93,3 +93,43 @@ def test_signal_room_is_deterministic():
     current = snapshot([entry("one")])
 
     assert build_signal_room(current, []) == build_signal_room(current, [])
+
+
+def test_signal_room_adds_recent_movement_context():
+    current = snapshot([entry("one")])
+    changes = [
+        ChangeRecord(
+            snapshot_date="2026-07-21",
+            register_slug="other-wp",
+            change="added",
+            entry_id="prior-added",
+            entity_name="Prior",
+            member_state="DE",
+        )
+    ]
+    changes.extend(
+        ChangeRecord(
+            snapshot_date="2026-07-28",
+            register_slug="other-wp",
+            change="added",
+            entry_id=f"current-{index}",
+            entity_name=f"Current {index}",
+            member_state="DE",
+        )
+        for index in range(3)
+    )
+
+    room = build_signal_room(
+        current,
+        changes,
+        ["2026-07-14", "2026-07-21", "2026-07-28"],
+    )
+    movement = room["movement_context"]
+
+    assert movement["periods_available"] == 3
+    assert movement["history"][0]["movement_records"] == 0
+    assert movement["current_movement_records"] == 3
+    assert movement["previous_movement_records"] == 1
+    assert movement["current_vs_previous_delta"] == 2
+    assert movement["direction"] == "increased"
+    assert "supervisory intensity" in movement["interpretation"]

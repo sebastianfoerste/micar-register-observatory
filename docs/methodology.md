@@ -35,6 +35,10 @@ Weekly snapshots are diffed register by register:
 - `baseline`: first observation of a register; the initial population is not reported as hundreds of "added" rows.
 
 The full history is `data/changelog.jsonl`; dated snapshots live under `data/snapshots/`.
+The signal room uses the four most recent snapshot dates, including periods with
+zero recorded changes, to show added, changed, removed, and total row movement.
+This context is limited to register-row activity and does not measure market
+growth, authorisation activity, or supervisory intensity.
 
 ## Format coverage
 

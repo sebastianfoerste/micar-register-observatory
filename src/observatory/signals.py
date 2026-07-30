@@ -12,6 +12,7 @@ from observatory.coverage import DEEP_LINT_CLASSES
 from observatory.models import ChangeRecord, Snapshot
 
 SCHEMA = "micar-register-observatory.signal-room.v1"
+MOVEMENT_WINDOW = 4
 
 
 def _canonical_sha256(payload: Any) -> str:
@@ -78,9 +79,73 @@ def _register_signal(
     }
 
 
+def _movement_context(
+    snapshot_date: str,
+    changes: list[ChangeRecord],
+    snapshot_dates: list[str] | None = None,
+) -> dict[str, Any]:
+    dates = sorted(
+        {
+            snapshot_date,
+            *(
+                date
+                for date in (snapshot_dates or [])
+                if date <= snapshot_date
+            ),
+            *(
+                change.snapshot_date
+                for change in changes
+                if change.snapshot_date <= snapshot_date
+            ),
+        }
+    )[-MOVEMENT_WINDOW:]
+    history = []
+    for date in dates:
+        counts = Counter(
+            change.change
+            for change in changes
+            if change.snapshot_date == date and change.change != "baseline"
+        )
+        history.append(
+            {
+                "snapshot_date": date,
+                "added": counts["added"],
+                "changed": counts["changed"],
+                "removed": counts["removed"],
+                "movement_records": (
+                    counts["added"] + counts["changed"] + counts["removed"]
+                ),
+            }
+        )
+    current_total = history[-1]["movement_records"] if history else 0
+    previous_total = history[-2]["movement_records"] if len(history) > 1 else None
+    if previous_total is None:
+        direction = "no_prior_period"
+        delta = None
+    else:
+        delta = current_total - previous_total
+        direction = (
+            "increased" if delta > 0 else "decreased" if delta < 0 else "unchanged"
+        )
+    return {
+        "window_size": MOVEMENT_WINDOW,
+        "periods_available": len(history),
+        "history": history,
+        "current_movement_records": current_total,
+        "previous_movement_records": previous_total,
+        "current_vs_previous_delta": delta,
+        "direction": direction,
+        "interpretation": (
+            "Counts describe register-row movement only. They do not measure "
+            "authorisation activity, market growth, or supervisory intensity."
+        ),
+    }
+
+
 def build_signal_room(
     snapshot: Snapshot,
     changes: list[ChangeRecord],
+    snapshot_dates: list[str] | None = None,
 ) -> dict[str, Any]:
     """Build factual movement indicators with explicit human-review boundaries."""
 
@@ -142,6 +207,11 @@ def build_signal_room(
         status = "MONITOR"
     else:
         status = "STABLE"
+    movement_context = _movement_context(
+        snapshot.snapshot_date,
+        changes,
+        snapshot_dates,
+    )
     input_payload = {
         "snapshot": snapshot.model_dump(mode="json"),
         "changes": [
@@ -155,6 +225,7 @@ def build_signal_room(
                 ),
             )
         ],
+        "movement_context": movement_context,
     }
     payload = {
         "schema": SCHEMA,
@@ -177,6 +248,7 @@ def build_signal_room(
         },
         "register_signals": register_signals,
         "market_structure_signals": [concentration_signal, format_signal],
+        "movement_context": movement_context,
         "input_sha256": _canonical_sha256(input_payload),
         "review_gate": (
             "Signals describe register movement and data integrity. Any conclusion "
