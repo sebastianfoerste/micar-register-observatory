@@ -6,9 +6,9 @@ The ESMA interim MiCAR register, published as CSV exports at stable URLs and upd
 
 | Register | Export |
 | --- | --- |
-| White papers — other crypto-assets (Title II) | <https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv> |
-| White papers — e-money tokens (Title IV) | <https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv> |
-| White papers — asset-referenced tokens (Title III) | <https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv> |
+| White papers, other crypto-assets (Title II) | <https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv> |
+| White papers, e-money tokens (Title IV) | <https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv> |
+| White papers, asset-referenced tokens (Title III) | <https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv> |
 | Authorised CASPs | <https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv> |
 | Non-compliant entities | <https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv> |
 
@@ -20,18 +20,29 @@ Each row is reduced to: competent authority, home Member State, entity name, LEI
 
 ## Change detection
 
+Register entry IDs are best-effort stable identifiers. The ESMA exports can
+contain multiple rows with the same derived identifier. Diffing therefore
+treats each identifier group as a multiset: exact row hashes are matched first,
+remaining pairs are classified as changed, and unmatched rows are classified
+as added or removed. The signal room separately flags non-unique IDs for
+reviewer attention.
+
 Weekly snapshots are diffed register by register:
 
-- `added` — entry identity present now, absent before.
-- `changed` — same identity, different row content.
-- `removed` — entry identity no longer in the export. This includes withdrawals, upstream corrections, and identity-affecting edits (an issuer changing its white paper URL appears as `removed` + `added`).
-- `baseline` — first observation of a register; the initial population is not reported as hundreds of "added" rows.
+- `added`: entry identity present now, absent before.
+- `changed`: same identity, different row content.
+- `removed`: entry identity no longer in the export. This includes withdrawals, upstream corrections, and identity-affecting edits (an issuer changing its white paper URL appears as `removed` + `added`).
+- `baseline`: first observation of a register; the initial population is not reported as hundreds of "added" rows.
 
 The full history is `data/changelog.jsonl`; dated snapshots live under `data/snapshots/`.
+The signal room uses the four most recent snapshot dates, including periods with
+zero recorded changes, to show added, changed, removed, and total row movement.
+This context is limited to register-row activity and does not measure market
+growth, authorisation activity, or supervisory intensity.
 
 ## Format coverage
 
-White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` for bare domains and landing pages. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. Many register rows link a landing page rather than the document itself — that gap is itself a finding about register quality.
+White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` for bare domains and landing pages. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. Many register rows link a landing page rather than the document itself. That gap is itself a finding about register quality.
 
 ## Review gate for findings
 

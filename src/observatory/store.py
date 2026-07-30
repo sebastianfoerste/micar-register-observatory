@@ -15,6 +15,13 @@ def load_latest(data_dir: Path) -> Snapshot | None:
     return Snapshot.model_validate_json(latest.read_text(encoding="utf-8"))
 
 
+def list_snapshot_dates(data_dir: Path) -> list[str]:
+    snapshots = data_dir / "snapshots"
+    if not snapshots.exists():
+        return []
+    return sorted(path.stem for path in snapshots.glob("*.json"))
+
+
 def save_snapshot(data_dir: Path, snapshot: Snapshot) -> None:
     payload = json.dumps(snapshot.model_dump(), ensure_ascii=False, indent=1) + "\n"
     (data_dir / "snapshots").mkdir(parents=True, exist_ok=True)

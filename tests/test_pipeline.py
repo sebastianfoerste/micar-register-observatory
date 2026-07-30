@@ -14,6 +14,7 @@ def args_for(tmp_path: Path, date: str, fixtures: Path) -> argparse.Namespace:
         data_dir=str(tmp_path / "data"),
         readme=str(tmp_path / "README.md"),
         feed=str(tmp_path / "docs" / "feed.json"),
+        signals=str(tmp_path / "docs" / "signals.json"),
         date=date,
         fixtures=str(fixtures),
     )
@@ -49,8 +50,12 @@ def test_refresh_twice_renders_dashboard_and_changelog(tmp_path: Path) -> None:
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "Register snapshot: 2026-07-14" in readme
     assert "New Issuer Ltd" in readme
+    assert "Recent movement context" in readme
+    assert "| 2026-07-07 | 0 | 0 | 0 | 0 |" in readme
+    assert "| 2026-07-14 | 1 | 0 | 0 | 1 |" in readme
 
     changes = read_changelog(tmp_path / "data")
     assert any(c.change == "added" and c.entity_name == "New Issuer Ltd" for c in changes)
     assert (tmp_path / "docs" / "feed.json").exists()
+    assert (tmp_path / "docs" / "signals.json").exists()
     assert (tmp_path / "data" / "snapshots" / "2026-07-14.json").exists()

@@ -57,3 +57,20 @@ def test_failed_fetch_produces_no_changes():
     old = snapshot("2026-07-07", [entry("A")])
     new = snapshot("2026-07-14", [], fetched=False)
     assert diff_snapshots(old, new) == []
+
+
+def test_non_unique_entry_ids_are_compared_as_a_multiset():
+    old = snapshot(
+        "2026-07-07",
+        [entry("A", row_hash="same"), entry("A", row_hash="old-variant")],
+    )
+    new = snapshot(
+        "2026-07-14",
+        [entry("A", row_hash="same"), entry("A", row_hash="new-variant")],
+    )
+
+    changes = diff_snapshots(old, new)
+
+    assert len(changes) == 1
+    assert changes[0].change == "changed"
+    assert changes[0].entity_name == "A"

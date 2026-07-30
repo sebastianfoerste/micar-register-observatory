@@ -4,7 +4,7 @@ Usage:
     python -m observatory refresh [--date YYYY-MM-DD] [--data-dir data] [--fixtures DIR]
     python -m observatory render  [--data-dir data]
 
-`--fixtures DIR` reads `<slug>.csv` files from DIR instead of fetching ESMA —
+`--fixtures DIR` reads `<slug>.csv` files from DIR instead of fetching ESMA.
 used by tests and offline runs.
 """
 
@@ -21,8 +21,10 @@ from observatory.fetch import fetch_source
 from observatory.models import RegisterSnapshot, Snapshot
 from observatory.normalize import normalize_csv
 from observatory.render import render_dashboard, update_readme, write_feed
+from observatory.signals import build_signal_room, write_signal_room
 from observatory.store import (
     append_changelog,
+    list_snapshot_dates,
     load_latest,
     read_changelog,
     save_snapshot,
@@ -48,7 +50,7 @@ def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
                     entries=entries,
                 )
             )
-        except Exception as error:  # noqa: BLE001 — one failed source must not kill the run
+        except Exception as error:  # noqa: BLE001, one failed source must not kill the run
             registers.append(
                 RegisterSnapshot(
                     slug=source.slug,
@@ -77,8 +79,21 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     save_snapshot(data_dir, current)
     append_changelog(data_dir, changes)
 
-    update_readme(Path(args.readme), render_dashboard(current, read_changelog(data_dir)))
-    write_feed(Path(args.feed), current, read_changelog(data_dir))
+    changelog = read_changelog(data_dir)
+    signal_room = build_signal_room(
+        current,
+        changelog,
+        list_snapshot_dates(data_dir),
+    )
+    update_readme(
+        Path(args.readme),
+        render_dashboard(current, changelog, signal_room),
+    )
+    write_feed(Path(args.feed), current, changelog, signal_room)
+    write_signal_room(
+        Path(getattr(args, "signals", "docs/signals.json")),
+        signal_room,
+    )
 
     fetched = sum(1 for register in current.registers if register.fetched)
     print(
@@ -96,8 +111,20 @@ def cmd_render(args: argparse.Namespace) -> int:
         print("no snapshot found; run refresh first", file=sys.stderr)
         return 1
     changelog = read_changelog(data_dir)
-    update_readme(Path(args.readme), render_dashboard(snapshot, changelog))
-    write_feed(Path(args.feed), snapshot, changelog)
+    signal_room = build_signal_room(
+        snapshot,
+        changelog,
+        list_snapshot_dates(data_dir),
+    )
+    update_readme(
+        Path(args.readme),
+        render_dashboard(snapshot, changelog, signal_room),
+    )
+    write_feed(Path(args.feed), snapshot, changelog, signal_room)
+    write_signal_room(
+        Path(getattr(args, "signals", "docs/signals.json")),
+        signal_room,
+    )
     print(f"rendered dashboard for snapshot {snapshot.snapshot_date}")
     return 0
 
@@ -107,6 +134,7 @@ def main() -> int:
     parser.add_argument("--data-dir", default="data")
     parser.add_argument("--readme", default="README.md")
     parser.add_argument("--feed", default="docs/feed.json")
+    parser.add_argument("--signals", default="docs/signals.json")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     refresh = subparsers.add_parser("refresh")
