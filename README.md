@@ -7,17 +7,17 @@ The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requ
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-07-27** (refreshed weekly from the public ESMA interim MiCAR register)
+**Register snapshot: 2026-08-03** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 
 | Register | Entries | Source status |
 | --- | ---: | --- |
-| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 941 | ok |
+| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 783 | ok |
 | [White papers — e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 41 | ok |
 | [White papers — asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | ok |
-| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 312 | ok |
-| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 164 | ok |
+| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 323 | ok |
+| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 167 | ok |
 
 ### White paper format coverage
 
@@ -25,57 +25,65 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 
 | Linked format | Count | Deep-lint candidate |
 | --- | ---: | --- |
-| Unspecified (landing page or bare domain) | 604 | no |
-| PDF | 254 | no |
-| XHTML / HTML | 123 | yes |
-| No link in register | 1 | no |
+| Unspecified (landing page or bare domain) | 524 | no |
+| PDF | 246 | no |
+| XHTML / HTML | 52 | yes |
+| No link in register | 2 | no |
 
 ### Home Member States (white papers)
 
 | Member State | White papers |
 | --- | ---: |
-| IE | 353 |
-| MT | 161 |
-| DE | 150 |
-| NL | 80 |
-| LI | 72 |
-| LU | 54 |
-| FR | 34 |
-| LV | 14 |
+| IE | 298 |
+| MT | 149 |
+| DE | 111 |
+| LI | 71 |
+| NL | 63 |
+| LU | 37 |
+| FR | 28 |
+| LV | 11 |
 | AT | 9 |
 | FI | 9 |
-| ...and 11 more | |
+| ...and 9 more | |
 
-### Changes in this snapshot (2026-07-27)
+### Changes in this snapshot (2026-08-03)
 
 | Change | Register | Entity | MS | Link |
 | --- | --- | --- | --- | --- |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/polkadot-d...](https://white-paper.crypto-risk-metrics.com/en/polkadot-dot-ffg-sgd9nltrg/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/graph-toke...](https://white-paper.crypto-risk-metrics.com/en/graph-token-ffg-vmqpvh41w/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/injective-...](https://white-paper.crypto-risk-metrics.com/en/injective-token-ffg-92m9b0dz7/index.html) |
-| added | other-wp | VerifiedX LLC | IE | [https://docs.verifiedx.io/docs/documents/mica-whitepaper](https://docs.verifiedx.io/docs/documents/mica-whitepaper) |
-| added | other-wp | EarthX Ltd | IE | [https://docs.o1.exchange/token/mica-whitepaper](https://docs.o1.exchange/token/mica-whitepaper) |
-| added | other-wp | RWAX Holdings Limited | IE | [https://multipli.fi/legal/micapaper](https://multipli.fi/legal/micapaper) |
-| added | other-wp | Stronghold Anchor Limited | IE | [https://stronghold.co/shx-mica-whitepaper.pdf](https://stronghold.co/shx-mica-whitepaper.pdf) |
-| added | other-wp | Bitcoin HT, LLC | IE | [https://bitcoin.org.ht/mica-white-paper/](https://bitcoin.org.ht/mica-white-paper/) |
-| added | other-wp | Fanpla Inc | IE | [https://fanpla.ch/whitepaper/](https://fanpla.ch/whitepaper/) |
-| added | other-wp | Discovery (BVI) Limited | IE | [dscvr.one/whitepaper](https://dscvr.one/whitepaper) |
-| added | other-wp | StorX Foundation | IE | [https://storx.tech/pdf/MICA-Whitepaper/](https://storx.tech/pdf/MICA-Whitepaper/) |
-| added | other-wp | Cygnus Information Limited | IE | [https://www.cygnus.finance/micar-whitepaper](https://www.cygnus.finance/micar-whitepaper) |
-| added | other-wp | Nillion Association | MT | [https://nillion.com/legal/mica/whitepaper/](https://nillion.com/legal/mica/whitepaper/) |
-| added | other-wp | Dapp OS Technology Pte. Ltd | NL | [https://dappos.com/mica-white-paper](https://dappos.com/mica-white-paper) |
-| added | other-wp | GEODAO FOUNDATION PTE. LTD. | NL | [https://geodnet.micarwhitepaper.eu](https://geodnet.micarwhitepaper.eu) |
-| added | other-wp | ProtoWardo Ltd. | NL | [https://runhalo.xyz/halo/micar-whitepaper](https://runhalo.xyz/halo/micar-whitepaper) |
-| removed | other-wp | Nillion Association | MT | [https://nillion.com/wp-content/uploads/mica.html](https://nillion.com/wp-content/uploads/mica.html) |
-| removed | other-wp | Buck Assets Ltd | MT | [https://staging.buck.foundation/documents/20251216_BuckTo...](https://staging.buck.foundation/documents/20251216_BuckToken_MiCAWhitepaper_V2.pdf) |
-| changed | emt-wp | Circle Internet Financial Europe SAS | FR | [https://www.circle.com/fr/legal/mica-usdc-whitepaper](https://www.circle.com/fr/legal/mica-usdc-whitepaper) |
-| added | casps | BNY SA/NV | BE |  |
-| added | casps | Belayer ООD | BG |  |
-| added | casps | Altcoins BG EООD | BG |  |
-| added | casps | Digital Assist OOD | BG |  |
-| changed | casps | S.K. DASK KRYPTO LTD | CY |  |
-| changed | casps | Ronin EM Ltd | CY |  |
-| ...and 27 more (see `data/changelog.jsonl`) | | | | |
+| added | other-wp | Skygate Network GmbH | AT | [https://www.skygatetoken.at/wp-content/uploads/2025/01/WH...](https://www.skygatetoken.at/wp-content/uploads/2025/01/WHITEPAPER-SKYGATE-MiCAR-Version-1-18.01.25-EN-DE.pdf) |
+| changed | other-wp | DGRX Sales GmbH | AT | [www.desertgreener.io](https://www.desertgreener.io) |
+| added | other-wp | ATEG Capital FlexCo | AT | [https://ateg-capital.com/whitepaper/](https://ateg-capital.com/whitepaper/) |
+| changed | other-wp | SC Steelcoin GmbH | AT | [https://steelcoin.com/](https://steelcoin.com/) |
+| added | other-wp | VISION web 3 Stiftung | AT | [http://vision.now/](http://vision.now/) |
+| added | other-wp | ZKsync Association - Ein Verein zur Foerderung des digitalen Oekosystems ZKsync e.V. | AT | [https://docs.zknation.io/legal/zk-token-mica-white-paper](https://docs.zknation.io/legal/zk-token-mica-white-paper) |
+| added | other-wp | Tzolkin GmbH | AT | [https://starkware.co/](https://starkware.co/) |
+| changed | other-wp | ELEVEN ELEVEN MANAGEMENT LIMITED | AT | [https://1111-management.com/](https://1111-management.com/) |
+| added | other-wp | Biogena GmbH & Co KG | AT | [https://www.biogena.com/biox](https://www.biogena.com/biox) |
+| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://crypto-risk-metrics.com/en/white-paper-official-t...](https://crypto-risk-metrics.com/en/white-paper-official-trump-ffg-ljdpgnxxk/) |
+| changed | other-wp | OneFootball Capital GmbH | DE | [https://promo.onefootball.com/legal/whitepaper](https://promo.onefootball.com/legal/whitepaper) |
+| changed | other-wp | XGR.Network GmbH | DE | [https://xgr.network/whitepaper/](https://xgr.network/whitepaper/) |
+| changed | other-wp | WYND Capital GmbH /MD Capital GmbH | DE | [https://wynd.group/](https://wynd.group/) |
+| changed | other-wp | Hassan Systems GmbH | DE | [https://getlea.org/](https://getlea.org/) |
+| changed | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/doodles-ff...](https://white-paper.crypto-risk-metrics.com/en/doodles-ffg-kf6rx3lr1/index.html) |
+| added | other-wp | Crypto Risk Metrics GmbH | DE | [white-paper.crypto-risk-metrics.com/en/kyber-network-crys...](https://white-paper.crypto-risk-metrics.com/en/kyber-network-crystal-v2-ffg-l0dzsblvz/index.html) |
+| added | other-wp | Crypto Risk Metrics GmbH | DE | [white-paper.crypto-risk-metrics.com/en/plume-ffg-frzqzj7b...](https://white-paper.crypto-risk-metrics.com/en/plume-ffg-frzqzj7bl/index.html) |
+| added | other-wp | Leondra GmbH, Berlin | DE | [https://www.leondrino.de](https://www.leondrino.de) |
+| changed | other-wp | BB Trade Estonia OÜ | EE | [https://assets.znd.co/tmpl-token/en/whitepaper.pdf](https://assets.znd.co/tmpl-token/en/whitepaper.pdf) |
+| added | other-wp | DELOREAN TECHNOLOGIES GLOBAL, INC. | ES | [https://ws.onehub.com/secure_share/336eogep
+https://ws.o...](https://ws.onehub.com/secure_share/336eogep
+https://ws.onehub.com/secure_share/1d8l6646) |
+| added | other-wp | BILLIONS | ES | [https://billions.network/terms-and-conditions
+https://dr...](https://billions.network/terms-and-conditions
+https://drive.google.com/file/d/1rYP9Pux9j-8udFvehbBGVKsfH6UktxdL/view?usp=sharing) |
+| added | other-wp | CheerBitcoin SASU | FR | [https://drive.google.com/file/d/1IrTRXdr4w8HKdfKBxHZHMJDh...](https://drive.google.com/file/d/1IrTRXdr4w8HKdfKBxHZHMJDhBTDyFysM/view?usp=sharing
+
+https://drive.google.com/file/d/11oWkYWhXIZTSVMDCVV2pC3wDeFTJz3QZ/view?usp=sharing) |
+| added | other-wp | CheerBitcoin SASU | FR | [https://drive.google.com/file/d/1DUmluyeGiuYCtPGvwXs_5Gkd...](https://drive.google.com/file/d/1DUmluyeGiuYCtPGvwXs_5Gkdd_NrTAFj/view?usp=drive_link
+
+https://drive.google.com/file/d/1jyCln0cYYT47PdF6oufM_PlMfdRHaHWF/view?usp=drive_link) |
+| changed | other-wp | InFlux Technologies Limited | IE | [https://assets-cms.kraken.com/files/51n36hrp/facade/58054...](https://assets-cms.kraken.com/files/51n36hrp/facade/58054248c9b6c4d11df0f30a912bfd098e677fdc.pdf?_gl=1*y154rm*_gcl_au*MTcxOTgwMTU0NC4xNzUwMDk4MDIx*_ga*MTc4ODAyNDUxNC4xNzUwMDk4MDIx*_ga_5MVYWBPCBE*czE3NTI2ODY0MDIkbzE2JGcxJHQxNzUyNjkwMTAzJGoyNiRsMCRoMA..) |
+| added | other-wp |  | IE | [https://assets-cms.kraken.com/files/51n36hrp/facade/b2d36...](https://assets-cms.kraken.com/files/51n36hrp/facade/b2d36cdfaf04d6125a97ea8b076a8cbd9b05de59.pdf?_gl=1*19oo0jw*_gcl_au*MTcxOTgwMTU0NC4xNzUwMDk4MDIx*_ga*MTc4ODAyNDUxNC4xNzUwMDk4MDIx*_ga_5MVYWBPCBE*czE3NTM4MDM0ODAkbzI4JGcxJHQxNzUzODA0MDA2JGo1OSRsMCRoMA..) |
+| ...and 416 more (see `data/changelog.jsonl`) | | | | |
 <!-- dashboard:end -->
 
 ## Run it
