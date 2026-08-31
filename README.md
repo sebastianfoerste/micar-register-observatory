@@ -7,7 +7,7 @@ The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requ
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-08-24** (refreshed weekly from the public ESMA interim MiCAR register)
+**Register snapshot: 2026-08-31** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 
@@ -46,36 +46,9 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 | FI | 10 |
 | ...and 12 more | |
 
-### Changes in this snapshot (2026-08-24)
+### Changes in this snapshot (2026-08-31)
 
-| Change | Register | Entity | MS | Link |
-| --- | --- | --- | --- | --- |
-| added | other-wp | Bitpanda GmbH | AT | [https://www.bitpanda.com/en/legal/vsn-white-paper](https://www.bitpanda.com/en/legal/vsn-white-paper) |
-| changed | other-wp | MOJO Sales GmbH | AT | [https://mojomarketplace.io](https://mojomarketplace.io) |
-| added | other-wp | Heldfor GmbH | DE | [https://www.heldfor.com/whitepaper](https://www.heldfor.com/whitepaper) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/floki-ffg-...](https://white-paper.crypto-risk-metrics.com/en/floki-ffg-r1xc4hqt5/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/gram-ffg-k...](https://white-paper.crypto-risk-metrics.com/en/gram-ffg-kk12jmbtx/index.html) |
-| added | other-wp | Nimiq Network Ltd. | DE | [https://www.nimiq.com/](https://www.nimiq.com/) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/diem-ffg-z...](https://white-paper.crypto-risk-metrics.com/en/diem-ffg-zffjtq357/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/venice-tok...](https://white-paper.crypto-risk-metrics.com/en/venice-token-ffg-p0sd47m0w/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/b3-ffg-bpl...](https://white-paper.crypto-risk-metrics.com/en/b3-ffg-bplsknpd9/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/ai16z-ffg-...](https://white-paper.crypto-risk-metrics.com/en/ai16z-ffg-8sqn5vkwh/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/pumpfun-ff...](https://white-paper.crypto-risk-metrics.com/en/pumpfun-ffg-c2f189jnl/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/peanut-the...](https://white-paper.crypto-risk-metrics.com/en/peanut-the-squirrel-ffg-75d0kj7wn/index.html) |
-| added | other-wp | VERA POWER LTD | IE | [https://www.upsmartytoken.com/whitepaper](https://www.upsmartytoken.com/whitepaper) |
-| added | other-wp | OGF (BVI) Ltd. | IE | [https://contents.crosstoken.io/white-paper/260713_WhitePa...](https://contents.crosstoken.io/white-paper/260713_WhitePaper_ONE_Token_OGF_BVI_Ltd_VG_EN_ID_3557280.xhtml) |
-| added | other-wp | DAWN Foundation | IE | [http://dawninternet.com/micawhitepaper](http://dawninternet.com/micawhitepaper) |
-| added | other-wp | Midnight TGE Ltd. | MT | [https://www.midnight.gd/night-mica-white-paper](https://www.midnight.gd/night-mica-white-paper) |
-| added | other-wp | QuantID Systems Inc | MT | [https://api.s.technology/wp-content/uploads/2026/08/White...](https://api.s.technology/wp-content/uploads/2026/08/WhitePaper-RWS-Token_v8.xhtml) |
-| added | other-wp | Wandilla Holdings Limited | NL | [https://verona.micarwhitepapers.eu](https://verona.micarwhitepapers.eu) |
-| added | other-wp | The Interfold Foundation | NL | [https://interfold.micarwhitepapers.eu](https://interfold.micarwhitepapers.eu) |
-| added | other-wp | Tread Foundry Ltd. | NL | [https://tread.micarwhitepapers.eu](https://tread.micarwhitepapers.eu) |
-| added | other-wp | Orbital Line Limited | NL | [https://grvt.micarwhitepapers.eu](https://grvt.micarwhitepapers.eu) |
-| added | other-wp | Odyssey Foundation | NL | [https://odyssey.micarwhitepapers.eu](https://odyssey.micarwhitepapers.eu) |
-| changed | other-wp | Dog Planet AS | NO | [https://www.dogplanet.no/](https://www.dogplanet.no/) |
-| added | other-wp | PALM Token | NO | [http://www.palmeconomy.io](http://www.palmeconomy.io) |
-| added | other-wp | Aprikos Venture AS | NO | [https://venturetoken.io/](https://venturetoken.io/) |
-| ...and 23 more (see `data/changelog.jsonl`) | | | | |
+No register changes since the previous snapshot.
 <!-- dashboard:end -->
 
 ## Run it
