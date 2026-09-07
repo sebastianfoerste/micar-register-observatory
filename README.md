@@ -7,7 +7,7 @@ The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requ
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-08-31** (refreshed weekly from the public ESMA interim MiCAR register)
+**Register snapshot: 2026-09-07** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 
@@ -46,7 +46,7 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 | FI | 10 |
 | ...and 12 more | |
 
-### Changes in this snapshot (2026-08-31)
+### Changes in this snapshot (2026-09-07)
 
 No register changes since the previous snapshot.
 <!-- dashboard:end -->
