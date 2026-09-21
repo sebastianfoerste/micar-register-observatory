@@ -1,16 +1,16 @@
 {
- "snapshot_date": "2026-09-14",
+ "snapshot_date": "2026-09-21",
  "registers": [
   {
    "slug": "other-wp",
    "title": "White papers — other crypto-assets (Title II)",
-   "entries": 988,
+   "entries": 998,
    "fetched": true
   },
   {
    "slug": "emt-wp",
    "title": "White papers — e-money tokens (Title IV)",
-   "entries": 47,
+   "entries": 49,
    "fetched": true
   },
   {
@@ -22,357 +22,17 @@
   {
    "slug": "casps",
    "title": "Authorised crypto-asset service providers (CASPs)",
-   "entries": 346,
+   "entries": 352,
    "fetched": true
   },
   {
    "slug": "ncasp",
    "title": "Non-compliant entities flagged by NCAs",
-   "entries": 167,
+   "entries": 174,
    "fetched": true
   }
  ],
  "recent_changes": [
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "added",
-   "entry_id": "4b7f486ce70e085b",
-   "entity_name": "NeuraAI Ltd.",
-   "member_state": "IE",
-   "wp_url": "neura.micarwhitepapers.eu",
-   "detail": ""
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "added",
-   "entry_id": "1647694a5e01f184",
-   "entity_name": "VINU LTD",
-   "member_state": "IE",
-   "wp_url": "https://nyks.tech/mica/nyks-mica-white-paper-en.xhtml",
-   "detail": ""
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "added",
-   "entry_id": "3807245f936b779a",
-   "entity_name": "ae_lei_name",
-   "member_state": "ae_homeMemberState",
-   "wp_url": "wp_url",
-   "detail": ""
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "78a00e75714259de",
-   "entity_name": "Acurast Association",
-   "member_state": "LV",
-   "wp_url": "https://docsend.com/view/vxyaenm9z2mfghg9",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "1fcb68ac23180396",
-   "entity_name": "EquationX Ltd.",
-   "member_state": "LV",
-   "wp_url": "https://pell.network/pdf/pell-network-whitepaper-v1.0.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "5aef2d230fa6672e",
-   "entity_name": "MYX Technology Limited",
-   "member_state": "LV",
-   "wp_url": "https://myxfinance.gitbook.io/myx/protocol/compliance",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "5ff4dc1ced8183af",
-   "entity_name": "Propy Inc",
-   "member_state": "LV",
-   "wp_url": "https://propy.com/browse/wp-content/uploads/Propy-MiCA-WhitePaper-2025.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "3808e08916ca3106",
-   "entity_name": "Not Multiverse Ltd",
-   "member_state": "LV",
-   "wp_url": "https://almanak.co/almanak-mica-wp.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "495f4077ffa17acc",
-   "entity_name": "Zee World Association",
-   "member_state": "LV",
-   "wp_url": "https://cdn.forest.inc/docs/whitepaper.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "436784a4a8f424d4",
-   "entity_name": "BlockBen SIA",
-   "member_state": "LV",
-   "wp_url": "https://crowdedhero.com/legal/crowdx_whitepaper",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "added",
-   "entry_id": "7f945aa7ca2e3850",
-   "entity_name": "BlockBen SIA",
-   "member_state": "LV",
-   "wp_url": "https://data.blockben.com/whitepaper/docs.html",
-   "detail": ""
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "e851c7ca7872135f",
-   "entity_name": "BlockBen SIA",
-   "member_state": "LV",
-   "wp_url": "https://blockben.com/en/products/holoverz",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "fe22a1aacf07f2a3",
-   "entity_name": "BlockBen SIA",
-   "member_state": "LV",
-   "wp_url": "https://vendomatiq.com/tico/whitepaper.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "3056ac7a2bad3285",
-   "entity_name": "Comet Technologies Ltd.",
-   "member_state": "LV",
-   "wp_url": "https://gitbook.zignaly.com/white-paper",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "75ca2f23eab5c91a",
-   "entity_name": "Gen6 USA LLC",
-   "member_state": "LV",
-   "wp_url": "https://gen6.me/filez/mica_full.html",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "9a31afed8e1538ec",
-   "entity_name": "Midnight TGE Ltd",
-   "member_state": "MT",
-   "wp_url": "https://45047878.fs1.hubspotusercontent-na1.net/hubfs/45047878/NIGHT%20MiCA%20White%20Paper.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "ff9d030bf2df8780",
-   "entity_name": "Lagrange (BVI) Limited",
-   "member_state": "MT",
-   "wp_url": "https://www.lagrangefoundation.org/lagrange_MiCA_Whitepaper.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "6e6157aad188c1f0",
-   "entity_name": "Stakeinfra Technologies Inc.",
-   "member_state": "MT",
-   "wp_url": "https://www.staderlabs.com/docx/whitepapers/StakeinfraTechnologies-MiCAWhitepaper.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "ec5a8af946c5e5b8",
-   "entity_name": "The Chiliz Group Limited",
-   "member_state": "MT",
-   "wp_url": "https://www.chiliz.com/wp-content/uploads/2025/07/Chiliz-Whitepaper-2025.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "50a6332b1b6480d7",
-   "entity_name": "QuantID Systems Inc.",
-   "member_state": "MT",
-   "wp_url": "https://store.s.technology/wp-content/uploads/2025/09/serenity-white-paper-2025-legal.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "f9d3e2f40b9e91d6",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/city-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "2e37ef41ab12e1d1",
-   "entity_name": "SSV Network Operations Ltd",
-   "member_state": "MT",
-   "wp_url": "https://ssv.network/wp-content/uploads/2025/10/250814-SSV-Token_White-Paper_final.pdf",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "445505c82be28d14",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/acm-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "5dd49880e5c5943d",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/spurs-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "e1fa5cab3ccc7493",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/arg-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "abdad36030a341f8",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/nap-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "d01fbf15bfa48f33",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/inter-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "c6499d9d51778b1d",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/afc-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "e3a1e1f67bb86dcf",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/por-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "149ad50a8da67b2c",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/mengo-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "7f10491e27216229",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/sccp-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "a6d528cc91dc426a",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/goz-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "e32349881edd7ab2",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/asm-whitepaper/en/",
-   "detail": "register row content changed"
-  },
-  {
-   "snapshot_date": "2026-09-14",
-   "register_slug": "other-wp",
-   "change": "changed",
-   "entry_id": "544408e4982fb3db",
-   "entity_name": "Socios Technologies AG",
-   "member_state": "MT",
-   "wp_url": "https://www.socios.com/legal-hub/tokens/whitepapers/spfc-whitepaper/en/",
-   "detail": "register row content changed"
-  },
   {
    "snapshot_date": "2026-09-14",
    "register_slug": "other-wp",
@@ -2030,6 +1690,346 @@
    "entry_id": "758c0ed7ea3eab7c",
    "entity_name": "GateHub Exchange družba za izvajanje storitev v zvezi s kriptosredstvi d.o.o.",
    "member_state": "SI",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "e9bae7e26610f39a",
+   "entity_name": "Alphamind OÜ",
+   "member_state": "EE",
+   "wp_url": "https://alphamind.xyz",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "477bee883988021b",
+   "entity_name": "Playnance OÜ",
+   "member_state": "EE",
+   "wp_url": "https://www.playnance.com/Annex%202.%20Whitepaper%20Draft.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "da1c97afcba490c5",
+   "entity_name": "Standard Technologies Pte. Ltd.",
+   "member_state": "IE",
+   "wp_url": "awe.micarwhitepapers.eu",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "076234421cec714a",
+   "entity_name": "Puple AI Inc.",
+   "member_state": "IE",
+   "wp_url": "https://memecore.com/micar-whitepaper",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "2779dbc62f2f52e7",
+   "entity_name": "LN Technology (TIV) Limited",
+   "member_state": "IE",
+   "wp_url": "https://cdn.prod.website-files.com/67ea875e6d5ae597a69440a1/6a58d844e9e059c09c086474_KAIO_MiCA_WhitePaper_4_21_2026.pdf",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "74853d740a3a8ca0",
+   "entity_name": "BLOCKv Foundation, to be renamed Dual Foundation",
+   "member_state": "IE",
+   "wp_url": "www.dual.org/mica",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "345e868009b9abbe",
+   "entity_name": "Fuse Crypto Limited",
+   "member_state": "LU",
+   "wp_url": "https://www.fuseenergy.com/mica-whitepaper",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "e99941502f959e66",
+   "entity_name": "Bitstamp Europe S.A.",
+   "member_state": "LU",
+   "wp_url": "https://assets.bitstamp.net/docs/whitepaper/PONS_2026_08_31.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "43c135ced32a1b5f",
+   "entity_name": "Bitstamp Europe S.A.",
+   "member_state": "LU",
+   "wp_url": "https://assets.bitstamp.net/docs/whitepaper/BILL_2026_09_03.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "2e6d8fb5d5812acb",
+   "entity_name": "Nillion Association",
+   "member_state": "MT",
+   "wp_url": "https://nillion.com/legal/mica/whitepaper/",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "0d553dffee5f1520",
+   "entity_name": "Elliot Technologies, Inc",
+   "member_state": "MT",
+   "wp_url": "https://my.okx.com/whitepaper/lighter-lit.xhtml",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "emt-wp",
+   "change": "changed",
+   "entry_id": "8a47cb6cf471d6d8",
+   "entity_name": "AllUnity GmbH",
+   "member_state": "DE",
+   "wp_url": "https://allunity.com/whitepaper",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "emt-wp",
+   "change": "added",
+   "entry_id": "abb8312ec0ead50f",
+   "entity_name": "BISON BANK, S.A.",
+   "member_state": "PT",
+   "wp_url": "https://bisonbank.com/wp-content/uploads/2026/04/Bison-Bank-EUB-White-Paper_20260312-1.pdf",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "d49a4fe7668bcc66",
+   "entity_name": "FF Digital EOOD",
+   "member_state": "BG",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "c808a6d466950c0b",
+   "entity_name": "Deutsche WertpapierService Bank AG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "5a08a6db184de2e6",
+   "entity_name": "DLT Securities GmbH",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "791b78a4d6be21e1",
+   "entity_name": "Volksbank Olpe-Wenden-Drolshagen eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "546f887f06681de9",
+   "entity_name": "Deutsche Bank Aktiengesellschaft",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "e466b66eacefc1ca",
+   "entity_name": "Raiffeisenbank Goldener Steig-Dreisessel eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "8f9af68ab613c740",
+   "entity_name": "Vereinigte VR Bank eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "e682b6d429102bc4",
+   "entity_name": "Vereinigte Volksbank Raiffeisenbank eG, Reinheim",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "2f6e23cbbc0e94f6",
+   "entity_name": "Januar ApS",
+   "member_state": "DK",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "3dcf755a0c3784fb",
+   "entity_name": "SOCIETE GENERALE - FORGE",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "953dfda659db0863",
+   "entity_name": "RCUBE ASSET MANAGEMENT",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "814a7683089088fc",
+   "entity_name": "LEONOD SARL",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "1994376ef3c38872",
+   "entity_name": "FLOWDESK EUROPE SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed"
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "82e384db0edce39c",
+   "entity_name": "APLO SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "fb53717978a7aad8",
+   "entity_name": "Bank Bit",
+   "member_state": "BE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "8caee3225b317a8e",
+   "entity_name": "Bithf Pro",
+   "member_state": "BE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "e50614ec6db83f1c",
+   "entity_name": "Dxago",
+   "member_state": "BE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "1ceb84361a6b975f",
+   "entity_name": "Global Dynamic Trade",
+   "member_state": "BE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "861b543361f70e3b",
+   "entity_name": "ZeriaFunding",
+   "member_state": "BE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "e83a4ceb425c3d8b",
+   "entity_name": "Aurum Foundation",
+   "member_state": "BE",
+   "wp_url": "",
+   "detail": ""
+  },
+  {
+   "snapshot_date": "2026-09-21",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "dc8c2df5480bf13a",
+   "entity_name": "White Mint Financial Company s.r.o.",
+   "member_state": "CZ",
    "wp_url": "",
    "detail": ""
   }
