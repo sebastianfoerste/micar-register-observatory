@@ -1,4 +1,4 @@
-.PHONY: install test refresh render
+.PHONY: install test refresh render report freshness
 
 install:
 	uv sync --extra dev
@@ -11,3 +11,9 @@ refresh:
 
 render:
 	uv run python -m observatory render
+
+report:
+	uv run python -m report build
+
+freshness:
+	uv run python scripts/check_snapshot_freshness.py

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/micar-register.snapshot.v1.schema.json",
+  "title": "MiCAR Register Snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["snapshot_date", "registers"],
+  "properties": {
+    "snapshot_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "registers": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["slug", "title", "kind", "source_url", "fetched", "entries"],
+        "properties": {
+          "slug": {
+            "enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]
+          },
+          "title": {"type": "string"},
+          "kind": {"enum": ["whitepaper", "entity"]},
+          "source_url": {"type": "string", "format": "uri"},
+          "fetched": {"type": "boolean"},
+          "fetch_error": {"type": "string"},
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "entry_id",
+                "register_slug",
+                "authority",
+                "member_state",
+                "entity_name",
+                "lei",
+                "wp_url",
+                "last_update",
+                "format_class",
+                "row_hash"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
