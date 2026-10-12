@@ -1,5 +1,5 @@
 {
- "snapshot_date": "2026-09-21",
+ "snapshot_date": "2026-10-05",
  "registers": [
   {
    "slug": "other-wp",
@@ -442,18 +442,6 @@
      "row_hash": "e1c2cefe986bc66d"
     },
     {
-     "entry_id": "85ebc5212d8cc020",
-     "register_slug": "other-wp",
-     "authority": "Federal Financial Supervisory Authority (BaFin)",
-     "member_state": "DE",
-     "entity_name": "Crypto Risk Metrics GmbH",
-     "lei": "39120077M9TG0O1FE242",
-     "wp_url": "https://crypto-risk-metrics.com/en/white-paper-pudgy-penguins-ffg-13jbpt88t/",
-     "last_update": "26/06/2025",
-     "format_class": "unspecified",
-     "row_hash": "9e2a43d791f1bb98"
-    },
-    {
      "entry_id": "3381ea82f9ef7cee",
      "register_slug": "other-wp",
      "authority": "Federal Financial Supervisory Authority (BaFin)",
@@ -718,18 +706,6 @@
      "row_hash": "2c924b20afeeb5b6"
     },
     {
-     "entry_id": "cfbfc86032758f8c",
-     "register_slug": "other-wp",
-     "authority": "Federal Financial Supervisory Authority (BaFin)",
-     "member_state": "DE",
-     "entity_name": "Crypto Risk Metrics GmbH",
-     "lei": "39120077M9TG0O1FE242",
-     "wp_url": "https://crypto-risk-metrics.com/en/white-paper-horizen-ffg-T9QL1ZT5D/",
-     "last_update": "13/08/2025",
-     "format_class": "unspecified",
-     "row_hash": "32c194e61c26b1a8"
-    },
-    {
      "entry_id": "b2ac9873f4ca0840",
      "register_slug": "other-wp",
      "authority": "Federal Financial Supervisory Authority (BaFin)",
@@ -740,18 +716,6 @@
      "last_update": "13/08/2025",
      "format_class": "unspecified",
      "row_hash": "7d5dfa86f92ef9f7"
-    },
-    {
-     "entry_id": "aae58c9779dfe4d4",
-     "register_slug": "other-wp",
-     "authority": "Federal Financial Supervisory Authority (BaFin)",
-     "member_state": "DE",
-     "entity_name": "Crypto Risk Metrics GmbH",
-     "lei": "39120077M9TG0O1FE242",
-     "wp_url": "https://crypto-risk-metrics.com/en/white-paper-spark-ffg-gs4h3vsb1/",
-     "last_update": "14/08/2025",
-     "format_class": "unspecified",
-     "row_hash": "198997d88db2ef5f"
     },
     {
      "entry_id": "7e5aa3e7a09701dd",
@@ -1210,18 +1174,6 @@
      "row_hash": "00993739fef5ece3"
     },
     {
-     "entry_id": "fc097af1d9d14582",
-     "register_slug": "other-wp",
-     "authority": "Federal Financial Supervisory Authority (BaFin)",
-     "member_state": "DE",
-     "entity_name": "Crypto Risk Metrics GmbH",
-     "lei": "39120077M9TG0O1FE242",
-     "wp_url": "https://www.crypto-risk-metrics.com/en/white-paper-cronos-ffg-gwm30mlw3/",
-     "last_update": "20/01/2026",
-     "format_class": "unspecified",
-     "row_hash": "acd3b83015b1b578"
-    },
-    {
      "entry_id": "26e4106766fec08b",
      "register_slug": "other-wp",
      "authority": "Federal Financial Supervisory Authority (BaFin)",
@@ -1630,18 +1582,6 @@
      "row_hash": "2587e2c6c83e5b77"
     },
     {
-     "entry_id": "839808a98bde2911",
-     "register_slug": "other-wp",
-     "authority": "Federal Financial Supervisory Authority (BaFin)",
-     "member_state": "DE",
-     "entity_name": "Leondra GmbH",
-     "lei": "",
-     "wp_url": "https://xleo.leondrino.com/en/home/#whitepaper",
-     "last_update": "06/02/2026",
-     "format_class": "unspecified",
-     "row_hash": "b019c2959367d5c8"
-    },
-    {
      "entry_id": "2b83e3bf7ee76a9f",
      "register_slug": "other-wp",
      "authority": "Federal Financial Supervisory Authority (BaFin)",
@@ -1772,18 +1712,6 @@
      "last_update": "01/06/2026",
      "format_class": "xhtml/html",
      "row_hash": "f078501852bf8c0b"
-    },
-    {
-     "entry_id": "839808a98bde2911",
-     "register_slug": "other-wp",
-     "authority": "Federal Financial Supervisory Authority (BaFin)",
-     "member_state": "DE",
-     "entity_name": "Leondra GmbH",
-     "lei": "",
-     "wp_url": "https://xleo.leondrino.com/en/home/#whitepaper",
-     "last_update": "26/05/2026",
-     "format_class": "unspecified",
-     "row_hash": "21ecee7d1688a1e8"
     },
     {
      "entry_id": "427c881fbad8dba6",
@@ -1954,16 +1882,16 @@
      "row_hash": "09d0d42dbca52294"
     },
     {
-     "entry_id": "e8a63606e67ee934",
+     "entry_id": "710bf5150daa66e5",
      "register_slug": "other-wp",
      "authority": "Federal Financial Supervisory Authority (BaFin)",
      "member_state": "DE",
      "entity_name": "Nimiq Network Ltd.",
      "lei": "391200RK8DW9GC5VC131",
-     "wp_url": "https://www.nimiq.com/",
+     "wp_url": "https://www.nimiq.com/mica-whitepaper.pdf",
      "last_update": "05/08/2026",
-     "format_class": "unspecified",
-     "row_hash": "e5b06193d421e2db"
+     "format_class": "pdf",
+     "row_hash": "71f6e75fb315ec33"
     },
     {
      "entry_id": "154a332716ecb885",
@@ -2036,6 +1964,198 @@
      "last_update": "18/08/2026",
      "format_class": "xhtml/html",
      "row_hash": "b5cb3ee8577585d0"
+    },
+    {
+     "entry_id": "e88348be224a0f15",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/spark-ffg-gs4h3vsb1/index.html",
+     "last_update": "01/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "87d1e97a0c90183a"
+    },
+    {
+     "entry_id": "026a6e86f9f91291",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/horizen-ffg-t9ql1zt5d/index.html",
+     "last_update": "01/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "db0d514a157e5492"
+    },
+    {
+     "entry_id": "d74b16b3db1325cf",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/de/cronos-ffg-gwm30mlw3/index.html",
+     "last_update": "01/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "fdbcf4e33e1c9519"
+    },
+    {
+     "entry_id": "d42becdae9c86f6d",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Leondra GmbH",
+     "lei": "",
+     "wp_url": "https://www.leondrino.com/xleopre-de/",
+     "last_update": "07/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "6c8b6fb526dbe739"
+    },
+    {
+     "entry_id": "c233475a9b388bca",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/basecat-ffg-k547p69jx/index.html",
+     "last_update": "02/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "a1609cc0905bf820"
+    },
+    {
+     "entry_id": "bcda77b4e1fc5a2e",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/grass-ffg-mncr2mkhp/index.html",
+     "last_update": "04/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "fe38ae9cf1916171"
+    },
+    {
+     "entry_id": "5be5508aa66c78b8",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/debtreliefbot-ffg-7xlw38nzt/index.html",
+     "last_update": "08/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "85513b822ba1b6fd"
+    },
+    {
+     "entry_id": "34e6f2836c3fd2d2",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/pudgy-penguins-ffg-13jbpt88t/index.html",
+     "last_update": "10/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "88f6e0ec88d047e7"
+    },
+    {
+     "entry_id": "e4cf1d59a0929f27",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/kava-ffg-2hzxzqlkx/index.html",
+     "last_update": "15/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "daccb11c8cbb83a8"
+    },
+    {
+     "entry_id": "e51c6ce2ff991758",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/world-liberty-financial-ffg-3xvwcvfsx/index.html",
+     "last_update": "14/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "61eab159f647c0a3"
+    },
+    {
+     "entry_id": "22b04eeec1609bc1",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/flow-ffg-6t49bcsxz/index.html",
+     "last_update": "18/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "fcd3d0e0a0772be3"
+    },
+    {
+     "entry_id": "e27e4afdde740188",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/hyperliquid-ffg-hltpnvxn0/index.html",
+     "last_update": "21/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "77777c1bdacb47b1"
+    },
+    {
+     "entry_id": "3545e109d7943005",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/mamo-ffg-4wxhprnh8/index.html",
+     "last_update": "21/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "c13d426b86a9aaed"
+    },
+    {
+     "entry_id": "b9705585c0d142a2",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/dydx-ffg-1hzhk551m/index.html",
+     "last_update": "25/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "9445220e7471a67f"
+    },
+    {
+     "entry_id": "1e0f08245e057231",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/mantle-ffg-qh1gf1j5h/index.html",
+     "last_update": "25/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "006d2ba71b0f47f7"
+    },
+    {
+     "entry_id": "fbf71c933925b5de",
+     "register_slug": "other-wp",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Crypto Risk Metrics GmbH",
+     "lei": "39120077M9TG0O1FE242",
+     "wp_url": "https://white-paper.crypto-risk-metrics.com/en/useless-coin-ffg-8hbmrv08q/index.html",
+     "last_update": "25/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "4080a532690538cd"
     },
     {
      "entry_id": "de50e87d6ded29f8",
@@ -7162,6 +7282,150 @@
      "row_hash": "b01a2696739226c1"
     },
     {
+     "entry_id": "5db15395e063b259",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Resonance Foundation",
+     "lei": "984500D78AAB4A75AE10",
+     "wp_url": "https://docs.doppler.finance/legal/mica-whitepaper",
+     "last_update": "18/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "53fcef4295b56574"
+    },
+    {
+     "entry_id": "2da1bdf3502f25b3",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Collector Crypt Foundation",
+     "lei": "9845009C75B80F7B5710",
+     "wp_url": "https://collectorcrypt.com/micar.html",
+     "last_update": "18/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "66e691d98cc5f6af"
+    },
+    {
+     "entry_id": "c527b1e537d0b024",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "IO TRADE LAB LIMITED",
+     "lei": "9845005D09DA881CDD33",
+     "wp_url": "https://iotrader.io/whitepaper.html",
+     "last_update": "18/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "af84cfd78a28dd6c"
+    },
+    {
+     "entry_id": "e41a30e5025afa83",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Public Goods Labs Ltd.",
+     "lei": "2138003622J8BGIIWN11",
+     "wp_url": "https://home.pheasant.network/mica-whitepaper-attr",
+     "last_update": "18/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "63fe1fcc8a052481"
+    },
+    {
+     "entry_id": "b1346a17c5515c61",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Public Goods Labs Ltd.",
+     "lei": "2138003622J8BGIIWN11",
+     "wp_url": "https://home.pheasant.network/mica-whitepaper-otpc",
+     "last_update": "18/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "dbf6a2a0de8f9f4f"
+    },
+    {
+     "entry_id": "1b611c21ec7d5d5f",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Zama Switzerland AG",
+     "lei": "506700JZ15X937X6GX59",
+     "wp_url": "https://docs.zama.ai/protocol/mica",
+     "last_update": "18/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "ba0c9dc8274eb8d9"
+    },
+    {
+     "entry_id": "0664f61ab7a455d7",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Gotchi Labs Ltd",
+     "lei": "9845003BE0382D3E4484",
+     "wp_url": "https://whitepaper.sleepagotchi.com/",
+     "last_update": "25/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "677ebea2c78192d6"
+    },
+    {
+     "entry_id": "db8d13e98f7a677d",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Provable GmbH",
+     "lei": "",
+     "wp_url": "https://www.aleo.org/provablepaper/",
+     "last_update": "25/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "8ffc299624a2475c"
+    },
+    {
+     "entry_id": "c03823d9b9f0894e",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Reasoon Limited",
+     "lei": "648800JZ7E8VPYLRTB37",
+     "wp_url": "https://dgb.eunice.ai/mica_whitepaper",
+     "last_update": "25/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "918e85b3e87b4a4c"
+    },
+    {
+     "entry_id": "1d111608ab46e10e",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Katana Token DeployCo Ltd",
+     "lei": "",
+     "wp_url": "https://docs.katana.network/files/kat_whitepaper_admission_to_trading.xhtml",
+     "last_update": "25/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "cf401a6cc2c25738"
+    },
+    {
+     "entry_id": "c970c78814303e42",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Katana Token DeployCo Ltd",
+     "lei": "",
+     "wp_url": "https://docs.katana.network/files/kat_whitepaper_offering.xhtml",
+     "last_update": "25/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "b71c493aa6461b37"
+    },
+    {
+     "entry_id": "aa103a0daf46f960",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Ireland (CBI)",
+     "member_state": "IE",
+     "entity_name": "Polygon Labs Services (Switzerland) AG",
+     "lei": "",
+     "wp_url": "https://polygon.technology/papers/pol-micar-whitepaper-v2.xhtml",
+     "last_update": "25/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "74c367b423659bb6"
+    },
+    {
      "entry_id": "e93fb6a5e1ac765e",
      "register_slug": "other-wp",
      "authority": "Commissione Nazionale per le Societa e la Borsa (CONSOB)",
@@ -7256,6 +7520,18 @@
      "last_update": "24/04/2026",
      "format_class": "xhtml/html",
      "row_hash": "d6a7ca34e8092c11"
+    },
+    {
+     "entry_id": "a49fcfd34176d823",
+     "register_slug": "other-wp",
+     "authority": "Central Bank of Hungary (MNB)",
+     "member_state": "HU",
+     "entity_name": "HATX Technologies Kft.",
+     "lei": "648800FSNHLNOEHZRB60",
+     "wp_url": "https://hempaccessglobal.com",
+     "last_update": "21/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "79bf3f899803df6f"
     },
     {
      "entry_id": "f9ec5d25963b364b",
@@ -7673,9 +7949,9 @@
      "entity_name": "xMoney Labs AG",
      "lei": "5299001F1ZB58S6JDZ54",
      "wp_url": "http://www.xmoney.com/legal/white-paper-xmn-3-0---xmoney-token",
-     "last_update": "28/04/2026",
+     "last_update": "15/06/2026",
      "format_class": "unspecified",
-     "row_hash": "34e39ed696e45ea3"
+     "row_hash": "6133270078da80d5"
     },
     {
      "entry_id": "19624a43ad3e80a7",
@@ -8110,16 +8386,28 @@
      "row_hash": "5c63ac938e9377d4"
     },
     {
-     "entry_id": "ff621f010027af56",
+     "entry_id": "5da16a3d18586b2b",
      "register_slug": "other-wp",
      "authority": "Finanzmarktaufsicht (FMA)",
      "member_state": "LI",
      "entity_name": "Haven Holding AG",
      "lei": "529900JRSVNLVGL0ID19",
-     "wp_url": "www.havenex.com",
-     "last_update": "19/06/2026",
+     "wp_url": "https://havtoken.com/havenex-whitepaper.pdf",
+     "last_update": "29/09/2026",
+     "format_class": "pdf",
+     "row_hash": "3d6336d4fa548bd5"
+    },
+    {
+     "entry_id": "f3d3be4e3300a555",
+     "register_slug": "other-wp",
+     "authority": "Finanzmarktaufsicht (FMA)",
+     "member_state": "LI",
+     "entity_name": "SUN AG",
+     "lei": "2138004CJ7LMU88WII20",
+     "wp_url": "https://minimeal.com/en/pages/soil",
+     "last_update": "29/09/2026",
      "format_class": "unspecified",
-     "row_hash": "92fd5ac6a4f0ec4f"
+     "row_hash": "9774bcfbb96431b5"
     },
     {
      "entry_id": "cc285e36a4e7edbd",
@@ -9008,6 +9296,18 @@
      "last_update": "15.04.2026",
      "format_class": "xhtml/html",
      "row_hash": "7d3d11143e5a71c2"
+    },
+    {
+     "entry_id": "1b1100b6c464df8d",
+     "register_slug": "other-wp",
+     "authority": "Latvijas Banka",
+     "member_state": "LV",
+     "entity_name": "Linear Intent Technologies Ltd.",
+     "lei": "875500A9K5RIO1WOVM35",
+     "wp_url": "https://www.oroswap.org/whitepaper",
+     "last_update": "23.09.2026",
+     "format_class": "unspecified",
+     "row_hash": "0c21a749ae647895"
     },
     {
      "entry_id": "2e6d8fb5d5812acb",
@@ -10966,6 +11266,54 @@
      "row_hash": "02674e53c1aa338d"
     },
     {
+     "entry_id": "2e6df5dd08dd4348",
+     "register_slug": "other-wp",
+     "authority": "Malta Financial Services Authority (MFSA)",
+     "member_state": "MT",
+     "entity_name": "Fan Token Management AG",
+     "lei": "",
+     "wp_url": "https://www.socios.com/legal-hub/whitepaper/dojo-whitepaper/",
+     "last_update": "15/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "117f4a5b021744ed"
+    },
+    {
+     "entry_id": "ae9cdcf97c75fb54",
+     "register_slug": "other-wp",
+     "authority": "Malta Financial Services Authority (MFSA)",
+     "member_state": "MT",
+     "entity_name": "Fan Token Management AG",
+     "lei": "",
+     "wp_url": "https://www.socios.com/legal-hub/whitepaper/om-whitepaper/",
+     "last_update": "16/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "389462dc603d0490"
+    },
+    {
+     "entry_id": "e4e1f6d973a1586e",
+     "register_slug": "other-wp",
+     "authority": "Malta Financial Services Authority (MFSA)",
+     "member_state": "MT",
+     "entity_name": "SB (BVI) Ltd",
+     "lei": "",
+     "wp_url": "https://storage.googleapis.com/exponential-science-project1.appspot.com/IXBRL/STONKBROKER%20-%2009-09-2026/STONKBROKER-viewer.xhtml",
+     "last_update": "16/09/2026",
+     "format_class": "xhtml/html",
+     "row_hash": "38fc888c45187e2a"
+    },
+    {
+     "entry_id": "539a3e225d48f576",
+     "register_slug": "other-wp",
+     "authority": "Malta Financial Services Authority (MFSA)",
+     "member_state": "MT",
+     "entity_name": "Fan Token Management AG",
+     "lei": "",
+     "wp_url": "https://www.socios.com/legal-hub/whitepaper/pmo-whitepaper/",
+     "last_update": "28/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "734bd17639e1c070"
+    },
+    {
      "entry_id": "2fad4743c3ae5f0b",
      "register_slug": "other-wp",
      "authority": "Netherlands Authority for the Financial Markets (AFM)",
@@ -11849,9 +12197,9 @@
      "entity_name": "CANOPY NETWORK CORP.",
      "lei": "9845000EA369FA3E9I63",
      "wp_url": "https://canopy.micarwhitepapers.eu",
-     "last_update": "28/07/2026",
+     "last_update": "18/09/2026",
      "format_class": "unspecified",
-     "row_hash": "e91d7d9e516ecbd5"
+     "row_hash": "a646b1ec055cb934"
     },
     {
      "entry_id": "8b413fde06cd35bd",
@@ -11897,9 +12245,9 @@
      "entity_name": "Asimov Ltd",
      "lei": "984500A2B7H9288E1D90",
      "wp_url": "https://genlayer.micarwhitepapers.eu",
-     "last_update": "18/08/2026",
+     "last_update": "19/09/2026",
      "format_class": "unspecified",
-     "row_hash": "6fb87e11d243a06b"
+     "row_hash": "fa4c64b929a61a16"
     },
     {
      "entry_id": "1c9e4b978bec0694",
@@ -11912,6 +12260,18 @@
      "last_update": "01/09/2026",
      "format_class": "unspecified",
      "row_hash": "bb509a4fe2cae149"
+    },
+    {
+     "entry_id": "f0c3716d03c80dda",
+     "register_slug": "other-wp",
+     "authority": "Netherlands Authority for the Financial Markets (AFM)",
+     "member_state": "NL",
+     "entity_name": "Saffron Finance Limited",
+     "lei": "9845004FDDDC4F8ECE43",
+     "wp_url": "https://saffron.micarwhitepapers.eu",
+     "last_update": "21/09/2026",
+     "format_class": "unspecified",
+     "row_hash": "4e77f613a3b157bd"
     },
     {
      "entry_id": "5fc6ee42e13e6ba1",
@@ -12183,9 +12543,9 @@
      "entity_name": "Circle Internet Financial Europe SAS",
      "lei": "969500OYUDADGZKCR583",
      "wp_url": "https://www.circle.com/fr/legal/mica-usdc-whitepaper",
-     "last_update": "10/07/2026",
+     "last_update": "15/09/2026",
      "format_class": "unspecified",
-     "row_hash": "596bbf5f25062588"
+     "row_hash": "8ab1c306df4e7277"
     },
     {
      "entry_id": "30ffa29dac6e4909",
@@ -12536,6 +12896,18 @@
      "row_hash": "12f3e2c5ea5eb42f"
     },
     {
+     "entry_id": "190b81c887f000ad",
+     "register_slug": "emt-wp",
+     "authority": "De Nederlansche Bank (DNB)",
+     "member_state": "NL",
+     "entity_name": "Aplauz NL B.V.",
+     "lei": "72450039GAIN4MNI4V12",
+     "wp_url": "https://www.weur.io",
+     "last_update": "26/05/2026",
+     "format_class": "unspecified",
+     "row_hash": "c4c0ac11f18d4dc3"
+    },
+    {
      "entry_id": "b720cee98d09e1aa",
      "register_slug": "emt-wp",
      "authority": "Polish Financial Supervision Authority (KNF)",
@@ -12792,7 +13164,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "18400970fac62c75"
+     "row_hash": "2b47b0de5c17f50b"
     },
     {
      "entry_id": "674d23bf58a5d373",
@@ -12960,7 +13332,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "007b5ba93277a1f4"
+     "row_hash": "dc5855292b4e5558"
     },
     {
      "entry_id": "e6ed609d3d0f88da",
@@ -13020,7 +13392,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "3edd563c4cc1d58c"
+     "row_hash": "6f441af462ad1664"
     },
     {
      "entry_id": "be29a231fe89312c",
@@ -14364,7 +14736,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "34b8675b1777f5f2"
+     "row_hash": "01fe37e8aabe1205"
     },
     {
      "entry_id": "8f9af68ab613c740",
@@ -14389,6 +14761,66 @@
      "last_update": "",
      "format_class": "n/a",
      "row_hash": "2e930117bb1751a8"
+    },
+    {
+     "entry_id": "4f7912e7c0ee285a",
+     "register_slug": "casps",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Volksbank Göppingen eG",
+     "lei": "529900K1110GFV3VUM61",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "a62b327b216a21ea"
+    },
+    {
+     "entry_id": "e293b8aef7c8db71",
+     "register_slug": "casps",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Wiesbadener Volksbank eG",
+     "lei": "5299002PZ7ROI71ZQW56",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "102c45eb0ec9cdca"
+    },
+    {
+     "entry_id": "f6bc045521b0c9c7",
+     "register_slug": "casps",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Raiffeisenbank im Oberland eG",
+     "lei": "529900Q4W1LSVUCO8L66",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "2f72958fdbfb1cd3"
+    },
+    {
+     "entry_id": "33f04965a98aecb3",
+     "register_slug": "casps",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "Münchner Bank eG",
+     "lei": "529900VHU3S8ZYAQYZ61",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "547c86125350244d"
+    },
+    {
+     "entry_id": "801cf9fb6c350b29",
+     "register_slug": "casps",
+     "authority": "Federal Financial Supervisory Authority (BaFin)",
+     "member_state": "DE",
+     "entity_name": "VR Bank zwischen den Meeren eG",
+     "lei": "529900OPEDQJAXAQT146",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "20ae10130521148f"
     },
     {
      "entry_id": "00d6b8ecc4496f3e",
@@ -15171,6 +15603,66 @@
      "row_hash": "3c6ffdb64cd4595f"
     },
     {
+     "entry_id": "f66f8e3810a9b912",
+     "register_slug": "casps",
+     "authority": "Autorité des Marchés Financiers (AMF)",
+     "member_state": "FR",
+     "entity_name": "REGULAR FINANCE SAS",
+     "lei": "969500Y5SNO2WBYDB059",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "5e3df1ab69121eb3"
+    },
+    {
+     "entry_id": "332ecdf2368f8894",
+     "register_slug": "casps",
+     "authority": "Hellenic Capital Market Commission (HCMC)",
+     "member_state": "GR",
+     "entity_name": "BCASH SOCIETE ANONYME",
+     "lei": "",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "4eaf1c88a3ceae8c"
+    },
+    {
+     "entry_id": "8ccb69f681106829",
+     "register_slug": "casps",
+     "authority": "Hellenic Capital Market Commission (HCMC)",
+     "member_state": "GR",
+     "entity_name": "XENIOS BLOCKCHAIN GROUP S.A.",
+     "lei": "",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "80fdb12f279a7b1b"
+    },
+    {
+     "entry_id": "21f1f75fcabaf019",
+     "register_slug": "casps",
+     "authority": "Hellenic Capital Market Commission (HCMC)",
+     "member_state": "GR",
+     "entity_name": "CAPITAL WALLET GREECE S.A.",
+     "lei": "",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "f28480854d9e62ba"
+    },
+    {
+     "entry_id": "fbb4be7062475633",
+     "register_slug": "casps",
+     "authority": "Bank of Greece",
+     "member_state": "GR",
+     "entity_name": "PIRAEUS BANK Société Anonyme (S.A.)",
+     "lei": "213800OYHR1MPQ5VJL60",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "0a19a259cbf1f870"
+    },
+    {
      "entry_id": "560a3f30cc0cad86",
      "register_slug": "casps",
      "authority": "Croatian Financial Services Supervisory Agency (HANFA)",
@@ -15588,7 +16080,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "48c50e1adbc5444c"
+     "row_hash": "7985afa38f3a55b3"
     },
     {
      "entry_id": "b20b12f7f16387e4",
@@ -16263,6 +16755,18 @@
      "row_hash": "09548aa6894fbbe3"
     },
     {
+     "entry_id": "283ec1daa56bc1fd",
+     "register_slug": "casps",
+     "authority": "Malta Financial Services Authority (MFSA)",
+     "member_state": "MT",
+     "entity_name": "VS Digital Europe Ltd.",
+     "lei": "984500G55775959B9C37",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "61b8ceac1e7c521f"
+    },
+    {
      "entry_id": "5c528c0ba14177d5",
      "register_slug": "casps",
      "authority": "Netherlands Authority for the Financial Markets (AFM)",
@@ -16428,7 +16932,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "8a535ed2db81abf7"
+     "row_hash": "033b6b8aa98c4e81"
     },
     {
      "entry_id": "80c04e74eb53c608",
@@ -16440,7 +16944,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "b76c3f35c0ebe5e9"
+     "row_hash": "1161000dcce7f174"
     },
     {
      "entry_id": "8430682c646aa108",
@@ -16452,7 +16956,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "af210f599623766d"
+     "row_hash": "be590392dfeb567e"
     },
     {
      "entry_id": "490693b90c8bd1e0",
@@ -16524,7 +17028,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "01235e06e37afcae"
+     "row_hash": "14a0ca4ce9f5fc32"
     },
     {
      "entry_id": "5e94fbacef244346",
@@ -16572,7 +17076,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "8f829b1128390ee9"
+     "row_hash": "4a728bd7e8e39cde"
     },
     {
      "entry_id": "7b0c17ad797de0df",
@@ -16596,7 +17100,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "5895e5302cbe66f1"
+     "row_hash": "e622d678bf10ce61"
     },
     {
      "entry_id": "0ac38a18ac3c49dd",
@@ -16608,7 +17112,7 @@
      "wp_url": "",
      "last_update": "",
      "format_class": "n/a",
-     "row_hash": "2907424e1e79cbea"
+     "row_hash": "f2d864a7aa4885f7"
     },
     {
      "entry_id": "fc17ec72f9ea9768",
@@ -16741,6 +17245,18 @@
      "last_update": "",
      "format_class": "n/a",
      "row_hash": "d592c23642104d51"
+    },
+    {
+     "entry_id": "8677d6046a89e30e",
+     "register_slug": "casps",
+     "authority": "Securities Market Agency (ATVP)",
+     "member_state": "SI",
+     "entity_name": "ICONOMI EUROPE, borznoposredniška družba, d.o.o.",
+     "lei": "485100CIMEOMSMFT8G48",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "5f0bdb1072a37733"
     },
     {
      "entry_id": "796a93f4c4af5213",
@@ -17917,18 +18433,6 @@
      "row_hash": "34e6a310cd2ad410"
     },
     {
-     "entry_id": "bec673e10d6398da",
-     "register_slug": "ncasp",
-     "authority": "Commissione Nazionale per le Societa e la Borsa (CONSOB)",
-     "member_state": "IT",
-     "entity_name": "DFG789",
-     "lei": "",
-     "wp_url": "",
-     "last_update": "",
-     "format_class": "n/a",
-     "row_hash": "34e6a310cd2ad410"
-    },
-    {
      "entry_id": "1e3c66e74db13921",
      "register_slug": "ncasp",
      "authority": "Commissione Nazionale per le Societa e la Borsa (CONSOB)",
@@ -18095,18 +18599,6 @@
      "last_update": "",
      "format_class": "n/a",
      "row_hash": "5ed3ae6a9714a9d8"
-    },
-    {
-     "entry_id": "9d79772d4395e8aa",
-     "register_slug": "ncasp",
-     "authority": "Commissione Nazionale per le Societa e la Borsa  (CONSOB)",
-     "member_state": "IT",
-     "entity_name": "Lucrumiagroup",
-     "lei": "",
-     "wp_url": "",
-     "last_update": "",
-     "format_class": "n/a",
-     "row_hash": "0557d2a5d55cb1bd"
     },
     {
      "entry_id": "9d79772d4395e8aa",
@@ -18899,6 +19391,18 @@
      "last_update": "",
      "format_class": "n/a",
      "row_hash": "d8e764bc9933fcd8"
+    },
+    {
+     "entry_id": "97c8a6aeb452e03e",
+     "register_slug": "ncasp",
+     "authority": "Commissione Nazionale per le Societa e la Borsa (CONSOB)",
+     "member_state": "IT",
+     "entity_name": "Nextrize Invest",
+     "lei": "",
+     "wp_url": "",
+     "last_update": "",
+     "format_class": "n/a",
+     "row_hash": "ab685ce0abe53416"
     },
     {
      "entry_id": "c175634a9d073f78",
