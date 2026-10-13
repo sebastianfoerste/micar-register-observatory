@@ -82,7 +82,7 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 
 A quarterly data report built from these snapshots. It answers one question with numbers instead of anecdote: how many white papers on the register link to a structured document rather than to a PDF or a landing page? MiCAR requires white papers to be made available in a machine-readable format (Art. 6(10), 19(9) and 51(9)); the report measures a URL-based proxy for that, not compliance.
 
-Latest edition: **[editions/2026-Q3.md](editions/2026-Q3.md)** · shareable page: **<https://sebastianfoerste.github.io/micar-register-observatory/>**
+Latest edition: **[editions/2026-Q3.md](editions/2026-Q3.md)**
 
 | Edition | Snapshot | Headline |
 | --- | --- | --- |
