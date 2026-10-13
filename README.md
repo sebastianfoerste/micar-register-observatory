@@ -2,7 +2,7 @@
 
 A living dashboard of the **ESMA interim MiCAR register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, withdrawals, and which file formats the white-paper links point to, judged by the URL alone.
 
-The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requires ESMA to publish white papers and authorisations in a machine-readable register. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
+The register is public by law: Art. 109 VO (EU) 2023/1114 (MiCAR) requires ESMA to establish a public register of crypto-asset white papers, of issuers of asset-referenced and e-money tokens, and of crypto-asset service providers. The duty to make each white paper available in a machine-readable format sits in the white-paper provisions, Art. 6(10), 19(9) and 51(9) MiCAR, with the forms, formats and templates set by Commission Implementing Regulation (EU) 2024/2984. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
 
 ## Dashboard
 
@@ -80,7 +80,7 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 
 ## Quarterly report: The State of the MiCAR Register
 
-A quarterly data report built from these snapshots. It answers one question with numbers instead of anecdote: how much of the MiCAR register is actually the structured, machine-readable disclosure that Article 109 intends?
+A quarterly data report built from these snapshots. It answers one question with numbers instead of anecdote: how many white papers on the register link to a structured document rather than to a PDF or a landing page? MiCAR requires white papers to be made available in a machine-readable format (Art. 6(10), 19(9) and 51(9)); the report measures a URL-based proxy for that, not compliance.
 
 Latest edition: **[editions/2026-Q3.md](editions/2026-Q3.md)** · shareable page: **<https://sebastianfoerste.github.io/micar-register-observatory/>**
 
