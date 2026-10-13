@@ -7,6 +7,7 @@ from collections import Counter
 from pathlib import Path
 
 from observatory.coverage import DEEP_LINT_CLASSES
+from observatory.diff import removal_churn
 from observatory.models import ChangeRecord, Snapshot
 
 DASHBOARD_START = "<!-- dashboard:start -->"
@@ -90,6 +91,8 @@ def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
             lines.append(f"| ...and {remainder} more | |")
         lines.append("")
 
+    lines.extend(_removal_lines(snapshot, changes))
+
     lines.append(f"### Changes in this snapshot ({snapshot.snapshot_date})")
     lines.append("")
     current_changes = [
@@ -120,6 +123,43 @@ def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
                 )
     lines.append("")
     return "\n".join(lines)
+
+
+def _removal_lines(snapshot: Snapshot, changes: list[ChangeRecord]) -> list[str]:
+    if not changes:
+        return []
+    since = min(change.snapshot_date for change in changes)
+    churn = removal_churn(changes, snapshot)
+    lines = ["### Entries no longer listed", ""]
+    if not churn:
+        lines.append(f"No register entry has dropped out of the export since {since}.")
+        lines.append("")
+        return lines
+    lines.append(
+        f"Counted since the first snapshot ({since}). A removal is an entry that "
+        "the previous weekly export listed and the next one does not. It is a "
+        "temporary drop when the same entry is "
+        "listed again in a later snapshot, and a net removal when it has not been "
+        f"listed again as of {snapshot.snapshot_date}. A net removal can be a "
+        "withdrawal, an upstream correction or a changed white-paper URL (shown as "
+        "removed + added); the export does not say which."
+    )
+    lines.append("")
+    lines.append("| Register | Removals | Listed again later | Net removals |")
+    lines.append("| --- | ---: | ---: | ---: |")
+    for item in churn:
+        lines.append(
+            f"| {item.register_slug} | {item.removed} | {item.relisted} "
+            f"| {item.net} |"
+        )
+    if len(churn) > 1:
+        lines.append(
+            f"| all registers | {sum(item.removed for item in churn)} "
+            f"| {sum(item.relisted for item in churn)} "
+            f"| {sum(item.net for item in churn)} |"
+        )
+    lines.append("")
+    return lines
 
 
 def update_readme(readme_path: Path, dashboard: str) -> None:

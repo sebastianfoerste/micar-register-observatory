@@ -24,10 +24,17 @@ Weekly snapshots are diffed register by register:
 
 - `added` — entry identity present now, absent before.
 - `changed` — same identity, different row content.
-- `removed` — entry identity no longer in the export. This includes withdrawals, upstream corrections, and identity-affecting edits (an issuer changing its white paper URL appears as `removed` + `added`).
+- `removed` — entry identity no longer in the export. It can be a withdrawal, an upstream correction, a temporary drop from the export, or an identity-affecting edit (an issuer changing its white paper URL appears as `removed` + `added`).
 - `baseline` — first observation of a register; the initial population is not reported as hundreds of "added" rows.
 
 The full history is `data/changelog.jsonl`; dated snapshots live under `data/snapshots/`.
+
+### Net removals
+
+A `removed` entry can reappear: the same entry identity is listed again in a later snapshot. The dashboard's "Entries no longer listed" table therefore splits every `removed` record (`removal_churn` in `src/observatory/diff.py`):
+
+- **Listed again later** (temporary drop): a later `added` record exists for the same register and entry identity, or the entry is listed in the current snapshot.
+- **Net removal**: the entry has not been listed again as of the current snapshot. A net removal can still turn into a temporary drop if the entry comes back, and it is not evidence of a withdrawal: the export gives no reason when a row disappears.
 
 ## Format coverage
 
