@@ -31,7 +31,7 @@ The full history is `data/changelog.jsonl`; dated snapshots live under `data/sna
 
 ## Format coverage
 
-White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` for bare domains and landing pages. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. Many register rows link a landing page rather than the document itself — that gap is itself a finding about register quality.
+White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` for bare domains and landing pages. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. Many register rows link a landing page rather than the document itself — that gap is itself a finding about register quality. The quarterly report's headline share counts the first three classes (deep-lint candidates); it is a URL-shape proxy and does not check whether a document carries Inline XBRL (iXBRL) tagging.
 
 ## Review gate for findings
 
