@@ -32,6 +32,9 @@ def test_headline_describes_the_url_extension_proxy():
         assert "machine-readable" not in text
         assert "judged by the URL's file extension" in text
         assert "iXBRL" in text and "not verified" in text
+        # A URL without a file extension is not shown to be a landing page.
+        assert "no recognised file extension" in text
+        assert "only a landing page" not in text
 
 
 def test_update_edition_replaces_only_the_data_block(tmp_path):

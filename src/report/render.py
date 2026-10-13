@@ -17,7 +17,9 @@ _FORMAT_LABELS = {
     "json": "JSON (by URL extension)",
     "docx": "DOCX (by URL extension)",
     "pdf": "PDF (human-readable, not structured)",
-    "unspecified": "Landing page or bare domain",
+    "unspecified": (
+        "No recognised file extension (bare domain, landing page or other page)"
+    ),
     "none": "No link in register",
 }
 
@@ -51,8 +53,10 @@ def render_data_section(metrics: dict) -> str:
         "files were not fetched, so Inline XBRL (iXBRL) tagging is not verified."
     )
     lines.append(
-        f"- **{metrics['landing_page']}** "
-        f"({metrics['landing_page_pct']}%) link only a landing page or bare domain."
+        f"- **{metrics['no_recognised_extension']}** "
+        f"({metrics['no_recognised_extension_pct']}%) link a URL with no recognised "
+        "file extension: a bare domain, a landing page, or a document served "
+        "without one."
     )
     lines.append(
         f"- **{metrics['pdf']}** ({metrics['pdf_pct']}%) link a PDF — "
@@ -158,7 +162,8 @@ def render_html(metrics: dict, edition_title: str) -> str:
 <span class="stat">{metrics['deep_lint_candidate_pct']}%</span> link to an
 XHTML/HTML, JSON or DOCX file, judged by the URL's file extension. This is a
 proxy: the files were not fetched, so Inline XBRL (iXBRL) tagging is not
-verified. {metrics['landing_page_pct']}% link only a landing page.</p>
+verified. {metrics['no_recognised_extension_pct']}% link a URL with no recognised
+file extension, such as a bare domain or a landing page.</p>
 <p>Snapshot: {html.escape(str(metrics['snapshot_date']))}. Public data;
 reproducible from the observatory commit.</p>
 <h2>White paper format coverage</h2>

@@ -19,7 +19,9 @@ _FORMAT_LABELS = {
     "json": "JSON",
     "docx": "DOCX",
     "pdf": "PDF",
-    "unspecified": "Unspecified (landing page or bare domain)",
+    "unspecified": (
+        "No recognised file extension (bare domain, landing page or other page)"
+    ),
     "none": "No link in register",
 }
 

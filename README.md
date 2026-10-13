@@ -25,7 +25,7 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 
 | Linked format | Count | Deep-lint candidate |
 | --- | ---: | --- |
-| Unspecified (landing page or bare domain) | 653 | no |
+| No recognised file extension (bare domain, landing page or other page) | 653 | no |
 | PDF | 264 | no |
 | XHTML / HTML | 171 | yes |
 | No link in register | 2 | no |

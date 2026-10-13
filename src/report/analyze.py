@@ -31,7 +31,7 @@ def analyze(snapshot: dict) -> dict:
     deep_lint_candidates = sum(
         formats.get(fmt, 0) for fmt in DEEP_LINT_CANDIDATE_CLASSES
     )
-    landing = formats.get("unspecified", 0)
+    no_extension = formats.get("unspecified", 0)
 
     member_states = Counter(
         (entry.get("member_state") or "?") for entry in whitepapers
@@ -51,8 +51,8 @@ def analyze(snapshot: dict) -> dict:
         "deep_lint_candidate_pct": pct(deep_lint_candidates),
         "pdf": formats.get("pdf", 0),
         "pdf_pct": pct(formats.get("pdf", 0)),
-        "landing_page": landing,
-        "landing_page_pct": pct(landing),
+        "no_recognised_extension": no_extension,
+        "no_recognised_extension_pct": pct(no_extension),
         "member_states": member_states.most_common(),
         "register_totals": register_totals,
     }
