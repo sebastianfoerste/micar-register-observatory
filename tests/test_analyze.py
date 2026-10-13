@@ -17,13 +17,13 @@ def test_totals_match_frozen_snapshot():
     assert m["register_totals"]["ncasp"] == 162
 
 
-def test_machine_readable_and_landing_counts():
+def test_deep_lint_candidate_and_landing_counts():
     m = analyze(FIXTURE)
-    assert m["machine_readable"] == 114
+    assert m["deep_lint_candidates"] == 114
     assert m["landing_page"] == 584
     assert m["pdf"] == 254
     # 114 of 953 is ~12%.
-    assert 11.5 <= m["machine_readable_pct"] <= 12.5
+    assert 11.5 <= m["deep_lint_candidate_pct"] <= 12.5
     assert 60.5 <= m["landing_page_pct"] <= 62.0
 
 

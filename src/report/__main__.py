@@ -50,7 +50,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     )
     print(
         f"built {edition_path.name}: {metrics['total_whitepapers']} white papers, "
-        f"{metrics['machine_readable_pct']}% machine-readable "
+        f"{metrics['deep_lint_candidate_pct']}% XHTML/HTML, JSON or DOCX links "
         f"(snapshot {metrics['snapshot_date']})"
     )
     return 0

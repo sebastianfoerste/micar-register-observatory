@@ -13,9 +13,9 @@ DATA_START = "<!-- data:start -->"
 DATA_END = "<!-- data:end -->"
 
 _FORMAT_LABELS = {
-    "xhtml/html": "XHTML / HTML (structured, machine-readable)",
-    "json": "JSON (structured, machine-readable)",
-    "docx": "DOCX (structured, machine-readable)",
+    "xhtml/html": "XHTML / HTML (by URL extension; iXBRL not verified)",
+    "json": "JSON (by URL extension)",
+    "docx": "DOCX (by URL extension)",
     "pdf": "PDF (human-readable, not structured)",
     "unspecified": "Landing page or bare domain",
     "none": "No link in register",
@@ -45,9 +45,10 @@ def render_data_section(metrics: dict) -> str:
         f"- **{total}** crypto-asset white papers in the register."
     )
     lines.append(
-        f"- **{metrics['machine_readable']}** "
-        f"({metrics['machine_readable_pct']}%) are published in a structured, "
-        "machine-readable format."
+        f"- **{metrics['deep_lint_candidates']}** "
+        f"({metrics['deep_lint_candidate_pct']}%) link to an XHTML/HTML, JSON or "
+        "DOCX file, judged by the URL's file extension. This is a proxy: the "
+        "files were not fetched, so Inline XBRL (iXBRL) tagging is not verified."
     )
     lines.append(
         f"- **{metrics['landing_page']}** "
@@ -154,9 +155,10 @@ def render_html(metrics: dict, edition_title: str) -> str:
 <body>
 <h1>{html.escape(edition_title)}</h1>
 <p class="lede">Of {total} crypto-asset white papers on the ESMA MiCAR register,
-<span class="stat">{metrics['machine_readable_pct']}%</span> are published in a
-structured, machine-readable format. {metrics['landing_page_pct']}% link only a
-landing page.</p>
+<span class="stat">{metrics['deep_lint_candidate_pct']}%</span> link to an
+XHTML/HTML, JSON or DOCX file, judged by the URL's file extension. This is a
+proxy: the files were not fetched, so Inline XBRL (iXBRL) tagging is not
+verified. {metrics['landing_page_pct']}% link only a landing page.</p>
 <p>Snapshot: {html.escape(str(metrics['snapshot_date']))}. Public data;
 reproducible from the observatory commit.</p>
 <h2>White paper format coverage</h2>
