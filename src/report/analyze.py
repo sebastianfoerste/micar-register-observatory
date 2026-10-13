@@ -6,8 +6,9 @@ from collections import Counter
 
 # Link classes whose URL extension names a format the micar-whitepaper-linter can
 # parse (XHTML/HTML, JSON, DOCX). The class comes from the URL alone: it is a proxy
-# for a structured document, not a check that the file is Inline XBRL.
-DEEP_LINT_CANDIDATE_CLASSES = {"xhtml/html", "json", "docx"}
+# for a structured document, not a check that the file is Inline XBRL. Shared with
+# the dashboard so the two cannot drift apart.
+from observatory.coverage import DEEP_LINT_CLASSES as DEEP_LINT_CANDIDATE_CLASSES
 
 
 def whitepaper_entries(snapshot: dict) -> list[dict]:
