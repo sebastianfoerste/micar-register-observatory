@@ -12,7 +12,7 @@ The ESMA interim MiCAR register, published as CSV exports at stable URLs and upd
 | Authorised CASPs | <https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv> |
 | Non-compliant entities | <https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv> |
 
-Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/sites/default/files/2024-12/Description_of_the_fields_in_the_interim_MiCA_register.csv). Legal basis for publication: Art. 109 VO (EU) 2023/1114 (MiCAR).
+Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/sites/default/files/2024-12/Description_of_the_fields_in_the_interim_MiCA_register.csv). Legal basis for publication: Art. 109 VO (EU) 2023/1114 (MiCAR) for the white-paper, token-issuer and CASP registers; Art. 110 MiCAR for the register of non-compliant entities.
 
 ## Normalization
 

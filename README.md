@@ -2,7 +2,7 @@
 
 A living dashboard of the **ESMA interim MiCAR register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, withdrawals, and which file formats the white-paper links point to, judged by the URL alone.
 
-The register is public by law: Art. 109 VO (EU) 2023/1114 (MiCAR) requires ESMA to establish a public register of crypto-asset white papers, of issuers of asset-referenced and e-money tokens, and of crypto-asset service providers. The duty to make each white paper available in a machine-readable format sits in the white-paper provisions, Art. 6(10), 19(9) and 51(9) MiCAR, with the forms, formats and templates set by Commission Implementing Regulation (EU) 2024/2984. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
+The register is public by law: Art. 109 VO (EU) 2023/1114 (MiCAR) requires ESMA to establish a public register of crypto-asset white papers, of issuers of asset-referenced and e-money tokens, and of crypto-asset service providers, and Art. 110 MiCAR a register of entities that provide crypto-asset services in violation of Art. 59 or 61 (the non-compliant entities). The duty to make each white paper available in a machine-readable format sits in the white-paper provisions, Art. 6(10), 19(9) and 51(9) MiCAR, with the forms, formats and templates set by Commission Implementing Regulation (EU) 2024/2984, which applies from 23 December 2025. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
 
 ## Dashboard
 
