@@ -22,6 +22,9 @@ class RegisterSource(BaseModel):
     filename: str
     title: str
     kind: str  # "whitepaper" | "entity"
+    # Sanity floor for a live fetch: a register that shrinks below this is treated
+    # as a bad download, not as data. art-wp is legitimately empty (floor 0).
+    min_rows: int = 0
 
     @property
     def url(self) -> str:
@@ -31,12 +34,14 @@ class RegisterSource(BaseModel):
 SOURCES: list[RegisterSource] = [
     RegisterSource(
         slug="other-wp",
+        min_rows=500,
         filename="OTHER.csv",
         title="White papers — other crypto-assets (Title II)",
         kind="whitepaper",
     ),
     RegisterSource(
         slug="emt-wp",
+        min_rows=20,
         filename="EMTWP.csv",
         title="White papers — e-money tokens (Title IV)",
         kind="whitepaper",
@@ -49,14 +54,20 @@ SOURCES: list[RegisterSource] = [
     ),
     RegisterSource(
         slug="casps",
+        min_rows=150,
         filename="CASPS.csv",
         title="Authorised crypto-asset service providers (CASPs)",
         kind="entity",
     ),
     RegisterSource(
         slug="ncasp",
+        min_rows=80,
         filename="NCASP.csv",
         title="Non-compliant entities flagged by NCAs",
         kind="entity",
     ),
 ]
+
+# Columns every register export must carry for normalize_csv to be meaningful.
+REQUIRED_COLUMNS = ("ae_competentAuthority", "ae_homeMemberState", "ae_lei_name", "ae_lei")
+WHITEPAPER_COLUMNS = ("wp_url", "wp_lastupdate")
