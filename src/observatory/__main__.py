@@ -19,7 +19,7 @@ from observatory.config import SOURCES
 from observatory.diff import diff_snapshots
 from observatory.fetch import fetch_source
 from observatory.models import RegisterSnapshot, Snapshot
-from observatory.normalize import normalize_csv
+from observatory.normalize import column_drift, parse_register
 from observatory.render import render_dashboard, update_readme, write_feed
 from observatory.store import (
     append_changelog,
@@ -37,7 +37,7 @@ def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
                 raw = (fixtures / f"{source.slug}.csv").read_bytes()
             else:
                 raw = fetch_source(source)
-            entries = normalize_csv(source, raw, enforce_min_rows=fixtures is None)
+            parsed = parse_register(source, raw, enforce_min_rows=fixtures is None)
             registers.append(
                 RegisterSnapshot(
                     slug=source.slug,
@@ -45,7 +45,8 @@ def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
                     kind=source.kind,
                     source_url=source.url,
                     fetched=True,
-                    entries=entries,
+                    entries=parsed.entries,
+                    columns=parsed.columns,
                 )
             )
         except Exception as error:  # noqa: BLE001 — one failed source must not kill the run
@@ -62,6 +63,24 @@ def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
     return Snapshot(snapshot_date=snapshot_date, registers=registers)
 
 
+def report_column_drift(snapshot: Snapshot) -> list[str]:
+    """Warn (as a GitHub Actions annotation) when ESMA changed a file's columns."""
+    warnings = []
+    for source in SOURCES:
+        register = snapshot.register(source.slug)
+        if register is None or not register.fetched:
+            continue
+        added, dropped = column_drift(source, register.columns)
+        if added or dropped:
+            warnings.append(
+                f"::warning title=ESMA source change::{source.slug}: "
+                f"columns added {added}, dropped {dropped}"
+            )
+    for warning in warnings:
+        print(warning)
+    return warnings
+
+
 def cmd_refresh(args: argparse.Namespace) -> int:
     data_dir = Path(args.data_dir)
     snapshot_date = args.date or datetime.date.today().isoformat()
@@ -76,6 +95,7 @@ def cmd_refresh(args: argparse.Namespace) -> int:
             print(f"refresh failed: {register.slug}: {register.fetch_error}", file=sys.stderr)
         return 1
 
+    report_column_drift(current)
     previous = load_latest(data_dir)
     changes = diff_snapshots(previous, current)
     save_snapshot(data_dir, current)

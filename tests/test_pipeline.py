@@ -4,7 +4,7 @@ from pathlib import Path
 
 from observatory.__main__ import cmd_refresh
 from observatory.render import DASHBOARD_END, DASHBOARD_START
-from observatory.store import read_changelog
+from observatory.store import load_latest, read_changelog
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -77,3 +77,30 @@ def test_refresh_rejects_csv_with_wrong_schema(tmp_path: Path) -> None:
 
     assert cmd_refresh(args_for(tmp_path, "2026-07-07", bad)) == 1
     assert not (tmp_path / "data" / "latest.json").exists()
+
+
+def test_snapshot_records_the_export_header(tmp_path: Path) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    assert cmd_refresh(args_for(tmp_path, "2026-07-07", FIXTURES)) == 0
+    snapshot = load_latest(tmp_path / "data")
+    assert snapshot is not None
+    casps = snapshot.register("casps")
+    assert casps is not None and casps.columns[-1] == "ac_lastupdate"
+    assert casps.entries[0].fields["ac_lastupdate"] == "15/01/2026"
+
+
+def test_column_drift_is_reported_without_failing(tmp_path: Path, capsys) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    drifted = tmp_path / "drifted"
+    shutil.copytree(FIXTURES, drifted)
+    ncasp = drifted / "ncasp.csv"
+    ncasp.write_text(
+        ncasp.read_text(encoding="utf-8").replace("ae_reason", "ae_reason_v2", 1), encoding="utf-8"
+    )
+
+    assert cmd_refresh(args_for(tmp_path, "2026-07-07", drifted)) == 0
+    out = capsys.readouterr().out
+    assert "::warning title=ESMA source change::ncasp" in out
+    assert "'ae_reason_v2'" in out and "dropped ['ae_reason']" in out
