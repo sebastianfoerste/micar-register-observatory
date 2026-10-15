@@ -239,8 +239,7 @@ def diff_registers(
         ]
 
     # Older snapshots stored repeated CSV header lines as entries; they are not rows.
-    old = [entry for entry in previous.entries if not entry.is_header_echo()]
-    new = [entry for entry in current.entries if not entry.is_header_echo()]
+    old, new = previous.rows(), current.rows()
     own_history = [record for record in history if record.register_slug == current.slug]
     pending = [
         record
@@ -322,10 +321,6 @@ class Shrink(BaseModel):
         return f"{self.slug} fell from {self.before} to {self.after} rows (-{share:.1%})"
 
 
-def _row_count(register: RegisterSnapshot) -> int:
-    return sum(1 for entry in register.entries if not entry.is_header_echo())
-
-
 def export_shrinks(
     previous: Snapshot | None,
     current: Snapshot,
@@ -341,7 +336,7 @@ def export_shrinks(
         before_register = previous.register(register.slug)
         if before_register is None or not before_register.fetched or not register.fetched:
             continue
-        before, after = _row_count(before_register), _row_count(register)
+        before, after = len(before_register.rows()), len(register.rows())
         if before - after >= min_rows and before - after > max_share * before:
             shrinks.append(Shrink(slug=register.slug, before=before, after=after))
     return shrinks

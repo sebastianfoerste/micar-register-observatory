@@ -92,6 +92,22 @@ class RegisterSnapshot(BaseModel):
     # v2: the export's header, in ESMA's order.
     columns: list[str] = []
 
+    def rows(self) -> list[RegisterEntry]:
+        """The register's rows, without header lines that older snapshots stored."""
+        return [entry for entry in self.entries if not entry.is_header_echo()]
+
+    def entity_count(self) -> int:
+        """Distinct firms or issuers: LEIs, or names for rows without one."""
+        return len({entry.entity_key() for entry in self.rows()})
+
+    def entities_with_withdrawal_date(self) -> int | None:
+        """Entities with a withdrawal date on one of their rows; None for snapshots
+        written before v2, which did not keep the column."""
+        rows = self.rows()
+        if not any(entry.fields for entry in rows):
+            return None
+        return len({entry.entity_key() for entry in rows if entry.withdrawal_date})
+
 
 class Snapshot(BaseModel):
     snapshot_date: str  # YYYY-MM-DD

@@ -10,7 +10,7 @@ from pydantic import BaseModel
 
 from observatory.coverage import DEEP_LINT_CLASSES
 from observatory.diff import Shrink
-from observatory.models import ChangeRecord, Snapshot
+from observatory.models import ChangeRecord, RegisterSnapshot, Snapshot
 
 DASHBOARD_START = "<!-- dashboard:start -->"
 DASHBOARD_END = "<!-- dashboard:end -->"
@@ -45,6 +45,14 @@ def _linkify(wp_url: str) -> str:
     return f"[{label}]({href})"
 
 
+def _casp_line(casps: RegisterSnapshot) -> str:
+    line = f"CASP register: {casps.entity_count()} firms in {len(casps.rows())} rows"
+    withdrawn = casps.entities_with_withdrawal_date()
+    if withdrawn is not None:
+        line += f", {withdrawn} of them with a withdrawal date (`ac_authorisationEndDate`)"
+    return line + "."
+
+
 def render_dashboard(
     snapshot: Snapshot, changes: list[ChangeRecord], quarantine: Quarantine | None = None
 ) -> str:
@@ -63,21 +71,31 @@ def render_dashboard(
 
     lines.append("### Register totals")
     lines.append("")
-    lines.append("| Register | Entries | Source status |")
-    lines.append("| --- | ---: | --- |")
+    lines.append("| Register | Rows | Entities | Source status |")
+    lines.append("| --- | ---: | ---: | --- |")
     for register in snapshot.registers:
         status = "ok" if register.fetched else f"fetch failed: {register.fetch_error}"
         lines.append(
             f"| [{register.title}]({register.source_url}) "
-            f"| {len(register.entries)} | {status} |"
+            f"| {len(register.rows())} | {register.entity_count()} | {status} |"
         )
+    lines.append("")
+    lines.append(
+        "Rows are lines of the register export; entities are distinct LEIs, or names "
+        "where a row has none. One entity can have several rows: several white papers, "
+        "or a second CASP authorisation."
+    )
+    casps = snapshot.register("casps")
+    if casps is not None and casps.fetched:
+        lines.append("")
+        lines.append(_casp_line(casps))
     lines.append("")
 
     wp_entries = [
         entry
         for register in snapshot.registers
         if register.kind == "whitepaper" and register.fetched
-        for entry in register.entries
+        for entry in register.rows()
     ]
     if wp_entries:
         lines.append("### White paper format coverage")
@@ -172,7 +190,8 @@ def write_feed(
             {
                 "slug": register.slug,
                 "title": register.title,
-                "entries": len(register.entries),
+                "entries": len(register.rows()),
+                "entities": register.entity_count(),
                 "fetched": register.fetched,
             }
             for register in snapshot.registers

@@ -16,7 +16,11 @@ Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/s
 
 ## Normalization
 
-Each row is reduced to: competent authority, home Member State, entity name, LEI, white paper URL, register last-update date, plus a hash of the full raw row. The entry identity is `sha256(register | LEI-or-name | wp_url)`, so an entry keeps its identity across snapshots as long as its LEI (or name) and white paper URL are stable. A change to any other field surfaces as a `changed` record via the row hash.
+Every row keeps all of its ESMA columns verbatim (`fields`). Next to them sit typed fields that are mechanical normalizations of those columns: ISO dates (authorisation, withdrawal, offer start, decision), the CASP services as letters a–j (read from the service text, because some letter prefixes in the export contradict it), service and offer countries, the DTI FFG and DTIs, the CASP named on Title II records, the non-compliant entity's stated reason, and comments. `last_update` reads each register's own last-update column (`wp_lastupdate`, `ac_lastupdate`, `ae_lastupdate`). Header lines repeated inside an export are skipped; snapshots written before these fields existed stored them as entries, and the diff and the dashboard ignore them. Snapshots up to 2026-10-12 hold only the core fields.
+
+The entry identity is `entry_id = sha256(register | LEI-or-name | wp_url)`, unchanged since the first snapshot, so an entry keeps its identity as long as its LEI (or name) and white paper URL are stable. It is not unique: a CASP with a second authorisation row, or an issuer with several tokens behind one URL, shares its `entry_id` with its other rows. In the 2026-10-12 snapshot 1,631 rows had 1,597 distinct entry identities. `row_key` adds what tells such rows apart: the DTI FFG, the DTIs and the CASP's LEI for white papers, the authorisation date for CASPs, and the decision date for non-compliant entities. `row_hash` hashes the full raw row, so a change to any column surfaces as `changed`.
+
+Counts distinguish rows from entities. An entity is a distinct LEI, or a name where a row has none; on 2026-10-12 the CASP export had 370 rows for 367 firms.
 
 ## Change detection
 

@@ -37,3 +37,10 @@ def test_percentages_are_internally_consistent():
     m = analyze(FIXTURE)
     total = m["total_whitepapers"]
     assert sum(m["format_counts"].values()) == total
+
+
+def test_entity_totals_count_firms_as_well_as_rows():
+    totals = analyze(FIXTURE)["entity_totals"]
+    assert totals["casps"] == {"rows": 283, "entities": 279, "with_withdrawal_date": None}
+    assert totals["other-wp"] == {"rows": 912, "entities": 561}
+    assert totals["art-wp"] == {"rows": 0, "entities": 0}
