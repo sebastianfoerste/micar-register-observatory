@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/changelog.v1.schema.json",
+  "title": "MiCAR Register Change Record v1",
+  "description": "One line of data/changelog.jsonl (and one item of recent_changes in docs/feed.json). Covers record_version 1 (records up to the 2026-10-12 snapshot) and 2; fields added with version 2 are optional because version 1 records lack them. Field meanings: docs/data-dictionary.md.",
+  "type": "object",
+  "required": [
+    "snapshot_date",
+    "register_slug",
+    "change",
+    "entry_id",
+    "entity_name",
+    "member_state",
+    "wp_url",
+    "detail"
+  ],
+  "properties": {
+    "snapshot_date": {"type": "string", "format": "date"},
+    "register_slug": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
+    "change": {
+      "description": "Version 1 records use added, changed, removed and baseline; version 2 adds missing and restored, and its removed means absent from two consecutive exports.",
+      "enum": ["added", "changed", "missing", "removed", "restored", "baseline"]
+    },
+    "entry_id": {
+      "description": "The row's entry identity; \"-\" on baseline records.",
+      "type": "string"
+    },
+    "entity_name": {"type": "string"},
+    "member_state": {"type": "string"},
+    "wp_url": {"type": "string"},
+    "detail": {"type": "string"},
+    "record_version": {"type": "integer", "minimum": 1},
+    "lei": {"type": "string"},
+    "row_key": {"type": "string"},
+    "row_hash": {"type": "string"},
+    "subtypes": {
+      "description": "Mechanical labels; see docs/data-dictionary.md for the values written so far. New labels may be added.",
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z_]+$"}
+    },
+    "changed_fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field", "old", "new"],
+        "properties": {
+          "field": {"type": "string"},
+          "old": {"type": "string"},
+          "new": {"type": "string"}
+        }
+      }
+    }
+  }
+}
