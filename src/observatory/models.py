@@ -94,6 +94,9 @@ class RegisterSnapshot(BaseModel):
     entries: list[RegisterEntry] = []
     # v2: the export's header, in ESMA's order.
     columns: list[str] = []
+    # v2: provenance of the downloaded export; the bytes are kept under data/raw/.
+    source_last_modified: str = ""  # the HTTP Last-Modified header, verbatim
+    source_sha256: str = ""  # SHA-256 of the downloaded bytes
 
     def rows(self) -> list[RegisterEntry]:
         """The register's rows, without header lines that older snapshots stored."""

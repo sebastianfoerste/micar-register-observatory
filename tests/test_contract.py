@@ -10,7 +10,9 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 from observatory.__main__ import cmd_refresh
+from observatory.fetch import Download
 from observatory.models import ChangeRecord, RegisterEntry, RegisterSnapshot
+from observatory.store import load_raw, save_raw
 from test_pipeline import FIXTURES, args_for, seed_readme
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +28,7 @@ SNAPSHOT_V1 = "micar-register.snapshot.v1.schema.json"
 SNAPSHOT_V2 = "micar-register.snapshot.v2.schema.json"
 CHANGELOG = "changelog.v1.schema.json"
 FEED = "feed.v1.schema.json"
+RAW_MANIFEST = "raw-manifest.v1.schema.json"
 
 
 def errors(schema_name: str, instance: object) -> list[str]:
@@ -74,6 +77,16 @@ def test_the_contracts_describe_every_field_the_code_writes() -> None:
     assert set(SCHEMAS[CHANGELOG]["properties"]) == set(ChangeRecord.model_fields)
 
 
+def test_the_raw_manifest_contract_describes_what_save_raw_writes(tmp_path: Path) -> None:
+    download = Download(body=b"a,b\n", url="u", retrieved_at="2026-10-19T06:17:03Z")
+    folder = save_raw(tmp_path, "2026-10-19", {"casps": download}, recorded_as="snapshot")
+    manifest = read_json(folder / "manifest.json")
+    schema = SCHEMAS[RAW_MANIFEST]
+    assert set(manifest) == set(schema["properties"])
+    assert set(manifest["files"][0]) == set(schema["properties"]["files"]["items"]["properties"])
+    assert errors(RAW_MANIFEST, manifest) == []
+
+
 def test_the_committed_snapshot_matches_the_contract() -> None:
     latest = read_json(ROOT / "data" / "latest.json")
     assert errors(SNAPSHOT_V1, latest) == []
@@ -84,6 +97,27 @@ def test_the_committed_snapshot_matches_the_contract() -> None:
 def test_every_committed_snapshot_matches_v1() -> None:
     for path in sorted((ROOT / "data" / "snapshots").glob("*.json")):
         assert errors(SNAPSHOT_V1, read_json(path)) == [], path.name
+
+
+def check_raw_archives(data: Path) -> int:
+    """Check every archived export against its manifest and the snapshot it became."""
+    manifests = sorted((data / "raw").glob("*/manifest.json"))
+    for path in manifests:
+        manifest = read_json(path)
+        assert errors(RAW_MANIFEST, manifest) == [], path
+        date = manifest["snapshot_date"]
+        assert path.parent.name == date
+        folder = "snapshots" if manifest["recorded_as"] == "snapshot" else "quarantine"
+        snapshot = read_json(data / folder / f"{date}.json")
+        recorded = {r["slug"]: r.get("source_sha256") for r in snapshot["registers"]}
+        for item in manifest["files"]:
+            load_raw(data, date, item["slug"])  # raises when the bytes do not match
+            assert recorded[item["slug"]] == item["sha256"], f"{path}: {item['slug']}"
+    return len(manifests)
+
+
+def test_every_committed_raw_archive_matches_its_manifest_and_snapshot() -> None:
+    check_raw_archives(ROOT / "data")
 
 
 def test_the_committed_changelog_and_feed_match_the_contract() -> None:
@@ -123,3 +157,4 @@ def test_pipeline_output_matches_v1_and_v2(tmp_path: Path) -> None:
     for record in records:
         assert errors(CHANGELOG, record) == []
     assert errors(FEED, read_json(tmp_path / "docs" / "feed.json")) == []
+    assert check_raw_archives(tmp_path / "data") == 2

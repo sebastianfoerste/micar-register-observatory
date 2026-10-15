@@ -37,7 +37,9 @@
         "fetched",
         "fetch_error",
         "entries",
-        "columns"
+        "columns",
+        "source_last_modified",
+        "source_sha256"
       ],
       "properties": {
         "slug": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
@@ -54,6 +56,15 @@
           "description": "The export's header, in ESMA's order.",
           "type": "array",
           "items": {"type": "string"}
+        },
+        "source_last_modified": {
+          "description": "The HTTP Last-Modified header of the downloaded export, verbatim; empty when the server sent none.",
+          "type": "string"
+        },
+        "source_sha256": {
+          "description": "SHA-256 of the downloaded bytes, as archived under data/raw/<snapshot_date>/; empty when the export was not fetched.",
+          "type": "string",
+          "pattern": "^([0-9a-f]{64})?$"
         }
       }
     },

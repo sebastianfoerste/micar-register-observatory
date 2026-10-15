@@ -46,7 +46,11 @@
             "type": "integer",
             "minimum": 0
           },
-          "fetched": {"type": "boolean"}
+          "fetched": {"type": "boolean"},
+          "source_last_modified": {
+            "description": "Added in October 2026. The HTTP Last-Modified header of the export, verbatim; empty when the server sent none.",
+            "type": "string"
+          }
         }
       }
     },

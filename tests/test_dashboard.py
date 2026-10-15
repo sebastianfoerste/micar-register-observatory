@@ -3,7 +3,7 @@ from pathlib import Path
 from observatory.config import SOURCES
 from observatory.models import RegisterEntry, RegisterSnapshot, Snapshot
 from observatory.normalize import normalize_csv
-from observatory.render import render_dashboard
+from observatory.render import http_date, render_dashboard
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -52,3 +52,11 @@ def test_header_lines_of_older_snapshots_are_not_counted():
     assert "| 4 | 3 | ok |" in dashboard
     # A v1 snapshot has no withdrawal dates to count, so none are claimed.
     assert "CASP register: 3 firms in 4 rows." in dashboard
+
+
+def test_the_source_status_gives_the_date_esma_last_modified_the_file():
+    casps = fixture_register("casps")
+    casps.source_last_modified = "Tue, 07 Oct 2026 09:12:44 GMT"
+    dashboard = render_dashboard(Snapshot(snapshot_date="2026-10-19", registers=[casps]), [])
+    assert "| 4 | 3 | ok (file modified 2026-10-07) |" in dashboard
+    assert http_date("") == "" and http_date("not a date") == ""

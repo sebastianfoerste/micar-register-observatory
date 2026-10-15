@@ -1,10 +1,14 @@
 import argparse
+import hashlib
+import json
 import shutil
 from pathlib import Path
 
 from observatory.__main__ import cmd_refresh
+from observatory.config import SOURCES
+from observatory.normalize import parse_register
 from observatory.render import DASHBOARD_END, DASHBOARD_START
-from observatory.store import load_latest, read_changelog
+from observatory.store import load_latest, load_raw, read_changelog
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -69,6 +73,7 @@ def test_refresh_fails_closed_when_a_source_fails(tmp_path: Path) -> None:
     assert cmd_refresh(args_for(tmp_path, "2026-07-07", broken)) == 1
     assert not (tmp_path / "data" / "latest.json").exists()
     assert not (tmp_path / "data" / "snapshots").exists()
+    assert not (tmp_path / "data" / "raw").exists()
 
 
 def test_refresh_rejects_csv_with_wrong_schema(tmp_path: Path) -> None:
@@ -91,6 +96,28 @@ def test_snapshot_records_the_export_header(tmp_path: Path) -> None:
     casps = snapshot.register("casps")
     assert casps is not None and casps.columns[-1] == "ac_lastupdate"
     assert casps.entries[0].fields["ac_lastupdate"] == "15/01/2026"
+
+
+def test_refresh_archives_the_exports_it_recorded(tmp_path: Path) -> None:
+    seed_readme(tmp_path)
+    data = tmp_path / "data"
+    data.mkdir()
+    assert cmd_refresh(args_for(tmp_path, "2026-10-19", FIXTURES)) == 0
+    manifest = json.loads((data / "raw" / "2026-10-19" / "manifest.json").read_text("utf-8"))
+    assert manifest["snapshot_date"] == "2026-10-19"
+    assert manifest["recorded_as"] == "snapshot"
+    assert [item["slug"] for item in manifest["files"]] == [source.slug for source in SOURCES]
+    snapshot = load_latest(data)
+    assert snapshot is not None
+    for source in SOURCES:
+        body = load_raw(data, "2026-10-19", source.slug)
+        assert body == (FIXTURES / f"{source.slug}.csv").read_bytes()
+        register = snapshot.register(source.slug)
+        assert register is not None
+        assert register.source_sha256 == hashlib.sha256(body).hexdigest()
+        # The archive is enough to parse the export again: same rows, same order.
+        reparsed = parse_register(source, body).entries
+        assert [entry.row_hash for entry in reparsed] == [e.row_hash for e in register.entries]
 
 
 def test_column_drift_is_reported_without_failing(tmp_path: Path, capsys) -> None:

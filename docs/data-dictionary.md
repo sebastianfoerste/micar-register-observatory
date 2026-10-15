@@ -11,6 +11,7 @@ ESMA's meaning of each source column is in its [field description file](https://
 | `data/latest.json` | The latest recorded snapshot of all five registers. | [snapshot v1](../contracts/micar-register.snapshot.v1.schema.json); [v2](../contracts/micar-register.snapshot.v2.schema.json) from October 2026 |
 | `data/snapshots/YYYY-MM-DD.json` | Every recorded snapshot, one per weekly refresh since 2026-07-07. | as `latest.json` |
 | `data/quarantine/YYYY-MM-DD.json` | An export set aside after a sharp drop in rows; it is not part of the recorded history (see [methodology](methodology.md#quarantine)). | as `latest.json` |
+| `data/raw/YYYY-MM-DD/` | From October 2026: the five exports of a refresh as downloaded, gzipped (`<slug>.csv.gz`), with `manifest.json` (below). Kept for recorded and quarantined exports alike. | [raw manifest v1](../contracts/raw-manifest.v1.schema.json) |
 | `data/changelog.jsonl` | One change record per line, oldest first. | [changelog v1](../contracts/changelog.v1.schema.json), one record per line |
 | `docs/feed.json` | Current totals and the last 200 change records. | [feed v1](../contracts/feed.v1.schema.json) |
 
@@ -35,6 +36,8 @@ Snapshots written before October 2026 carry the v1 fields only; snapshots writte
 | `fetch_error` | v1 | The error when `fetched` is false. |
 | `entries` | v1 | The register's rows, in the export's order. |
 | `columns` | v2 | The export's header, in ESMA's order. |
+| `source_last_modified` | v2 | The HTTP `Last-Modified` header of the downloaded export, verbatim (for example `Tue, 07 Oct 2026 09:12:44 GMT`): when ESMA last replaced the file. `""` when the server sent none. |
+| `source_sha256` | v2 | SHA-256 of the downloaded bytes; the same bytes are archived under `data/raw/<snapshot_date>/`. |
 
 ### Entry (one row of an export)
 
@@ -148,5 +151,15 @@ Written on `changed` records, re-read from the verbatim columns of the old and n
 | --- | --- |
 | `snapshot_date` | The snapshot the totals describe. |
 | `quarantine` | Added October 2026. `null`, or the export set aside after `snapshot_date`: `{"snapshot_date", "shrinks": [{"slug", "before", "after"}]}` with the row counts that triggered it. |
-| `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added October 2026) and `fetched`. |
+| `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added October 2026), `fetched` and `source_last_modified` (added October 2026; as in the snapshot). |
 | `recent_changes` | The last 200 change records of `data/changelog.jsonl`, oldest first. |
+
+## Raw export manifest (`data/raw/YYYY-MM-DD/manifest.json`)
+
+| Field | Meaning |
+| --- | --- |
+| `snapshot_date` | The refresh the exports belong to. |
+| `recorded_as` | `snapshot` when the exports became `data/snapshots/<snapshot_date>.json`, `quarantine` when they were set aside as `data/quarantine/<snapshot_date>.json`. |
+| `files` | One object per export: `slug`; `file`, the gzipped export next to the manifest; `url`, where it was downloaded; `sha256` and `bytes`, of the bytes as downloaded, before compression; `last_modified`, the HTTP `Last-Modified` header verbatim (`""` when the server sent none); `retrieved_at`, when the download finished (UTC, `YYYY-MM-DDTHH:MM:SSZ`). |
+
+`gunzip -c data/raw/<date>/casps.csv.gz | sha256sum` gives the manifest's `sha256`, and the snapshot's `source_sha256` for that register.

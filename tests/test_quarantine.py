@@ -76,6 +76,8 @@ def test_a_sharp_drop_is_quarantined_and_history_is_left_alone(tmp_path: Path, c
     assert latest is not None and latest.snapshot_date == "2026-07-27"
     assert (data / "quarantine" / "2026-08-03.json").exists()
     assert not (data / "snapshots" / "2026-08-03.json").exists()
+    manifest = json.loads((data / "raw" / "2026-08-03" / "manifest.json").read_text("utf-8"))
+    assert manifest["recorded_as"] == "quarantine"
     assert (data / "changelog.jsonl").read_text(encoding="utf-8") == changelog_before
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "The export of 2026-08-03 was quarantined:** other-wp fell from 100 to 80" in readme

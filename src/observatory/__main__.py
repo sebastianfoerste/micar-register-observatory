@@ -1,25 +1,32 @@
-"""CLI: refresh the register snapshot and re-render the dashboard.
+"""CLI: refresh the register snapshot, re-render the dashboard, query history.
 
 Usage:
     python -m observatory refresh [--date YYYY-MM-DD] [--data-dir data] [--fixtures DIR]
                                   [--accept-shrink]
     python -m observatory render  [--data-dir data]
+    python -m observatory asof    (--lei LEI | --name TEXT) [--date YYYY-MM-DD]
+                                  [--register SLUG] [--json]
 
 `--fixtures DIR` reads `<slug>.csv` files from DIR instead of fetching ESMA —
 used by tests and offline runs. `--accept-shrink` records an export that would
 otherwise be quarantined for a sharp drop in rows (see diff.export_shrinks).
+`asof` prints what the last snapshot recorded on or before a date lists for a
+firm, and the firm's recorded changes up to then.
 """
 
 from __future__ import annotations
 
 import argparse
 import datetime
+import hashlib
+import json
 import sys
 from pathlib import Path
 
-from observatory.config import SOURCES
+from observatory.asof import as_of, render_text
+from observatory.config import SOURCES, RegisterSource
 from observatory.diff import Shrink, diff_snapshots, export_shrinks
-from observatory.fetch import fetch_source
+from observatory.fetch import Download, download_source, utc_now
 from observatory.models import RegisterSnapshot, Snapshot
 from observatory.normalize import column_drift, parse_register
 from observatory.render import Quarantine, render_dashboard, update_readme, write_feed
@@ -29,19 +36,30 @@ from observatory.store import (
     load_latest,
     read_changelog,
     save_quarantine,
+    save_raw,
     save_snapshot,
 )
 
 
-def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
+def read_fixture(fixtures: Path, source: RegisterSource) -> Download:
+    path = fixtures / f"{source.slug}.csv"
+    return Download(body=path.read_bytes(), url=f"fixture:{path.name}", retrieved_at=utc_now())
+
+
+def build_snapshot(
+    snapshot_date: str, fixtures: Path | None
+) -> tuple[Snapshot, dict[str, Download]]:
+    """Fetch and parse every source; also return the downloads, by slug."""
     registers = []
+    downloads: dict[str, Download] = {}
     for source in SOURCES:
         try:
             if fixtures is not None:
-                raw = (fixtures / f"{source.slug}.csv").read_bytes()
+                download = read_fixture(fixtures, source)
             else:
-                raw = fetch_source(source)
-            parsed = parse_register(source, raw, enforce_min_rows=fixtures is None)
+                download = download_source(source)
+            parsed = parse_register(source, download.body, enforce_min_rows=fixtures is None)
+            downloads[source.slug] = download
             registers.append(
                 RegisterSnapshot(
                     slug=source.slug,
@@ -51,6 +69,8 @@ def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
                     fetched=True,
                     entries=parsed.entries,
                     columns=parsed.columns,
+                    source_last_modified=download.last_modified,
+                    source_sha256=hashlib.sha256(download.body).hexdigest(),
                 )
             )
         except Exception as error:  # noqa: BLE001 — one failed source must not kill the run
@@ -64,7 +84,7 @@ def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
                     fetch_error=str(error)[:200],
                 )
             )
-    return Snapshot(snapshot_date=snapshot_date, registers=registers)
+    return Snapshot(snapshot_date=snapshot_date, registers=registers), downloads
 
 
 def report_column_drift(snapshot: Snapshot) -> list[str]:
@@ -117,11 +137,16 @@ def pending_quarantine(data_dir: Path, snapshot: Snapshot) -> Quarantine | None:
 
 
 def quarantine(
-    args: argparse.Namespace, previous: Snapshot, current: Snapshot, shrinks: list[Shrink]
+    args: argparse.Namespace,
+    previous: Snapshot,
+    current: Snapshot,
+    shrinks: list[Shrink],
+    downloads: dict[str, Download],
 ) -> int:
     """Set the export aside, leave the recorded history alone and say so."""
     data_dir = Path(args.data_dir)
     path = save_quarantine(data_dir, current)
+    save_raw(data_dir, current.snapshot_date, downloads, recorded_as="quarantine")
     for shrink in shrinks:
         print(
             f"::warning title=Register export quarantined::{shrink.describe()} since "
@@ -143,7 +168,7 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     snapshot_date = args.date or datetime.date.today().isoformat()
     fixtures = Path(args.fixtures) if args.fixtures else None
 
-    current = build_snapshot(snapshot_date, fixtures)
+    current, downloads = build_snapshot(snapshot_date, fixtures)
     failed = [r for r in current.registers if not r.fetched]
     if failed:
         # Fail closed: a partial snapshot would be committed and then trip the
@@ -156,9 +181,10 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     previous = load_latest(data_dir)
     unconfirmed = [] if args.accept_shrink else unconfirmed_shrinks(data_dir, previous, current)
     if previous is not None and unconfirmed:
-        return quarantine(args, previous, current, unconfirmed)
+        return quarantine(args, previous, current, unconfirmed, downloads)
     changes = diff_snapshots(previous, current, read_changelog(data_dir))
     save_snapshot(data_dir, current)
+    save_raw(data_dir, snapshot_date, downloads, recorded_as="snapshot")
     append_changelog(data_dir, changes)
 
     update_readme(Path(args.readme), render_dashboard(current, read_changelog(data_dir)))
@@ -187,6 +213,26 @@ def cmd_render(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_asof(args: argparse.Namespace) -> int:
+    date = args.date or datetime.date.today().isoformat()
+    answer = as_of(
+        Path(args.data_dir),
+        date,
+        lei=args.lei or "",
+        name=args.name or "",
+        register=args.register or "",
+    )
+    if args.json:
+        print(json.dumps(answer.to_json(), ensure_ascii=False, indent=1))
+    else:
+        print(render_text(answer), end="")
+    return 0 if answer.snapshot_date else 1
+
+
+def iso_day(value: str) -> str:
+    return datetime.date.fromisoformat(value).isoformat()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(prog="observatory")
     parser.add_argument("--data-dir", default="data")
@@ -202,6 +248,17 @@ def main() -> int:
 
     render = subparsers.add_parser("render")
     render.set_defaults(func=cmd_render)
+
+    asof = subparsers.add_parser(
+        "asof", help="what the register listed for a firm on a date, from the recorded history"
+    )
+    who = asof.add_mutually_exclusive_group(required=True)
+    who.add_argument("--lei", default=None)
+    who.add_argument("--name", default=None, help="case-insensitive part of the name")
+    asof.add_argument("--date", type=iso_day, default=None, help="YYYY-MM-DD; default today")
+    asof.add_argument("--register", choices=[source.slug for source in SOURCES], default=None)
+    asof.add_argument("--json", action="store_true")
+    asof.set_defaults(func=cmd_asof)
 
     args = parser.parse_args()
     return int(args.func(args))

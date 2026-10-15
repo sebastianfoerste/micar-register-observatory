@@ -43,6 +43,12 @@ An export is set aside instead of recorded when one of its registers lost more t
 
 The rule exists because the Title II export fell from 941 to 783 rows on 2026-08-03 and was back within two weeks; recorded as it was, that one export produced 250 removal records. Replayed over the committed snapshots, the rule sets aside that export and no other.
 
+## Raw exports and as-of answers
+
+From October 2026 every refresh keeps the five exports exactly as downloaded, gzipped, under `data/raw/<date>/`, with a manifest giving each file's URL, SHA-256, size, HTTP `Last-Modified` header and retrieval time; quarantined exports are kept too. The snapshot records the same `Last-Modified` header and SHA-256 per register, and the dashboard's source status gives the date ESMA last replaced each file. ESMA overwrites the exports in place, so the archive is the only way to check a snapshot against the bytes it came from, or to parse past exports again when the observatory learns to read a new field.
+
+`python -m observatory asof --lei <LEI> --date YYYY-MM-DD` (or `--name <part of the name>`, optionally `--register <slug>` and `--json`) answers what the register listed for a firm on a date: the rows of the last snapshot recorded on or before that date, the registers that did not list it, and its change records up to then. The answer is the weekly export as the observatory fetched it, not ESMA's register on that exact day; exports quarantined in between are named. Snapshots up to 2026-10-12 hold only the core columns, so answers for those dates carry no dates, services or countries.
+
 ## Format coverage
 
 White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` for bare domains and landing pages. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. Many register rows link a landing page rather than the document itself — that gap is itself a finding about register quality.

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import email.utils
 import json
 from collections import Counter
 from pathlib import Path
@@ -45,6 +46,21 @@ def _linkify(wp_url: str) -> str:
     return f"[{label}]({href})"
 
 
+def http_date(value: str) -> str:
+    """An HTTP date (the Last-Modified header) as YYYY-MM-DD; "" when unparseable."""
+    try:
+        return email.utils.parsedate_to_datetime(value).date().isoformat()
+    except (TypeError, ValueError, IndexError):
+        return ""
+
+
+def _status(register: RegisterSnapshot) -> str:
+    if not register.fetched:
+        return f"fetch failed: {register.fetch_error}"
+    modified = http_date(register.source_last_modified)
+    return f"ok (file modified {modified})" if modified else "ok"
+
+
 def _casp_line(casps: RegisterSnapshot) -> str:
     line = f"CASP register: {casps.entity_count()} firms in {len(casps.rows())} rows"
     withdrawn = casps.entities_with_withdrawal_date()
@@ -74,10 +90,9 @@ def render_dashboard(
     lines.append("| Register | Rows | Entities | Source status |")
     lines.append("| --- | ---: | ---: | --- |")
     for register in snapshot.registers:
-        status = "ok" if register.fetched else f"fetch failed: {register.fetch_error}"
         lines.append(
             f"| [{register.title}]({register.source_url}) "
-            f"| {len(register.rows())} | {register.entity_count()} | {status} |"
+            f"| {len(register.rows())} | {register.entity_count()} | {_status(register)} |"
         )
     lines.append("")
     lines.append(
@@ -193,6 +208,7 @@ def write_feed(
                 "entries": len(register.rows()),
                 "entities": register.entity_count(),
                 "fetched": register.fetched,
+                "source_last_modified": register.source_last_modified,
             }
             for register in snapshot.registers
         ],
