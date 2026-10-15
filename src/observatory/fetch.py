@@ -7,6 +7,7 @@ import time
 import urllib.error
 import urllib.request
 from collections.abc import Callable
+from typing import Any
 
 from observatory.config import USER_AGENT, RegisterSource
 
@@ -26,15 +27,16 @@ def fetch_source(
     timeout: int = 60,
     attempts: int = 4,
     backoff: float = 2.0,
-    opener: Callable[..., object] = urllib.request.urlopen,
+    opener: Callable[..., Any] = urllib.request.urlopen,
     sleep: Callable[[float], None] = time.sleep,
 ) -> bytes:
     """Fetch one source, retrying transient errors with exponential backoff."""
     request = urllib.request.Request(source.url, headers={"User-Agent": USER_AGENT})
     for attempt in range(1, attempts + 1):
         try:
-            with opener(request, timeout=timeout) as response:  # type: ignore[operator]
-                return response.read()
+            with opener(request, timeout=timeout) as response:
+                body: bytes = response.read()
+                return body
         except Exception as error:  # noqa: BLE001 — classified below
             if attempt == attempts or not _is_retryable(error):
                 raise

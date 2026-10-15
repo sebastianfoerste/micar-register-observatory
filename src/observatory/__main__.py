@@ -122,7 +122,7 @@ def main() -> int:
     render.set_defaults(func=cmd_render)
 
     args = parser.parse_args()
-    return args.func(args)
+    return int(args.func(args))
 
 
 if __name__ == "__main__":

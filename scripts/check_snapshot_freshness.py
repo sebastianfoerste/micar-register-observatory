@@ -30,7 +30,11 @@ def validate(snapshot_path: Path, *, as_of: dt.date, max_age_days: int) -> list[
         errors.append("registers must be a list")
         registers = []
 
-    slugs = {item.get("slug") for item in registers if isinstance(item, dict)}
+    slugs = {
+        item["slug"]
+        for item in registers
+        if isinstance(item, dict) and isinstance(item.get("slug"), str)
+    }
     if slugs != EXPECTED_REGISTERS:
         missing = sorted(EXPECTED_REGISTERS - slugs)
         extra = sorted(slugs - EXPECTED_REGISTERS)
