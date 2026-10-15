@@ -59,6 +59,14 @@ _SERVICE_PATTERNS: dict[str, re.Pattern[str]] = {
 
 _COMMENTS_COLUMN = {"casps": "ac_comments", "ncasp": "ae_comments"}
 
+# ESMA's comment on a white paper row that marks it as a modified or updated white
+# paper: "wp update", "Updated WP ...", "Modification ...", "Modified ...",
+# "Art.12 Mod ...". Only comments that start with such a marker count; rows that
+# say so in other words are missed, so counts of the flag are a lower bound.
+_MODIFICATION_NOTE = re.compile(
+    r"^(?:wp update|updated wp|modifications?|modified|art\.?\s*12\s*mod)\b", re.IGNORECASE
+)
+
 
 def clean(value: str) -> str:
     value = value.strip()
@@ -86,6 +94,11 @@ def parse_countries(value: str) -> list[str]:
 def parse_services(value: str) -> list[str]:
     text = " ".join(value.replace("\t", " ").split()).lower()
     return [code for code, pattern in _SERVICE_PATTERNS.items() if pattern.search(text)]
+
+
+def notes_modification(comment: str) -> bool:
+    """Whether a white paper comment starts with a modification or update marker."""
+    return bool(_MODIFICATION_NOTE.match(comment.strip()))
 
 
 def parse_dti(value: str) -> list[str]:
@@ -140,6 +153,9 @@ def _entry(source: RegisterSource, row: dict[str, str]) -> RegisterEntry:
         casp_lei=casp_lei,
         reason=clean(row.get("ae_reason", "")),
         comments=row.get(_COMMENTS_COLUMN.get(source.slug, "wp_comments"), ""),
+        modification_noted=(
+            source.kind == "whitepaper" and notes_modification(row.get("wp_comments", ""))
+        ),
     )
 
 

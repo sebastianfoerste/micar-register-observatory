@@ -182,6 +182,49 @@ def test_changed_rows_carry_field_changes_and_subtypes():
     ]
 
 
+OTHER_SOURCE = next(s for s in SOURCES if s.slug == "other-wp")
+OTHER_CSV = (Path(__file__).parent / "fixtures" / "other-wp.csv").read_text(encoding="utf-8")
+
+
+def other_wp_snapshot(date: str, csv_text: str) -> Snapshot:
+    return Snapshot(
+        snapshot_date=date,
+        registers=[
+            RegisterSnapshot(
+                slug="other-wp", title="t", kind="whitepaper",
+                source_url="https://esma.example/OTHER.csv", fetched=True,
+                entries=normalize_csv(OTHER_SOURCE, csv_text.encode("utf-8")),
+            )
+        ],
+    )
+
+
+def test_a_modification_noted_by_esma_is_labelled():
+    noted = edit_csv(
+        OTHER_CSV, {(2, "wp_comments"): "Art.12 Mod", (2, "wp_lastupdate"): "01/10/2026"}
+    )
+    new_row = (
+        "NCA,DE,Example Issuer GmbH,529900EXAMPLELEI0001,DE,,,DE,,,"
+        "https://example.com/wp-v2.xhtml,wp update,01/10/2026\n"
+    )
+    changes = diff_snapshots(
+        other_wp_snapshot("2026-10-12", OTHER_CSV), other_wp_snapshot("2026-10-19", noted + new_row)
+    )
+    assert [(c.change, c.wp_url, c.subtypes) for c in changes] == [
+        ("changed", "https://example.com/wp.xhtml",
+         ["last_update_changed", "comments_changed", "modification_noted"]),
+        ("added", "https://example.com/wp-v2.xhtml", ["modification_noted"]),
+    ]
+
+
+def test_an_unrelated_comment_change_is_not_a_modification():
+    edited = edit_csv(OTHER_CSV, {(2, "wp_comments"): "URL UPDATE"})
+    [record] = diff_snapshots(
+        other_wp_snapshot("2026-10-12", OTHER_CSV), other_wp_snapshot("2026-10-19", edited)
+    )
+    assert record.subtypes == ["comments_changed"]
+
+
 def test_a_v1_previous_snapshot_gives_changes_without_field_detail():
     current = casp_snapshot("2026-10-19", CASPS_CSV)
     v1_entries = [

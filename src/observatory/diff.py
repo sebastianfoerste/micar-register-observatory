@@ -28,7 +28,7 @@ from observatory.models import (
     RegisterSnapshot,
     Snapshot,
 )
-from observatory.normalize import iso_date, parse_countries, parse_services
+from observatory.normalize import iso_date, notes_modification, parse_countries, parse_services
 
 
 @dataclass
@@ -156,7 +156,15 @@ def change_subtypes(old: RegisterEntry, new: RegisterEntry) -> list[str]:
         subtypes.append("last_update_changed")
     if old.comments != new.comments:
         subtypes.append("comments_changed")
+    comment = new.fields.get("wp_comments", "")
+    if comment != old.fields.get("wp_comments", "") and notes_modification(comment):
+        subtypes.append("modification_noted")
     return subtypes
+
+
+def added_subtypes(entry: RegisterEntry) -> list[str]:
+    """Labels for a new row: a modified white paper is often listed as a new row."""
+    return ["modification_noted"] if notes_modification(entry.fields.get("wp_comments", "")) else []
 
 
 def _record(
@@ -268,7 +276,9 @@ def diff_registers(
             detail = f"listed again (last recorded as {last.change} on {last.snapshot_date})"
             changes.append(_record(snapshot_date, current.slug, "restored", entry, detail))
         elif j in unmatched_new:
-            changes.append(_record(snapshot_date, current.slug, "added", entry))
+            record = _record(snapshot_date, current.slug, "added", entry)
+            record.subtypes = added_subtypes(entry)
+            changes.append(record)
         elif j in changed:
             before = old[changed[j]]
             fields = field_changes(before, entry)

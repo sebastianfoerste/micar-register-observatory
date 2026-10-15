@@ -9,6 +9,7 @@ from observatory.normalize import (
     column_drift,
     iso_date,
     normalize_csv,
+    notes_modification,
     parse_countries,
     parse_register,
     parse_services,
@@ -138,7 +139,32 @@ def test_whitepaper_typed_fields() -> None:
     assert entry.dti_ffg == "ABC123XYZ" and entry.dti == ["Q1", "Q2"]
     assert entry.casp_name == "" and entry.casp_lei == ""
     assert entry.comments == "Modification"
+    assert entry.modification_noted
     assert entry.fields["ae_lei_casp"] == "Not applicable"  # verbatim stays available
+
+
+def test_modification_markers_are_read_from_the_start_of_the_comment() -> None:
+    for comment in (
+        "wp update", "Modification", "Modified", "Art.12 Mod", "Art. 12 mod, notified 8/12/25",
+        "Modified content on 04-09-2025", "modification v.2 as of 9 July 2026",
+        "Updated WP July 2026", "  MODIFICATIONS ",
+    ):
+        assert notes_modification(comment), comment
+    for comment in (
+        "", "URL UPDATE", "UPDATE", "Note that the publication date for the modified white "
+        "paper is 24.02.2026 at which point this record will be updated with the link",
+        "Unmodified", "modifiedly",
+    ):
+        assert not notes_modification(comment), comment
+
+
+def test_only_white_paper_rows_carry_the_modification_flag() -> None:
+    edited = (FIXTURES / "casps.csv").read_text(encoding="utf-8").replace(
+        "Second authorisation", "Modification"
+    )
+    entries = normalize_csv(source("casps"), edited.encode("utf-8"))
+    assert entries[1].comments == "Modification"
+    assert not any(entry.modification_noted for entry in entries)
 
 
 def test_services_are_read_from_the_text_not_the_letter() -> None:

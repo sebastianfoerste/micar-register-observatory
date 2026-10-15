@@ -52,6 +52,9 @@ class RegisterEntry(BaseModel):
     casp_lei: str = ""
     reason: str = ""  # non-compliant entities: the NCA's stated reason
     comments: str = ""
+    # White papers: the comment starts with a modification marker such as
+    # "wp update" or "Art.12 Mod" (normalize.notes_modification).
+    modification_noted: bool = False
 
     @staticmethod
     def make_entry_id(register: str, lei: str, entity_name: str, wp_url: str) -> str:
