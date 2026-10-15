@@ -7,6 +7,8 @@ Usage:
     python -m observatory asof    (--lei LEI | --name TEXT) [--date YYYY-MM-DD]
                                   [--register SLUG] [--json]
 
+`refresh` and `render` rewrite the README dashboard, docs/feed.json,
+docs/changes.atom, data/exports/ and the latest digest under digests/.
 `--fixtures DIR` reads `<slug>.csv` files from DIR instead of fetching ESMA —
 used by tests and offline runs. `--accept-shrink` records an export that would
 otherwise be quarantined for a sharp drop in rows (see diff.export_shrinks).
@@ -26,8 +28,10 @@ from pathlib import Path
 from observatory.asof import as_of, render_text
 from observatory.config import SOURCES, RegisterSource
 from observatory.diff import Shrink, diff_snapshots, export_shrinks
+from observatory.digest import write_atom, write_digests
+from observatory.export import write_exports
 from observatory.fetch import Download, download_source, utc_now
-from observatory.models import RegisterSnapshot, Snapshot
+from observatory.models import ChangeRecord, RegisterSnapshot, Snapshot
 from observatory.normalize import column_drift, parse_register
 from observatory.render import Quarantine, render_dashboard, update_readme, write_feed
 from observatory.store import (
@@ -136,6 +140,22 @@ def pending_quarantine(data_dir: Path, snapshot: Snapshot) -> Quarantine | None:
     return Quarantine(snapshot_date=earlier.snapshot_date, shrinks=shrinks)
 
 
+def publish(
+    args: argparse.Namespace,
+    snapshot: Snapshot,
+    changelog: list[ChangeRecord],
+    note: Quarantine | None = None,
+) -> None:
+    """Rewrite every file derived from the recorded data: the README dashboard,
+    docs/feed.json, data/exports/, the digests and docs/changes.atom."""
+    data_dir = Path(args.data_dir)
+    update_readme(Path(args.readme), render_dashboard(snapshot, changelog, note))
+    write_feed(Path(args.feed), snapshot, changelog, note)
+    write_exports(data_dir / "exports", snapshot, changelog)
+    write_digests(Path(args.digests), data_dir, changelog)
+    write_atom(Path(args.atom), data_dir, changelog)
+
+
 def quarantine(
     args: argparse.Namespace,
     previous: Snapshot,
@@ -153,9 +173,7 @@ def quarantine(
             f"{previous.snapshot_date}; the export is kept in {path} and not recorded"
         )
     note = Quarantine(snapshot_date=current.snapshot_date, shrinks=shrinks)
-    changelog = read_changelog(data_dir)
-    update_readme(Path(args.readme), render_dashboard(previous, changelog, note))
-    write_feed(Path(args.feed), previous, changelog, note)
+    publish(args, previous, read_changelog(data_dir), note)
     print(
         f"snapshot {current.snapshot_date} quarantined; "
         f"the recorded snapshot stays {previous.snapshot_date}"
@@ -187,8 +205,7 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     save_raw(data_dir, snapshot_date, downloads, recorded_as="snapshot")
     append_changelog(data_dir, changes)
 
-    update_readme(Path(args.readme), render_dashboard(current, read_changelog(data_dir)))
-    write_feed(Path(args.feed), current, read_changelog(data_dir))
+    publish(args, current, read_changelog(data_dir))
 
     fetched = sum(1 for register in current.registers if register.fetched)
     print(
@@ -205,10 +222,7 @@ def cmd_render(args: argparse.Namespace) -> int:
     if snapshot is None:
         print("no snapshot found; run refresh first", file=sys.stderr)
         return 1
-    changelog = read_changelog(data_dir)
-    note = pending_quarantine(data_dir, snapshot)
-    update_readme(Path(args.readme), render_dashboard(snapshot, changelog, note))
-    write_feed(Path(args.feed), snapshot, changelog, note)
+    publish(args, snapshot, read_changelog(data_dir), pending_quarantine(data_dir, snapshot))
     print(f"rendered dashboard for snapshot {snapshot.snapshot_date}")
     return 0
 
@@ -238,6 +252,8 @@ def main() -> int:
     parser.add_argument("--data-dir", default="data")
     parser.add_argument("--readme", default="README.md")
     parser.add_argument("--feed", default="docs/feed.json")
+    parser.add_argument("--atom", default="docs/changes.atom")
+    parser.add_argument("--digests", default="digests")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     refresh = subparsers.add_parser("refresh")

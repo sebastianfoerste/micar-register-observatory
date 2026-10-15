@@ -14,6 +14,9 @@ ESMA's meaning of each source column is in its [field description file](https://
 | `data/raw/YYYY-MM-DD/` | From October 2026: the five exports of a refresh as downloaded, gzipped (`<slug>.csv.gz`), with `manifest.json` (below). Kept for recorded and quarantined exports alike. | [raw manifest v1](../contracts/raw-manifest.v1.schema.json) |
 | `data/changelog.jsonl` | One change record per line, oldest first. | [changelog v1](../contracts/changelog.v1.schema.json), one record per line |
 | `docs/feed.json` | Current totals and the last 200 change records. | [feed v1](../contracts/feed.v1.schema.json) |
+| `data/exports/{casps,ncasp,whitepapers,changes}.csv` | From October 2026: the latest snapshot's rows and every change record as flat CSV (below). | [exports v1](../contracts/exports.v1.schema.json) |
+| `docs/changes.atom` | From October 2026: an Atom feed with one entry per recorded snapshot, newest first (the last 52), linking to its digest. | [Atom (RFC 4287)](https://www.rfc-editor.org/rfc/rfc4287) |
+| `digests/YYYY-MM-DD.md` | From October 2026: a readable note of each recorded snapshot's changes. A digest is written once; only the latest is rewritten. | |
 
 Snapshots written before October 2026 carry the v1 fields only; snapshots written from then on carry the v2 fields as well, and remain valid v1 snapshots.
 
@@ -153,6 +156,23 @@ Written on `changed` records, re-read from the verbatim columns of the old and n
 | `quarantine` | Added October 2026. `null`, or the export set aside after `snapshot_date`: `{"snapshot_date", "shrinks": [{"slug", "before", "after"}]}` with the row counts that triggered it. |
 | `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added October 2026), `fetched` and `source_last_modified` (added October 2026; as in the snapshot). |
 | `recent_changes` | The last 200 change records of `data/changelog.jsonl`, oldest first. |
+
+## CSV exports (`data/exports/`)
+
+UTF-8, comma-separated, with a header line; columns are only ever added at the end. Every cell is a typed field of the snapshot or the change record, with these differences:
+
+- `register` is the `register_slug`.
+- Lists (`services`, `service_countries`, `offer_countries`, `dti`, `subtypes`) are joined with `|`; an empty cell is an empty list.
+- `last_update` is an ISO date (the JSON keeps ESMA's DD/MM/YYYY); `""` when blank or not a date.
+- `modification_noted` is `true` or `false`, and empty for rows of a snapshot written before the field existed.
+- In `changes.csv`, `changed_fields` lists the names of the changed ESMA columns; their old and new values are in `data/changelog.jsonl`.
+
+| File | Rows | Columns |
+| --- | --- | --- |
+| `casps.csv` | The CASP register's rows in the latest snapshot. | `snapshot_date`, `register`, `entry_id`, `row_key`, `lei`, `entity_name`, `commercial_name`, `authority`, `member_state`, `authorisation_date`, `withdrawal_date`, `services`, `service_countries`, `website`, `comments`, `last_update` |
+| `ncasp.csv` | The rows of the register of non-compliant entities. | `snapshot_date`, `register`, `entry_id`, `row_key`, `lei`, `entity_name`, `commercial_name`, `authority`, `member_state`, `decision_date`, `reason`, `website`, `comments`, `last_update` |
+| `whitepapers.csv` | The rows of the three white paper registers, in the order other-wp, emt-wp, art-wp. | `snapshot_date`, `register`, `entry_id`, `row_key`, `lei`, `entity_name`, `commercial_name`, `authority`, `member_state`, `wp_url`, `format_class`, `dti_ffg`, `dti`, `offer_countries`, `offer_start_date`, `authorisation_date`, `withdrawal_date`, `casp_name`, `casp_lei`, `modification_noted`, `comments`, `last_update` |
+| `changes.csv` | Every line of `data/changelog.jsonl`, oldest first. | `snapshot_date`, `register`, `change`, `entry_id`, `lei`, `entity_name`, `member_state`, `wp_url`, `subtypes`, `changed_fields`, `detail`, `record_version`, `row_key`, `row_hash` |
 
 ## Raw export manifest (`data/raw/YYYY-MM-DD/manifest.json`)
 

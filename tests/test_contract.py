@@ -1,6 +1,7 @@
 """The published files must keep matching contracts/: eu-reg-mcp and other
 consumers read them from main, so schema changes only ever add fields."""
 
+import csv
 import json
 import shutil
 from pathlib import Path
@@ -10,6 +11,7 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 from observatory.__main__ import cmd_refresh
+from observatory.export import EXPORT_COLUMNS
 from observatory.fetch import Download
 from observatory.models import ChangeRecord, RegisterEntry, RegisterSnapshot
 from observatory.store import load_raw, save_raw
@@ -29,11 +31,15 @@ SNAPSHOT_V2 = "micar-register.snapshot.v2.schema.json"
 CHANGELOG = "changelog.v1.schema.json"
 FEED = "feed.v1.schema.json"
 RAW_MANIFEST = "raw-manifest.v1.schema.json"
+EXPORTS = "exports.v1.schema.json"
 
 
-def errors(schema_name: str, instance: object) -> list[str]:
+def errors(schema_name: str, instance: object, definition: str = "") -> list[str]:
+    schema = SCHEMAS[schema_name]
+    if definition:  # one of the schema's $defs
+        schema = {"$ref": f"{schema['$id']}#/$defs/{definition}"}
     validator = Draft202012Validator(
-        SCHEMAS[schema_name],
+        schema,
         registry=REGISTRY,
         format_checker=Draft202012Validator.FORMAT_CHECKER,
     )
@@ -75,6 +81,28 @@ def test_the_contracts_describe_every_field_the_code_writes() -> None:
     assert set(v2["entry"]["required"]) == set(RegisterEntry.model_fields)
     assert set(v2["register"]["properties"]) == set(RegisterSnapshot.model_fields)
     assert set(SCHEMAS[CHANGELOG]["properties"]) == set(ChangeRecord.model_fields)
+
+
+def test_the_export_contract_lists_each_export_s_columns_in_order() -> None:
+    definitions = SCHEMAS[EXPORTS]["$defs"]
+    for name, columns in EXPORT_COLUMNS.items():
+        assert tuple(definitions[name]["required"]) == columns, name
+
+
+def check_exports(folder: Path) -> int:
+    """Check every CSV export in `folder`: its header and each row against the contract."""
+    paths = sorted(folder.glob("*.csv"))
+    for path in paths:
+        with path.open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            assert tuple(reader.fieldnames or ()) == EXPORT_COLUMNS[path.stem], path
+            for number, row in enumerate(reader, start=2):
+                assert errors(EXPORTS, row, path.stem) == [], f"{path.name} line {number}"
+    return len(paths)
+
+
+def test_the_committed_exports_match_the_contract() -> None:
+    check_exports(ROOT / "data" / "exports")
 
 
 def test_the_raw_manifest_contract_describes_what_save_raw_writes(tmp_path: Path) -> None:
@@ -158,3 +186,4 @@ def test_pipeline_output_matches_v1_and_v2(tmp_path: Path) -> None:
         assert errors(CHANGELOG, record) == []
     assert errors(FEED, read_json(tmp_path / "docs" / "feed.json")) == []
     assert check_raw_archives(tmp_path / "data") == 2
+    assert check_exports(tmp_path / "data" / "exports") == len(EXPORT_COLUMNS)

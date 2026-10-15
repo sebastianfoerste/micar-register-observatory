@@ -101,6 +101,27 @@ def test_a_sharp_drop_is_quarantined_and_history_is_left_alone(tmp_path: Path, c
     assert feed["quarantine"] is None
 
 
+def test_a_quarantine_rewrites_the_published_files_from_the_last_snapshot(
+    tmp_path: Path,
+) -> None:
+    # The weekly workflow commits digests/ and docs/changes.atom: they must exist
+    # even when the first refresh that writes them sets its export aside.
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    assert cmd_refresh(args_for(tmp_path, "2026-07-27", fixtures_with(tmp_path, "a", 100))) == 0
+    shutil.rmtree(tmp_path / "digests")
+    shutil.rmtree(tmp_path / "data" / "exports")
+    (tmp_path / "docs" / "changes.atom").unlink()
+
+    assert cmd_refresh(args_for(tmp_path, "2026-08-03", fixtures_with(tmp_path, "dip", 80))) == 0
+    assert sorted(path.name for path in (tmp_path / "digests").iterdir()) == ["2026-07-27.md"]
+    assert "<updated>2026-07-27T00:00:00Z</updated>" in (
+        (tmp_path / "docs" / "changes.atom").read_text(encoding="utf-8")
+    )
+    whitepapers = (tmp_path / "data" / "exports" / "whitepapers.csv").read_text("utf-8")
+    assert whitepapers.count("\n2026-07-27,other-wp,") == 100
+
+
 def test_the_same_drop_in_the_next_export_is_recorded(tmp_path: Path, capsys) -> None:
     seed_readme(tmp_path)
     (tmp_path / "data").mkdir()

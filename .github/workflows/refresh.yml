@@ -42,14 +42,15 @@ jobs:
         run: uv run python -m observatory refresh
       - name: Freshness gate
         run: uv run python scripts/check_snapshot_freshness.py
-      # The new snapshot, changelog and feed must still match contracts/.
+      # The new snapshot, changelog, feed, exports and raw archive must still
+      # match contracts/.
       - name: Contract gate
         run: uv run pytest -q tests/test_contract.py
       - name: Commit and push if the register moved
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data README.md docs/feed.json
+          git add data README.md docs/feed.json docs/changes.atom digests
           git diff --cached --quiet && echo "no register changes" && exit 0
           git commit -m "chore: weekly register refresh"
           git push

@@ -11,10 +11,11 @@ from pydantic import BaseModel
 
 BASE_URL = "https://www.esma.europa.eu/sites/default/files/2024-12"
 
-USER_AGENT = (
-    "micar-register-observatory/0.1 "
-    "(+https://github.com/sebastianfoerste/micar-register-observatory)"
-)
+REPO_URL = "https://github.com/sebastianfoerste/micar-register-observatory"
+# The files on main, as GitHub serves them raw.
+RAW_URL = "https://raw.githubusercontent.com/sebastianfoerste/micar-register-observatory/main"
+
+USER_AGENT = f"micar-register-observatory/0.1 (+{REPO_URL})"
 
 
 class RegisterSource(BaseModel):

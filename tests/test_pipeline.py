@@ -20,6 +20,8 @@ def args_for(
         data_dir=str(tmp_path / "data"),
         readme=str(tmp_path / "README.md"),
         feed=str(tmp_path / "docs" / "feed.json"),
+        atom=str(tmp_path / "docs" / "changes.atom"),
+        digests=str(tmp_path / "digests"),
         date=date,
         fixtures=str(fixtures),
         accept_shrink=accept_shrink,
