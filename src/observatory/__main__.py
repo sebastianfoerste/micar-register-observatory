@@ -97,7 +97,7 @@ def cmd_refresh(args: argparse.Namespace) -> int:
 
     report_column_drift(current)
     previous = load_latest(data_dir)
-    changes = diff_snapshots(previous, current)
+    changes = diff_snapshots(previous, current, read_changelog(data_dir))
     save_snapshot(data_dir, current)
     append_changelog(data_dir, changes)
 

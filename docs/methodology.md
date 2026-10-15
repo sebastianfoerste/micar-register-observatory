@@ -20,12 +20,16 @@ Each row is reduced to: competent authority, home Member State, entity name, LEI
 
 ## Change detection
 
-Weekly snapshots are diffed register by register:
+Weekly snapshots are diffed register by register. Rows are compared within each entry identity as a multiset, because several rows can share one identity (a firm with two authorisations, an issuer with several tokens behind one URL): identical rows pair first, then rows with the same `row_key`, then the most similar rows. Every row of both exports is accounted for.
 
-- `added` — entry identity present now, absent before.
-- `changed` — same identity, different row content.
-- `removed` — entry identity no longer in the export. This includes withdrawals, upstream corrections, and identity-affecting edits (an issuer changing its white paper URL appears as `removed` + `added`).
+- `added` — a row that the previous export did not list and that is not a row coming back.
+- `changed` — a row paired with a previous row whose content differs. The record lists each ESMA column that differs with its old and new value (`changed_fields`) and mechanical labels such as `withdrawal_date_recorded` or `services_added` (`subtypes`).
+- `missing` — a row of the previous export that this export does not list. A first absence is not reported as a removal: the export has dropped hundreds of rows for a week and listed them again.
+- `removed` — a row absent from two consecutive exports. It can be a withdrawal, an upstream correction, or an identity-affecting edit (an issuer changing its white paper URL appears as `missing`, then `removed`, plus `added`); the export does not say which.
+- `restored` — a row listed again after it was `missing` or `removed`. Only as many rows of an entry identity are restored as left it.
 - `baseline` — first observation of a register; the initial population is not reported as hundreds of "added" rows.
+
+Each record carries `record_version`. Records without it (version 1, every record up to the 2026-10-12 snapshot) were written by the earlier diff, which compared one row per entry identity, used `removed` for a first absence and `added` for a row that came back. Recorded history is never rewritten; version 2 code reads both.
 
 The full history is `data/changelog.jsonl`; dated snapshots live under `data/snapshots/`.
 

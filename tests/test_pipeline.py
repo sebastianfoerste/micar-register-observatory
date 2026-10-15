@@ -104,3 +104,42 @@ def test_column_drift_is_reported_without_failing(tmp_path: Path, capsys) -> Non
     out = capsys.readouterr().out
     assert "::warning title=ESMA source change::ncasp" in out
     assert "'ae_reason_v2'" in out and "dropped ['ae_reason']" in out
+
+
+def test_a_row_must_be_absent_twice_before_it_is_removed(tmp_path: Path) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    without = tmp_path / "without-skygate"
+    shutil.copytree(FIXTURES, without)
+    other = without / "other-wp.csv"
+    other.write_text(
+        "".join(
+            line
+            for line in other.read_text(encoding="utf-8").splitlines(keepends=True)
+            if "SKYGATE" not in line
+        ),
+        encoding="utf-8",
+    )
+
+    weeks = [
+        ("2026-07-07", FIXTURES),
+        ("2026-07-14", without),
+        ("2026-07-21", without),
+        ("2026-07-28", FIXTURES),
+    ]
+    for date, fixtures in weeks:
+        assert cmd_refresh(args_for(tmp_path, date, fixtures)) == 0
+        if date == "2026-07-21":
+            readme = (tmp_path / "README.md").read_text(encoding="utf-8")
+            assert "| removed | other-wp | SKYGATE Network GmbH |" in readme
+            assert "`removed`: not in two consecutive exports." in readme
+    skygate = [
+        (c.snapshot_date, c.change)
+        for c in read_changelog(tmp_path / "data")
+        if c.entity_name == "SKYGATE Network GmbH"
+    ]
+    assert skygate == [
+        ("2026-07-14", "missing"),
+        ("2026-07-21", "removed"),
+        ("2026-07-28", "restored"),
+    ]

@@ -14,6 +14,8 @@ DASHBOARD_END = "<!-- dashboard:end -->"
 
 MAX_CHANGE_ROWS = 25
 
+ABSENCE_KINDS = {"missing", "removed", "restored"}
+
 _FORMAT_LABELS = {
     "xhtml/html": "XHTML / HTML",
     "json": "JSON",
@@ -115,6 +117,13 @@ def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
                 lines.append(
                     f"| ...and {len(rows) - MAX_CHANGE_ROWS} more "
                     "(see `data/changelog.jsonl`) | | | | |"
+                )
+            if any(change.change in ABSENCE_KINDS for change in rows):
+                lines.append("")
+                lines.append(
+                    "`missing`: not in this export for the first time. "
+                    "`removed`: not in two consecutive exports. "
+                    "`restored`: listed again after an absence."
                 )
     lines.append("")
     return "\n".join(lines)

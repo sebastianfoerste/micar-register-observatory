@@ -4,7 +4,7 @@ from pathlib import Path
 
 from observatory.config import SOURCES
 from observatory.diff import diff_snapshots
-from observatory.models import RegisterEntry, RegisterSnapshot, Snapshot
+from observatory.models import ChangeRecord, RegisterEntry, RegisterSnapshot, Snapshot
 from observatory.normalize import normalize_csv
 
 
@@ -46,7 +46,7 @@ def test_first_run_records_baseline_not_added_rows():
     assert "2 entries" in changes[0].detail
 
 
-def test_added_changed_removed():
+def test_added_changed_missing():
     old = snapshot("2026-07-07", [entry("A"), entry("B")])
     new = snapshot(
         "2026-07-14", [entry("A", row_hash="h2"), entry("C")]
@@ -55,7 +55,7 @@ def test_added_changed_removed():
     kinds = {(c.change, c.entity_name) for c in changes}
     assert ("changed", "A") in kinds
     assert ("added", "C") in kinds
-    assert ("removed", "B") in kinds
+    assert ("missing", "B") in kinds  # a first absence is not yet a removal
     assert len(changes) == 3
 
 
@@ -79,7 +79,7 @@ def test_non_unique_entry_ids_are_compared_as_a_multiset():
 def test_a_vanished_duplicate_row_is_reported_not_lost():
     old = snapshot("2026-07-07", [entry("A"), entry("A")])
     new = snapshot("2026-07-14", [entry("A")])
-    assert [c.change for c in diff_snapshots(old, new)] == ["removed"]
+    assert [c.change for c in diff_snapshots(old, new)] == ["missing"]
 
 
 def test_an_extra_duplicate_row_is_added():
@@ -211,3 +211,139 @@ def test_unchanged_rows_produce_no_records_across_the_v1_to_v2_switch():
         registers=[current.registers[0].model_copy(update={"entries": v1_entries})],
     )
     assert diff_snapshots(previous, current) == []
+
+
+# --- missing, removed, restored ------------------------------------------------
+
+
+def run_weeks(*weeks: tuple[str, list[RegisterEntry]]) -> list:
+    """Diff consecutive snapshots like the weekly refresh, threading the changelog."""
+    history: list = []
+    previous = None
+    for date, rows in weeks:
+        current = snapshot(date, rows)
+        history.extend(diff_snapshots(previous, current, history))
+        previous = current
+    return history
+
+
+def test_a_second_absence_in_a_row_confirms_the_removal():
+    history = run_weeks(
+        ("2026-07-07", [entry("A"), entry("B")]),
+        ("2026-07-14", [entry("A")]),
+        ("2026-07-21", [entry("A")]),
+        ("2026-07-28", [entry("A")]),
+    )
+    rows = [(c.snapshot_date, c.change, c.entity_name) for c in history[1:]]
+    assert rows == [("2026-07-14", "missing", "B"), ("2026-07-21", "removed", "B")]
+    assert history[-1].detail == "not in two consecutive exports (missing since 2026-07-14)"
+    assert history[-1].row_hash == "h1" and history[-1].record_version == 2
+
+
+def test_a_row_back_after_one_missing_export_is_restored():
+    history = run_weeks(
+        ("2026-07-07", [entry("A"), entry("B")]),
+        ("2026-07-14", [entry("A")]),
+        ("2026-07-21", [entry("A"), entry("B")]),
+    )
+    rows = [(c.snapshot_date, c.change, c.entity_name) for c in history[1:]]
+    assert rows == [("2026-07-14", "missing", "B"), ("2026-07-21", "restored", "B")]
+    assert "missing on 2026-07-14" in history[-1].detail
+
+
+def test_a_row_back_with_new_content_is_restored_too():
+    history = run_weeks(
+        ("2026-07-07", [entry("A"), entry("B")]),
+        ("2026-07-14", [entry("A")]),
+        ("2026-07-21", [entry("A"), entry("B", row_hash="h9")]),
+    )
+    assert [(c.change, c.row_hash) for c in history[2:]] == [("restored", "h9")]
+
+
+def test_a_row_back_after_a_confirmed_removal_is_restored():
+    history = run_weeks(
+        ("2026-07-07", [entry("A"), entry("B")]),
+        ("2026-07-14", [entry("A")]),
+        ("2026-07-21", [entry("A")]),
+        ("2026-08-04", [entry("A"), entry("B")]),
+    )
+    assert [c.change for c in history[1:]] == ["missing", "removed", "restored"]
+    assert history[-1].detail == "listed again (last recorded as removed on 2026-07-21)"
+
+
+def test_an_old_style_removal_followed_by_a_relisting_is_restored():
+    # Changelog records written before version 2 used `removed` for a first absence.
+    v1_removal = ChangeRecord(
+        snapshot_date="2026-08-03", register_slug="other-wp", change="removed",
+        entry_id=entry("B").entry_id, entity_name="B", member_state="DE",
+    )
+    previous = snapshot("2026-08-03", [entry("A")])
+    current = snapshot("2026-08-10", [entry("A"), entry("B")])
+    [record] = diff_snapshots(previous, current, [v1_removal])
+    assert record.change == "restored"
+
+
+def test_a_returning_row_is_not_mistaken_for_a_change_of_another_row():
+    x = entry("A", row_hash="x").model_copy(update={"last_update": "x"})
+    y = entry("A", row_hash="y").model_copy(update={"last_update": "y"})
+    history = run_weeks(
+        ("2026-07-07", [x, y]),
+        ("2026-07-14", [x]),  # y goes missing
+        ("2026-07-21", [y]),  # y is back exactly as it was, x is gone
+    )
+    assert [(c.snapshot_date, c.change, c.row_hash) for c in history[1:]] == [
+        ("2026-07-14", "missing", "y"),
+        ("2026-07-21", "restored", "y"),
+        ("2026-07-21", "missing", "x"),
+    ]
+
+
+def test_only_the_previous_exports_missing_rows_are_confirmed():
+    stale = ChangeRecord(
+        snapshot_date="2026-07-07", register_slug="other-wp", change="missing",
+        entry_id=entry("B").entry_id, entity_name="B", member_state="DE",
+    )
+    previous = snapshot("2026-07-21", [entry("A")])
+    current = snapshot("2026-07-28", [entry("A")])
+    assert diff_snapshots(previous, current, [stale]) == []
+
+
+def test_only_as_many_rows_are_restored_as_went_missing():
+    history = run_weeks(
+        ("2026-07-07", [entry("A"), entry("B")]),
+        ("2026-07-14", [entry("A")]),
+        ("2026-07-21", [entry("A"), entry("B"), entry("B")]),
+    )
+    assert [c.change for c in history[2:]] == ["restored", "added"]
+
+
+def test_a_removed_row_is_restored_while_other_rows_of_its_entry_stay_listed():
+    x = entry("A", row_hash="x").model_copy(update={"last_update": "x"})
+    y = entry("A", row_hash="y").model_copy(update={"last_update": "y"})
+    history = run_weeks(
+        ("2026-07-07", [x, y]),
+        ("2026-07-14", [x]),
+        ("2026-07-21", [x]),
+        ("2026-07-28", [x]),
+        ("2026-08-04", [x, y]),
+    )
+    assert [(c.snapshot_date, c.change) for c in history[1:]] == [
+        ("2026-07-14", "missing"),
+        ("2026-07-21", "removed"),
+        ("2026-08-04", "restored"),
+    ]
+
+
+def test_an_old_style_relisting_is_not_restored_twice():
+    # Version 1 recorded a relisting as `added`; that row is back already.
+    v1 = [
+        ChangeRecord(
+            snapshot_date=date, register_slug="other-wp", change=change,
+            entry_id=entry("B").entry_id, entity_name="B", member_state="DE",
+        )
+        for date, change in (("2026-08-03", "removed"), ("2026-08-10", "added"))
+    ]
+    previous = snapshot("2026-08-10", [entry("A"), entry("B")])
+    current = snapshot("2026-08-17", [entry("A"), entry("B"), entry("B", row_hash="h2")])
+    [record] = diff_snapshots(previous, current, v1)
+    assert record.change == "added"
