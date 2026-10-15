@@ -17,6 +17,9 @@ from collections import Counter, defaultdict
 from collections.abc import Sequence
 from dataclasses import dataclass, field
 
+from pydantic import BaseModel
+
+from observatory.config import MAX_WEEKLY_SHRINK, MIN_SHRINK_ROWS
 from observatory.models import (
     CHANGE_RECORD_VERSION,
     ChangeRecord,
@@ -305,3 +308,40 @@ def diff_snapshots(
             )
         )
     return changes
+
+
+class Shrink(BaseModel):
+    """A register whose export lost a large share of its rows in one step."""
+
+    slug: str
+    before: int
+    after: int
+
+    def describe(self) -> str:
+        share = (self.before - self.after) / self.before if self.before else 0.0
+        return f"{self.slug} fell from {self.before} to {self.after} rows (-{share:.1%})"
+
+
+def _row_count(register: RegisterSnapshot) -> int:
+    return sum(1 for entry in register.entries if not entry.is_header_echo())
+
+
+def export_shrinks(
+    previous: Snapshot | None,
+    current: Snapshot,
+    max_share: float = MAX_WEEKLY_SHRINK,
+    min_rows: int = MIN_SHRINK_ROWS,
+) -> list[Shrink]:
+    """Registers that lost more than `max_share` of their rows, and at least
+    `min_rows` rows, between `previous` and `current`."""
+    if previous is None:
+        return []
+    shrinks: list[Shrink] = []
+    for register in current.registers:
+        before_register = previous.register(register.slug)
+        if before_register is None or not before_register.fetched or not register.fetched:
+            continue
+        before, after = _row_count(before_register), _row_count(register)
+        if before - after >= min_rows and before - after > max_share * before:
+            shrinks.append(Shrink(slug=register.slug, before=before, after=after))
+    return shrinks

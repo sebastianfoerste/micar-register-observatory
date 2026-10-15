@@ -6,7 +6,10 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from pydantic import BaseModel
+
 from observatory.coverage import DEEP_LINT_CLASSES
+from observatory.diff import Shrink
 from observatory.models import ChangeRecord, Snapshot
 
 DASHBOARD_START = "<!-- dashboard:start -->"
@@ -26,6 +29,13 @@ _FORMAT_LABELS = {
 }
 
 
+class Quarantine(BaseModel):
+    """An export set aside because a register dropped sharply (diff.export_shrinks)."""
+
+    snapshot_date: str
+    shrinks: list[Shrink]
+
+
 def _linkify(wp_url: str) -> str:
     url = wp_url.strip()
     if not url:
@@ -35,11 +45,21 @@ def _linkify(wp_url: str) -> str:
     return f"[{label}]({href})"
 
 
-def render_dashboard(snapshot: Snapshot, changes: list[ChangeRecord]) -> str:
+def render_dashboard(
+    snapshot: Snapshot, changes: list[ChangeRecord], quarantine: Quarantine | None = None
+) -> str:
     lines: list[str] = []
     lines.append(f"**Register snapshot: {snapshot.snapshot_date}** "
                  "(refreshed weekly from the public ESMA interim MiCAR register)")
     lines.append("")
+    if quarantine is not None:
+        drops = "; ".join(shrink.describe() for shrink in quarantine.shrinks)
+        lines.append(
+            f"> **The export of {quarantine.snapshot_date} was quarantined:** {drops}. "
+            "It is kept under `data/quarantine/` and recorded only if the next export "
+            f"shows the same drop. The figures below are from {snapshot.snapshot_date}."
+        )
+        lines.append("")
 
     lines.append("### Register totals")
     lines.append("")
@@ -138,10 +158,16 @@ def update_readme(readme_path: Path, dashboard: str) -> None:
     )
 
 
-def write_feed(feed_path: Path, snapshot: Snapshot, changes: list[ChangeRecord]) -> None:
+def write_feed(
+    feed_path: Path,
+    snapshot: Snapshot,
+    changes: list[ChangeRecord],
+    quarantine: Quarantine | None = None,
+) -> None:
     recent = [change.model_dump() for change in changes[-200:]]
     payload = {
         "snapshot_date": snapshot.snapshot_date,
+        "quarantine": quarantine.model_dump() if quarantine else None,
         "registers": [
             {
                 "slug": register.slug,

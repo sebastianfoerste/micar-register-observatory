@@ -107,6 +107,14 @@ SOURCES: list[RegisterSource] = [
     ),
 ]
 
+# An export whose register lost more than MAX_WEEKLY_SHRINK of its rows since the
+# last recorded snapshot, and at least MIN_SHRINK_ROWS rows, is set aside under
+# data/quarantine/ instead of being recorded; the same drop in the next export
+# confirms it. Title II fell from 941 to 783 rows on 2026-08-03 and was back
+# within two weeks; no other weekly drop up to 2026-10-12 exceeded 1%.
+MAX_WEEKLY_SHRINK = 0.10
+MIN_SHRINK_ROWS = 10
+
 # Columns every register export must carry for normalize_csv to be meaningful.
 REQUIRED_COLUMNS = ("ae_competentAuthority", "ae_homeMemberState", "ae_lei_name", "ae_lei")
 WHITEPAPER_COLUMNS = ("wp_url", "wp_lastupdate")

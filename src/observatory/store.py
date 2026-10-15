@@ -15,13 +15,35 @@ def load_latest(data_dir: Path) -> Snapshot | None:
     return Snapshot.model_validate_json(latest.read_text(encoding="utf-8"))
 
 
+def _snapshot_json(snapshot: Snapshot) -> str:
+    return json.dumps(snapshot.model_dump(), ensure_ascii=False, indent=1) + "\n"
+
+
 def save_snapshot(data_dir: Path, snapshot: Snapshot) -> None:
-    payload = json.dumps(snapshot.model_dump(), ensure_ascii=False, indent=1) + "\n"
+    payload = _snapshot_json(snapshot)
     (data_dir / "snapshots").mkdir(parents=True, exist_ok=True)
     (data_dir / "snapshots" / f"{snapshot.snapshot_date}.json").write_text(
         payload, encoding="utf-8"
     )
     (data_dir / "latest.json").write_text(payload, encoding="utf-8")
+
+
+def save_quarantine(data_dir: Path, snapshot: Snapshot) -> Path:
+    """Keep an export that was set aside, in the format of data/snapshots/."""
+    path = data_dir / "quarantine" / f"{snapshot.snapshot_date}.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(_snapshot_json(snapshot), encoding="utf-8")
+    return path
+
+
+def latest_quarantine(data_dir: Path, after: str) -> Snapshot | None:
+    """The newest quarantined export dated after `after` (YYYY-MM-DD), if any."""
+    paths = sorted(
+        path for path in (data_dir / "quarantine").glob("*.json") if path.stem > after
+    )
+    if not paths:
+        return None
+    return Snapshot.model_validate_json(paths[-1].read_text(encoding="utf-8"))
 
 
 def append_changelog(data_dir: Path, changes: list[ChangeRecord]) -> None:

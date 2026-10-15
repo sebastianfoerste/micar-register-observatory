@@ -9,13 +9,16 @@ from observatory.store import load_latest, read_changelog
 FIXTURES = Path(__file__).parent / "fixtures"
 
 
-def args_for(tmp_path: Path, date: str, fixtures: Path) -> argparse.Namespace:
+def args_for(
+    tmp_path: Path, date: str, fixtures: Path, accept_shrink: bool = False
+) -> argparse.Namespace:
     return argparse.Namespace(
         data_dir=str(tmp_path / "data"),
         readme=str(tmp_path / "README.md"),
         feed=str(tmp_path / "docs" / "feed.json"),
         date=date,
         fixtures=str(fixtures),
+        accept_shrink=accept_shrink,
     )
 
 

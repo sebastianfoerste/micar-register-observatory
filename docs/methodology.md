@@ -33,6 +33,12 @@ Each record carries `record_version`. Records without it (version 1, every recor
 
 The full history is `data/changelog.jsonl`; dated snapshots live under `data/snapshots/`.
 
+### Quarantine
+
+An export is set aside instead of recorded when one of its registers lost more than 10% of its rows, and at least 10 rows, since the last recorded snapshot (`MAX_WEEKLY_SHRINK` and `MIN_SHRINK_ROWS` in `src/observatory/config.py`). It is kept as `data/quarantine/<date>.json`, in the snapshot format. `data/latest.json`, the dated snapshots and the changelog stay as they were, and the dashboard and `docs/feed.json` (`quarantine`) say which export was set aside and why. When the next export shows the same register just as far below the last recorded snapshot, the drop is recorded: its rows become `missing` and, if they stay absent, `removed` a week later. A maintainer who has confirmed a drop can record it at once with `python -m observatory refresh --accept-shrink`.
+
+The rule exists because the Title II export fell from 941 to 783 rows on 2026-08-03 and was back within two weeks; recorded as it was, that one export produced 250 removal records. Replayed over the committed snapshots, the rule sets aside that export and no other.
+
 ## Format coverage
 
 White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` for bare domains and landing pages. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. Many register rows link a landing page rather than the document itself — that gap is itself a finding about register quality.
@@ -44,6 +50,6 @@ Deterministic lint findings about individual, named issuers are not published au
 ## Known limitations
 
 - The observatory sees what ESMA exports. Upstream corrections, deletions, and re-keyed rows appear as register changes even when nothing changed at the issuer.
-- ESMA may change export URLs or column layouts; a failed source is reported in the dashboard's source-status column and never fails the whole run silently.
+- ESMA may change export URLs or column layouts. A source that fails to download, lacks a required column or falls below its row floor stops the refresh, and the last good snapshot stays in place; added or dropped columns are reported as a source change without stopping it.
 - Format classification is a heuristic on the link, not the served content type.
 - The interim register may be superseded by ESMA's final register infrastructure; sources are pinned in `src/observatory/config.py` and are the single place to update.

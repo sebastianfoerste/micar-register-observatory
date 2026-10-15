@@ -60,6 +60,16 @@ def validate(snapshot_path: Path, *, as_of: dt.date, max_age_days: int) -> list[
     return errors
 
 
+def pending_quarantines(snapshot_path: Path) -> list[Path]:
+    """Quarantined exports newer than the snapshot: set aside, not yet recorded."""
+    try:
+        snapshot_date = json.loads(snapshot_path.read_text(encoding="utf-8"))["snapshot_date"]
+    except (OSError, json.JSONDecodeError, KeyError, TypeError):
+        return []
+    folder = snapshot_path.parent / "quarantine"
+    return sorted(path for path in folder.glob("*.json") if path.stem > str(snapshot_date))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--snapshot", type=Path, default=DEFAULT_SNAPSHOT)
@@ -72,6 +82,14 @@ def main() -> int:
         for error in errors:
             print(f"PENDING: {error}")
         return 1
+
+    # A quarantined export keeps the last good snapshot in place; the age limit
+    # above still applies, so this is reported but does not fail the gate.
+    for path in pending_quarantines(args.snapshot):
+        print(
+            f"::warning title=Quarantined register export::{path.name} was set aside "
+            "after a sharp drop in rows and is not recorded"
+        )
 
     payload = json.loads(args.snapshot.read_text(encoding="utf-8"))
     print(
