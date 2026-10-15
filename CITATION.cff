@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software or the register history it records, please cite it as below."
+title: "MiCAR Register Observatory"
+type: software
+authors:
+  - family-names: "Förste"
+    given-names: "Sebastian"
+repository-code: "https://github.com/sebastianfoerste/micar-register-observatory"
+abstract: >-
+  Weekly snapshots and diffs of the five ESMA interim MiCAR register exports
+  (Title II, e-money token and asset-referenced token white papers, authorised
+  crypto-asset service providers and non-compliant entities) since 7 July 2026,
+  with a changelog of every recorded change.
+keywords:
+  - MiCAR
+  - MiCA
+  - ESMA
+  - crypto-assets
+  - regulatory data
+  - register history
+version: 0.1.0
+date-released: 2026-07-07

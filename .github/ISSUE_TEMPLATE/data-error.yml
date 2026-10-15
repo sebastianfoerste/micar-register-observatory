@@ -1,0 +1,72 @@
+name: Data error
+description: The observatory's data does not match what ESMA published (a wrong field, a lost or duplicated row, a wrong change record).
+title: "[data] "
+labels: ["data-error"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when a snapshot, the changelog, an export or the dashboard does not match ESMA's register export.
+
+        The observatory records what ESMA publishes. If ESMA's own file is wrong, the correction has to come from ESMA or the national competent authority; the observatory records it once it appears in the export.
+
+        Describe the data, not the entity: please do not include assessments of a named issuer or service provider.
+  - type: dropdown
+    id: register
+    attributes:
+      label: Register
+      options:
+        - White papers, other crypto-assets (Title II) — other-wp
+        - White papers, e-money tokens (Title IV) — emt-wp
+        - White papers, asset-referenced tokens (Title III) — art-wp
+        - Authorised crypto-asset service providers — casps
+        - Non-compliant entities — ncasp
+        - Several registers or not sure
+    validations:
+      required: true
+  - type: input
+    id: snapshot
+    attributes:
+      label: Snapshot date
+      description: The snapshot (`data/snapshots/YYYY-MM-DD.json`) or changelog date where you saw the problem.
+      placeholder: "2026-10-12"
+    validations:
+      required: true
+  - type: input
+    id: identifier
+    attributes:
+      label: Row identifier
+      description: The `entry_id`, `row_key`, LEI or DTI of the affected row, if there is one.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - A field differs from ESMA's export
+        - A row is missing or duplicated
+        - A change record is wrong (added, changed, missing, removed or restored)
+        - A count or label on the dashboard is wrong
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What the observatory shows
+      description: Quote the snapshot entry, changelog record or dashboard line.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What ESMA's export shows
+      description: Quote the relevant row of the ESMA CSV and, if you know it, the file's Last-Modified date.
+    validations:
+      required: true
+  - type: checkboxes
+    id: review-gate
+    attributes:
+      label: Review gate
+      options:
+        - label: This report describes register data only and makes no assessment of any named issuer or service provider.
+          required: true
