@@ -6,7 +6,7 @@ import csv
 import hashlib
 import io
 
-from observatory.config import RegisterSource
+from observatory.config import REQUIRED_COLUMNS, WHITEPAPER_COLUMNS, RegisterSource
 from observatory.coverage import classify_format
 from observatory.models import RegisterEntry
 
@@ -16,10 +16,21 @@ def _row_hash(row: dict[str, str]) -> str:
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()[:16]
 
 
-def normalize_csv(source: RegisterSource, raw: bytes) -> list[RegisterEntry]:
+class SchemaError(ValueError):
+    """The downloaded file is not a register CSV of the expected shape."""
+
+
+def normalize_csv(
+    source: RegisterSource, raw: bytes, *, enforce_min_rows: bool = False
+) -> list[RegisterEntry]:
     # ESMA files are UTF-8 with BOM; utf-8-sig handles both cases.
     text = raw.decode("utf-8-sig", errors="replace")
     reader = csv.DictReader(io.StringIO(text))
+    header = {(name or "").strip() for name in reader.fieldnames or []}
+    required = REQUIRED_COLUMNS + (WHITEPAPER_COLUMNS if source.kind == "whitepaper" else ())
+    missing = [column for column in required if column not in header]
+    if missing:
+        raise SchemaError(f"{source.slug}: missing columns {missing}")
     entries: list[RegisterEntry] = []
     for row in reader:
         row = {(k or "").strip(): (v or "").strip() for k, v in row.items()}
@@ -45,5 +56,9 @@ def normalize_csv(source: RegisterSource, raw: bytes) -> list[RegisterEntry]:
                 ),
                 row_hash=_row_hash(row),
             )
+        )
+    if enforce_min_rows and len(entries) < source.min_rows:
+        raise SchemaError(
+            f"{source.slug}: {len(entries)} rows, below the minimum of {source.min_rows}"
         )
     return entries

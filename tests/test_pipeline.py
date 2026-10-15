@@ -54,3 +54,26 @@ def test_refresh_twice_renders_dashboard_and_changelog(tmp_path: Path) -> None:
     assert any(c.change == "added" and c.entity_name == "New Issuer Ltd" for c in changes)
     assert (tmp_path / "docs" / "feed.json").exists()
     assert (tmp_path / "data" / "snapshots" / "2026-07-14.json").exists()
+
+
+def test_refresh_fails_closed_when_a_source_fails(tmp_path: Path) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    broken = tmp_path / "broken"
+    shutil.copytree(FIXTURES, broken)
+    (broken / "casps.csv").unlink()
+
+    assert cmd_refresh(args_for(tmp_path, "2026-07-07", broken)) == 1
+    assert not (tmp_path / "data" / "latest.json").exists()
+    assert not (tmp_path / "data" / "snapshots").exists()
+
+
+def test_refresh_rejects_csv_with_wrong_schema(tmp_path: Path) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    bad = tmp_path / "bad"
+    shutil.copytree(FIXTURES, bad)
+    (bad / "ncasp.csv").write_text("<html>maintenance</html>\n", encoding="utf-8")
+
+    assert cmd_refresh(args_for(tmp_path, "2026-07-07", bad)) == 1
+    assert not (tmp_path / "data" / "latest.json").exists()

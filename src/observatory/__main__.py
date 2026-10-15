@@ -37,7 +37,7 @@ def build_snapshot(snapshot_date: str, fixtures: Path | None) -> Snapshot:
                 raw = (fixtures / f"{source.slug}.csv").read_bytes()
             else:
                 raw = fetch_source(source)
-            entries = normalize_csv(source, raw)
+            entries = normalize_csv(source, raw, enforce_min_rows=fixtures is None)
             registers.append(
                 RegisterSnapshot(
                     slug=source.slug,
@@ -68,8 +68,12 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     fixtures = Path(args.fixtures) if args.fixtures else None
 
     current = build_snapshot(snapshot_date, fixtures)
-    if not any(register.fetched for register in current.registers):
-        print("refresh aborted: no register source could be fetched", file=sys.stderr)
+    failed = [r for r in current.registers if not r.fetched]
+    if failed:
+        # Fail closed: a partial snapshot would be committed and then trip the
+        # freshness gate; better to keep the last good data and fail loudly.
+        for register in failed:
+            print(f"refresh failed: {register.slug}: {register.fetch_error}", file=sys.stderr)
         return 1
 
     previous = load_latest(data_dir)

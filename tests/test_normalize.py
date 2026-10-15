@@ -38,3 +38,26 @@ def test_entity_register_has_na_format():
     entries = normalize_csv(source("casps"), (FIXTURES / "casps.csv").read_bytes())
     assert len(entries) == 1
     assert entries[0].format_class == "n/a"
+
+
+def test_missing_required_columns_raise() -> None:
+    import pytest
+
+    from observatory.config import SOURCES
+    from observatory.normalize import SchemaError, normalize_csv
+
+    with pytest.raises(SchemaError, match="missing columns"):
+        normalize_csv(SOURCES[0], b"foo,bar\n1,2\n")
+
+
+def test_min_rows_floor_enforced_only_when_requested() -> None:
+    import pytest
+
+    from observatory.config import SOURCES
+    from observatory.normalize import SchemaError, normalize_csv
+
+    source = next(s for s in SOURCES if s.slug == "ncasp")
+    raw = b"ae_competentAuthority,ae_homeMemberState,ae_lei_name,ae_lei\nA,DE,X Ltd,L1\n"
+    assert len(normalize_csv(source, raw)) == 1
+    with pytest.raises(SchemaError, match="below the minimum"):
+        normalize_csv(source, raw, enforce_min_rows=True)
