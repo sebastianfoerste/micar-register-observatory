@@ -1,0 +1,57 @@
+name: ESMA source change
+description: ESMA moved, removed or reshaped a register file, or replaced the interim register.
+title: "[source] "
+labels: ["source-change"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ESMA publishes the interim MiCAR register as CSV files and announced that it would move the register into its IT systems. Use this form when a file moves or disappears, gains, loses or renames columns, changes encoding or format, or when ESMA announces or launches the replacement.
+
+        The source URLs are pinned in `src/observatory/config.py`.
+  - type: dropdown
+    id: source
+    attributes:
+      label: Affected source
+      multiple: true
+      options:
+        - OTHER.csv (Title II white papers)
+        - EMTWP.csv (e-money token white papers)
+        - ARTZZ.csv (asset-referenced token white papers)
+        - CASPS.csv (authorised CASPs)
+        - NCASP.csv (non-compliant entities)
+        - ESMA's field description file
+        - The register as a whole
+    validations:
+      required: true
+  - type: dropdown
+    id: change
+    attributes:
+      label: Type of change
+      options:
+        - URL moved or file removed
+        - Columns added, removed or renamed
+        - Encoding, delimiter or file format changed
+        - Register replaced by a new ESMA system
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: noticed
+    attributes:
+      label: When did you notice it?
+      placeholder: "2026-10-19"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links to the ESMA page or announcement, the HTTP status, the new header line, or a failed refresh run.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact on the observatory
+      description: Optional. Which fields, counts or change records are affected?

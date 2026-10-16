@@ -1,2 +1,3 @@
-﻿ae_competentAuthority,ae_homeMemberState,ae_lei_name,ae_lei
-Comision Nacional del Mercado de Valores (CNMV),ES,Unregistered Entity SL,
+﻿ae_competentAuthority,ae_homeMemberState,ae_lei_name,ae_lei,ae_lei_cou_code,ae_commercial_name,ae_website,ae_infrigment,ae_reason,ae_decision_date,ae_comments,ae_lastupdate
+Comision Nacional del Mercado de Valores (CNMV),ES,Unregistered Entity SL,,ES,UnregEx,https://unreg.example|https://unreg2.example,No,Synthetic reason text for a fixture,12/02/2026,,18/02/2026
+Comision Nacional del Mercado de Valores (CNMV),ES,Unregistered Entity SL,,ES,UnregEx,https://unreg3.example,No,Synthetic reason text for a fixture,09/10/2026,,10/10/2026

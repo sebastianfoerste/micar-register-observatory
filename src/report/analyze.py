@@ -9,6 +9,7 @@ from collections import Counter
 # for a structured document, not a check that the file is Inline XBRL. Shared with
 # the dashboard so the two cannot drift apart.
 from observatory.coverage import DEEP_LINT_CLASSES as DEEP_LINT_CANDIDATE_CLASSES
+from observatory.models import Snapshot
 
 
 def whitepaper_entries(snapshot: dict) -> list[dict]:
@@ -43,7 +44,7 @@ def analyze(snapshot: dict) -> dict:
         if register.get("fetched")
     }
 
-    return {
+    metrics = {
         "snapshot_date": snapshot.get("snapshot_date"),
         "total_whitepapers": total,
         "format_counts": dict(formats.most_common()),
@@ -56,3 +57,21 @@ def analyze(snapshot: dict) -> dict:
         "member_states": member_states.most_common(),
         "register_totals": register_totals,
     }
+    metrics["entity_totals"] = entity_totals(snapshot)
+    return metrics
+
+
+def entity_totals(snapshot: dict) -> dict:
+    """Rows and distinct entities per fetched register. A firm can have several
+    rows (a second CASP authorisation, several white papers); the CASP register
+    also gives the firms with a withdrawal date (None before v2 snapshots)."""
+    totals: dict[str, dict] = {}
+    for register in Snapshot.model_validate(snapshot).registers:
+        if not register.fetched:
+            continue
+        totals[register.slug] = {"rows": len(register.rows()), "entities": register.entity_count()}
+        if register.slug == "casps":
+            totals[register.slug]["with_withdrawal_date"] = (
+                register.entities_with_withdrawal_date()
+            )
+    return totals

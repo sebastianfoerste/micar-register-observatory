@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/raw-manifest.v1.schema.json",
+  "title": "MiCAR Register Observatory Raw Export Manifest v1",
+  "description": "data/raw/<snapshot_date>/manifest.json: the exports of one weekly refresh as downloaded, kept gzipped next to the manifest. Written from October 2026 on. Field meanings: docs/data-dictionary.md.",
+  "type": "object",
+  "required": ["snapshot_date", "recorded_as", "files"],
+  "properties": {
+    "snapshot_date": {"type": "string", "format": "date"},
+    "recorded_as": {
+      "description": "snapshot: recorded under data/snapshots/; quarantine: set aside under data/quarantine/.",
+      "enum": ["snapshot", "quarantine"]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "file", "url", "sha256", "bytes", "last_modified", "retrieved_at"],
+        "properties": {
+          "slug": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
+          "file": {"description": "The gzipped export, next to the manifest.", "type": "string"},
+          "url": {"type": "string"},
+          "sha256": {
+            "description": "SHA-256 of the bytes as downloaded, before compression.",
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {"description": "Size as downloaded.", "type": "integer", "minimum": 0},
+          "last_modified": {
+            "description": "The HTTP Last-Modified header, verbatim; empty when the server sent none.",
+            "type": "string"
+          },
+          "retrieved_at": {
+            "description": "When the download finished, UTC (YYYY-MM-DDTHH:MM:SSZ).",
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          }
+        }
+      }
+    }
+  }
+}

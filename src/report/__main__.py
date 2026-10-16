@@ -32,6 +32,7 @@ def _edition_title(edition_path: Path) -> str:
 
 def cmd_build(args: argparse.Namespace) -> int:
     editions_dir = Path(args.editions_dir)
+    edition_path: Path | None
     if args.edition:
         edition_path = editions_dir / f"{args.edition}.md"
     else:

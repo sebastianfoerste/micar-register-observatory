@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/micar-register.snapshot.v2.schema.json",
+  "title": "MiCAR Register Snapshot v2",
+  "description": "A snapshot written by the observatory from October 2026 on (data/latest.json, data/snapshots/*.json, data/quarantine/*.json). v2 only adds fields to v1: every v2 snapshot is also a valid v1 snapshot. Snapshots written before October 2026 are v1 only. Field meanings: docs/data-dictionary.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["snapshot_date", "registers"],
+  "properties": {
+    "snapshot_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "registers": {
+      "type": "array",
+      "minItems": 5,
+      "items": {"$ref": "#/$defs/register"}
+    }
+  },
+  "$defs": {
+    "isoDateOrEmpty": {
+      "type": "string",
+      "pattern": "^([0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+    },
+    "countries": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[A-Z]{2}$"}
+    },
+    "register": {
+      "type": "object",
+      "required": [
+        "slug",
+        "title",
+        "kind",
+        "source_url",
+        "fetched",
+        "fetch_error",
+        "entries",
+        "columns",
+        "source_last_modified",
+        "source_sha256"
+      ],
+      "properties": {
+        "slug": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
+        "title": {"type": "string"},
+        "kind": {"enum": ["whitepaper", "entity"]},
+        "source_url": {"type": "string", "format": "uri"},
+        "fetched": {"type": "boolean"},
+        "fetch_error": {"type": "string"},
+        "entries": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/entry"}
+        },
+        "columns": {
+          "description": "The export's header, in ESMA's order.",
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "source_last_modified": {
+          "description": "The HTTP Last-Modified header of the downloaded export, verbatim; empty when the server sent none.",
+          "type": "string"
+        },
+        "source_sha256": {
+          "description": "SHA-256 of the downloaded bytes, as archived under data/raw/<snapshot_date>/; empty when the export was not fetched.",
+          "type": "string",
+          "pattern": "^([0-9a-f]{64})?$"
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "required": [
+        "entry_id",
+        "register_slug",
+        "authority",
+        "member_state",
+        "entity_name",
+        "lei",
+        "wp_url",
+        "last_update",
+        "format_class",
+        "row_hash",
+        "row_key",
+        "fields",
+        "commercial_name",
+        "website",
+        "authorisation_date",
+        "withdrawal_date",
+        "offer_start_date",
+        "decision_date",
+        "services",
+        "service_countries",
+        "offer_countries",
+        "dti_ffg",
+        "dti",
+        "casp_name",
+        "casp_lei",
+        "reason",
+        "comments",
+        "modification_noted"
+      ],
+      "properties": {
+        "entry_id": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+        "register_slug": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
+        "authority": {"type": "string"},
+        "member_state": {"type": "string"},
+        "entity_name": {"type": "string"},
+        "lei": {"type": "string"},
+        "wp_url": {"type": "string"},
+        "last_update": {"type": "string"},
+        "format_class": {"enum": ["xhtml/html", "json", "docx", "pdf", "unspecified", "none", "n/a"]},
+        "row_hash": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+        "row_key": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+        "fields": {
+          "description": "Every ESMA column of the row, verbatim (surrounding whitespace removed).",
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        },
+        "commercial_name": {"type": "string"},
+        "website": {"type": "string"},
+        "authorisation_date": {"$ref": "#/$defs/isoDateOrEmpty"},
+        "withdrawal_date": {"$ref": "#/$defs/isoDateOrEmpty"},
+        "offer_start_date": {"$ref": "#/$defs/isoDateOrEmpty"},
+        "decision_date": {"$ref": "#/$defs/isoDateOrEmpty"},
+        "services": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]}
+        },
+        "service_countries": {"$ref": "#/$defs/countries"},
+        "offer_countries": {"$ref": "#/$defs/countries"},
+        "dti_ffg": {"type": "string"},
+        "dti": {"type": "array", "items": {"type": "string"}},
+        "casp_name": {"type": "string"},
+        "casp_lei": {"type": "string"},
+        "reason": {"type": "string"},
+        "comments": {"type": "string"},
+        "modification_noted": {"type": "boolean"}
+      }
+    }
+  }
+}
