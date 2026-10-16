@@ -12,7 +12,7 @@ The ESMA interim MiCAR register, published as CSV exports at stable URLs and upd
 | Authorised CASPs | <https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv> |
 | Non-compliant entities | <https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv> |
 
-Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/sites/default/files/2024-12/Description_of_the_fields_in_the_interim_MiCA_register.csv). Legal basis for publication: Art. 109 VO (EU) 2023/1114 (MiCAR).
+Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/sites/default/files/2024-12/Description_of_the_fields_in_the_interim_MiCA_register.csv). Legal basis for publication: Art. 109 VO (EU) 2023/1114 (MiCAR) for the white-paper, token-issuer and CASP registers; Art. 110 MiCAR for the register of non-compliant entities.
 
 ## Normalization
 
@@ -51,7 +51,7 @@ From October 2026 every refresh keeps the five exports exactly as downloaded, gz
 
 ## Format coverage
 
-White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` for bare domains and landing pages. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. Many register rows link a landing page rather than the document itself — that gap is itself a finding about register quality.
+White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` when the URL path ends in none of these (bare domains, landing pages, and documents served without a file extension). The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. A register row can link a landing page rather than the document itself, and an `.html` URL can be such a landing page; the URL alone does not tell the two apart. The quarterly report's headline share counts the first three classes (deep-lint candidates); it is a URL-shape proxy and does not check whether a document carries Inline XBRL (iXBRL) tagging.
 
 ## Review gate for findings
 
