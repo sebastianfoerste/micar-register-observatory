@@ -1,15 +1,18 @@
 import io
+import re
 import urllib.error
 
 import pytest
 
 from observatory.config import SOURCES
-from observatory.fetch import fetch_source
+from observatory.fetch import download_source, fetch_source
 
 SOURCE = SOURCES[0]
 
 
 class FakeResponse(io.BytesIO):
+    headers: dict[str, str] = {}
+
     def __enter__(self):
         return self
 
@@ -55,3 +58,18 @@ def test_does_not_retry_permanent_errors() -> None:
     with pytest.raises(urllib.error.HTTPError):
         fetch_source(SOURCE, opener=opener, sleep=lambda _: None)
     assert len(calls) == 1
+
+
+def test_download_keeps_the_last_modified_header_and_retrieval_time() -> None:
+    response = FakeResponse(b"body")
+    response.headers = {"Last-Modified": "Tue, 07 Oct 2026 09:12:44 GMT"}
+    download = download_source(SOURCE, opener=lambda request, timeout: response)
+    assert download.body == b"body"
+    assert download.url == SOURCE.url
+    assert download.last_modified == "Tue, 07 Oct 2026 09:12:44 GMT"
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", download.retrieved_at)
+
+
+def test_a_missing_last_modified_header_is_left_empty() -> None:
+    opener, _ = scripted_opener([b"body"])
+    assert download_source(SOURCE, opener=opener, sleep=lambda _: None).last_modified == ""

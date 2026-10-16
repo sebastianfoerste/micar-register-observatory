@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/exports.v1.schema.json",
+  "title": "MiCAR Register Observatory CSV Exports v1",
+  "description": "One row of each CSV file under data/exports/, as read by a CSV reader (every cell a string). Each export's `required` list gives its columns in file order; columns are only ever added at the end. Lists are joined with |. Field meanings: docs/data-dictionary.md.",
+  "$defs": {
+    "date": {"type": "string", "pattern": "^([0-9]{4}-[0-9]{2}-[0-9]{2})?$"},
+    "hash": {"type": "string", "pattern": "^([0-9a-f]{16})?$"},
+    "countries": {"type": "string", "pattern": "^([A-Z]{2}(\\|[A-Z]{2})*)?$"},
+    "text": {"type": "string"},
+    "entry": {
+      "type": "object",
+      "properties": {
+        "snapshot_date": {"type": "string", "format": "date"},
+        "register": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
+        "entry_id": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+        "row_key": {"$ref": "#/$defs/hash"},
+        "lei": {"$ref": "#/$defs/text"},
+        "entity_name": {"$ref": "#/$defs/text"},
+        "commercial_name": {"$ref": "#/$defs/text"},
+        "authority": {"$ref": "#/$defs/text"},
+        "member_state": {"$ref": "#/$defs/text"}
+      }
+    },
+    "casps": {
+      "description": "data/exports/casps.csv: one row per row of the CASP register in the latest snapshot.",
+      "allOf": [{"$ref": "#/$defs/entry"}],
+      "type": "object",
+      "required": [
+        "snapshot_date", "register", "entry_id", "row_key", "lei", "entity_name",
+        "commercial_name", "authority", "member_state", "authorisation_date",
+        "withdrawal_date", "services", "service_countries", "website", "comments",
+        "last_update"
+      ],
+      "properties": {
+        "register": {"const": "casps"},
+        "authorisation_date": {"$ref": "#/$defs/date"},
+        "withdrawal_date": {"$ref": "#/$defs/date"},
+        "services": {"type": "string", "pattern": "^([a-j](\\|[a-j])*)?$"},
+        "service_countries": {"$ref": "#/$defs/countries"},
+        "website": {"$ref": "#/$defs/text"},
+        "comments": {"$ref": "#/$defs/text"},
+        "last_update": {"$ref": "#/$defs/date"}
+      },
+      "unevaluatedProperties": false
+    },
+    "ncasp": {
+      "description": "data/exports/ncasp.csv: one row per row of the register of non-compliant entities in the latest snapshot.",
+      "allOf": [{"$ref": "#/$defs/entry"}],
+      "type": "object",
+      "required": [
+        "snapshot_date", "register", "entry_id", "row_key", "lei", "entity_name",
+        "commercial_name", "authority", "member_state", "decision_date", "reason",
+        "website", "comments", "last_update"
+      ],
+      "properties": {
+        "register": {"const": "ncasp"},
+        "decision_date": {"$ref": "#/$defs/date"},
+        "reason": {"$ref": "#/$defs/text"},
+        "website": {"$ref": "#/$defs/text"},
+        "comments": {"$ref": "#/$defs/text"},
+        "last_update": {"$ref": "#/$defs/date"}
+      },
+      "unevaluatedProperties": false
+    },
+    "whitepapers": {
+      "description": "data/exports/whitepapers.csv: one row per row of the three white paper registers in the latest snapshot.",
+      "allOf": [{"$ref": "#/$defs/entry"}],
+      "type": "object",
+      "required": [
+        "snapshot_date", "register", "entry_id", "row_key", "lei", "entity_name",
+        "commercial_name", "authority", "member_state", "wp_url", "format_class",
+        "dti_ffg", "dti", "offer_countries", "offer_start_date", "authorisation_date",
+        "withdrawal_date", "casp_name", "casp_lei", "modification_noted", "comments",
+        "last_update"
+      ],
+      "properties": {
+        "register": {"enum": ["other-wp", "emt-wp", "art-wp"]},
+        "wp_url": {"$ref": "#/$defs/text"},
+        "format_class": {"enum": ["xhtml/html", "json", "docx", "pdf", "unspecified", "none"]},
+        "dti_ffg": {"$ref": "#/$defs/text"},
+        "dti": {"$ref": "#/$defs/text"},
+        "offer_countries": {"$ref": "#/$defs/countries"},
+        "offer_start_date": {"$ref": "#/$defs/date"},
+        "authorisation_date": {"$ref": "#/$defs/date"},
+        "withdrawal_date": {"$ref": "#/$defs/date"},
+        "casp_name": {"$ref": "#/$defs/text"},
+        "casp_lei": {"$ref": "#/$defs/text"},
+        "modification_noted": {
+          "description": "true or false; empty for rows of a snapshot written before the field existed.",
+          "enum": ["true", "false", ""]
+        },
+        "comments": {"$ref": "#/$defs/text"},
+        "last_update": {"$ref": "#/$defs/date"}
+      },
+      "unevaluatedProperties": false
+    },
+    "changes": {
+      "description": "data/exports/changes.csv: one row per line of data/changelog.jsonl, oldest first. Old and new values of changed columns are only in the changelog.",
+      "type": "object",
+      "required": [
+        "snapshot_date", "register", "change", "entry_id", "lei", "entity_name",
+        "member_state", "wp_url", "subtypes", "changed_fields", "detail",
+        "record_version", "row_key", "row_hash"
+      ],
+      "properties": {
+        "snapshot_date": {"type": "string", "format": "date"},
+        "register": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
+        "change": {"enum": ["added", "changed", "missing", "removed", "restored", "baseline"]},
+        "entry_id": {"type": "string", "pattern": "^([0-9a-f]{16}|-)$"},
+        "lei": {"$ref": "#/$defs/text"},
+        "entity_name": {"$ref": "#/$defs/text"},
+        "member_state": {"$ref": "#/$defs/text"},
+        "wp_url": {"$ref": "#/$defs/text"},
+        "subtypes": {"type": "string", "pattern": "^([a-z_]+(\\|[a-z_]+)*)?$"},
+        "changed_fields": {"$ref": "#/$defs/text"},
+        "detail": {"$ref": "#/$defs/text"},
+        "record_version": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+        "row_key": {"$ref": "#/$defs/hash"},
+        "row_hash": {"$ref": "#/$defs/hash"}
+      },
+      "additionalProperties": false
+    }
+  }
+}
