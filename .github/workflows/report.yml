@@ -5,6 +5,9 @@ on:
   # new quarter's edition to fill its data section from data/latest.json. An
   # edition whose data section already records a snapshot date is rebuilt from
   # data/snapshots/<that date>.json, so a run never moves published numbers.
+  # Add a new edition's row to the README editions table first, with the
+  # snapshot date of data/latest.json: tests/test_editions.py checks a filled
+  # edition against the snapshot that row names.
   workflow_dispatch:
 
 permissions: {}
