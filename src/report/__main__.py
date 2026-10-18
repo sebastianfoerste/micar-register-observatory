@@ -12,6 +12,9 @@ accident:
   empty) is filled from data/latest.json;
 - --use-latest reads data/latest.json in either case, and --fixture PATH reads
   that JSON file instead.
+
+docs/index.html is the newest edition's page, so it is only written when the
+edition built is the newest one.
 """
 
 from __future__ import annotations
@@ -73,13 +76,19 @@ def cmd_build(args: argparse.Namespace) -> int:
 
     metrics = analyze(snapshot)
     update_edition(edition_path, render_data_section(metrics))
-    Path(args.html).parent.mkdir(parents=True, exist_ok=True)
-    Path(args.html).write_text(render_html(metrics, edition_title(edition_path)), encoding="utf-8")
+    html_path = Path(args.html)
+    newest = _latest_edition(editions_dir)
+    if newest is not None and edition_path.resolve() == newest.resolve():
+        html_path.parent.mkdir(parents=True, exist_ok=True)
+        html_path.write_text(render_html(metrics, edition_title(edition_path)), encoding="utf-8")
+        page = f"; wrote {html_path}"
+    else:
+        page = f"; {html_path} left alone, it is the page of the newest edition"
     print(
         f"built {edition_path.name} from {snapshot_path} ({reason}): "
         f"{metrics['total_whitepapers']} white papers, "
         f"{metrics['deep_lint_candidate_pct']}% XHTML/HTML, JSON or DOCX links "
-        f"(snapshot {metrics['snapshot_date']})"
+        f"(snapshot {metrics['snapshot_date']}){page}"
     )
     return 0
 

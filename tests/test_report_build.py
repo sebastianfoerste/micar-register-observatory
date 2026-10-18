@@ -147,6 +147,20 @@ def test_a_missing_recorded_snapshot_fails_without_writing(tmp_path: Path) -> No
     assert not (tmp_path / "docs" / "index.html").exists()
 
 
+def test_rebuilding_an_older_edition_leaves_the_newest_editions_page(tmp_path: Path) -> None:
+    edition = _setup(tmp_path, render_data_section(analyze(RECORDED_SNAPSHOT)))
+    newer = tmp_path / "editions" / "2026-Q4.md"
+    newer.write_text(_edition(None), encoding="utf-8")
+    assert _build(tmp_path) == 0  # fills 2026-Q4 from latest.json and writes its page
+    page = _html(tmp_path)
+
+    assert _build(tmp_path, "--edition", "2026-Q3") == 0
+
+    assert recorded_snapshot_date(edition.read_text(encoding="utf-8")) == RECORDED
+    assert _html(tmp_path) == page
+    assert f"Snapshot: {LATEST}." in page
+
+
 def test_fixture_and_use_latest_cannot_be_combined(tmp_path: Path) -> None:
     _setup(tmp_path, None)
     with pytest.raises(SystemExit):
