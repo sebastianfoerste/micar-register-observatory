@@ -2,7 +2,9 @@ name: report
 
 on:
   # Editions are authored, not auto-generated: run this by hand when preparing a
-  # new quarter's edition to refresh its data section from the committed snapshot.
+  # new quarter's edition to fill its data section from data/latest.json. An
+  # edition whose data section already records a snapshot date is rebuilt from
+  # data/snapshots/<that date>.json, so a run never moves published numbers.
   workflow_dispatch:
 
 permissions: {}

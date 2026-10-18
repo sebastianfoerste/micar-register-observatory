@@ -7,10 +7,19 @@ narrative around it is human-authored and never touched by the generator.
 from __future__ import annotations
 
 import html
+import re
 from pathlib import Path
 
 DATA_START = "<!-- data:start -->"
 DATA_END = "<!-- data:end -->"
+
+# The first line of a generated data section names the snapshot it was built
+# from; render_data_section writes it and recorded_snapshot_date reads it back.
+_GENERATED_FROM = "_Generated from the MiCAR Register Observatory snapshot of **{date}**."
+_RECORDED_DATE = re.compile(
+    "^" + re.escape(_GENERATED_FROM).replace(re.escape("{date}"), r"(\d{4}-\d{2}-\d{2})"),
+    re.MULTILINE,
+)
 
 _FORMAT_LABELS = {
     "xhtml/html": "XHTML / HTML (by URL extension; iXBRL not verified)",
@@ -36,8 +45,8 @@ def render_data_section(metrics: dict) -> str:
     total = metrics["total_whitepapers"]
     lines: list[str] = []
     lines.append(
-        f"_Generated from the MiCAR Register Observatory snapshot of "
-        f"**{metrics['snapshot_date']}**. Figures are reproducible from that commit._"
+        _GENERATED_FROM.format(date=metrics["snapshot_date"])
+        + " Figures are reproducible from that commit._"
     )
     lines.append("")
 
@@ -102,6 +111,28 @@ def update_edition(edition_path: Path, data_section: str) -> None:
     edition_path.write_text(
         text[:start] + "\n" + data_section + "\n" + text[end:], encoding="utf-8"
     )
+
+
+def edition_data_block(edition_text: str) -> str:
+    """The text between DATA_START and DATA_END, as update_edition wrote it."""
+    start = edition_text.index(DATA_START) + len(DATA_START)
+    return edition_text[start : edition_text.index(DATA_END)]
+
+
+def recorded_snapshot_date(edition_text: str) -> str | None:
+    """The date of the snapshot an edition's data section was generated from, or
+    None when the edition has no generated data section yet."""
+    if DATA_START not in edition_text or DATA_END not in edition_text:
+        return None
+    match = _RECORDED_DATE.search(edition_data_block(edition_text))
+    return match.group(1) if match else None
+
+
+def edition_title(edition_path: Path) -> str:
+    for line in edition_path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("# "):
+            return line[2:].strip()
+    return edition_path.stem
 
 
 def _bar_svg(rows: list[tuple[str, int]], total: int, highlight: set[str]) -> str:
