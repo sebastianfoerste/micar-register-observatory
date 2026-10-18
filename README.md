@@ -1,6 +1,6 @@
 # MiCAR Register Observatory
 
-A living dashboard of the **ESMA interim MiCAR register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, entries no longer listed (counted as removed only after two consecutive absences), and which file formats the white-paper links point to, judged by the URL alone.
+A living dashboard of the **ESMA interim MiCAR register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, entries no longer listed (in records after the 2026-10-12 snapshot, counted as removed only after two consecutive absences), and which file formats the white-paper links point to, judged by the URL alone.
 
 The register is public by law: Art. 109 VO (EU) 2023/1114 (MiCAR) requires ESMA to establish a public register of crypto-asset white papers, of issuers of asset-referenced and e-money tokens, and of crypto-asset service providers, and Art. 110 MiCAR a register of entities that provide crypto-asset services in violation of Art. 59 or 61 (the non-compliant entities). The duty to make each white paper available in a machine-readable format sits in the white-paper provisions, Art. 6(10), 19(9) and 51(9) MiCAR, with the forms, formats and templates set by Commission Implementing Regulation (EU) 2024/2984, which applies from 23 December 2025. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
 
@@ -103,7 +103,7 @@ make refresh
 
 ## What this tracks
 
-- **New, changed, missing, removed and restored register entries** per weekly snapshot. A row is `missing` the first time an export does not list it, `removed` once it is absent from two consecutive exports, and `restored` if it is listed again. A removal can be a withdrawal, an upstream correction or a changed white-paper URL; the export does not say which.
+- **New, changed, missing, removed and restored register entries** per weekly snapshot. A row is `missing` the first time an export does not list it, `removed` once it is absent from two consecutive exports, and `restored` if it is listed again. Records up to the 2026-10-12 snapshot (record version 1, which includes every `removed` record so far) used `removed` for a first absence and `added` for a relisting; see [docs/methodology.md](docs/methodology.md#change-detection). A removal can be a withdrawal, an upstream correction or a changed white-paper URL; the export does not say which.
 - **Format coverage**: how many linked white papers are XHTML/HTML, JSON, or DOCX (candidates for deterministic linting with [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)) versus PDF or a URL with no recognised file extension (a bare domain, a landing page, or a document served without one). Classification is by link shape only and is marked as candidate, not verified, until a document is fetched.
 - **Machine-readable feed**: `docs/feed.json` carries the current totals and recent changes for anyone building on top.
 
