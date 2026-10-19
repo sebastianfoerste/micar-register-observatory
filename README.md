@@ -7,17 +7,21 @@ The register is public by law — Art. 109 Abs. 1 VO (EU) 2023/1114 (MiCAR) requ
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-10-12** (refreshed weekly from the public ESMA interim MiCAR register)
+**Register snapshot: 2026-10-19** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 
-| Register | Entries | Source status |
-| --- | ---: | --- |
-| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 1040 | ok |
-| [White papers — e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 50 | ok |
-| [White papers — asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | ok |
-| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 370 | ok |
-| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 173 | ok |
+| Register | Rows | Entities | Source status |
+| --- | ---: | ---: | --- |
+| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 1049 | 657 | ok (file modified 2026-10-16) |
+| [White papers — e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 50 | 25 | ok (file modified 2026-10-16) |
+| [White papers — asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | 0 | ok (file modified 2025-02-14) |
+| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 378 | 375 | ok (file modified 2026-10-16) |
+| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 178 | 175 | ok (file modified 2026-10-16) |
+
+Rows are lines of the register export; entities are distinct LEIs, or names where a row has none. One entity can have several rows: several white papers, or a second CASP authorisation.
+
+CASP register: 375 firms in 378 rows, 2 of them with a withdrawal date (`ac_authorisationEndDate`).
 
 ### White paper format coverage
 
@@ -25,57 +29,59 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 
 | Linked format | Count | Deep-lint candidate |
 | --- | ---: | --- |
-| Unspecified (landing page or bare domain) | 653 | no |
+| Unspecified (landing page or bare domain) | 660 | no |
 | PDF | 264 | no |
-| XHTML / HTML | 171 | yes |
+| XHTML / HTML | 173 | yes |
 | No link in register | 2 | no |
 
 ### Home Member States (white papers)
 
 | Member State | White papers |
 | --- | ---: |
-| IE | 394 |
+| IE | 398 |
 | MT | 173 |
 | DE | 170 |
-| NL | 90 |
+| NL | 92 |
 | LI | 73 |
 | LU | 59 |
-| FR | 35 |
+| FR | 38 |
 | LV | 15 |
 | AT | 10 |
 | FI | 10 |
-| ...and 16 more | |
+| ...and 17 more | |
 
-### Changes in this snapshot (2026-10-12)
+### Changes in this snapshot (2026-10-19)
 
 | Change | Register | Entity | MS | Link |
 | --- | --- | --- | --- | --- |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/blue-chip-...](https://white-paper.crypto-risk-metrics.com/en/blue-chip-ffg-3bkz1tqdx/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/researchco...](https://white-paper.crypto-risk-metrics.com/en/researchcoin-ffg-fdqm0jpzp/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/treehouse-...](https://white-paper.crypto-risk-metrics.com/en/treehouse-ffg-7pq1242p3/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/euler-ffg-...](https://white-paper.crypto-risk-metrics.com/en/euler-ffg-bjsllnx42/index.html) |
-| added | other-wp | Axenor Holdings OÜ | EE | [https://crypto-holdings.io/](https://crypto-holdings.io/) |
-| added | other-wp | COMPANY ZERO LLC | IE | [https://decred.org/micar-whitepaper](https://decred.org/micar-whitepaper) |
-| added | other-wp | Open Protocol Labs Ltd | IE |  |
-| added | other-wp | Primary Creative Limited | IE | [https://www.cityprotocol.co/mica_whitepaper](https://www.cityprotocol.co/mica_whitepaper) |
-| added | other-wp | Axis Robotics Limited | IE | [https://axisrobotics.ai/mica_whitepaper](https://axisrobotics.ai/mica_whitepaper) |
-| changed | other-wp | Acurast Association | LV | [https://docsend.com/view/vxyaenm9z2mfghg9](https://docsend.com/view/vxyaenm9z2mfghg9) |
-| changed | other-wp | EquationX Ltd. | LV | [https://pell.network/pdf/pell-network-whitepaper-v1.0.pdf](https://pell.network/pdf/pell-network-whitepaper-v1.0.pdf) |
-| changed | other-wp | MYX Technology Limited | LV | [https://myxfinance.gitbook.io/myx/protocol/compliance](https://myxfinance.gitbook.io/myx/protocol/compliance) |
-| changed | other-wp | Propy Inc | LV | [https://propy.com/browse/wp-content/uploads/Propy-MiCA-Wh...](https://propy.com/browse/wp-content/uploads/Propy-MiCA-WhitePaper-2025.pdf) |
-| changed | other-wp | Not Multiverse Ltd | LV | [https://almanak.co/almanak-mica-wp.pdf](https://almanak.co/almanak-mica-wp.pdf) |
-| changed | other-wp | Zee World Association | LV | [https://cdn.forest.inc/docs/whitepaper.pdf](https://cdn.forest.inc/docs/whitepaper.pdf) |
-| changed | other-wp | BlockBen SIA | LV | [https://crowdedhero.com/legal/crowdx_whitepaper](https://crowdedhero.com/legal/crowdx_whitepaper) |
-| changed | other-wp | BlockBen SIA | LV | [https://data.blockben.com/whitepaper/docs.html](https://data.blockben.com/whitepaper/docs.html) |
-| changed | other-wp | BlockBen SIA | LV | [https://blockben.com/en/products/holoverz](https://blockben.com/en/products/holoverz) |
-| changed | other-wp | BlockBen SIA | LV | [https://vendomatiq.com/tico/whitepaper.pdf](https://vendomatiq.com/tico/whitepaper.pdf) |
-| changed | other-wp | Comet Technologies Ltd. | LV | [https://gitbook.zignaly.com/white-paper](https://gitbook.zignaly.com/white-paper) |
-| changed | other-wp | Gen6 USA LLC | LV | [https://gen6.me/filez/mica_full.html](https://gen6.me/filez/mica_full.html) |
-| changed | other-wp | Linear Intent Technologies Ltd. | LV | [https://www.oroswap.org/whitepaper](https://www.oroswap.org/whitepaper) |
-| added | other-wp | Virtuals Protocol | MT | [https://my.okx.com/whitepaper/aixbt-aixbt.xhtml](https://my.okx.com/whitepaper/aixbt-aixbt.xhtml) |
-| added | other-wp | Pons Labs LLC | MT | [https://www.ponsfamily.com/mica](https://www.ponsfamily.com/mica) |
-| changed | other-wp | NativeArc EOOD | BG | [https://nx0.ai](https://nx0.ai) |
-| ...and 12 more (see `data/changelog.jsonl`) | | | | |
+| added | other-wp | Abloxx Token Ltd. | CY | [https://abloxx.com/en](https://abloxx.com/en) |
+| added | other-wp | Falu Brick Commerce Limited | CY | [https://xyo.network/papers/mica-white-paper]](https://xyo.network/papers/mica-white-paper]) |
+| changed | other-wp | Planck Network ($PLANCK) | CYPRUS | [https://plancknetwork.com/whitepaper.pdf](https://plancknetwork.com/whitepaper.pdf) |
+| added | other-wp | Extended Ecosystem Limited | CY | [https://token.extended.exchange/whitepaper](https://token.extended.exchange/whitepaper) |
+| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/bankrcoin-...](https://white-paper.crypto-risk-metrics.com/en/bankrcoin-ffg-6xspzjjtx/index.html) |
+| changed | other-wp | Th QAIT Association | FR | [https://www.qait.ch](https://www.qait.ch) |
+| added | other-wp | TCG-VAULT | FR | [https://www.tcg-vault.io/livre-blanc-mica](https://www.tcg-vault.io/livre-blanc-mica) |
+| added | other-wp | TCG-VAULT | FR | [https://www.tcg-vault.io/livre-blanc-mica](https://www.tcg-vault.io/livre-blanc-mica) |
+| added | other-wp | TCG-VAULT | FR | [https://www.tcg-vault.io/livre-blanc-mica](https://www.tcg-vault.io/livre-blanc-mica) |
+| added | other-wp | TCG-VAULT | FRANCE | [https://www.tcg-vault.io/livre-blanc-mica](https://www.tcg-vault.io/livre-blanc-mica) |
+| added | other-wp | Beldex International Foundation | IE | [https://www.beldex.io/BDX_MiCA_Whitepaper_V2.0.xhtml](https://www.beldex.io/BDX_MiCA_Whitepaper_V2.0.xhtml) |
+| added | other-wp | OD3 (BVI) Ltd | IE | [www.bluff.com/whitepaper](https://www.bluff.com/whitepaper) |
+| added | other-wp | Tria Labs Limited | IE | [https://www.tria.so/legal/micar](https://www.tria.so/legal/micar) |
+| added | other-wp | AlloX Ltd | IE | [https://www.allox.ai/micar-whitepaper](https://www.allox.ai/micar-whitepaper) |
+| added | other-wp | Hibachi PTE Ltd | NL | [https://hibachi.micarwhitepapers.eu](https://hibachi.micarwhitepapers.eu) |
+| added | other-wp | Crispy Holdings Ltd | NL | [https://tendies.micarwhitepapers.eu](https://tendies.micarwhitepapers.eu) |
+| missing | other-wp | Abloxx Token Ltd. | CY | [https://abloxx.com/en/details](https://abloxx.com/en/details) |
+| missing | other-wp | Falu Brick Commerce Limited | CY | [https://xyo.network/papers/mica-white-paper](https://xyo.network/papers/mica-white-paper) |
+| missing | other-wp | Crypto Risk Metrics GmbH | DE | [https://crypto-risk-metrics.com/en/white-paper-bankrcoin-...](https://crypto-risk-metrics.com/en/white-paper-bankrcoin-ffg-6xspzjjtx/) |
+| changed | casps | Bitpanda GmbH | AT |  |
+| changed | casps | Bybit EU GmbH | AT |  |
+| changed | casps | Cryptonow GmbH | AT |  |
+| changed | casps | AMINA (Austria) AG | AT |  |
+| changed | casps | FIOR Digital GmbH | AT |  |
+| changed | casps | KuCoin EU Exchange GmbH | AT |  |
+| ...and 382 more (see `data/changelog.jsonl`) | | | | |
+
+`missing`: not in this export for the first time. `removed`: not in two consecutive exports. `restored`: listed again after an absence.
 <!-- dashboard:end -->
 
 ## Quarterly report: The State of the MiCAR Register

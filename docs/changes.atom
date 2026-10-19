@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes</id>
+  <title>MiCAR Register Observatory: weekly register changes</title>
+  <subtitle>One entry per weekly snapshot of the ESMA interim MiCAR register: what was added, changed, missing, removed or restored.</subtitle>
+  <updated>2026-10-19T00:00:00Z</updated>
+  <link rel="self" type="application/atom+xml" href="https://raw.githubusercontent.com/sebastianfoerste/micar-register-observatory/main/docs/changes.atom" />
+  <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory" />
+  <author>
+    <name>MiCAR Register Observatory</name>
+    <uri>https://github.com/sebastianfoerste/micar-register-observatory</uri>
+  </author>
+  <generator uri="https://github.com/sebastianfoerste/micar-register-observatory">micar-register-observatory</generator>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-10-19</id>
+    <title>2026-10-19: 32 added, 367 changed, 8 missing</title>
+    <updated>2026-10-19T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-10-19.md" />
+    <summary type="text">casps: 13 added, 365 changed, 5 missing; ncasp: 5 added; other-wp: 14 added, 2 changed, 3 missing</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-10-12</id>
+    <title>2026-10-12: 17 added, 20 changed</title>
+    <updated>2026-10-12T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-10-12.md" />
+    <summary type="text">casps: 6 added, 6 changed; other-wp: 11 added, 14 changed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-10-05</id>
+    <title>2026-10-05: 20 added, 6 changed, 1 removed</title>
+    <updated>2026-10-05T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-10-05.md" />
+    <summary type="text">casps: 2 added, 3 changed; emt-wp: 1 added; other-wp: 17 added, 3 changed, 1 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-09-28</id>
+    <title>2026-09-28: 32 added, 10 changed, 6 removed</title>
+    <updated>2026-09-28T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-09-28.md" />
+    <summary type="text">casps: 10 added, 9 changed; emt-wp: 1 changed; ncasp: 1 added; other-wp: 21 added, 6 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-09-21</id>
+    <title>2026-09-21: 25 added, 9 changed</title>
+    <updated>2026-09-21T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-09-21.md" />
+    <summary type="text">casps: 7 added, 7 changed; emt-wp: 1 added, 1 changed; ncasp: 7 added; other-wp: 10 added, 1 changed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-09-14</id>
+    <title>2026-09-14: 40 added, 158 changed, 12 removed</title>
+    <updated>2026-09-14T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-09-14.md" />
+    <summary type="text">casps: 12 added, 77 changed; emt-wp: 1 added, 2 changed; other-wp: 27 added, 79 changed, 12 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-09-07</id>
+    <title>2026-09-07: no changes</title>
+    <updated>2026-09-07T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-09-07.md" />
+    <summary type="text">No register changes.</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-08-31</id>
+    <title>2026-08-31: no changes</title>
+    <updated>2026-08-31T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-08-31.md" />
+    <summary type="text">No register changes.</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-08-24</id>
+    <title>2026-08-24: 30 added, 8 changed, 10 removed</title>
+    <updated>2026-08-24T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-08-24.md" />
+    <summary type="text">casps: 7 added, 6 changed, 1 removed; other-wp: 23 added, 2 changed, 9 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-08-17</id>
+    <title>2026-08-17: 176 added, 95 changed, 89 removed</title>
+    <updated>2026-08-17T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-08-17.md" />
+    <summary type="text">casps: 2 added, 5 changed, 1 removed; emt-wp: 1 added; other-wp: 173 added, 90 changed, 88 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-08-10</id>
+    <title>2026-08-10: 106 added, 16 changed, 16 removed</title>
+    <updated>2026-08-10T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-08-10.md" />
+    <summary type="text">casps: 4 added, 7 changed, 1 removed; emt-wp: 1 added; other-wp: 101 added, 9 changed, 15 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-08-03</id>
+    <title>2026-08-03: 111 added, 80 changed, 250 removed</title>
+    <updated>2026-08-03T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-08-03.md" />
+    <summary type="text">casps: 12 added, 4 changed; ncasp: 3 added; other-wp: 96 added, 76 changed, 250 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-07-27</id>
+    <title>2026-07-27: 32 added, 17 changed, 3 removed</title>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-07-27.md" />
+    <summary type="text">casps: 16 added, 16 changed, 1 removed; emt-wp: 1 changed; other-wp: 16 added, 2 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-07-20</id>
+    <title>2026-07-20: 32 added, 4 changed, 2 removed</title>
+    <updated>2026-07-20T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-07-20.md" />
+    <summary type="text">casps: 14 added, 2 changed; ncasp: 2 added; other-wp: 16 added, 2 changed, 2 removed</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-07-13</id>
+    <title>2026-07-13: no changes</title>
+    <updated>2026-07-13T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-07-13.md" />
+    <summary type="text">No register changes.</summary>
+  </entry>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-07-07</id>
+    <title>2026-07-07: first snapshot</title>
+    <updated>2026-07-07T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-07-07.md" />
+    <summary type="text">art-wp: baseline established with 0 entries; casps: baseline established with 283 entries; emt-wp: baseline established with 41 entries; ncasp: baseline established with 162 entries; other-wp: baseline established with 912 entries</summary>
+  </entry>
+</feed>
