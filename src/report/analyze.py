@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from collections import Counter
 
+# Link classes whose URL extension names a format the micar-whitepaper-linter can
+# parse (XHTML/HTML, JSON, DOCX). The class comes from the URL alone: it is a proxy
+# for a structured document, not a check that the file is Inline XBRL. Shared with
+# the dashboard so the two cannot drift apart.
+from observatory.coverage import DEEP_LINT_CLASSES as DEEP_LINT_CANDIDATE_CLASSES
 from observatory.models import Snapshot
-
-# Formats the micar-whitepaper-linter can parse deterministically. These are the
-# "structured machine-readable" documents; PDF and bare landing pages are not.
-MACHINE_READABLE = {"xhtml/html", "json", "docx"}
 
 
 def whitepaper_entries(snapshot: dict) -> list[dict]:
@@ -28,8 +29,10 @@ def analyze(snapshot: dict) -> dict:
         return round(100 * n / total, 1) if total else 0.0
 
     formats = Counter(entry.get("format_class", "none") for entry in whitepapers)
-    machine_readable = sum(formats.get(fmt, 0) for fmt in MACHINE_READABLE)
-    landing = formats.get("unspecified", 0)
+    deep_lint_candidates = sum(
+        formats.get(fmt, 0) for fmt in DEEP_LINT_CANDIDATE_CLASSES
+    )
+    no_extension = formats.get("unspecified", 0)
 
     member_states = Counter(
         (entry.get("member_state") or "?") for entry in whitepapers
@@ -45,12 +48,12 @@ def analyze(snapshot: dict) -> dict:
         "snapshot_date": snapshot.get("snapshot_date"),
         "total_whitepapers": total,
         "format_counts": dict(formats.most_common()),
-        "machine_readable": machine_readable,
-        "machine_readable_pct": pct(machine_readable),
+        "deep_lint_candidates": deep_lint_candidates,
+        "deep_lint_candidate_pct": pct(deep_lint_candidates),
         "pdf": formats.get("pdf", 0),
         "pdf_pct": pct(formats.get("pdf", 0)),
-        "landing_page": landing,
-        "landing_page_pct": pct(landing),
+        "no_recognised_extension": no_extension,
+        "no_recognised_extension_pct": pct(no_extension),
         "member_states": member_states.most_common(),
         "register_totals": register_totals,
     }

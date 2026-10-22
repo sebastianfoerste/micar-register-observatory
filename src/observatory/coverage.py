@@ -1,4 +1,4 @@
-"""Machine-readability triage of white paper links.
+"""Format triage of white paper links by URL extension.
 
 Classification is by URL shape only — the observatory does not crawl issuer
 sites. A link is a deep-lint candidate when its format is one the
