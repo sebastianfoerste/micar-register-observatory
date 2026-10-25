@@ -1,5 +1,7 @@
 """`report build` picks the snapshot an edition records, so a rebuild cannot move
-its published numbers; only an edition without one is filled from latest.json."""
+its published numbers; only an edition without one is filled from latest.json.
+The report counts a snapshot's rows, not the repeated CSV header lines that older
+snapshots stored as entries."""
 
 import json
 from pathlib import Path
@@ -62,6 +64,27 @@ def _snapshot(snapshot_date: str, papers: int) -> dict:
 RECORDED_SNAPSHOT = _snapshot(RECORDED, 40)
 # Stands in for data/latest.json: a later snapshot with different numbers.
 LATEST_SNAPSHOT = _snapshot(LATEST, 30)
+
+
+def _with_header_echoes(snapshot: dict, count: int) -> dict:
+    """The snapshot plus `count` repeated CSV header lines stored as Title II
+    entries, as snapshots up to 2026-10-12 stored them."""
+    model = Snapshot.model_validate(snapshot)
+    register = model.registers[0]
+    echo = register.entries[0].model_copy(
+        update={
+            "authority": "ae_competentAuthority",
+            "member_state": "ae_homeMemberState",
+            "entity_name": "ae_lei_name",
+            "lei": "ae_lei",
+            "wp_url": "wp_url",
+            "last_update": "wp_lastupdate",
+            "format_class": classify_format("wp_url"),
+        }
+    )
+    assert echo.is_header_echo()
+    register.entries.extend([echo] * count)
+    return model.model_dump(mode="json")
 
 
 def _edition(data_section: str | None) -> str:
@@ -159,6 +182,17 @@ def test_rebuilding_an_older_edition_leaves_the_newest_editions_page(tmp_path: P
     assert recorded_snapshot_date(edition.read_text(encoding="utf-8")) == RECORDED
     assert _html(tmp_path) == page
     assert f"Snapshot: {LATEST}." in page
+
+
+def test_repeated_csv_header_lines_are_not_counted() -> None:
+    # The report counts RegisterSnapshot.rows(), as the dashboard does.
+    metrics = analyze(_with_header_echoes(RECORDED_SNAPSHOT, 2))
+
+    assert metrics == analyze(RECORDED_SNAPSHOT)
+    assert metrics["total_whitepapers"] == 40
+    assert metrics["register_totals"] == {"other-wp": 40}
+    assert "ae_homeMemberState" not in dict(metrics["member_states"])
+    assert "- **40** crypto-asset white papers" in render_data_section(metrics)
 
 
 def test_fixture_and_use_latest_cannot_be_combined(tmp_path: Path) -> None:
