@@ -98,7 +98,7 @@ Columns without a typed field (for example `ae_address`, `ae_website_platform`, 
 
 ### Counting rows and entities
 
-A register's rows are its `entries`, minus repeated header lines that snapshots before October 2026 stored as entries (an entry whose `authority`, `entity_name` and `lei` are the column names `ae_competentAuthority`, `ae_lei_name` and `ae_lei`). An entity is a distinct upper-cased `lei`, or a distinct lower-cased `entity_name` for rows without one.
+A register's rows are its `entries`, minus repeated header lines that the snapshots from 2026-09-14 to 2026-10-12 stored as entries (an entry whose `authority`, `entity_name` and `lei` are the column names `ae_competentAuthority`, `ae_lei_name` and `ae_lei`). An entity is a distinct upper-cased `lei`, or a distinct lower-cased `entity_name` for rows without one.
 
 ## Change record (`data/changelog.jsonl`)
 
