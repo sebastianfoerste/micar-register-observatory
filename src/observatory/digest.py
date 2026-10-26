@@ -133,9 +133,9 @@ def render_digest(snapshot: Snapshot, previous_date: str, records: list[ChangeRe
         lines.append("")
     if any(record.record_version < 2 for record in absences):
         lines.append(
-            "These records were written before October 2026 (record version 1): `removed` "
-            "means not in this export, for the first time, and a row that was listed again "
-            "later is `added`."
+            "These records were written up to the 2026-10-12 snapshot (record version 1): "
+            "`removed` means not in this export, for the first time, and a row that was listed "
+            "again later is `added`."
         )
         lines.append("")
     lines.append(

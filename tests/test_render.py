@@ -19,8 +19,22 @@ def test_data_section_contains_headline_numbers():
     section = render_data_section(analyze(FIXTURE))
     assert "953" in section
     assert "114" in section
-    assert "machine-readable" in section
     assert "| Member State | White papers | Share |" in section
+
+
+def test_headline_describes_the_url_extension_proxy():
+    # The share is computed from the link's file extension alone, so the
+    # headline must say so and must not claim the documents are machine-readable.
+    metrics = analyze(FIXTURE)
+    section = render_data_section(metrics)
+    page = render_html(metrics, "The State of the MiCAR Register — 2026 Q3")
+    for text in (" ".join(section.split()), " ".join(page.split())):
+        assert "machine-readable" not in text
+        assert "judged by the URL's file extension" in text
+        assert "iXBRL" in text and "not verified" in text
+        # A URL without a file extension is not shown to be a landing page.
+        assert "no recognised file extension" in text
+        assert "only a landing page" not in text
 
 
 def test_update_edition_replaces_only_the_data_block(tmp_path):
