@@ -39,7 +39,7 @@ Snapshots up to 2026-10-12 carry the v1 fields only; snapshots from 2026-10-19 o
 | `fetch_error` | v1 | The error when `fetched` is false. |
 | `entries` | v1 | The register's rows, in the export's order. |
 | `columns` | v2 | The export's header, in ESMA's order. |
-| `source_last_modified` | v2 | The HTTP `Last-Modified` header of the downloaded export, verbatim (for example `Tue, 07 Oct 2026 09:12:44 GMT`): when ESMA last replaced the file. `""` when the server sent none. |
+| `source_last_modified` | v2 | The HTTP `Last-Modified` header of the downloaded export, verbatim (for example `Fri, 16 Oct 2026 15:37:13 GMT`): when ESMA last replaced the file. `""` when the server sent none. |
 | `source_sha256` | v2 | SHA-256 of the downloaded bytes; the same bytes are archived under `data/raw/<snapshot_date>/`. |
 
 ### Entry (one row of an export)
