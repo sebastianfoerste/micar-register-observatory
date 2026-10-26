@@ -2,13 +2,13 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/feed.v1.schema.json",
   "title": "MiCAR Register Observatory Feed v1",
-  "description": "docs/feed.json: the current register totals and the last 200 change records. Fields marked as added are missing from feeds written before October 2026. Field meanings: docs/data-dictionary.md.",
+  "description": "docs/feed.json: the current register totals and the last 200 change records. Fields marked as added are missing from feeds written up to the 2026-10-12 snapshot. Field meanings: docs/data-dictionary.md.",
   "type": "object",
   "required": ["snapshot_date", "registers", "recent_changes"],
   "properties": {
     "snapshot_date": {"type": "string", "format": "date"},
     "quarantine": {
-      "description": "Added in October 2026. The export set aside after snapshot_date, or null.",
+      "description": "Added with the 2026-10-19 snapshot. The export set aside after snapshot_date, or null.",
       "oneOf": [
         {"type": "null"},
         {
@@ -42,13 +42,13 @@
           "title": {"type": "string"},
           "entries": {"description": "Rows of the export.", "type": "integer", "minimum": 0},
           "entities": {
-            "description": "Added in October 2026. Distinct LEIs, or names where a row has none.",
+            "description": "Added with the 2026-10-19 snapshot. Distinct LEIs, or names where a row has none.",
             "type": "integer",
             "minimum": 0
           },
           "fetched": {"type": "boolean"},
           "source_last_modified": {
-            "description": "Added in October 2026. The HTTP Last-Modified header of the export, verbatim; empty when the server sent none.",
+            "description": "Added with the 2026-10-19 snapshot. The HTTP Last-Modified header of the export, verbatim; empty when the server sent none.",
             "type": "string"
           }
         }

@@ -34,7 +34,7 @@ class RegisterEntry(BaseModel):
     last_update: str  # raw register value, DD/MM/YYYY where populated
     format_class: str  # see coverage.classify_format
     row_hash: str
-    # --- v2 contract: empty in snapshots written before 2026-10 ------------------
+    # --- v2 contract: empty in snapshots up to 2026-10-12 ----------------------
     row_key: str = ""  # finer row identity, see make_row_key
     fields: dict[str, str] = {}  # every ESMA column of the row, verbatim
     commercial_name: str = ""
