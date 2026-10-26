@@ -15,8 +15,8 @@ ESMA's meaning of each source column is in its [field description file](https://
 | `data/changelog.jsonl` | One change record per line, oldest first. | [changelog v1](../contracts/changelog.v1.schema.json), one record per line |
 | `docs/feed.json` | Current totals and the last 200 change records. | [feed v1](../contracts/feed.v1.schema.json) |
 | `data/exports/{casps,ncasp,whitepapers,changes}.csv` | From the 2026-10-19 snapshot: the latest snapshot's rows and every change record as flat CSV (below). | [exports v1](../contracts/exports.v1.schema.json) |
-| `docs/changes.atom` | An Atom feed with one entry per recorded snapshot since 2026-07-07, newest first (the last 52), linking to its digest. | [Atom (RFC 4287)](https://www.rfc-editor.org/rfc/rfc4287) |
-| `digests/YYYY-MM-DD.md` | A readable note of each recorded snapshot's changes, for every snapshot since 2026-07-07. A digest is written once; only the latest is rewritten. | |
+| `docs/changes.atom` | From the 2026-10-19 snapshot: an Atom feed with one entry per recorded snapshot, newest first (the last 52), linking to its digest. | [Atom (RFC 4287)](https://www.rfc-editor.org/rfc/rfc4287) |
+| `digests/YYYY-MM-DD.md` | From the 2026-10-19 snapshot: a readable note of each recorded snapshot's changes; that refresh also wrote the digests of every earlier snapshot since 2026-07-07. A digest is written once; only the latest is rewritten. | |
 
 Snapshots up to 2026-10-12 carry the v1 fields only; snapshots from 2026-10-19 on carry the v2 fields as well, and remain valid v1 snapshots.
 
