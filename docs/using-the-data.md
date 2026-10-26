@@ -15,7 +15,7 @@ All paths are relative to `https://raw.githubusercontent.com/sebastianfoerste/mi
 | `data/changelog.jsonl` | The same records as JSON lines, with the old and new value of every changed column. |
 | `data/latest.json` | The latest snapshot of all five registers, with every ESMA column of every row (`fields`). |
 | `data/snapshots/YYYY-MM-DD.json` | Every weekly snapshot since 7 July 2026, in the same format. |
-| `data/raw/YYYY-MM-DD/` | From October 2026: ESMA's exports exactly as downloaded, gzipped, with a manifest of their SHA-256 and HTTP `Last-Modified` header. |
+| `data/raw/YYYY-MM-DD/` | From the 2026-10-19 snapshot: ESMA's exports exactly as downloaded, gzipped, with a manifest of their SHA-256 and HTTP `Last-Modified` header. |
 | `docs/feed.json` | Current totals per register and the last 200 change records. |
 | `docs/changes.atom` | An Atom feed with one entry per weekly snapshot. |
 | `digests/YYYY-MM-DD.md` | A readable note of each week's changes. |
