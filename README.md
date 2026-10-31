@@ -55,7 +55,7 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 | Change | Register | Entity | MS | Link |
 | --- | --- | --- | --- | --- |
 | added | other-wp | Abloxx Token Ltd. | CY | [https://abloxx.com/en](https://abloxx.com/en) |
-| added | other-wp | Falu Brick Commerce Limited | CY | [https://xyo.network/papers/mica-white-paper]](https://xyo.network/papers/mica-white-paper]) |
+| added | other-wp | Falu Brick Commerce Limited | CY | [https://xyo.network/papers/mica-white-paper\]](https://xyo.network/papers/mica-white-paper%5D) |
 | changed | other-wp | Planck Network ($PLANCK) | CYPRUS | [https://plancknetwork.com/whitepaper.pdf](https://plancknetwork.com/whitepaper.pdf) |
 | added | other-wp | Extended Ecosystem Limited | CY | [https://token.extended.exchange/whitepaper](https://token.extended.exchange/whitepaper) |
 | added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/bankrcoin-...](https://white-paper.crypto-risk-metrics.com/en/bankrcoin-ffg-6xspzjjtx/index.html) |
@@ -64,7 +64,7 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 | added | other-wp | TCG-VAULT | FR | [https://www.tcg-vault.io/livre-blanc-mica](https://www.tcg-vault.io/livre-blanc-mica) |
 | added | other-wp | TCG-VAULT | FR | [https://www.tcg-vault.io/livre-blanc-mica](https://www.tcg-vault.io/livre-blanc-mica) |
 | added | other-wp | TCG-VAULT | FRANCE | [https://www.tcg-vault.io/livre-blanc-mica](https://www.tcg-vault.io/livre-blanc-mica) |
-| added | other-wp | Beldex International Foundation | IE | [https://www.beldex.io/BDX_MiCA_Whitepaper_V2.0.xhtml](https://www.beldex.io/BDX_MiCA_Whitepaper_V2.0.xhtml) |
+| added | other-wp | Beldex International Foundation | IE | [https://www.beldex.io/BDX\_MiCA\_Whitepaper\_V2.0.xhtml](https://www.beldex.io/BDX_MiCA_Whitepaper_V2.0.xhtml) |
 | added | other-wp | OD3 (BVI) Ltd | IE | [www.bluff.com/whitepaper](https://www.bluff.com/whitepaper) |
 | added | other-wp | Tria Labs Limited | IE | [https://www.tria.so/legal/micar](https://www.tria.so/legal/micar) |
 | added | other-wp | AlloX Ltd | IE | [https://www.allox.ai/micar-whitepaper](https://www.allox.ai/micar-whitepaper) |

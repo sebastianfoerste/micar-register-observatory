@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import email.utils
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from pydantic import BaseModel
 
 from observatory.coverage import DEEP_LINT_CLASSES
 from observatory.diff import Shrink
+from observatory.digest import text
 from observatory.models import ChangeRecord, RegisterSnapshot, Snapshot
 
 DASHBOARD_START = "<!-- dashboard:start -->"
@@ -37,13 +39,44 @@ class Quarantine(BaseModel):
     shrinks: list[Shrink]
 
 
+# A single URL: no whitespace and none of the characters that end a Markdown
+# link or a table cell. A bare host gets `https://` first (see _linkify).
+_LINK_URL = re.compile(r"https?://[^\s<>|]+")
+_BARE_HOST = re.compile(r"[^\s/?#<>|]+\.[^\s/?#<>|]+(?:[/?#][^\s<>|]*)?")
+MAX_LABEL = 60
+
+# Percent-encoded in the href because they would end the link or the table cell.
+# `*`, `_` and `~` stay as they are: encoding them can change the target.
+_HREF_ESCAPES = {
+    "(": "%28", ")": "%29", "[": "%5B", "]": "%5D", "<": "%3C", ">": "%3E",
+    "|": "%7C", "`": "%60", "\\": "%5C", " ": "%20",
+}
+
+
 def _linkify(wp_url: str) -> str:
-    url = wp_url.strip()
-    if not url:
+    """A register link as Markdown; every register value is untrusted text.
+
+    A value that is one URL (or one bare host and path, which gets `https://`)
+    becomes `[label](href)`: the label is the value cut at MAX_LABEL characters
+    and escaped like any register text; the href percent-encodes only the
+    characters that would end the link or the table cell (`_HREF_ESCAPES`).
+    Anything else (several URLs in one cell, a code such as `EMT_NO_WP`, text)
+    is rendered as escaped text without a link.
+    """
+    value = " ".join(wp_url.split())
+    if not value:
         return ""
-    href = url if "://" in url else f"https://{url}"
-    label = url if len(url) <= 60 else url[:57] + "..."
-    return f"[{label}]({href})"
+    if "://" in value:
+        href = value
+        linkable = _LINK_URL.fullmatch(value) is not None
+    else:
+        href = f"https://{value}"
+        linkable = _BARE_HOST.fullmatch(value) is not None
+    if not linkable:
+        return text(value)
+    label = value if len(value) <= MAX_LABEL else value[: MAX_LABEL - 3] + "..."
+    href = "".join(_HREF_ESCAPES.get(char, char) for char in href)
+    return f"[{text(label)}]({href})"
 
 
 def http_date(value: str) -> str:
@@ -56,7 +89,7 @@ def http_date(value: str) -> str:
 
 def _status(register: RegisterSnapshot) -> str:
     if not register.fetched:
-        return f"fetch failed: {register.fetch_error}"
+        return f"fetch failed: {text(register.fetch_error)}"
     modified = http_date(register.source_last_modified)
     return f"ok (file modified {modified})" if modified else "ok"
 
@@ -137,7 +170,7 @@ def render_dashboard(
             entry.member_state or "?" for entry in wp_entries
         )
         for state, count in state_counts.most_common(10):
-            lines.append(f"| {state} | {count} |")
+            lines.append(f"| {text(state)} | {count} |")
         remainder = len(state_counts) - 10
         if remainder > 0:
             lines.append(f"| ...and {remainder} more | |")
@@ -163,7 +196,7 @@ def render_dashboard(
             for change in rows[:MAX_CHANGE_ROWS]:
                 lines.append(
                     f"| {change.change} | {change.register_slug} "
-                    f"| {change.entity_name} | {change.member_state} "
+                    f"| {text(change.entity_name)} | {text(change.member_state)} "
                     f"| {_linkify(change.wp_url)} |"
                 )
             if len(rows) > MAX_CHANGE_ROWS:
