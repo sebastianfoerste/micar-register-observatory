@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from observatory.config import SOURCES
-from observatory.models import RegisterEntry, RegisterSnapshot, Snapshot
+from observatory.models import ChangeRecord, RegisterEntry, RegisterSnapshot, Snapshot
 from observatory.normalize import normalize_csv
 from observatory.render import http_date, render_dashboard
 
@@ -60,3 +60,67 @@ def test_the_source_status_gives_the_date_esma_last_modified_the_file():
     dashboard = render_dashboard(Snapshot(snapshot_date="2026-10-19", registers=[casps]), [])
     assert "| 4 | 3 | ok (file modified 2026-10-07) |" in dashboard
     assert http_date("") == "" and http_date("not a date") == ""
+
+
+def _changes_table(changes: list[ChangeRecord]) -> list[str]:
+    snapshot = Snapshot(snapshot_date="2026-10-19", registers=[fixture_register("other-wp")])
+    dashboard = render_dashboard(snapshot, changes)
+    start = dashboard.index("| Change | Register | Entity | MS | Link |")
+    rows = dashboard[start:].splitlines()[2:]
+    return [row for row in rows if row.startswith("| ")]
+
+
+def _change(entity_name: str, member_state: str = "DE", wp_url: str = "") -> ChangeRecord:
+    return ChangeRecord(
+        snapshot_date="2026-10-19", register_slug="other-wp", change="added",
+        entry_id="e1", entity_name=entity_name, member_state=member_state, wp_url=wp_url,
+    )
+
+
+def test_register_values_are_escaped_in_the_changes_table():
+    rows = _changes_table(
+        [
+            _change("Issuer A|B Ltd", "C*", "https://example.invalid/wp]"),
+            _change("Issuer Two\nLines", "DE", "https://a.invalid/one\nhttps://b.invalid/two"),
+            _change("Issuer Three", "FR", "www.example.invalid/whitepaper"),
+            _change("Issuer Four", "IT", "EMT_NO_WP"),
+            _change("Issuer Five", "NL", "https://example.invalid/wp (final).pdf"),
+        ]
+    )
+    assert len(rows) == 5
+    for row in rows:
+        assert row.count(" | ") == 4 and row.endswith(" |"), row
+    pipe, two_urls, bare, code, parens = rows
+    assert "| Issuer A\\|B Ltd | C\\* |" in pipe
+    assert "[https://example.invalid/wp\\]](https://example.invalid/wp%5D)" in pipe
+    assert "| Issuer Two Lines |" in two_urls  # a newline cannot split a table row
+    assert "](" not in two_urls and "https://a.invalid/one https://b.invalid/two" in two_urls
+    assert "[www.example.invalid/whitepaper](https://www.example.invalid/whitepaper)" in bare
+    assert "EMT\\_NO\\_WP" in code and "](" not in code
+    assert "](" not in parens and "wp (final).pdf" in parens
+
+
+def test_long_labels_are_cut_before_they_are_escaped():
+    url = "https://example.invalid/" + "a_" * 40
+    (row,) = _changes_table([_change("Issuer Six", "LU", url)])
+    label = row.split("[", 1)[1].split("](", 1)[0]
+    assert label.endswith("...") and not label.endswith("\\...")
+    assert "\\_" in label  # escaped, after the cut
+
+
+def test_a_fetch_error_is_escaped_in_the_source_status():
+    failed = RegisterSnapshot(
+        slug="casps", title="CASPs", kind="entity", source_url="u", fetched=False,
+        fetch_error="HTTP Error 403: Forbidden (server=x|y)",
+    )
+    dashboard = render_dashboard(Snapshot(snapshot_date="2026-10-19", registers=[failed]), [])
+    assert "| fetch failed: HTTP Error 403: Forbidden (server=x\\|y) |" in dashboard
+
+
+def test_member_states_are_escaped_in_the_member_state_table():
+    entry = fixture_register("other-wp").entries[0].model_copy(update={"member_state": "D|E"})
+    snapshot = Snapshot(
+        snapshot_date="2026-10-19",
+        registers=[register("other-wp", [entry])],
+    )
+    assert "| D\\|E | 1 |" in render_dashboard(snapshot, [])
