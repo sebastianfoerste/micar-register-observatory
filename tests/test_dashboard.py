@@ -3,7 +3,7 @@ from pathlib import Path
 from observatory.config import SOURCES
 from observatory.models import RegisterEntry, RegisterSnapshot, Snapshot
 from observatory.normalize import normalize_csv
-from observatory.render import http_date, render_dashboard
+from observatory.render import http_date, render_dashboard, render_summary
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -60,3 +60,20 @@ def test_the_source_status_gives_the_date_esma_last_modified_the_file():
     dashboard = render_dashboard(Snapshot(snapshot_date="2026-10-19", registers=[casps]), [])
     assert "| 4 | 3 | ok (file modified 2026-10-07) |" in dashboard
     assert http_date("") == "" and http_date("not a date") == ""
+
+
+def test_the_summary_gives_totals_and_counts_without_register_values():
+    snapshot = Snapshot(
+        snapshot_date="2026-10-19",
+        registers=[fixture_register("other-wp"), fixture_register("casps")],
+    )
+    summary = render_summary(snapshot, [])
+    other, casps = snapshot.registers
+    assert summary.startswith("**Register snapshot: 2026-10-19**")
+    assert (
+        f"Rows/entities: Title II white papers {len(other.rows())}/{other.entity_count()}, "
+        f"CASPs {len(casps.rows())}/{casps.entity_count()}." in summary
+    )
+    assert "No register changes since the previous snapshot." in summary
+    assert "[DASHBOARD.md](DASHBOARD.md)" in summary
+    assert "|" not in summary  # no tables, no register values

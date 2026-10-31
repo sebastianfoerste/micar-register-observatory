@@ -19,6 +19,7 @@ def args_for(
     return argparse.Namespace(
         data_dir=str(tmp_path / "data"),
         readme=str(tmp_path / "README.md"),
+        dashboard=str(tmp_path / "DASHBOARD.md"),
         feed=str(tmp_path / "docs" / "feed.json"),
         atom=str(tmp_path / "docs" / "changes.atom"),
         digests=str(tmp_path / "digests"),
@@ -41,9 +42,14 @@ def test_refresh_twice_renders_dashboard_and_changelog(tmp_path: Path) -> None:
     assert cmd_refresh(args_for(tmp_path, "2026-07-07", FIXTURES)) == 0
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "Register snapshot: 2026-07-07" in readme
-    assert "baseline established" in readme
+    assert "Baseline established for other-wp, emt-wp, art-wp, casps, ncasp." in readme
+    assert "[DASHBOARD.md](DASHBOARD.md)" in readme
     assert readme.startswith("# head")
     assert readme.rstrip().endswith("tail")
+    dashboard = (tmp_path / "DASHBOARD.md").read_text(encoding="utf-8")
+    assert dashboard.startswith("# MiCAR register dashboard\n")
+    assert "Register snapshot: 2026-07-07" in dashboard
+    assert "baseline established" in dashboard
 
     # Second run against edited fixtures: one new row in other-wp.
     edited = tmp_path / "fixtures2"
@@ -57,7 +63,9 @@ def test_refresh_twice_renders_dashboard_and_changelog(tmp_path: Path) -> None:
     assert cmd_refresh(args_for(tmp_path, "2026-07-14", edited)) == 0
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "Register snapshot: 2026-07-14" in readme
-    assert "New Issuer Ltd" in readme
+    assert "Changes: 1 added." in readme
+    assert "New Issuer Ltd" not in readme  # register values stay out of the README
+    assert "New Issuer Ltd" in (tmp_path / "DASHBOARD.md").read_text(encoding="utf-8")
 
     changes = read_changelog(tmp_path / "data")
     assert any(c.change == "added" and c.entity_name == "New Issuer Ltd" for c in changes)
@@ -162,9 +170,12 @@ def test_a_row_must_be_absent_twice_before_it_is_removed(tmp_path: Path) -> None
     for date, fixtures in weeks:
         assert cmd_refresh(args_for(tmp_path, date, fixtures)) == 0
         if date == "2026-07-21":
-            readme = (tmp_path / "README.md").read_text(encoding="utf-8")
-            assert "| removed | other-wp | SKYGATE Network GmbH |" in readme
-            assert "`removed`: not in two consecutive exports." in readme
+            dashboard = (tmp_path / "DASHBOARD.md").read_text(encoding="utf-8")
+            assert "| removed | other-wp | SKYGATE Network GmbH |" in dashboard
+            assert "`removed`: not in two consecutive exports." in dashboard
+            assert "Changes: 1 removed." in (
+                (tmp_path / "README.md").read_text(encoding="utf-8")
+            )
     skygate = [
         (c.snapshot_date, c.change)
         for c in read_changelog(tmp_path / "data")
