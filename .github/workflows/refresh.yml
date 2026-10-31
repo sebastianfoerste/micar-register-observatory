@@ -2,7 +2,13 @@ name: refresh
 
 on:
   schedule:
+    # Monday morning, with a fallback slot the same evening. A refresh records
+    # nothing when an export was already fetched in the last five days, so the
+    # second slot acts only when the first one failed (as on 2026-10-26, when
+    # ESMA's CDN answered 403). GitHub delivers these crons hours late; a
+    # fallback that starts after midnight UTC records a Tuesday-dated snapshot.
     - cron: "17 6 * * 1"
+    - cron: "17 18 * * 1"
   workflow_dispatch:
 
 # Never run two refreshes at once: they would race on data/ and the push.
@@ -58,4 +64,9 @@ jobs:
         if: failure()
         run: >-
           echo "::error title=MiCAR register refresh failed::Nothing was committed;
-          see the failing step above. The last good snapshot is unchanged."
+          see the failing step above. The last good snapshot is unchanged.
+          A 403 from every source means ESMA's CDN refused this runner: the
+          Monday-evening slot retries on its own, and the workflow can be re-run
+          by hand (Run workflow) once the exports answer again. If the 403
+          persists from GitHub-hosted runners, the runner's egress is being
+          blocked and needs a maintainer decision."

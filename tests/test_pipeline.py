@@ -14,7 +14,7 @@ FIXTURES = Path(__file__).parent / "fixtures"
 
 
 def args_for(
-    tmp_path: Path, date: str, fixtures: Path, accept_shrink: bool = False
+    tmp_path: Path, date: str, fixtures: Path, accept_shrink: bool = False, force: bool = False
 ) -> argparse.Namespace:
     return argparse.Namespace(
         data_dir=str(tmp_path / "data"),
@@ -25,7 +25,17 @@ def args_for(
         date=date,
         fixtures=str(fixtures),
         accept_shrink=accept_shrink,
+        force=force,
     )
+
+
+def tree_digest(folder: Path) -> dict[str, str]:
+    """Every file under `folder` with the SHA-256 of its bytes."""
+    return {
+        str(path.relative_to(folder)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in sorted(folder.rglob("*"))
+        if path.is_file()
+    }
 
 
 def seed_readme(tmp_path: Path) -> None:
@@ -175,3 +185,35 @@ def test_a_row_must_be_absent_twice_before_it_is_removed(tmp_path: Path) -> None
         ("2026-07-21", "removed"),
         ("2026-07-28", "restored"),
     ]
+
+
+def test_a_second_refresh_within_the_week_records_nothing(tmp_path: Path, capsys) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    assert cmd_refresh(args_for(tmp_path, "2026-07-07", FIXTURES)) == 0
+    edited = tmp_path / "fixtures2"
+    shutil.copytree(FIXTURES, edited)
+    (edited / "casps.csv").unlink()  # fetching this would fail: it must not be read
+    before = tree_digest(tmp_path)
+
+    # The fallback slot, a delayed run after midnight, or `make refresh` on a
+    # Wednesday: within five days of the last export nothing is fetched.
+    for date in ("2026-07-07", "2026-07-08", "2026-07-12"):
+        assert cmd_refresh(args_for(tmp_path, date, edited)) == 0
+        assert "::notice title=Export already fetched this week::" in capsys.readouterr().out
+    assert tree_digest(tmp_path) == before
+    assert not (tmp_path / "data" / "snapshots" / "2026-07-12.json").exists()
+
+    # Six days on, the next weekly run proceeds (and here fails closed, as the
+    # missing source demands).
+    assert cmd_refresh(args_for(tmp_path, "2026-07-13", edited)) == 1
+    assert cmd_refresh(args_for(tmp_path, "2026-07-13", FIXTURES)) == 0
+    assert (tmp_path / "data" / "snapshots" / "2026-07-13.json").exists()
+
+
+def test_force_fetches_within_the_week(tmp_path: Path) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    assert cmd_refresh(args_for(tmp_path, "2026-07-07", FIXTURES)) == 0
+    assert cmd_refresh(args_for(tmp_path, "2026-07-09", FIXTURES, force=True)) == 0
+    assert (tmp_path / "data" / "snapshots" / "2026-07-09.json").exists()

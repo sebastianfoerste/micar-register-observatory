@@ -2,7 +2,7 @@
 
 Usage:
     python -m observatory refresh [--date YYYY-MM-DD] [--data-dir data] [--fixtures DIR]
-                                  [--accept-shrink]
+                                  [--accept-shrink] [--force]
     python -m observatory render  [--data-dir data]
     python -m observatory asof    (--lei LEI | --name TEXT) [--date YYYY-MM-DD]
                                   [--register SLUG] [--json]
@@ -12,6 +12,10 @@ docs/changes.atom, data/exports/ and the latest digest under digests/.
 `--fixtures DIR` reads `<slug>.csv` files from DIR instead of fetching ESMA —
 used by tests and offline runs. `--accept-shrink` records an export that would
 otherwise be quarantined for a sharp drop in rows (see diff.export_shrinks).
+A refresh is skipped, and records nothing, when an export was already fetched
+(recorded or quarantined) within the last REFRESH_WINDOW_DAYS days: the weekly
+workflow has a fallback slot that must not add a second snapshot to a week.
+`--force` and `--accept-shrink` fetch anyway.
 `asof` prints what the last snapshot recorded on or before a date lists for a
 firm, and the firm's recorded changes up to then.
 """
@@ -38,11 +42,18 @@ from observatory.store import (
     append_changelog,
     latest_quarantine,
     load_latest,
+    quarantine_dates,
     read_changelog,
     save_quarantine,
     save_raw,
     save_snapshot,
+    snapshot_dates,
 )
+
+# An export fetched this many days or fewer before the snapshot date counts as
+# this week's: a second scheduled run then records nothing. Six would skip the
+# Monday after a Tuesday-dated fallback snapshot; five does not.
+REFRESH_WINDOW_DAYS = 5
 
 
 def read_fixture(fixtures: Path, source: RegisterSource) -> Download:
@@ -85,7 +96,7 @@ def build_snapshot(
                     kind=source.kind,
                     source_url=source.url,
                     fetched=False,
-                    fetch_error=str(error)[:200],
+                    fetch_error=str(error)[:500],
                 )
             )
     return Snapshot(snapshot_date=snapshot_date, registers=registers), downloads
@@ -181,10 +192,30 @@ def quarantine(
     return 0
 
 
+def fetched_this_week(data_dir: Path, snapshot_date: str) -> str:
+    """The date of an export recorded or quarantined within REFRESH_WINDOW_DAYS
+    days before `snapshot_date` (or on it); "" when there is none."""
+    dates = [day for day in snapshot_dates(data_dir) + quarantine_dates(data_dir) if day]
+    if not dates:
+        return ""
+    newest = max(dates)
+    age = (datetime.date.fromisoformat(snapshot_date) - datetime.date.fromisoformat(newest)).days
+    return newest if 0 <= age <= REFRESH_WINDOW_DAYS else ""
+
+
 def cmd_refresh(args: argparse.Namespace) -> int:
     data_dir = Path(args.data_dir)
     snapshot_date = args.date or datetime.date.today().isoformat()
     fixtures = Path(args.fixtures) if args.fixtures else None
+
+    force = bool(getattr(args, "force", False) or args.accept_shrink)
+    recent = "" if force else fetched_this_week(data_dir, snapshot_date)
+    if recent:
+        print(
+            f"::notice title=Export already fetched this week::an export dated {recent} is "
+            f"recorded or quarantined; {snapshot_date} fetches nothing (use --force to fetch)"
+        )
+        return 0
 
     current, downloads = build_snapshot(snapshot_date, fixtures)
     failed = [r for r in current.registers if not r.fetched]
@@ -260,6 +291,9 @@ def main() -> int:
     refresh.add_argument("--date", default=None)
     refresh.add_argument("--fixtures", default=None)
     refresh.add_argument("--accept-shrink", action="store_true")
+    refresh.add_argument(
+        "--force", action="store_true", help="fetch even if an export was fetched this week"
+    )
     refresh.set_defaults(func=cmd_refresh)
 
     render = subparsers.add_parser("render")
