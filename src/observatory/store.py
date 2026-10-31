@@ -26,6 +26,11 @@ def snapshot_dates(data_dir: Path) -> list[str]:
     return sorted(path.stem for path in (data_dir / "snapshots").glob("*.json"))
 
 
+def quarantine_dates(data_dir: Path) -> list[str]:
+    """Dates of the exports set aside under data/quarantine/, oldest first."""
+    return sorted(path.stem for path in (data_dir / "quarantine").glob("*.json"))
+
+
 def load_snapshot(data_dir: Path, snapshot_date: str) -> Snapshot:
     path = data_dir / "snapshots" / f"{snapshot_date}.json"
     return Snapshot.model_validate_json(path.read_text(encoding="utf-8"))
