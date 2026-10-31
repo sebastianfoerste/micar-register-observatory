@@ -96,7 +96,9 @@ def describe_http_error(error: urllib.error.HTTPError) -> urllib.error.HTTPError
     if body:
         parts.append(f'body="{body[:BODY_EXCERPT]}"')
     detail = f" ({'; '.join(parts)})" if parts else ""
-    return urllib.error.HTTPError(error.url, error.code, f"{error.reason}{detail}", error.headers, None)
+    return urllib.error.HTTPError(
+        error.url, error.code, f"{error.reason}{detail}", error.headers, None
+    )
 
 
 def download_source(

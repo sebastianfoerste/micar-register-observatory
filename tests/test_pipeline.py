@@ -191,10 +191,10 @@ def test_a_second_refresh_within_the_week_records_nothing(tmp_path: Path, capsys
     seed_readme(tmp_path)
     (tmp_path / "data").mkdir()
     assert cmd_refresh(args_for(tmp_path, "2026-07-07", FIXTURES)) == 0
-    before = tree_digest(tmp_path)
     edited = tmp_path / "fixtures2"
     shutil.copytree(FIXTURES, edited)
     (edited / "casps.csv").unlink()  # fetching this would fail: it must not be read
+    before = tree_digest(tmp_path)
 
     # The fallback slot, a delayed run after midnight, or `make refresh` on a
     # Wednesday: within five days of the last export nothing is fetched.
