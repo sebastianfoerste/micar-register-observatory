@@ -50,7 +50,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data README.md docs/feed.json docs/changes.atom digests
+          git add data README.md DASHBOARD.md docs/feed.json docs/changes.atom digests
           git diff --cached --quiet && echo "no register changes" && exit 0
           git commit -m "chore: weekly register refresh"
           git push

@@ -7,8 +7,9 @@ Usage:
     python -m observatory asof    (--lei LEI | --name TEXT) [--date YYYY-MM-DD]
                                   [--register SLUG] [--json]
 
-`refresh` and `render` rewrite the README dashboard, docs/feed.json,
-docs/changes.atom, data/exports/ and the latest digest under digests/.
+`refresh` and `render` rewrite DASHBOARD.md, the README summary block,
+docs/feed.json, docs/changes.atom, data/exports/ and the latest digest under
+digests/.
 `--fixtures DIR` reads `<slug>.csv` files from DIR instead of fetching ESMA —
 used by tests and offline runs. `--accept-shrink` records an export that would
 otherwise be quarantined for a sharp drop in rows (see diff.export_shrinks).
@@ -33,7 +34,14 @@ from observatory.export import write_exports
 from observatory.fetch import Download, download_source, utc_now
 from observatory.models import ChangeRecord, RegisterSnapshot, Snapshot
 from observatory.normalize import column_drift, parse_register
-from observatory.render import Quarantine, render_dashboard, update_readme, write_feed
+from observatory.render import (
+    Quarantine,
+    render_dashboard_document,
+    render_summary,
+    update_readme,
+    write_dashboard,
+    write_feed,
+)
 from observatory.store import (
     append_changelog,
     latest_quarantine,
@@ -146,10 +154,11 @@ def publish(
     changelog: list[ChangeRecord],
     note: Quarantine | None = None,
 ) -> None:
-    """Rewrite every file derived from the recorded data: the README dashboard,
-    docs/feed.json, data/exports/, the digests and docs/changes.atom."""
+    """Rewrite every file derived from the recorded data: DASHBOARD.md, the README
+    summary block, docs/feed.json, data/exports/, the digests and docs/changes.atom."""
     data_dir = Path(args.data_dir)
-    update_readme(Path(args.readme), render_dashboard(snapshot, changelog, note))
+    write_dashboard(Path(args.dashboard), render_dashboard_document(snapshot, changelog, note))
+    update_readme(Path(args.readme), render_summary(snapshot, changelog, note))
     write_feed(Path(args.feed), snapshot, changelog, note)
     write_exports(data_dir / "exports", snapshot, changelog)
     write_digests(Path(args.digests), data_dir, changelog)
@@ -251,6 +260,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="observatory")
     parser.add_argument("--data-dir", default="data")
     parser.add_argument("--readme", default="README.md")
+    parser.add_argument("--dashboard", default="DASHBOARD.md")
     parser.add_argument("--feed", default="docs/feed.json")
     parser.add_argument("--atom", default="docs/changes.atom")
     parser.add_argument("--digests", default="digests")
