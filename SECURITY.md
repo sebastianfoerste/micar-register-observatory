@@ -6,7 +6,7 @@ This repository runs a scheduled pipeline that downloads the public ESMA interim
 
 - the pipeline code in `src/` and `scripts/`;
 - the GitHub Actions workflows, in particular the refresh job that holds write access to `main`;
-- anything that could let a crafted register file or a third party alter the recorded history (`data/`) or inject content into the published files (README dashboard, `docs/`, feeds and exports);
+- anything that could let a crafted register file or a third party alter the recorded history (`data/`) or inject content into the published files (`DASHBOARD.md`, the README summary, `docs/`, feeds and exports);
 - the supply chain: pinned actions and locked dependencies.
 
 Errors in ESMA's register content are not security issues. Please report them with the data error issue template.
