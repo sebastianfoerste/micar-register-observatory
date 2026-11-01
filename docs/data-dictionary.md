@@ -8,17 +8,17 @@ ESMA's meaning of each source column is in its [field description file](https://
 
 | File | Content | Contract |
 | --- | --- | --- |
-| `data/latest.json` | The latest recorded snapshot of all five registers. | [snapshot v1](../contracts/micar-register.snapshot.v1.schema.json); [v2](../contracts/micar-register.snapshot.v2.schema.json) from October 2026 |
+| `data/latest.json` | The latest recorded snapshot of all five registers. | [snapshot v1](../contracts/micar-register.snapshot.v1.schema.json); [v2](../contracts/micar-register.snapshot.v2.schema.json) from the 2026-10-19 snapshot |
 | `data/snapshots/YYYY-MM-DD.json` | Every recorded snapshot, one per weekly refresh since 2026-07-07. | as `latest.json` |
 | `data/quarantine/YYYY-MM-DD.json` | An export set aside after a sharp drop in rows; it is not part of the recorded history (see [methodology](methodology.md#quarantine)). | as `latest.json` |
-| `data/raw/YYYY-MM-DD/` | From October 2026: the five exports of a refresh as downloaded, gzipped (`<slug>.csv.gz`), with `manifest.json` (below). Kept for recorded and quarantined exports alike. | [raw manifest v1](../contracts/raw-manifest.v1.schema.json) |
+| `data/raw/YYYY-MM-DD/` | From the 2026-10-19 snapshot: the five exports of a refresh as downloaded, gzipped (`<slug>.csv.gz`), with `manifest.json` (below). Kept for recorded and quarantined exports alike. | [raw manifest v1](../contracts/raw-manifest.v1.schema.json) |
 | `data/changelog.jsonl` | One change record per line, oldest first. | [changelog v1](../contracts/changelog.v1.schema.json), one record per line |
 | `docs/feed.json` | Current totals and the last 200 change records. | [feed v1](../contracts/feed.v1.schema.json) |
-| `data/exports/{casps,ncasp,whitepapers,changes}.csv` | From October 2026: the latest snapshot's rows and every change record as flat CSV (below). | [exports v1](../contracts/exports.v1.schema.json) |
-| `docs/changes.atom` | From October 2026: an Atom feed with one entry per recorded snapshot, newest first (the last 52), linking to its digest. | [Atom (RFC 4287)](https://www.rfc-editor.org/rfc/rfc4287) |
-| `digests/YYYY-MM-DD.md` | From October 2026: a readable note of each recorded snapshot's changes. A digest is written once; only the latest is rewritten. | |
+| `data/exports/{casps,ncasp,whitepapers,changes}.csv` | From the 2026-10-19 snapshot: the latest snapshot's rows and every change record as flat CSV (below). | [exports v1](../contracts/exports.v1.schema.json) |
+| `docs/changes.atom` | From the 2026-10-19 snapshot: an Atom feed with one entry per recorded snapshot, newest first (the last 52), linking to its digest. | [Atom (RFC 4287)](https://www.rfc-editor.org/rfc/rfc4287) |
+| `digests/YYYY-MM-DD.md` | From the 2026-10-19 snapshot: a readable note of each recorded snapshot's changes; that refresh also wrote the digests of every earlier snapshot since 2026-07-07. A digest is written once; only the latest is rewritten. | |
 
-Snapshots written before October 2026 carry the v1 fields only; snapshots written from then on carry the v2 fields as well, and remain valid v1 snapshots.
+Snapshots up to 2026-10-12 carry the v1 fields only; snapshots from 2026-10-19 on carry the v2 fields as well, and remain valid v1 snapshots.
 
 ## Snapshot
 
@@ -39,7 +39,7 @@ Snapshots written before October 2026 carry the v1 fields only; snapshots writte
 | `fetch_error` | v1 | The error when `fetched` is false. |
 | `entries` | v1 | The register's rows, in the export's order. |
 | `columns` | v2 | The export's header, in ESMA's order. |
-| `source_last_modified` | v2 | The HTTP `Last-Modified` header of the downloaded export, verbatim (for example `Tue, 07 Oct 2026 09:12:44 GMT`): when ESMA last replaced the file. `""` when the server sent none. |
+| `source_last_modified` | v2 | The HTTP `Last-Modified` header of the downloaded export, verbatim (for example `Fri, 16 Oct 2026 15:37:13 GMT`): when ESMA last replaced the file. `""` when the server sent none. |
 | `source_sha256` | v2 | SHA-256 of the downloaded bytes; the same bytes are archived under `data/raw/<snapshot_date>/`. |
 | `fetched_from` | v2, November 2026 | Where the bytes were downloaded from: `source_url`, or the Wayback Machine's copy of it (`https://web.archive.org/web/<capture>id_/<source_url>`) when ESMA refused the download (see [methodology](methodology.md#when-esma-does-not-answer)). `""` in snapshots written before November 2026. |
 | `archived_at` | v2, November 2026 | When the Wayback Machine captured the copy: its `Memento-Datetime` header, verbatim (for example `Mon, 02 Nov 2026 07:13:26 GMT`). `""` for a download from ESMA and in earlier snapshots. |
@@ -57,7 +57,7 @@ Typed fields are mechanical normalizations of the verbatim columns in `fields`. 
 | `entity_name` | v1 | string | Issuer, offeror, CASP or non-compliant entity, verbatim. | `ae_lei_name` |
 | `lei` | v1 | string | Legal Entity Identifier as exported (can be blank). | `ae_lei` |
 | `wp_url` | v1 | string | White paper link, verbatim; `""` for entity registers. ESMA's EMT export uses the codes `EMT_NO_WP` and `EMT_CRIN` here when there is no white paper. Some values hold several URLs or text. | `wp_url` |
-| `last_update` | v1 | string | The register's own last-update date, verbatim (DD/MM/YYYY). Blank for every CASP and non-compliant entity row in snapshots before October 2026, which read the white paper column only. | `wp_lastupdate`, `ac_lastupdate` (casps), `ae_lastupdate` (ncasp) |
+| `last_update` | v1 | string | The register's own last-update date, verbatim (DD/MM/YYYY). Blank for every CASP and non-compliant entity row in snapshots up to 2026-10-12, which read the white paper column only. | `wp_lastupdate`, `ac_lastupdate` (casps), `ae_lastupdate` (ncasp) |
 | `format_class` | v1 | string | Link shape of `wp_url`: `xhtml/html`, `json`, `docx`, `pdf`, `unspecified` (no recognised file extension), `none` (no link); `n/a` for entity registers. A URL heuristic, not a check of the document. | `wp_url` |
 | `row_hash` | v1 | 16 hex chars | SHA-256 over every column of the row (sorted `name=value` pairs, values trimmed). Any change to any column changes it. | all |
 | `row_key` | v2 | 16 hex chars | Row identity within an `entry_id`: adds the DTI FFG, the DTIs and the CASP's LEI for white papers, the authorisation date for CASPs, the decision date for non-compliant entities. Rows can still share it. | |
@@ -100,7 +100,7 @@ Columns without a typed field (for example `ae_address`, `ae_website_platform`, 
 
 ### Counting rows and entities
 
-A register's rows are its `entries`, minus repeated header lines that snapshots before October 2026 stored as entries (an entry whose `authority`, `entity_name` and `lei` are the column names `ae_competentAuthority`, `ae_lei_name` and `ae_lei`). An entity is a distinct upper-cased `lei`, or a distinct lower-cased `entity_name` for rows without one.
+A register's rows are its `entries`, minus repeated header lines that the snapshots from 2026-09-14 to 2026-10-12 stored as entries (an entry whose `authority`, `entity_name` and `lei` are the column names `ae_competentAuthority`, `ae_lei_name` and `ae_lei`). An entity is a distinct upper-cased `lei`, or a distinct lower-cased `entity_name` for rows without one.
 
 ## Change record (`data/changelog.jsonl`)
 
@@ -114,7 +114,7 @@ A register's rows are its `entries`, minus repeated header lines that snapshots 
 | `member_state` | v1 | The row's `member_state`; `-` on `baseline` records. |
 | `wp_url` | v1 | The row's `wp_url`. |
 | `detail` | v1 | A sentence about the change; for `changed` records it names the columns that differ. |
-| `record_version` | v2 | `2` for records written from October 2026; `1` (or absent) before. |
+| `record_version` | v2 | `2` for records written from the 2026-10-19 snapshot on; `1` (or absent) for records up to 2026-10-12. |
 | `lei` | v2 | The row's `lei`. |
 | `row_key` | v2 | The row's `row_key`. |
 | `row_hash` | v2 | The row's `row_hash`: of the new row for `added`, `changed` and `restored`, of the row last seen for `missing` and `removed`. |
@@ -123,7 +123,7 @@ A register's rows are its `entries`, minus repeated header lines that snapshots 
 
 ### Change kinds
 
-| `change` | Version 2 meaning (records from October 2026) | Version 1 meaning (records up to 2026-10-12) |
+| `change` | Version 2 meaning (records from 2026-10-19) | Version 1 meaning (records up to 2026-10-12) |
 | --- | --- | --- |
 | `added` | A row the previous export did not list, and not a row coming back. | A row whose `entry_id` was not in the previous export, including rows coming back. |
 | `changed` | A row paired with a previous row whose content differs. | Same, but only one row per `entry_id` was compared. |
@@ -155,8 +155,8 @@ Written on `changed` records, re-read from the verbatim columns of the old and n
 | Field | Meaning |
 | --- | --- |
 | `snapshot_date` | The snapshot the totals describe. |
-| `quarantine` | Added October 2026. `null`, or the export set aside after `snapshot_date`: `{"snapshot_date", "shrinks": [{"slug", "before", "after"}]}` with the row counts that triggered it. |
-| `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added October 2026), `fetched` and `source_last_modified` (added October 2026; as in the snapshot). |
+| `quarantine` | Added with the 2026-10-19 snapshot. `null`, or the export set aside after `snapshot_date`: `{"snapshot_date", "shrinks": [{"slug", "before", "after"}]}` with the row counts that triggered it. |
+| `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added with the 2026-10-19 snapshot), `fetched` and `source_last_modified` (added with the 2026-10-19 snapshot; as in the snapshot). |
 | `recent_changes` | The last 200 change records of `data/changelog.jsonl`, oldest first. |
 
 From November 2026 each entry of `registers` also carries `fetched_from` and `archived_at`, as in the snapshot.

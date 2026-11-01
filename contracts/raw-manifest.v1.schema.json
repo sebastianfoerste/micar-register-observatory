@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/raw-manifest.v1.schema.json",
   "title": "MiCAR Register Observatory Raw Export Manifest v1",
-  "description": "data/raw/<snapshot_date>/manifest.json: the exports of one weekly refresh as downloaded, kept gzipped next to the manifest. Written from October 2026 on. Field meanings: docs/data-dictionary.md.",
+  "description": "data/raw/<snapshot_date>/manifest.json: the exports of one weekly refresh as downloaded, kept gzipped next to the manifest. Written from the 2026-10-19 snapshot on. Field meanings: docs/data-dictionary.md.",
   "type": "object",
   "required": ["snapshot_date", "recorded_as", "files"],
   "properties": {

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/sebastianfoerste/micar-register-observatory/contracts/micar-register.snapshot.v2.schema.json",
   "title": "MiCAR Register Snapshot v2",
-  "description": "A snapshot written by the observatory from October 2026 on (data/latest.json, data/snapshots/*.json, data/quarantine/*.json). v2 only adds fields to v1: every v2 snapshot is also a valid v1 snapshot. Snapshots written before October 2026 are v1 only. Field meanings: docs/data-dictionary.md.",
+  "description": "A snapshot written by the observatory from 2026-10-19 on (data/latest.json, data/snapshots/*.json, data/quarantine/*.json). v2 only adds fields to v1: every v2 snapshot is also a valid v1 snapshot. Snapshots up to 2026-10-12 are v1 only. Field meanings: docs/data-dictionary.md.",
   "type": "object",
   "additionalProperties": false,
   "required": ["snapshot_date", "registers"],
