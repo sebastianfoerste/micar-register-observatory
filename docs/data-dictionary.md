@@ -156,8 +156,10 @@ Written on `changed` records, re-read from the verbatim columns of the old and n
 | --- | --- |
 | `snapshot_date` | The snapshot the totals describe. |
 | `quarantine` | Added October 2026. `null`, or the export set aside after `snapshot_date`: `{"snapshot_date", "shrinks": [{"slug", "before", "after"}]}` with the row counts that triggered it. |
-| `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added October 2026), `fetched`, `source_last_modified` (added October 2026), `fetched_from` and `archived_at` (added November 2026); the last three as in the snapshot. |
+| `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added October 2026), `fetched` and `source_last_modified` (added October 2026; as in the snapshot). |
 | `recent_changes` | The last 200 change records of `data/changelog.jsonl`, oldest first. |
+
+From November 2026 each entry of `registers` also carries `fetched_from` and `archived_at`, as in the snapshot.
 
 ## CSV exports (`data/exports/`)
 
