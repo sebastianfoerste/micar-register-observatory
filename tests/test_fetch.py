@@ -233,18 +233,24 @@ def test_a_failing_archive_lookup_is_reported_too() -> None:
         fetch_export(SOURCE, opener=opener, sleep=lambda _: None, now=now)
 
 
-def test_the_archive_is_retried_more_slowly_than_esma() -> None:
+def test_the_archive_is_retried_more_slowly_and_fewer_times_than_esma() -> None:
     # archive.org answers 429 for a while when asked too often; 2, 4 and 8
-    # seconds would not outlast it.
+    # seconds would not outlast it. Three attempts per archive request keep five
+    # refused sources (ESMA 14 s, archive 2 x 45 s each) within the job's budget.
     limited = http_error_with(429, {"Server": "nginx"}, b"429 Too Many Requests")
     opener, calls = scripted_opener(
-        [http_error(503)] * 4 + [limited] * 3 + [availability(), archived_copy()]
+        [http_error(503)] * 4 + [limited] * 2 + [availability(), limited, limited, archived_copy()]
     )
     sleeps: list[float] = []
     download = fetch_export(SOURCE, opener=opener, sleep=sleeps.append, now=now)
     assert download.archived_at == "Mon, 02 Nov 2026 07:13:26 GMT"
-    assert sleeps == [2.0, 4.0, 8.0, 15.0, 30.0, 60.0]
-    assert len(calls) == 9
+    assert sleeps == [2.0, 4.0, 8.0, 15.0, 30.0, 15.0, 30.0]
+    assert len(calls) == 10
+
+    opener, calls = scripted_opener([http_error(503)] * 4 + [limited] * 3)
+    with pytest.raises(SourceUnavailable, match="Wayback Machine: HTTP Error 429"):
+        fetch_export(SOURCE, opener=opener, sleep=lambda _: None, now=now)
+    assert len(calls) == 7
 
 
 def test_a_permanent_answer_from_esma_is_not_papered_over_by_the_archive() -> None:
@@ -298,4 +304,9 @@ def test_archive_timestamp_checks_the_answer() -> None:
 
 def test_a_gzip_encoded_answer_from_esma_is_decoded() -> None:
     opener, _ = scripted_opener([response(gzip.compress(BODY), {"Content-Encoding": "gzip"})])
+    assert download_source(SOURCE, opener=opener, sleep=lambda _: None).body == BODY
+
+
+def test_a_body_that_only_claims_to_be_gzip_is_kept_as_it_is() -> None:
+    opener, _ = scripted_opener([response(BODY, {"Content-Encoding": "gzip"})])
     assert download_source(SOURCE, opener=opener, sleep=lambda _: None).body == BODY

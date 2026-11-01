@@ -18,9 +18,10 @@ workflow has a fallback slot that must not add a second snapshot to a week.
 `--force` and `--accept-shrink` fetch anyway.
 An export that ESMA's CDN refuses (a 403 from the CloudFront edge, as every
 GitHub-hosted runner got from 2026-10-26) is taken from the newest copy in the
-Wayback Machine when that copy is at most MAX_ARCHIVE_AGE_DAYS old; the snapshot,
-the raw manifest, the dashboard and the feed say so (`fetched_from`,
-`archived_at`). `--no-archive` fails instead of using an archived copy.
+Wayback Machine when that copy is at most MAX_ARCHIVE_AGE_DAYS old; the snapshot
+and the feed say so (`fetched_from`, `archived_at`), as do the raw manifest
+(`url`, `archived_at`) and the dashboard. `--no-archive` fails instead of using
+an archived copy.
 `asof` prints what the last snapshot recorded on or before a date lists for a
 firm, and the firm's recorded changes up to then.
 """
@@ -112,7 +113,9 @@ def build_snapshot(
                     kind=source.kind,
                     source_url=source.url,
                     fetched=False,
-                    fetch_error=str(error)[:500],
+                    # Room for ESMA's described refusal and the archive's reason
+                    # (fetch.SourceUnavailable); a failed source is never recorded.
+                    fetch_error=str(error)[:2000],
                 )
             )
     return Snapshot(snapshot_date=snapshot_date, registers=registers), downloads

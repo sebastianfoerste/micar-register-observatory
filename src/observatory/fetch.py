@@ -17,6 +17,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from observatory.config import (
+    ARCHIVE_ATTEMPTS,
     ARCHIVE_AVAILABILITY_URL,
     ARCHIVE_BACKOFF,
     ARCHIVE_FILE_URL,
@@ -151,7 +152,10 @@ def _get(
                 headers = getattr(response, "headers", None)
                 encoding = headers.get("Content-Encoding", "") if headers is not None else ""
                 if str(encoding or "").lower() == "gzip":
-                    body = gzip.decompress(body)
+                    try:
+                        body = gzip.decompress(body)
+                    except (OSError, EOFError):
+                        pass  # not gzip after all; the parser judges the bytes
                 return body, headers
         except Exception as error:  # noqa: BLE001 — classified below
             if attempt == attempts or not _is_retryable(error):
@@ -267,7 +271,8 @@ def fetch_export(
     A permanent answer from ESMA (404: the file moved) is raised as it is: an
     archived copy would hide a source change. When both fail, the error names
     what ESMA said and why no archived copy could stand in. The archive is
-    retried more slowly (ARCHIVE_BACKOFF): archive.org rate-limits with 429.
+    retried more slowly and fewer times (ARCHIVE_BACKOFF, ARCHIVE_ATTEMPTS):
+    archive.org rate-limits with 429, and the whole refresh has a time budget.
     """
     try:
         return download_source(source, timeout, attempts, backoff, opener, sleep)
@@ -275,7 +280,8 @@ def fetch_export(
         if not archive or not _is_retryable(error):
             raise
         slower = max(backoff, ARCHIVE_BACKOFF)
+        fewer = min(attempts, ARCHIVE_ATTEMPTS)
         try:
-            return download_archived(source, timeout, attempts, slower, opener, sleep, now)
+            return download_archived(source, timeout, fewer, slower, opener, sleep, now)
         except Exception as fallback:  # noqa: BLE001 — reported with the first error
             raise SourceUnavailable(f"{error}; Wayback Machine: {fallback}") from error

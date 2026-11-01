@@ -7,7 +7,7 @@ from pathlib import Path
 import observatory.__main__ as cli
 from observatory.__main__ import cmd_refresh
 from observatory.config import SOURCES
-from observatory.fetch import Download
+from observatory.fetch import Download, SourceUnavailable
 from observatory.normalize import parse_register
 from observatory.render import DASHBOARD_END, DASHBOARD_START
 from observatory.store import load_latest, load_raw, read_changelog
@@ -324,3 +324,37 @@ def test_no_archive_is_passed_down_to_the_fetch(tmp_path: Path, monkeypatch) -> 
     args.no_archive = True
     assert cmd_refresh(args) == 0
     assert seen == [False] * len(SOURCES)
+
+
+def test_the_refusal_and_the_archive_s_reason_both_reach_the_failure_line(
+    tmp_path: Path, monkeypatch, capsys
+) -> None:
+    """A real CloudFront 403 description is over 400 characters; the archive's
+    reason follows it and must not be cut off: the workflow's failure text
+    tells the maintainer to read it."""
+    refusal = (
+        "HTTP Error 403: Forbidden (server=CloudFront; "
+        "via=1.1 31f2299ace8ebc27c9e8f771714b4bcc.cloudfront.net (CloudFront); "
+        "x-cache=Error from cloudfront; "
+        "x-amz-cf-id=isx7Z0kb3JKrNiM9Vw_zQM-ssLVCB6NEaQZAFUZSC4PlcjPA6wtSdg==; "
+        'content-type=text/html; body="ERROR: The request could not be satisfied 403 ERROR '
+        "The request could not be satisfied. Request blocked. We can't connect to the server "
+        'for this app or website at this time. There might be too much traffic or a config")'
+    )
+    reason = (
+        "Wayback Machine: the newest archived copy of "
+        f"{SOURCES[0].url} was captured on 2026-10-29, more than 3 days ago"
+    )
+
+    def refused(source, archive=True):
+        raise SourceUnavailable(f"{refusal}; {reason}")
+
+    monkeypatch.setattr(cli, "fetch_export", refused)
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    args = args_for(tmp_path, "2026-11-02", FIXTURES)
+    args.fixtures = None
+    assert cmd_refresh(args) == 1
+    err = capsys.readouterr().err
+    assert "refresh failed: other-wp: " + refusal + "; " + reason in err
+    assert not (tmp_path / "data" / "latest.json").exists()

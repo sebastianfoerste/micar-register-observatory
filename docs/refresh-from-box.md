@@ -30,28 +30,32 @@ Two things keep the register's memory going:
 
 In a clone of this repository on `main`, `scripts/refresh_from_box.sh`:
 
-- takes a lock, so two runs cannot overlap;
-- refuses to run when the clone has local changes or another branch checked out;
+- takes a lock, so two runs cannot overlap (`flock` where it exists, a lock
+  directory with the holder's PID elsewhere);
+- refuses to run when the clone has local changes, another branch checked out,
+  or no git identity (`user.name`, `user.email`) to commit with;
 - fetches `origin/main` and fast-forwards to it (never merges, never rebases);
 - installs the locked dependencies (`uv sync --locked --extra dev`) and runs
   `python -m observatory refresh`, which fetches nothing when an export was
   already recorded or quarantined in the last five days;
 - when the refresh recorded something, runs the same gates as the workflow
-  (`scripts/check_snapshot_freshness.py`, `pytest tests/test_contract.py`);
-- commits the same files the workflow commits (`data`, `README.md`,
+  (`scripts/check_snapshot_freshness.py`, `pytest tests/test_contract.py`) and
+  commits the same files the workflow commits (`data`, `README.md`,
   `docs/feed.json`, `docs/changes.atom`, `digests`) as
-  `chore: weekly register refresh` and pushes with a plain `git push`.
+  `chore: weekly register refresh`;
+- pushes, with a plain `git push`, whatever the branch has that origin lacks,
+  so a commit whose push failed last week goes out this week.
 
 It never reads, stores or prints credentials: git uses whatever credential
-helper the clone already has (`gh auth setup-git`, a keychain, a token in the
-remote URL). `GIT_TERMINAL_PROMPT=0` makes sure a routine never waits for a
-password. Extra arguments go to the refresh (`--force`, `--no-archive`,
-`--date`); `--no-push` keeps the commit local, for a dry run.
+helper the clone already has (`gh auth setup-git`, your OS keychain).
+`GIT_TERMINAL_PROMPT=0` makes sure a routine never waits for a password. Extra
+arguments go to the refresh (`--force`, `--no-archive`, `--date`); `--no-push`
+keeps the commit local, for a dry run.
 
 If the refresh or a gate fails, nothing is committed and the files it wrote
 stay in the working tree so that you can look at them; the next run refuses to
-start until they are discarded (`git checkout -- . && git clean -fd data`) or
-committed by hand.
+start until they are discarded (`git checkout -- . && git clean -fd data
+digests`) or committed by hand. The exit status is then the failing command's.
 
 ## Setting it up
 
@@ -69,8 +73,12 @@ Fridays around 11:30 UTC. Whichever of the two records the week's export first
 wins; the other then fetches nothing. With cron:
 
 ```
+PATH=/usr/local/bin:/usr/bin:/bin
 0 6 * * 1  cd $HOME/micar-register-observatory && scripts/refresh_from_box.sh >> $HOME/micar-refresh.log 2>&1
 ```
+
+(cron's default PATH is short; the script also looks for `uv` in `~/.local/bin`
+and `~/.cargo/bin`, where uv's installer puts it.)
 
 With a systemd user timer (`~/.config/systemd/user/micar-refresh.service` and
 `.timer`, then `systemctl --user enable --now micar-refresh.timer` and
@@ -82,6 +90,7 @@ Description=MiCAR register refresh from this machine
 [Service]
 Type=oneshot
 WorkingDirectory=%h/micar-register-observatory
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
 ExecStart=%h/micar-register-observatory/scripts/refresh_from_box.sh
 ```
 

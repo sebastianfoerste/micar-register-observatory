@@ -52,7 +52,7 @@
             "type": "string"
           },
           "fetched_from": {
-            "description": "Added in November 2026. Where the export was downloaded from: ESMA's URL, or the Wayback Machine's copy of it when ESMA refused the download.",
+            "description": "Added in November 2026. Where the export was downloaded from: ESMA's URL, or the Wayback Machine's copy of it when ESMA refused the download; empty for a snapshot recorded before November 2026.",
             "type": "string"
           },
           "archived_at": {

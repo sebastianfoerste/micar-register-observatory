@@ -76,7 +76,7 @@ def test_a_recorded_refresh_is_committed_and_pushed_once(clone: Path) -> None:
     before = origin_main(clone)
     result = run(clone, "--fixtures", str(FIXTURES), "--date", TODAY)
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "pushed to origin/main" in result.stdout
+    assert "pushed 1 commit(s) to origin/main" in result.stdout
     assert "freshness gate passed" in result.stdout
     head = git("rev-parse", "HEAD", cwd=clone)
     assert origin_main(clone) == head != before
@@ -85,20 +85,45 @@ def test_a_recorded_refresh_is_committed_and_pushed_once(clone: Path) -> None:
     assert "data/latest.json" in committed and f"data/snapshots/{TODAY}.json" in committed
     assert git("status", "--porcelain", cwd=clone) == ""
 
-    # Run again: the export was fetched this week, so nothing is recorded or pushed.
-    again = run(clone, "--fixtures", str(FIXTURES), "--date", TODAY)
+    # Run again, as cron does (no arguments): the export was fetched this week,
+    # so the refresh fetches nothing and nothing is recorded or pushed.
+    again = run(clone)
     assert again.returncode == 0, again.stdout + again.stderr
     assert "nothing recorded; nothing to commit" in again.stdout
+    assert "origin/main has everything; nothing to push" in again.stdout
     assert origin_main(clone) == head
 
 
-def test_no_push_keeps_the_commit_local(clone: Path) -> None:
+def test_no_push_keeps_the_commit_local_and_the_next_run_pushes_it(clone: Path) -> None:
     before = origin_main(clone)
     result = run(clone, "--no-push", "--fixtures", str(FIXTURES), "--date", TODAY)
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "--no-push: the commit stays local" in result.stdout
-    assert git("rev-parse", "HEAD", cwd=clone) != before
-    assert origin_main(clone) == before
+    assert "--no-push: 1 commit(s) stay local" in result.stdout
+    head = git("rev-parse", "HEAD", cwd=clone)
+    assert head != before and origin_main(clone) == before
+
+    # A commit left behind (here by --no-push, in life by a rejected push) is
+    # pushed by the next run even though that run records nothing.
+    result = run(clone)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "nothing recorded; nothing to commit" in result.stdout
+    assert "pushed 1 commit(s) to origin/main" in result.stdout
+    assert origin_main(clone) == head == git("rev-parse", "HEAD", cwd=clone)
+
+
+def test_a_clone_without_a_git_identity_is_refused_before_anything_runs(clone: Path) -> None:
+    env = {**environment(), "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_CONFIG_SYSTEM": "/dev/null"}
+    for name in IDENTITY:
+        env.pop(name)
+    env["GIT_AUTHOR_NAME"] = env["GIT_COMMITTER_NAME"] = ""
+    env["GIT_AUTHOR_EMAIL"] = env["GIT_COMMITTER_EMAIL"] = ""
+    result = subprocess.run(
+        ["bash", str(clone / "scripts" / "refresh_from_box.sh"), "--fixtures", str(FIXTURES)],
+        cwd=clone, capture_output=True, text=True, env=env,
+    )
+    assert result.returncode == 1
+    assert "git has no identity here" in result.stderr
+    assert not (clone / "data" / "latest.json").exists()
 
 
 def test_a_clone_with_local_changes_or_on_another_branch_is_refused(clone: Path) -> None:
@@ -117,7 +142,12 @@ def test_a_clone_with_local_changes_or_on_another_branch_is_refused(clone: Path)
     assert not (clone / "data" / "latest.json").exists()
 
 
-def test_help_describes_the_options() -> None:
+def test_help_describes_the_options_from_any_directory() -> None:
     result = subprocess.run(["bash", str(SCRIPT), "--help"], capture_output=True, text=True)
     assert result.returncode == 0
     assert "--no-push" in result.stdout and "OBSERVATORY_BRANCH" in result.stdout
+    relative = subprocess.run(
+        ["bash", "scripts/refresh_from_box.sh", "--help"],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    assert relative.returncode == 0 and relative.stdout == result.stdout
