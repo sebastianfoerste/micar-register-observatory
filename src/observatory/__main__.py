@@ -2,7 +2,7 @@
 
 Usage:
     python -m observatory refresh [--date YYYY-MM-DD] [--data-dir data] [--fixtures DIR]
-                                  [--accept-shrink] [--force]
+                                  [--accept-shrink] [--force] [--no-archive]
     python -m observatory render  [--data-dir data]
     python -m observatory asof    (--lei LEI | --name TEXT) [--date YYYY-MM-DD]
                                   [--register SLUG] [--json]
@@ -16,6 +16,11 @@ A refresh is skipped, and records nothing, when an export was already fetched
 (recorded or quarantined) within the last REFRESH_WINDOW_DAYS days: the weekly
 workflow has a fallback slot that must not add a second snapshot to a week.
 `--force` and `--accept-shrink` fetch anyway.
+An export that ESMA's CDN refuses (a 403 from the CloudFront edge, as every
+GitHub-hosted runner got from 2026-10-26) is taken from the newest copy in the
+Wayback Machine when that copy is at most MAX_ARCHIVE_AGE_DAYS old; the snapshot,
+the raw manifest, the dashboard and the feed say so (`fetched_from`,
+`archived_at`). `--no-archive` fails instead of using an archived copy.
 `asof` prints what the last snapshot recorded on or before a date lists for a
 firm, and the firm's recorded changes up to then.
 """
@@ -34,7 +39,7 @@ from observatory.config import SOURCES, RegisterSource
 from observatory.diff import Shrink, diff_snapshots, export_shrinks
 from observatory.digest import write_atom, write_digests
 from observatory.export import write_exports
-from observatory.fetch import Download, download_source, utc_now
+from observatory.fetch import Download, fetch_export, utc_now
 from observatory.models import ChangeRecord, RegisterSnapshot, Snapshot
 from observatory.normalize import column_drift, parse_register
 from observatory.render import Quarantine, render_dashboard, update_readme, write_feed
@@ -62,9 +67,12 @@ def read_fixture(fixtures: Path, source: RegisterSource) -> Download:
 
 
 def build_snapshot(
-    snapshot_date: str, fixtures: Path | None
+    snapshot_date: str, fixtures: Path | None, archive: bool = True
 ) -> tuple[Snapshot, dict[str, Download]]:
-    """Fetch and parse every source; also return the downloads, by slug."""
+    """Fetch and parse every source; also return the downloads, by slug.
+
+    `archive` allows the Wayback Machine to stand in for an export ESMA refuses.
+    """
     registers = []
     downloads: dict[str, Download] = {}
     for source in SOURCES:
@@ -72,7 +80,13 @@ def build_snapshot(
             if fixtures is not None:
                 download = read_fixture(fixtures, source)
             else:
-                download = download_source(source)
+                download = fetch_export(source, archive=archive)
+            if download.archived_at:
+                print(
+                    f"::warning title=Archived copy used::{source.slug}: ESMA refused the "
+                    f"download; using the Wayback Machine's copy captured "
+                    f"{download.archived_at} ({download.url})"
+                )
             parsed = parse_register(source, download.body, enforce_min_rows=fixtures is None)
             downloads[source.slug] = download
             registers.append(
@@ -86,6 +100,8 @@ def build_snapshot(
                     columns=parsed.columns,
                     source_last_modified=download.last_modified,
                     source_sha256=hashlib.sha256(download.body).hexdigest(),
+                    fetched_from=download.url,
+                    archived_at=download.archived_at,
                 )
             )
         except Exception as error:  # noqa: BLE001 — one failed source must not kill the run
@@ -217,7 +233,8 @@ def cmd_refresh(args: argparse.Namespace) -> int:
         )
         return 0
 
-    current, downloads = build_snapshot(snapshot_date, fixtures)
+    archive = not getattr(args, "no_archive", False)
+    current, downloads = build_snapshot(snapshot_date, fixtures, archive=archive)
     failed = [r for r in current.registers if not r.fetched]
     if failed:
         # Fail closed: a partial snapshot would be committed and then trip the
@@ -293,6 +310,11 @@ def main() -> int:
     refresh.add_argument("--accept-shrink", action="store_true")
     refresh.add_argument(
         "--force", action="store_true", help="fetch even if an export was fetched this week"
+    )
+    refresh.add_argument(
+        "--no-archive",
+        action="store_true",
+        help="fail when ESMA refuses an export instead of using the Wayback Machine's copy",
     )
     refresh.set_defaults(func=cmd_refresh)
 

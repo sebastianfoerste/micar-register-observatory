@@ -42,8 +42,12 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
       - run: uv sync --extra dev
-      # Fetches retry with backoff; the run exits non-zero (and writes nothing)
-      # if any source fails, lacks required columns or falls below its row floor.
+      # Fetches retry with backoff; an export ESMA's CDN still refuses is taken
+      # from the Wayback Machine when its copy is at most three days old, and the
+      # snapshot says so. The run exits non-zero (and writes nothing) if any
+      # source fails, lacks required columns or falls below its row floor.
+      # A refresh from a machine ESMA answers (scripts/refresh_from_box.sh)
+      # earlier in the week leaves this run nothing to record.
       - name: Refresh the register snapshot
         run: uv run python -m observatory refresh
       - name: Freshness gate
@@ -65,8 +69,8 @@ jobs:
         run: >-
           echo "::error title=MiCAR register refresh failed::Nothing was committed;
           see the failing step above. The last good snapshot is unchanged.
-          A 403 from every source means ESMA's CDN refused this runner: the
-          Monday-evening slot retries on its own, and the workflow can be re-run
-          by hand (Run workflow) once the exports answer again. If the 403
-          persists from GitHub-hosted runners, the runner's egress is being
-          blocked and needs a maintainer decision."
+          A 403 from every source means ESMA's CDN refused this runner, and
+          'Wayback Machine:' in the message says why no archived copy could
+          stand in. The Monday-evening slot retries on its own; the export can
+          be recorded from a machine ESMA answers with
+          scripts/refresh_from_box.sh (docs/refresh-from-box.md)."

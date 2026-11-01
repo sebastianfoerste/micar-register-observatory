@@ -97,6 +97,11 @@ class RegisterSnapshot(BaseModel):
     # v2: provenance of the downloaded export; the bytes are kept under data/raw/.
     source_last_modified: str = ""  # the HTTP Last-Modified header, verbatim
     source_sha256: str = ""  # SHA-256 of the downloaded bytes
+    # Added 2026-11: where the bytes were downloaded from (source_url, or an archived
+    # copy of it) and, for an archived copy, when the Wayback Machine captured it
+    # (its Memento-Datetime header, verbatim). Empty in earlier snapshots.
+    fetched_from: str = ""
+    archived_at: str = ""
 
     def rows(self) -> list[RegisterEntry]:
         """The register's rows, without header lines that older snapshots stored."""

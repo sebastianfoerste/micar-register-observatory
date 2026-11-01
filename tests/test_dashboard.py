@@ -62,6 +62,24 @@ def test_the_source_status_gives_the_date_esma_last_modified_the_file():
     assert http_date("") == "" and http_date("not a date") == ""
 
 
+def test_the_source_status_says_when_an_archived_copy_was_used():
+    casps = fixture_register("casps")
+    casps.source_last_modified = "Fri, 30 Oct 2026 11:27:08 GMT"
+    casps.archived_at = "Mon, 02 Nov 2026 07:13:26 GMT"
+    casps.fetched_from = f"https://web.archive.org/web/20261102071326id_/{casps.source_url}"
+    dashboard = render_dashboard(Snapshot(snapshot_date="2026-11-02", registers=[casps]), [])
+    assert (
+        "| 4 | 3 | ok (file modified 2026-10-30; archived copy from the Wayback Machine, "
+        "captured 2026-11-02) |" in dashboard
+    )
+    # The link stays the ESMA export, whatever served the bytes.
+    assert f"]({casps.source_url}) |" in dashboard
+    casps.source_last_modified = ""
+    casps.archived_at = "not | a date"
+    dashboard = render_dashboard(Snapshot(snapshot_date="2026-11-02", registers=[casps]), [])
+    assert "| ok (archived copy from the Wayback Machine, captured not \\| a date) |" in dashboard
+
+
 def _changes_table(changes: list[ChangeRecord]) -> list[str]:
     snapshot = Snapshot(snapshot_date="2026-10-19", registers=[fixture_register("other-wp")])
     dashboard = render_dashboard(snapshot, changes)

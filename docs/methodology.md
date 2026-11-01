@@ -12,7 +12,11 @@ The ESMA interim MiCAR register, published as CSV exports at stable URLs and upd
 | Authorised CASPs | <https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv> |
 | Non-compliant entities | <https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv> |
 
-Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/sites/default/files/2024-12/Description_of_the_fields_in_the_interim_MiCA_register.csv). Legal basis for publication: Art. 109 VO (EU) 2023/1114 (MiCAR).
+Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/sites/default/files/2024-12/Description_of_the_fields_in_the_interim_MiCA_register.csv). Legal basis for publication: Art. 109 VO (EU) 2023/1114 (MiCAR). ESMA's [legal notice](https://www.esma.europa.eu/about-esma/legal-notice-and-data-protection) authorises reproduction of the site's information provided the source is acknowledged; every file here names the export it came from.
+
+### When ESMA does not answer
+
+The exports sit behind a CDN (CloudFront) whose edge refused every GitHub-hosted runner with a "Request blocked" 403 from 2026-10-26, so the scheduled refresh could not download anything. The observatory does not try to look like something it is not: it keeps its own `User-Agent` and retries a few times with backoff. When ESMA still refuses or fails, the refresh takes the newest copy of the export that the Internet Archive's [Wayback Machine](https://web.archive.org/) holds, provided the copy was captured within the last three days (`MAX_ARCHIVE_AGE_DAYS` in `src/observatory/config.py`); the archived bytes are ESMA's bytes as the crawler received them, and the `Last-Modified` header ESMA sent comes along. Such a register is marked in the snapshot and the feed (`fetched_from`, the archive URL, and `archived_at`, the capture time), in the raw manifest (`url`, `archived_at`) and in the dashboard ("archived copy from the Wayback Machine, captured YYYY-MM-DD"). A 404 from ESMA is not papered over: it means the file moved, and the refresh fails. From a machine that ESMA answers, [`scripts/refresh_from_box.sh`](refresh-from-box.md) records the live export instead; whichever runs first in a week records it, the other fetches nothing.
 
 ## Normalization
 
@@ -63,3 +67,4 @@ Deterministic lint findings about individual, named issuers are not published au
 - ESMA may change export URLs or column layouts. A source that fails to download, lacks a required column or falls below its row floor stops the refresh, and the last good snapshot stays in place; added or dropped columns are reported as a source change without stopping it.
 - Format classification is a heuristic on the link, not the served content type.
 - The interim register may be superseded by ESMA's final register infrastructure; sources are pinned in `src/observatory/config.py` and are the single place to update.
+- A snapshot taken from the Wayback Machine reflects the export as it was when the archive captured it, up to three days before the snapshot date; a change ESMA made in between appears a week later. The captures are made by others and may stop; the refresh then fails closed unless it runs from a machine ESMA answers.
