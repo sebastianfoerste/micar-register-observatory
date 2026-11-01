@@ -90,8 +90,14 @@ def http_date(value: str) -> str:
 def _status(register: RegisterSnapshot) -> str:
     if not register.fetched:
         return f"fetch failed: {text(register.fetch_error)}"
+    notes = []
     modified = http_date(register.source_last_modified)
-    return f"ok (file modified {modified})" if modified else "ok"
+    if modified:
+        notes.append(f"file modified {modified}")
+    if register.archived_at:
+        captured = http_date(register.archived_at) or text(register.archived_at)
+        notes.append(f"archived copy from the Wayback Machine, captured {captured}")
+    return f"ok ({'; '.join(notes)})" if notes else "ok"
 
 
 def _casp_line(casps: RegisterSnapshot) -> str:
@@ -242,6 +248,8 @@ def write_feed(
                 "entities": register.entity_count(),
                 "fetched": register.fetched,
                 "source_last_modified": register.source_last_modified,
+                "fetched_from": register.fetched_from,
+                "archived_at": register.archived_at,
             }
             for register in snapshot.registers
         ],

@@ -73,7 +73,9 @@ def save_raw(
     """Keep the downloaded bytes, gzipped, with a manifest under data/raw/<date>/.
 
     `recorded_as` says where the export went: "snapshot" or "quarantine". The
-    manifest's SHA-256 is of the bytes as downloaded, before compression.
+    manifest's SHA-256 is of the bytes as downloaded, before compression. `url`
+    is where the bytes were downloaded from; `archived_at` is set when that was
+    an archived copy (the Wayback Machine's capture time) and empty otherwise.
     """
     folder = data_dir / "raw" / snapshot_date
     folder.mkdir(parents=True, exist_ok=True)
@@ -90,6 +92,7 @@ def save_raw(
                 "bytes": len(download.body),
                 "last_modified": download.last_modified,
                 "retrieved_at": download.retrieved_at,
+                "archived_at": download.archived_at,
             }
         )
     manifest = {"snapshot_date": snapshot_date, "recorded_as": recorded_as, "files": files}

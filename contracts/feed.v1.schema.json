@@ -50,6 +50,14 @@
           "source_last_modified": {
             "description": "Added in October 2026. The HTTP Last-Modified header of the export, verbatim; empty when the server sent none.",
             "type": "string"
+          },
+          "fetched_from": {
+            "description": "Added in November 2026. Where the export was downloaded from: ESMA's URL, or the Wayback Machine's copy of it when ESMA refused the download; empty for a snapshot recorded before November 2026.",
+            "type": "string"
+          },
+          "archived_at": {
+            "description": "Added in November 2026. When the Wayback Machine captured the copy (its Memento-Datetime header, verbatim); empty for a download from ESMA.",
+            "type": "string"
           }
         }
       }

@@ -41,6 +41,8 @@ Snapshots written before October 2026 carry the v1 fields only; snapshots writte
 | `columns` | v2 | The export's header, in ESMA's order. |
 | `source_last_modified` | v2 | The HTTP `Last-Modified` header of the downloaded export, verbatim (for example `Tue, 07 Oct 2026 09:12:44 GMT`): when ESMA last replaced the file. `""` when the server sent none. |
 | `source_sha256` | v2 | SHA-256 of the downloaded bytes; the same bytes are archived under `data/raw/<snapshot_date>/`. |
+| `fetched_from` | v2, November 2026 | Where the bytes were downloaded from: `source_url`, or the Wayback Machine's copy of it (`https://web.archive.org/web/<capture>id_/<source_url>`) when ESMA refused the download (see [methodology](methodology.md#when-esma-does-not-answer)). `""` in snapshots written before November 2026. |
+| `archived_at` | v2, November 2026 | When the Wayback Machine captured the copy: its `Memento-Datetime` header, verbatim (for example `Mon, 02 Nov 2026 07:13:26 GMT`). `""` for a download from ESMA and in earlier snapshots. |
 
 ### Entry (one row of an export)
 
@@ -157,6 +159,8 @@ Written on `changed` records, re-read from the verbatim columns of the old and n
 | `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added October 2026), `fetched` and `source_last_modified` (added October 2026; as in the snapshot). |
 | `recent_changes` | The last 200 change records of `data/changelog.jsonl`, oldest first. |
 
+From November 2026 each entry of `registers` also carries `fetched_from` and `archived_at`, as in the snapshot.
+
 ## CSV exports (`data/exports/`)
 
 UTF-8, comma-separated, with a header line; columns are only ever added at the end. Every cell is a typed field of the snapshot or the change record, with these differences:
@@ -180,6 +184,6 @@ UTF-8, comma-separated, with a header line; columns are only ever added at the e
 | --- | --- |
 | `snapshot_date` | The refresh the exports belong to. |
 | `recorded_as` | `snapshot` when the exports became `data/snapshots/<snapshot_date>.json`, `quarantine` when they were set aside as `data/quarantine/<snapshot_date>.json`. |
-| `files` | One object per export: `slug`; `file`, the gzipped export next to the manifest; `url`, where it was downloaded; `sha256` and `bytes`, of the bytes as downloaded, before compression; `last_modified`, the HTTP `Last-Modified` header verbatim (`""` when the server sent none); `retrieved_at`, when the download finished (UTC, `YYYY-MM-DDTHH:MM:SSZ`). |
+| `files` | One object per export: `slug`; `file`, the gzipped export next to the manifest; `url`, where it was downloaded (the ESMA export, or the Wayback Machine's copy of it); `sha256` and `bytes`, of the bytes as downloaded, before compression; `last_modified`, the HTTP `Last-Modified` header verbatim (`""` when the server sent none; for an archived copy, the header ESMA sent the crawler); `retrieved_at`, when the download finished (UTC, `YYYY-MM-DDTHH:MM:SSZ`); `archived_at` (added November 2026), when the Wayback Machine captured the copy, verbatim, `""` for a download from ESMA. |
 
 `gunzip -c data/raw/<date>/casps.csv.gz | sha256sum` gives the manifest's `sha256`, and the snapshot's `source_sha256` for that register.

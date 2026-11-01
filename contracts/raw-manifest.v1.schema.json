@@ -19,7 +19,7 @@
         "properties": {
           "slug": {"enum": ["other-wp", "emt-wp", "art-wp", "casps", "ncasp"]},
           "file": {"description": "The gzipped export, next to the manifest.", "type": "string"},
-          "url": {"type": "string"},
+          "url": {"description": "Where the bytes were downloaded from: the ESMA export, or the Wayback Machine's copy of it.", "type": "string"},
           "sha256": {
             "description": "SHA-256 of the bytes as downloaded, before compression.",
             "type": "string",
@@ -34,6 +34,10 @@
             "description": "When the download finished, UTC (YYYY-MM-DDTHH:MM:SSZ).",
             "type": "string",
             "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          },
+          "archived_at": {
+            "description": "Added November 2026. When the Wayback Machine captured the copy that `url` points to (its Memento-Datetime header, verbatim); empty for a download from ESMA and in earlier manifests.",
+            "type": "string"
           }
         }
       }

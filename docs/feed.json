@@ -8,7 +8,9 @@
    "entries": 1049,
    "entities": 657,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:37:13 GMT"
+   "source_last_modified": "Fri, 16 Oct 2026 15:37:13 GMT",
+   "fetched_from": "",
+   "archived_at": ""
   },
   {
    "slug": "emt-wp",
@@ -16,7 +18,9 @@
    "entries": 50,
    "entities": 25,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:36:34 GMT"
+   "source_last_modified": "Fri, 16 Oct 2026 15:36:34 GMT",
+   "fetched_from": "",
+   "archived_at": ""
   },
   {
    "slug": "art-wp",
@@ -24,7 +28,9 @@
    "entries": 0,
    "entities": 0,
    "fetched": true,
-   "source_last_modified": "Fri, 14 Feb 2025 15:37:53 GMT"
+   "source_last_modified": "Fri, 14 Feb 2025 15:37:53 GMT",
+   "fetched_from": "",
+   "archived_at": ""
   },
   {
    "slug": "casps",
@@ -32,7 +38,9 @@
    "entries": 378,
    "entities": 375,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:36:15 GMT"
+   "source_last_modified": "Fri, 16 Oct 2026 15:36:15 GMT",
+   "fetched_from": "",
+   "archived_at": ""
   },
   {
    "slug": "ncasp",
@@ -40,7 +48,9 @@
    "entries": 178,
    "entities": 175,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:36:52 GMT"
+   "source_last_modified": "Fri, 16 Oct 2026 15:36:52 GMT",
+   "fetched_from": "",
+   "archived_at": ""
   }
  ],
  "recent_changes": [

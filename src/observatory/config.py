@@ -11,6 +11,23 @@ from pydantic import BaseModel
 
 BASE_URL = "https://www.esma.europa.eu/sites/default/files/2024-12"
 
+# ESMA serves the exports through CloudFront, whose edge refused GitHub-hosted
+# runners (and, on 2026-10-22, archive.org's crawler) with a "Request blocked"
+# 403 in late October 2026. The Internet Archive's Wayback Machine keeps dated
+# copies of the same files, captured about daily; a refresh that ESMA refuses
+# falls back to the newest copy no older than MAX_ARCHIVE_AGE_DAYS and records
+# where the bytes came from. `id_` returns the archived bytes unchanged; the
+# original response headers come back as x-archive-orig-*.
+ARCHIVE_AVAILABILITY_URL = "https://archive.org/wayback/available?url={url}"
+ARCHIVE_FILE_URL = "https://web.archive.org/web/{timestamp}id_/{url}"
+MAX_ARCHIVE_AGE_DAYS = 3
+# archive.org rate-limits with 429 and lifts it after a while; the backoff for
+# the archive starts here (then doubles), where ESMA's starts at 2 seconds. Three
+# attempts (15 s + 30 s of waiting) per archive request keep a refresh in which
+# ESMA refuses every export and the archive stalls under the workflow's budget.
+ARCHIVE_BACKOFF = 15.0
+ARCHIVE_ATTEMPTS = 3
+
 REPO_URL = "https://github.com/sebastianfoerste/micar-register-observatory"
 # The files on main, as GitHub serves them raw.
 RAW_URL = "https://raw.githubusercontent.com/sebastianfoerste/micar-register-observatory/main"
