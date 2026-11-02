@@ -1,15 +1,15 @@
 {
- "snapshot_date": "2026-10-19",
+ "snapshot_date": "2026-11-02",
  "quarantine": null,
  "registers": [
   {
    "slug": "other-wp",
    "title": "White papers — other crypto-assets (Title II)",
-   "entries": 1049,
-   "entities": 657,
+   "entries": 1062,
+   "entities": 664,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:37:13 GMT",
-   "fetched_from": "",
+   "source_last_modified": "Fri, 30 Oct 2026 11:28:05 GMT",
+   "fetched_from": "https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv",
    "archived_at": ""
   },
   {
@@ -18,8 +18,8 @@
    "entries": 50,
    "entities": 25,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:36:34 GMT",
-   "fetched_from": "",
+   "source_last_modified": "Fri, 30 Oct 2026 11:27:28 GMT",
+   "fetched_from": "https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv",
    "archived_at": ""
   },
   {
@@ -29,2143 +29,31 @@
    "entities": 0,
    "fetched": true,
    "source_last_modified": "Fri, 14 Feb 2025 15:37:53 GMT",
-   "fetched_from": "",
+   "fetched_from": "https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv",
    "archived_at": ""
   },
   {
    "slug": "casps",
    "title": "Authorised crypto-asset service providers (CASPs)",
-   "entries": 378,
-   "entities": 375,
+   "entries": 392,
+   "entities": 389,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:36:15 GMT",
-   "fetched_from": "",
+   "source_last_modified": "Fri, 30 Oct 2026 11:27:08 GMT",
+   "fetched_from": "https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv",
    "archived_at": ""
   },
   {
    "slug": "ncasp",
    "title": "Non-compliant entities flagged by NCAs",
-   "entries": 178,
-   "entities": 175,
+   "entries": 188,
+   "entities": 185,
    "fetched": true,
-   "source_last_modified": "Fri, 16 Oct 2026 15:36:52 GMT",
-   "fetched_from": "",
+   "source_last_modified": "Fri, 30 Oct 2026 11:27:46 GMT",
+   "fetched_from": "https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv",
    "archived_at": ""
   }
  ],
  "recent_changes": [
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "c43f74e9c3983154",
-   "entity_name": "FINTECH PAYMENTS PSC S.L.",
-   "member_state": "ES",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "549300746K71T6YJCV41",
-   "row_key": "73aa4aff36424e2a",
-   "row_hash": "1e7feac54de1377b",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "added",
-   "entry_id": "6a7c809348f47711",
-   "entity_name": "PRAKMA MARKETS S.L.",
-   "member_state": "ES",
-   "wp_url": "",
-   "detail": "",
-   "record_version": 2,
-   "lei": "959800BLRZ4Z36U5HK79",
-   "row_key": "118351083eef3c52",
-   "row_hash": "07fc3c7e2838676a",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "3678b06d071f7230",
-   "entity_name": "Coinmotion Oy",
-   "member_state": "FI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "743700PZG5RRF7SA4Q58",
-   "row_key": "f43ad3b532ec41a0",
-   "row_hash": "7611311e29f3beda",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "0c5a6063b848dd7c",
-   "entity_name": "Tesseract Investment Oy",
-   "member_state": "FI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "743700GULNWPBLJ7A022",
-   "row_key": "0d4c3555baebd698",
-   "row_hash": "fd4d9daf1207d168",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "a874e5b86d8b6f3f",
-   "entity_name": "Bittimaatti Oy",
-   "member_state": "FI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "7437009FHK501IOCWZ66",
-   "row_key": "e1179936e2c96660",
-   "row_hash": "74bcbe5917f4b990",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "bdf381ed273b8143",
-   "entity_name": "NorthCrypto Oy",
-   "member_state": "FI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "743700CHRVVP342JOA67",
-   "row_key": "28bfa101f25c06ee",
-   "row_hash": "9fde90202fe98f9f",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "8f8ae8dc42590de6",
-   "entity_name": "Kvarn Capital Oy",
-   "member_state": "FI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845009F15A5B9FD7F45",
-   "row_key": "c45069ee2b738fdf",
-   "row_hash": "e0b76354cca2c8a4",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "7fa0a8c158e8c6ad",
-   "entity_name": "DEBLOCK SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900XTUI35BGIBXP21",
-   "row_key": "8c7842d2f2c27d11",
-   "row_hash": "6601f8d617adb620",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "bc63550344146be1",
-   "entity_name": "GOin SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "894500LM6DICD790FQ34",
-   "row_key": "413696ff53526c69",
-   "row_hash": "5096639f02648d18",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "de1307aaca95ccf9",
-   "entity_name": "CACEIS BANK",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "96950023SCR9X9F3L662",
-   "row_key": "69706e19ff4335cb",
-   "row_hash": "57fb329db83b0f52",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "4b2263c5d1318679",
-   "entity_name": "BITSTACK DIGITAL ASSETS SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "894500RKZ3TVTPIF7V84",
-   "row_key": "e56d0a1626ca9030",
-   "row_hash": "8d255fc802ce972f",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "1e5047b9d10bd82d",
-   "entity_name": "METAL GEAR SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500PQYLQG3CSJ5041",
-   "row_key": "ddc7b22425329968",
-   "row_hash": "d1419033f26c07fe",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "8d68d5679aa2bb13",
-   "entity_name": "COINSHARES ASSET MANAGEMENT",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500DBF3ZL9U0KUA51",
-   "row_key": "d41331b312c0dd9a",
-   "row_hash": "52a634c548cf0206",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "e337105e45a23268",
-   "entity_name": "FINCTEK UE SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500PTJJZTCE0I3B60",
-   "row_key": "f94e00e79ae0f3cf",
-   "row_hash": "c1f6a3ff19c25a16",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "b3d15ed546b8034a",
-   "entity_name": "RELAI EU SASU",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9695003EKRFOMYXJQL11",
-   "row_key": "5ccc316b437122ae",
-   "row_hash": "8b7a0a7471d88bcc",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "3dcf755a0c3784fb",
-   "entity_name": "SOCIETE GENERALE - FORGE",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500FX8K40ZDW4F377",
-   "row_key": "c86d7ebe44702de9",
-   "row_hash": "8e4a927a7b08aa93",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "c6ee665cdfc39fdb",
-   "entity_name": "BANQUE DELUBAC ET CIE",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500A4IPKVUBH3CA90",
-   "row_key": "b77e06ed8a519f3d",
-   "row_hash": "2be01af01961fbd7",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "bd7350fabced512b",
-   "entity_name": "COMETH SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "894500R5KSX3ZKIHSA46",
-   "row_key": "8b9991f6f37441a7",
-   "row_hash": "40ebf529f578843f",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "80accb93d105863d",
-   "entity_name": "FIPTO PI SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500A0DYUNF5NX9R84",
-   "row_key": "bafe75fc21d29ba9",
-   "row_hash": "5ba0dd0c1a9b684b",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "ccd7aa9f3f4587d2",
-   "entity_name": "HEXARQ SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500TD4VXAOPXPVW02",
-   "row_key": "26e3840b8a4f3cf2",
-   "row_hash": "f737d3677e9c8cd8",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "3c3aa3111728d639",
-   "entity_name": "BLOCKNODES SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500PZJWT3TD1SUI59",
-   "row_key": "d83cc3d1031c758e",
-   "row_hash": "99196a4c497438e3",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "9bc50c4d86fffd50",
-   "entity_name": "CIRCLE INTERNET FINANCIAL EUROPE SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500OYUDADGZKCR583",
-   "row_key": "f2a532b8ac37b6ba",
-   "row_hash": "38392debe7b7032e",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "4f3395bd2444f74d",
-   "entity_name": "DESKOIN SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500QH6WD4FO79B261",
-   "row_key": "aee02ff702c6066d",
-   "row_hash": "08eb93cc2e6392d2",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "50105d658a419cac",
-   "entity_name": "COINHOUSE SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500E5GFHK2RKF8251",
-   "row_key": "ae0028b4360c5075",
-   "row_hash": "3d02e92c9593d9b9",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "ef2bf608be9b3748",
-   "entity_name": "QWARKS SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500CMLNBIVUUD9A09",
-   "row_key": "95b3a68b6bdda310",
-   "row_hash": "6eb76f353af41653",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "5390d3dca030b82f",
-   "entity_name": "PAYTOP SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500VA4A8CRCS2N988",
-   "row_key": "69aa29221976d096",
-   "row_hash": "e4a8a45198f589ed",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "b6e82e890d6ff85b",
-   "entity_name": "RUFIJI CAPITAL SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500FUWSKQEO5J7H72",
-   "row_key": "a5bd97f033055d8f",
-   "row_hash": "a3ad4e5d6dee39bd",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "f2f5cca240d45e4c",
-   "entity_name": "KEYROCK FR SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845001BAFC53ODN8C90",
-   "row_key": "67a4174fb446b406",
-   "row_hash": "e5331f00152f812f",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "8cec8c87167bc76a",
-   "entity_name": "Bpifrance Investissement",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "96950082Z6KUVA6TW686",
-   "row_key": "ff977489f8f84a5e",
-   "row_hash": "a93053e9bb4c14a4",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "953dfda659db0863",
-   "entity_name": "RCUBE ASSET MANAGEMENT",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900X4PRL0DZNPT990",
-   "row_key": "6b1a009c6428192d",
-   "row_hash": "01fe04cf575b3aa1",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "36e1da1a357c354e",
-   "entity_name": "PAYMIUM SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500D241WXU9J7MI33",
-   "row_key": "a056a37852d9e72c",
-   "row_hash": "2e60eee7ffbc91c2",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "814a7683089088fc",
-   "entity_name": "LEONOD SARL",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500O878F3MGJCYV50",
-   "row_key": "8eb5ba9c68353a3d",
-   "row_hash": "1825d38aaa0d1f66",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "149ea249c379742a",
-   "entity_name": "MERIA SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500UJSWU20FEXQ504",
-   "row_key": "7c86ea6ef46ebef8",
-   "row_hash": "288e03f99b8e460a",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "c845f9446f140185",
-   "entity_name": "ALPHACAP DIGITAL ASSETS SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500ULPB59U51BG334",
-   "row_key": "064426be2c6ad98a",
-   "row_hash": "e845ac1be89aa0cd",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "1994376ef3c38872",
-   "entity_name": "FLOWDESK EUROPE SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500AB011S3AEF6706",
-   "row_key": "89af1dd1eb654274",
-   "row_hash": "78429bbe1bdc9aab",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "82e384db0edce39c",
-   "entity_name": "APLO SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500YKHZ31GZ7AAU02",
-   "row_key": "164a3b6957f8d2c5",
-   "row_hash": "443f5e462ab4fc34",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "3328fa5a3921c7b1",
-   "entity_name": "ICEBLOCK SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9695005CVRZDK63ZST85",
-   "row_key": "b918dbd1b65b8203",
-   "row_hash": "f0ffb679e45a044d",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "86a4a2ad8e1f43b5",
-   "entity_name": "MEREAU FINANCE SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500USEY22T9ZZRQ98",
-   "row_key": "1337881782db9dda",
-   "row_hash": "02f07230ee802473",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "8e7f61d20893f5d6",
-   "entity_name": "FINARY SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500RQH18PU24DM081",
-   "row_key": "50d6d3745d7a5473",
-   "row_hash": "095f5c97a49318e4",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "d215da02405a3f42",
-   "entity_name": "WOORTON SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "213800RF9FDNJ92AE175",
-   "row_key": "4c14e34408f10916",
-   "row_hash": "6273bce4de4169b1",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "b0e77ba733a62e12",
-   "entity_name": "BLOCKCHAIN PROCESS SECURITY (B.P.S.) SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9695000VFDEG5Z4JIY48",
-   "row_key": "1bfef60d25ce07e1",
-   "row_hash": "3f9c2b5d04f6d970",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "6eb5dbf6af8b77ee",
-   "entity_name": "SHARES FINANCIAL ASSETS SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9695001LQMTTVPIIQI05",
-   "row_key": "c9312fa2eb02dace",
-   "row_hash": "20cbd332ea6beb6b",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "f66f8e3810a9b912",
-   "entity_name": "REGULAR FINANCE SAS",
-   "member_state": "FR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500Y5SNO2WBYDB059",
-   "row_key": "18f2ab9dfa191515",
-   "row_hash": "364989e23597caec",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "added",
-   "entry_id": "8b4814905d4c5e0d",
-   "entity_name": "BCASH SOCIETE ANONYME",
-   "member_state": "GR",
-   "wp_url": "",
-   "detail": "",
-   "record_version": 2,
-   "lei": "984500C5A9YK55041179",
-   "row_key": "b0a63e69e7ebc70c",
-   "row_hash": "2a188c62f884363d",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "added",
-   "entry_id": "097ded6b40746240",
-   "entity_name": "XENIOS BLOCKCHAIN GROUP S.A.",
-   "member_state": "GR",
-   "wp_url": "",
-   "detail": "",
-   "record_version": 2,
-   "lei": "2138009N1SHZPPM84705",
-   "row_key": "4996aa1daafefc32",
-   "row_hash": "8a231591175a5e3a",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "added",
-   "entry_id": "2fb4375c27adcb0a",
-   "entity_name": "CAPITAL WALLET GREECE S.A.",
-   "member_state": "GR",
-   "wp_url": "",
-   "detail": "",
-   "record_version": 2,
-   "lei": "213800VHQNZ72RU8CW51",
-   "row_key": "953d54d387877c9a",
-   "row_hash": "a14f2efa84e6878e",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "fbb4be7062475633",
-   "entity_name": "PIRAEUS BANK Société Anonyme (S.A.)",
-   "member_state": "GR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "213800OYHR1MPQ5VJL60",
-   "row_key": "588ce4e0dcf86719",
-   "row_hash": "1ba1afc5c964ab45",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "560a3f30cc0cad86",
-   "entity_name": "ELECTROCOIN Ltd for services",
-   "member_state": "HR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "747800R015JVW1T4WZ71",
-   "row_key": "30110a979db6b8a3",
-   "row_hash": "66f229261c1f55d0",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "2ce648d684f3f04e",
-   "entity_name": "WHITE TECH Limited liability company for services",
-   "member_state": "HR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900S52YR70F0BK713",
-   "row_key": "c214c2f118965064",
-   "row_hash": "1714352489cd7fcb",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "52cdb8a539437884",
-   "entity_name": "DIGITAL ASSETS Limited liability company for intermediation and services",
-   "member_state": "HR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500NB7D12BC5B4A79",
-   "row_key": "1886466085e574f4",
-   "row_hash": "056abd9746074af1",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "e0016244b21ee0b8",
-   "entity_name": "Bitblock Ltd. for Services",
-   "member_state": "HR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845006A6CAABE4C0347",
-   "row_key": "6a9b444b11caea76",
-   "row_hash": "6a97026eb0789401",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "c275deb915f05b97",
-   "entity_name": "IN KAPITAL limited liability company for trade and services",
-   "member_state": "HR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "747800O0P6DFI8RSKT10",
-   "row_key": "ce7ce2d88a7442b9",
-   "row_hash": "08e920012cc98b44",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "21a510f9c1b328a7",
-   "entity_name": "Hrvatska poštanska banka d.d.",
-   "member_state": "HR",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900D5G4V6THXC5P79",
-   "row_key": "45e9f1dda5c338e4",
-   "row_hash": "fffea0243f4973c7",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "edc475c790f94ecb",
-   "entity_name": "Payward Global Solutions Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845003D98SCC2851458",
-   "row_key": "5586e6a30fc1b097",
-   "row_hash": "3a867c2510b77ded",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "d904c21755d6e97f",
-   "entity_name": "Payward Europe Solutions Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900641D8KNHUZYX24",
-   "row_key": "6ea9862849b009f8",
-   "row_hash": "6f118bc33baa2417",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "3a8e3455ba2df6a4",
-   "entity_name": "Legend Financial Ireland Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845007FA1A8E1DE3989",
-   "row_key": "c8ad89ee9e718298",
-   "row_hash": "d5cbc6c4212cc02e",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "b0a7989fa144c8ce",
-   "entity_name": "Push Virtual Assets Ireland Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "635400NEDOJDEJEQZQ77",
-   "row_key": "a4e4d5fb8ddfb3a1",
-   "row_hash": "42e26b80fbbbf7e7",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "9e5f327427ea8507",
-   "entity_name": "Ramp Swaps (Ireland) Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "89450036UW3ID72T1M84.",
-   "row_key": "f869f3d911074aa7",
-   "row_hash": "bbf3b0abe87863a0",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "fd204ba73f64e58b",
-   "entity_name": "Paysafe Payment Solutions Limited.",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "213800QBQVHWRBHJTA89",
-   "row_key": "1bbde12e26c58712",
-   "row_hash": "e4d88e50c7b53b7d",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "2991bc8e78cabc97",
-   "entity_name": "CoinJar Europe Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "98450066Q3A1G1A4T786",
-   "row_key": "7fdbe423539847c1",
-   "row_hash": "3a7cf7bd65e9562e",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "b8c12caa31510047",
-   "entity_name": "Confirmo Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500F75CJ82D8B7D76",
-   "row_key": "f8e6c5039d2fce09",
-   "row_hash": "3f838141903aa12f",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "8465f37946b42bef",
-   "entity_name": "Pionew Ireland Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500FD0NZ8949F4363",
-   "row_key": "6231bef4b2508329",
-   "row_hash": "680096a9fbea9add",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "cfe841eef94bc472",
-   "entity_name": "StoneX Digital International Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "98450043FB90T6REA408",
-   "row_key": "703afd23acd27e2d",
-   "row_hash": "4fcd40e5c963b492",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "e9e556397e410335",
-   "entity_name": "Interactive Brokers Ireland Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "5493001B9LDFCQUY9273",
-   "row_key": "5b2094c181d4c577",
-   "row_hash": "b430b808e8a64565",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "2980a54fa81e7166",
-   "entity_name": "Virtu Financial Ireland Limited",
-   "member_state": "IE",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "549300XG5LFGN1IGYC71",
-   "row_key": "e11e3cd85fddc68e",
-   "row_hash": "0d7eba0ef4f6098e",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "fc2c41425e40d336",
-   "entity_name": "Myntkaup ehf.",
-   "member_state": "IS",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "636700BAJ82J2GWSP231",
-   "row_key": "21b887bc6467aab8",
-   "row_hash": "d508da11031ab69a",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "09bbb0760791adfd",
-   "entity_name": "CHECKSIG S.R.L. SOCIETÀ BENEFIT",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "8156006C715AAACC5D19",
-   "row_key": "09bbb0760791adfd",
-   "row_hash": "122259dee075f586",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "150c5d80ecd39a3c",
-   "entity_name": "OLLIV ITALIA S.R.L.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "81560042B094A85D8F89",
-   "row_key": "150c5d80ecd39a3c",
-   "row_hash": "8480decdf013eceb",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "9f30466be64fc5a6",
-   "entity_name": "RIV-DIGITAL S.R.L.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "815600DCB0E8882D2314",
-   "row_key": "9f30466be64fc5a6",
-   "row_hash": "5e513c87f18cc865",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "11d8813d80099d5f",
-   "entity_name": "CONIO S.R.L.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "8945000EH59XYZHK0B92",
-   "row_key": "11d8813d80099d5f",
-   "row_hash": "26dda1ece7233913",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "e33bcbf11018b334",
-   "entity_name": "BANCA SELLA",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "549300I7OIUB41P86L19",
-   "row_key": "e33bcbf11018b334",
-   "row_hash": "70228e7f58fbd171",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "ec92c9047f50d05d",
-   "entity_name": "CRYPTOSMART S.P.A.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "815600C7E86B02BBE483",
-   "row_key": "ec92c9047f50d05d",
-   "row_hash": "7c507a3cab4fd760",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "48dbd5e38c4f0234",
-   "entity_name": "YOUNG PLATFORM S.P.A.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "815600F1E30AAB016171",
-   "row_key": "48dbd5e38c4f0234",
-   "row_hash": "952b991780993403",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "50003424b0d5a533",
-   "entity_name": "HODLIE S.R.L.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845006D4F5D2E5F8554",
-   "row_key": "50003424b0d5a533",
-   "row_hash": "101042e6928ff81d",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "c1dc270103fc267b",
-   "entity_name": "HERCLE S.R.L.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500AEBA8A0HQ44988",
-   "row_key": "c1dc270103fc267b",
-   "row_hash": "8d291b13196a3222",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "added",
-   "entry_id": "691739bdb4277999",
-   "entity_name": "YOUHODLER ITALY S.R.L.",
-   "member_state": "IT",
-   "wp_url": "",
-   "detail": "",
-   "record_version": 2,
-   "lei": "894500I5LYET12OFII30",
-   "row_key": "691739bdb4277999",
-   "row_hash": "cb2745c4eadb2d36",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "792dd5fac735eebc",
-   "entity_name": "ZEUS Anstalt für Vermögensverwaltung",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900QH6TWSXWH0XM44",
-   "row_key": "c8bcec12f392b14a",
-   "row_hash": "5aeb2db571965df4",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "9d33cd5faaca6c64",
-   "entity_name": "LGT Bank AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "7KDSOB6Z0X4S67TMX170",
-   "row_key": "094be5b514653c5c",
-   "row_hash": "8cbb22c3feedefe8",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "a1f776d6e3afb9c0",
-   "entity_name": "Bank Frick AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900RQOBT3ZJMDRK43",
-   "row_key": "636598020449b5b8",
-   "row_hash": "55caa9a9aeb377e6",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "115ced61e4533515",
-   "entity_name": "Wyden Capital AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "391200DN4V2D0IBP3S36",
-   "row_key": "a4fa200f55d414de",
-   "row_hash": "66a4ae3429f6403a",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "e935a7c61e651307",
-   "entity_name": "Celsion Bank AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900QHHMJYY9QSAC33",
-   "row_key": "da5b0113e1270d18",
-   "row_hash": "3615b0c1b6c4ac00",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "007e9da2a38106c8",
-   "entity_name": "RULEMATCH Europe AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900PEBGKH34UTD845",
-   "row_key": "1ba16b494a412689",
-   "row_hash": "759e631d21bb5e72",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "cb48eb54bd7d55e8",
-   "entity_name": "Floin AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "391200Z1YA45VPMIGP98",
-   "row_key": "8abc95d04995769c",
-   "row_hash": "9b9800feba4a1d46",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "b20b12f7f16387e4",
-   "entity_name": "Bitcoin Suisse (Europe) AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "5067009TZLDD94Q3W662",
-   "row_key": "3f9d9ac5e95989c7",
-   "row_hash": "edf5f39241793dbc",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "59a8059ffc9d0882",
-   "entity_name": "Sygnum Europe AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "506700NPCDRP5LN89R92",
-   "row_key": "21960967f655a0f3",
-   "row_hash": "d36a2000351147a6",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "6ff626ced0884b28",
-   "entity_name": "SMART VALOR AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900S56908SP1E8O53",
-   "row_key": "29eb6506003d456f",
-   "row_hash": "4112127831e6ddbc",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "2f28e88aa52a782d",
-   "entity_name": "Kaiser Partner Privatbank AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900DPOQPLDSF3R482",
-   "row_key": "3e286253260497a8",
-   "row_hash": "8917835256df99d5",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "1432f49a0d2f2d95",
-   "entity_name": "Paymonade AG",
-   "member_state": "LI",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "529900AAZRC5LYVR7134",
-   "row_key": "1bd85b577eb0e826",
-   "row_hash": "5e1bcaa423b6f363",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "49152afec6e5fe49",
-   "entity_name": "Robinhood Europe UAB",
-   "member_state": "LT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900GTP4UXQO1UMI36",
-   "row_key": "f8ca766ad214cd9e",
-   "row_hash": "0fe3a6065afbc981",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "19023d73f3e06d6a",
-   "entity_name": "UAB Decentralized",
-   "member_state": "LT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "6488907MV9XAA08E4E40",
-   "row_key": "027004bc832364e0",
-   "row_hash": "2835fb2ddd99b029",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "4c6eb5d09ec0a5df",
-   "entity_name": "Nuvei Liquidity UAB",
-   "member_state": "LT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "894500IY99QLL9M0SR28",
-   "row_key": "4cdfd118ebfaa885",
-   "row_hash": "d7b5685864d9dc3f",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "fa7cc7ff437fa823",
-   "entity_name": "UAB Micar assets",
-   "member_state": "LT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "894500R6HJP62BZX4M89",
-   "row_key": "6227dfaeb4a0b1d5",
-   "row_hash": "1bf449f9e4647f4d",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "db8987d0a6cfce76",
-   "entity_name": "Newrails, UAB",
-   "member_state": "LT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "875500ONK4E5XGIP7O24",
-   "row_key": "d7a3756cdd7f25e2",
-   "row_hash": "d11121833f06559b",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "a9161f937b66d2e3",
-   "entity_name": "UAB BLUE EMI LT",
-   "member_state": "LT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900XFMACGD0L7AI73",
-   "row_key": "a314ec555b031503",
-   "row_hash": "a95209f4826bb257",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "3fcdeaacc29fffa4",
-   "entity_name": "Clearstream Banking S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "549300OL514RA0SXJJ44",
-   "row_key": "8fe835f6ebc08453",
-   "row_hash": "591053473c1b84b3",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "4acef58332d94120",
-   "entity_name": "Bitstamp Europe S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "549300XIBGTJ0PLIEO72",
-   "row_key": "5d2bc28fbd27036f",
-   "row_hash": "c10d616e35b77619",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "cf3ca883497d7bf0",
-   "entity_name": "Coinbase Luxembourg S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500F14CA4571AAC11",
-   "row_key": "ac9d724818f9f1e4",
-   "row_hash": "277c02d1dc30b8c8",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "da32c8c649361c4f",
-   "entity_name": "Zodia Custody (Europe) S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "213800K35A9YPYDQKB81",
-   "row_key": "8e37255c63d3f4d1",
-   "row_hash": "644acb01f8e4020e",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "9b7827a83476f965",
-   "entity_name": "Banking Circle S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "213800W1NGBLERUS6M39",
-   "row_key": "4548db6542feeff7",
-   "row_hash": "e34db34d08f1d369",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "78771154637939d8",
-   "entity_name": "Swissquote Bank Europe SA",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "549300M2IHOB9P5WE714",
-   "row_key": "bb5477184943a46c",
-   "row_hash": "772593bb049cdb88",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "fb6de6c924a8475b",
-   "entity_name": "B2C2 Europe Sarl",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "969500OA6NVZB5BXAB29",
-   "row_key": "8d18c92d516ca267",
-   "row_hash": "d372bc2b892c21ff",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "24c29304c601230a",
-   "entity_name": "STOKR S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500BA521C5EMR1D63",
-   "row_key": "8dd67cc241d09590",
-   "row_hash": "4e150160beffbab8",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "b97a0278e2bb589a",
-   "entity_name": "Standard Chartered Luxembourg S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "213800HAR45C9K18O294",
-   "row_key": "0b385b7f85d917e4",
-   "row_hash": "c02a5194cde4ca5f",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "251397d0e476f1f1",
-   "entity_name": "bitFlyer EUROPE S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500D4465EFA89EF38",
-   "row_key": "c075a80a59849c9e",
-   "row_hash": "ea5de039ac927916",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "3867b5a21e2c778e",
-   "entity_name": "Bridge Building S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900MVWQXMF77YZP65",
-   "row_key": "047227b3ae641893",
-   "row_hash": "e06e3a7abb991cf8",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "418cdc64b4198d28",
-   "entity_name": "CPS Europe S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500CFB88366E9B834",
-   "row_key": "dd0631be3fa64935",
-   "row_hash": "9607a1d15dee4728",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "ad01a9b70cd8de80",
-   "entity_name": "Ripple Payments Europe S.A.",
-   "member_state": "LU",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "2549000KEHDV2LWRRZ45",
-   "row_key": "4705593c6c3a75b3",
-   "row_hash": "c17d4d8093750615",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "8a4c04fc44c623e0",
-   "entity_name": "BlockBen SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900BBV7FA7LUG5913",
-   "row_key": "e6929000f5c91887",
-   "row_hash": "4cbbcf053d1490fc",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "6266a674698f7690",
-   "entity_name": "Nexdesk SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "894500ISUYBQF9I7BE66",
-   "row_key": "6c6a6fe52931ebb3",
-   "row_hash": "323710c44a0057d6",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "4f56ceb6c33ab8c6",
-   "entity_name": "SIA \"Paybis Europe\"",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "259400LUESNGU5XM2J49",
-   "row_key": "d35d3b5ceabc3bd6",
-   "row_hash": "4b1c5da43c1c03f3",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "820c67101e1a8b64",
-   "entity_name": "Neverless SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845008O5EQ5A4B63R72",
-   "row_key": "e320c941d431f803",
-   "row_hash": "f79e690cb47cb643",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "f0d2cec8507a2807",
-   "entity_name": "\"Trek Technologies\" SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "6488C2PNI17093U2YA18",
-   "row_key": "93cad5da7e0f1a7e",
-   "row_hash": "2b3e96176423aeab",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "845219fc99789220",
-   "entity_name": "AS TWINO Investments",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500856AF4DF5FAT57",
-   "row_key": "e7e5d9b9746892cb",
-   "row_hash": "431c3776bc8ed41a",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "209c9272d805cc6b",
-   "entity_name": "SIA AlphaRoute",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "259400JCJJ78A4ZCXP93",
-   "row_key": "5674f425e129be34",
-   "row_hash": "97184465e91cb58d",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "5cfed2459cb077f8",
-   "entity_name": "Hodleris SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "648812ZREA1B126B8G06",
-   "row_key": "75aaacd5bd5a9850",
-   "row_hash": "7aa3ef350b9c261e",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "70b0f65ff073f81c",
-   "entity_name": "Bleap SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "2549005P20R5UTQWNB80",
-   "row_key": "2ae767bedd66392d",
-   "row_hash": "5896a16f5abd5229",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "c9a2411830993538",
-   "entity_name": "Nodu Digital, SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "98450065E59FDCD93R40",
-   "row_key": "931e6aebd46ee86c",
-   "row_hash": "e8273b267fa622a4",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "70c994d6d673a5e5",
-   "entity_name": "Atrya Technologies SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "648800CZ0UN5M4WVZ402",
-   "row_key": "314a292824a6e33f",
-   "row_hash": "3096748b4ffe19bf",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "87bdef0dca2d2a3b",
-   "entity_name": "Noah LV SIA",
-   "member_state": "LV",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500F4C47H19274320",
-   "row_key": "018835c681a81a72",
-   "row_hash": "0015f767ac822ce2",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "dc684a3feb00963b",
-   "entity_name": "OKX Europe Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "54930069NLWEIGLHXU42",
-   "row_key": "58f240f39b311a3c",
-   "row_hash": "c2c7511388e931f2",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "0356269054981ea9",
-   "entity_name": "BP23 CA Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500DEID7B03J77118",
-   "row_key": "3abbde2d688e3dbf",
-   "row_hash": "37b30812475dd355",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "0e7bf24faebad19f",
-   "entity_name": "Foris DAX MT Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "2549005CVR5HH70FDO07",
-   "row_key": "8d2150227b395d0b",
-   "row_hash": "467356f7db584651",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "ddd0604b2d124628",
-   "entity_name": "Zillion Bits Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900FESD7AF56FOQ37",
-   "row_key": "eb1e957cc9105129",
-   "row_hash": "1c2c9e752af3732c",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "bef86e8b3aabdaa6",
-   "entity_name": "Altarius Asset Management Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "5299000X84JRI8MS7D35",
-   "row_key": "c45d84fd18f5461e",
-   "row_hash": "52ac03e413397f64",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "f6e73e0a2084ae12",
-   "entity_name": "Gemini Intergalactic EU Ltd",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "2138002QAMX8PPKSO715",
-   "row_key": "d6a391d1ad5c85d3",
-   "row_hash": "bbb6e16402bd8419",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "6da18e45e8e5bf4d",
-   "entity_name": "Socios Europe Services Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500EBA2E9980CDD80",
-   "row_key": "39db34bd7e64b149",
-   "row_hash": "2076796bec9a953b",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "7023fa485a727b08",
-   "entity_name": "Gate Technology Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500D6A0F945BB5A15",
-   "row_key": "23641f38e0f3404d",
-   "row_hash": "a0111e93ddcf8e90",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "c4a7b55756e029ef",
-   "entity_name": "Blockchain.com Operations (Malta) Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "254900GDCT8070R2VV26",
-   "row_key": "cc4e9c34e84b91c2",
-   "row_hash": "aaa71a8cf2da07af",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "1caa38b570cb6d74",
-   "entity_name": "Payhound Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845001DD90AF543DC90",
-   "row_key": "280394b2f86ae4ed",
-   "row_hash": "165cae1679664690",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "f57dc57b276da080",
-   "entity_name": "Damex Digital LTD",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "9845008E8QA4CCFE5F68",
-   "row_key": "598fcb55a77e9cef",
-   "row_hash": "3693f336baec24fd",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "2b4f2117fd6cae06",
-   "entity_name": "System Pay Services (Malta) Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "984500640Z8ADE893D04",
-   "row_key": "0cad83bf8a340c0c",
-   "row_hash": "2b78ba74c360bafa",
-   "subtypes": [],
-   "changed_fields": []
-  },
-  {
-   "snapshot_date": "2026-10-19",
-   "register_slug": "casps",
-   "change": "changed",
-   "entry_id": "ec181aca5aae0bab",
-   "entity_name": "Calamatta Cuschieri Investment Services Limited",
-   "member_state": "MT",
-   "wp_url": "",
-   "detail": "register row content changed",
-   "record_version": 2,
-   "lei": "391200EKTIW0OR813R66",
-   "row_key": "38e7589df7337e1a",
-   "row_hash": "d5f23d28bf3623c2",
-   "subtypes": [],
-   "changed_fields": []
-  },
   {
    "snapshot_date": "2026-10-19",
    "register_slug": "casps",
@@ -3251,6 +1139,3064 @@
    "lei": "",
    "row_key": "7b88da927b63332c",
    "row_hash": "a57777ed258f2957",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "3d50d243d2bd1f01",
+   "entity_name": "SC STEELCOIN GmbH",
+   "member_state": "AT",
+   "wp_url": "https://steelcoin.com/",
+   "detail": "register row content changed (ae_DTI, wp_lastupdate)",
+   "record_version": 2,
+   "lei": "529900OX94239BUDFN51",
+   "row_key": "750d0d871316058c",
+   "row_hash": "2dad8fa1c069d05d",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ae_DTI",
+     "old": "",
+     "new": "XBL17BS2C"
+    },
+    {
+     "field": "wp_lastupdate",
+     "old": "27/06/2025",
+     "new": "20/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "0de43159d5886697",
+   "entity_name": "Biogena GmbH & Co KG",
+   "member_state": "AT",
+   "wp_url": "www.biogena.com/biox",
+   "detail": "register row content changed (wp_lastupdate)",
+   "record_version": 2,
+   "lei": "52990050KC7YUM8VD941",
+   "row_key": "89aaf6c6d74d10fc",
+   "row_hash": "7b4e8ca8cb59290d",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "wp_lastupdate",
+     "old": "09/06/2026",
+     "new": "27/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "d88a123dbb827260",
+   "entity_name": "Planck Network ($PLANCK)",
+   "member_state": "CY",
+   "wp_url": "https://plancknetwork.com/whitepaper.pdf",
+   "detail": "register row content changed (ae_homeMemberState)",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "e56dc1ab346cf5b5",
+   "row_hash": "6ac54be17b8f90a9",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_homeMemberState",
+     "old": "CYPRUS",
+     "new": "CY"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "a737920239ed872a",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://white-paper.crypto-risk-metrics.com/en/spx6900-ffg-v9fvrlgkc/index.html",
+   "detail": "",
+   "record_version": 2,
+   "lei": "39120077M9TG0O1FE242",
+   "row_key": "8fb656fffbd68776",
+   "row_hash": "bbc9c17c78a35e2d",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "be69e78141d841f7",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://white-paper.crypto-risk-metrics.com/en/noice-ffg-z53wmgjqx/index.html",
+   "detail": "",
+   "record_version": 2,
+   "lei": "39120077M9TG0O1FE242",
+   "row_key": "47c600ffce279ddd",
+   "row_hash": "e94e07cba7df2695",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "71680c56438c1a01",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://white-paper.crypto-risk-metrics.com/en/dolomite-ffg-g6qfn3z7f/index.html",
+   "detail": "",
+   "record_version": 2,
+   "lei": "39120077M9TG0O1FE242",
+   "row_key": "4162dd9abadf5d8d",
+   "row_hash": "4a7f0eaebc11b247",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "f1aa541e382f9fa1",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://white-paper.crypto-risk-metrics.com/en/worldcoin-ffg-bjd0tz8v1/index.html",
+   "detail": "",
+   "record_version": 2,
+   "lei": "39120077M9TG0O1FE242",
+   "row_key": "5083de92712ef69a",
+   "row_hash": "c84f7fb6609196e5",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "5f3214fc7554f505",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://white-paper.crypto-risk-metrics.com/en/pancakeswap-ffg-lz3v3z6fd/index.html",
+   "detail": "",
+   "record_version": 2,
+   "lei": "39120077M9TG0O1FE242",
+   "row_key": "0bf55a58c1ca6b0d",
+   "row_hash": "6ede32469f62b668",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "5bb44ff1df20b28f",
+   "entity_name": "TCG-VAULT",
+   "member_state": "FR",
+   "wp_url": "https://www.tcg-vault.io/livre-blanc-mica",
+   "detail": "register row content changed (ae_homeMemberState)",
+   "record_version": 2,
+   "lei": "969500KK0TSBYUUU4J76",
+   "row_key": "8fc565b945872a5d",
+   "row_hash": "ada8f17b1c554256",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_homeMemberState",
+     "old": "FRANCE",
+     "new": "FR"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "4af9152d096540df",
+   "entity_name": "AmericanFortress Ltd.",
+   "member_state": "LI",
+   "wp_url": "https://americanfortress.io/documents/AmericanFortress-MiCA-Whitepaper.pdf",
+   "detail": "",
+   "record_version": 2,
+   "lei": "254900W0QHPFGBDAT959",
+   "row_key": "40537534ccb9135f",
+   "row_hash": "f295ea1df699f01e",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "a5894d05c9b2e7a0",
+   "entity_name": "Bitstamp Europe S.A.",
+   "member_state": "LU",
+   "wp_url": "https://assets.bitstamp.net/docs/whitepaper/EIGEN_2026_10_21.xhtml",
+   "detail": "",
+   "record_version": 2,
+   "lei": "549300XIBGTJ0PLIEO72",
+   "row_key": "667f9c8966e596d7",
+   "row_hash": "afe94f5aa435c26e",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "be7a8b249da6722b",
+   "entity_name": "ProtoWardo Ltd",
+   "member_state": "NL",
+   "wp_url": "https://docs.wardenprotocol.org/ward/micar-whitepaper",
+   "detail": "register row content changed (ae_DTI, wp_lastupdate)",
+   "record_version": 2,
+   "lei": "984500477F9C991NE141",
+   "row_key": "0633f0bfd20bb97a",
+   "row_hash": "155b5e8c40f6cbdf",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ae_DTI",
+     "old": "J7D9BF035",
+     "new": "5QR6M2SF7"
+    },
+    {
+     "field": "wp_lastupdate",
+     "old": "12/06/2026",
+     "new": "19/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "1c9e4b978bec0694",
+   "entity_name": "Cetus Technology Limited",
+   "member_state": "NL",
+   "wp_url": "https://cetus.micarwhitepapers.eu",
+   "detail": "register row content changed (ae_lei_cou_code)",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "9d118c89e4e12d60",
+   "row_hash": "734a7fae9f7db36c",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_lei_cou_code",
+     "old": "",
+     "new": "VG"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "ebcb7b78f8877158",
+   "entity_name": "Derive Subsidiary (BVI) Ltd",
+   "member_state": "NL",
+   "wp_url": "https://derive.micarwhitepapers.eu",
+   "detail": "",
+   "record_version": 2,
+   "lei": "98450045BA9B5F0AF381",
+   "row_key": "19e800a9db5ae765",
+   "row_hash": "bcffa269be72f441",
+   "subtypes": [
+    "modification_noted"
+   ],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "ec34e69953e16fc6",
+   "entity_name": "Aeon 1731 LLC",
+   "member_state": "NL",
+   "wp_url": "https://chump.micarwhitepapers.eu",
+   "detail": "",
+   "record_version": 2,
+   "lei": "9845005DDBB049C1B949",
+   "row_key": "6f25a6d770276df6",
+   "row_hash": "7a8cf42628240cef",
+   "subtypes": [
+    "modification_noted"
+   ],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "39e78351ce1a7df5",
+   "entity_name": "Zebec Holdings",
+   "member_state": "NL",
+   "wp_url": "https://zebec.io/compliance",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "6051a81b5a7c15c5",
+   "row_hash": "aafc5fce8dccd2ff",
+   "subtypes": [
+    "modification_noted"
+   ],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "74245da5221c1194",
+   "entity_name": "Aggro Axe Ltd.",
+   "member_state": "NL",
+   "wp_url": "https://cambria.micarwhitepapers.eu",
+   "detail": "",
+   "record_version": 2,
+   "lei": "9845001C6AEDB1B56I20",
+   "row_key": "d8eaaa6a5b872868",
+   "row_hash": "f38ee3ccc0cdeadc",
+   "subtypes": [
+    "modification_noted"
+   ],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "96ef91dd5327b513",
+   "entity_name": "Saturn Holdings (BVI) Limited",
+   "member_state": "NL",
+   "wp_url": "https://whitepaper.saturn-holdings.com",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "416ffe61960dd310",
+   "row_hash": "6f02df1ca28d29db",
+   "subtypes": [
+    "modification_noted"
+   ],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "5fc6ee42e13e6ba1",
+   "entity_name": "Dog Planet AS",
+   "member_state": "NO",
+   "wp_url": "https://www.dogplanet.no/",
+   "detail": "register row content changed (wp_lastupdate)",
+   "record_version": 2,
+   "lei": "984500BB7F58F08AAE09",
+   "row_key": "898745e8d3643549",
+   "row_hash": "ac9d7f18b10f5aa8",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "wp_lastupdate",
+     "old": "",
+     "new": "31/07/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "c19b54913ea57fdc",
+   "entity_name": "PALM Token",
+   "member_state": "NO",
+   "wp_url": "http://www.palmeconomy.io",
+   "detail": "register row content changed (wp_lastupdate)",
+   "record_version": 2,
+   "lei": "984500DO9DFB6A524A59",
+   "row_key": "692a88f94c2fecd3",
+   "row_hash": "eeed0c00dc70dfc6",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "wp_lastupdate",
+     "old": "",
+     "new": "31/07/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "changed",
+   "entry_id": "b115e5390789b0d5",
+   "entity_name": "Aprikos Venture AS",
+   "member_state": "NO",
+   "wp_url": "https://venturetoken.io/",
+   "detail": "register row content changed (wp_lastupdate)",
+   "record_version": 2,
+   "lei": "254900214ET6113P0X94",
+   "row_key": "301758e56f38118b",
+   "row_hash": "065ee01d97d54d4f",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "wp_lastupdate",
+     "old": "",
+     "new": "31/07/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "added",
+   "entry_id": "f7abf93d01568813",
+   "entity_name": "Bright Signal Invest AS",
+   "member_state": "NO",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "79f99a0784a467e2",
+   "row_hash": "c62be4256e961751",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "removed",
+   "entry_id": "2f6ed0fbb8e18384",
+   "entity_name": "Abloxx Token Ltd.",
+   "member_state": "CY",
+   "wp_url": "https://abloxx.com/en/details",
+   "detail": "not in two consecutive exports (missing since 2026-10-19)",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "",
+   "row_hash": "9366aa3905843611",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "removed",
+   "entry_id": "60976751e9e6b271",
+   "entity_name": "Falu Brick Commerce Limited",
+   "member_state": "CY",
+   "wp_url": "https://xyo.network/papers/mica-white-paper",
+   "detail": "not in two consecutive exports (missing since 2026-10-19)",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "",
+   "row_hash": "e93d42fbc561f03d",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "other-wp",
+   "change": "removed",
+   "entry_id": "aecf68c2e18c51f9",
+   "entity_name": "Crypto Risk Metrics GmbH",
+   "member_state": "DE",
+   "wp_url": "https://crypto-risk-metrics.com/en/white-paper-bankrcoin-ffg-6xspzjjtx/",
+   "detail": "not in two consecutive exports (missing since 2026-10-19)",
+   "record_version": 2,
+   "lei": "39120077M9TG0O1FE242",
+   "row_key": "",
+   "row_hash": "30a3ae44efb8e162",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "emt-wp",
+   "change": "changed",
+   "entry_id": "abb8312ec0ead50f",
+   "entity_name": "BISON BANK, S.A.",
+   "member_state": "PT",
+   "wp_url": "https://bisonbank.com/wp-content/uploads/2026/04/Bison-Bank-EUB-White-Paper_20260312-1.pdf",
+   "detail": "register row content changed (ae_DTI_FFG, ae_DTI, wp_lastupdate)",
+   "record_version": 2,
+   "lei": "549300V4H4USWZUCE073",
+   "row_key": "0a188a0a050f7282",
+   "row_hash": "a2c42948289776ae",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ae_DTI_FFG",
+     "old": "",
+     "new": "JQNWG6VL5"
+    },
+    {
+     "field": "ae_DTI",
+     "old": "",
+     "new": "H5MHNTQW9"
+    },
+    {
+     "field": "wp_lastupdate",
+     "old": "12/03/2026",
+     "new": "21/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "emt-wp",
+   "change": "changed",
+   "entry_id": "2aad1ad8910e6d40",
+   "entity_name": "BISON BANK, S.A.",
+   "member_state": "PT",
+   "wp_url": "https://bisonbank.com/wp-content/uploads/2026/04/Bison-Bank-USB-White-Paper_20260312-1.pdf",
+   "detail": "register row content changed (ae_DTI_FFG, ae_DTI, wp_lastupdate)",
+   "record_version": 2,
+   "lei": "549300V4H4USWZUCE073",
+   "row_key": "573b650cec4bbd64",
+   "row_hash": "b36b21c1ff99b57f",
+   "subtypes": [
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ae_DTI_FFG",
+     "old": "",
+     "new": "5HSDQW767"
+    },
+    {
+     "field": "ae_DTI",
+     "old": "",
+     "new": "F6CCFFX18"
+    },
+    {
+     "field": "wp_lastupdate",
+     "old": "12/03/2026",
+     "new": "21/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "a15becf82cf7729e",
+   "entity_name": "AMINA (Austria) AG",
+   "member_state": "AT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_serviceCode_cou, ac_lastupdate)",
+   "record_version": 2,
+   "lei": "5299005I4LYIFW7GKB54",
+   "row_key": "072213de1bb2c9a3",
+   "row_hash": "5a1211daf4638a33",
+   "subtypes": [
+    "service_countries_added",
+    "service_countries_removed",
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_serviceCode_cou",
+     "old": "AT|DK|DE|EE|FR|IE|IT|LU|MT|NL|PL|PT|ES|LI|BE|BG|FI|GR|HR|LV|LT|CY|RO|SE|SK|SL|CZ|HU|IS|NO",
+     "new": "AT|DK|DE|EE|FR|IE|IT|LU|MT|NL|PL|PT|ES|LI|BE|BG|FI|GR|HR|LV|LT|CY|RO|SE|SK|SI|CZ|HU|IS|NO"
+    },
+    {
+     "field": "ac_lastupdate",
+     "old": "28/05/2026",
+     "new": "23/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "b37c84d48ccb4f34",
+   "entity_name": "FIOR Digital GmbH",
+   "member_state": "AT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_serviceCode_cou, ac_lastupdate)",
+   "record_version": 2,
+   "lei": "529900HMYYJR2NHVZ124",
+   "row_key": "e9b56dd8bce3b332",
+   "row_hash": "3fc16c70267182ec",
+   "subtypes": [
+    "service_countries_added",
+    "service_countries_removed",
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_serviceCode_cou",
+     "old": "AT|BE|BG|CY|CZ|DE|DK|EE|ES|FI|FR|GR|HR|HU|IE|IS|IT|LI|LT|LU|LV|MT|NL|NO|PL|PT|RO|SE|SL|SK",
+     "new": "AT|BE|BG|CY|CZ|DE|DK|EE|ES|FI|FR|GR|HR|HU|IE|IS|IT|LI|LT|LU|LV|MT|NL|NO|PL|PT|RO|SE|SI|SK"
+    },
+    {
+     "field": "ac_lastupdate",
+     "old": "27/11/2025",
+     "new": "23/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "ebc7661487f81fec",
+   "entity_name": "MEGE zweite GmbH",
+   "member_state": "AT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_serviceCode_cou, ac_lastupdate)",
+   "record_version": 2,
+   "lei": "984500G149054BADD925",
+   "row_key": "5575e8fb173a5993",
+   "row_hash": "971098705966108a",
+   "subtypes": [
+    "service_countries_added",
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_serviceCode_cou",
+     "old": "AT|BE|BG|CY|CZ|DE|DK|EE|FI|FR|GR|HR|HU|IE|IS|IT|LI|LT|LU|LV|NL|NO|PL|PT|RO|SE|SI|SK",
+     "new": "AT|BE|BG|CY|CZ|DE|DK|EE|ES|FI|FR|GR|HR|HU|IE|IS|IT|LI|LT|LU|LV|NL|NO|PL|PT|RO|SE|SI|SK"
+    },
+    {
+     "field": "ac_lastupdate",
+     "old": "14/10/2026",
+     "new": "23/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "546f887f06681de9",
+   "entity_name": "Deutsche Bank Aktiengesellschaft",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "register row content changed (ac_serviceCode_cou, ac_lastupdate)",
+   "record_version": 2,
+   "lei": "7LTWFZYICNSX8D621K86",
+   "row_key": "d754c0971b359074",
+   "row_hash": "74c61e68d673856b",
+   "subtypes": [
+    "service_countries_added",
+    "last_update_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_serviceCode_cou",
+     "old": "DE",
+     "new": "DE|AT|BE|BG|HR|CY|CZ|DK|EE|FI|FR|GR|HU|IE|IS|IT|LV|LI|LT|LU|MT|NL|NO|PL|PT|RO|SK|SI|ES|SE"
+    },
+    {
+     "field": "ac_lastupdate",
+     "old": "11/09/2026",
+     "new": "20/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "7db2856185fe50f1",
+   "entity_name": "KSW Vermögensverwaltung AG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "register row content changed (ac_serviceCode)",
+   "record_version": 2,
+   "lei": "5299007QRBQF1SF24853",
+   "row_key": "29983fa11842ee49",
+   "row_hash": "bc6cea21c7dbb6d6",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_serviceCode",
+     "old": "g. reception and transmission of orders for crypto-assets on behalf of clients\n\ni. providing portfolio management on crypto-assets",
+     "new": "g. reception and transmission of orders for crypto-assets on behalf of clients | i. providing portfolio management on crypto-assets"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "ef0820365b6e7ae1",
+   "entity_name": "Volksbank eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address)",
+   "record_version": 2,
+   "lei": "529900DCW7IO492RBC56",
+   "row_key": "1a009097cce49e5f",
+   "row_hash": "c2399b158bc4e8f5",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Kennedydamm 10\n31134 Hildesheim",
+     "new": "Kennedydamm 10, 31134 Hildesheim"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "5e2f219d45967392",
+   "entity_name": "VR Bank Lahn-Dill eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address)",
+   "record_version": 2,
+   "lei": "529900R1I4GVDN3WN882",
+   "row_key": "2b15deb6e1539853",
+   "row_hash": "505fed7213c8fb36",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Hauptstraße 65; 35683 Dillenburg",
+     "new": "Hauptstraße 65, 35683 Dillenburg"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "e7a57bd2fb78a6ce",
+   "entity_name": "Volksbank in der Region eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "5299006E6UGNN6YEPU72",
+   "row_key": "e7a5733a922a8ce9",
+   "row_hash": "beed948ffed49263",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "db14cd990b4f8ca5",
+   "entity_name": "Volksbank Mittlerer Neckar eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900HHCMGEXXJAGA76",
+   "row_key": "5b4e7d04576c0b63",
+   "row_hash": "fffa35bb473b2c6d",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "483b7a58150c0059",
+   "entity_name": "Sparda-Bank Baden-Württemberg eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "5299004HBAECUACNWN98",
+   "row_key": "a58b2372ba953987",
+   "row_hash": "ada6b9fc00e3e1a6",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "7e11f952e1c64392",
+   "entity_name": "Raiffeisenbank Eifel eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "5299007Y7UJE5QV9QD03",
+   "row_key": "fe7033836d66c23a",
+   "row_hash": "18cafd0801baa72f",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "c1c4384421dbf5c9",
+   "entity_name": "Volksbank Niederrhein eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900SH7SAVJN3TFQ06",
+   "row_key": "a3316fc8f128eebc",
+   "row_hash": "767dd7c57eb4e4eb",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "d9997fe4fe2d021e",
+   "entity_name": "Volksbank in Ostwestfalen eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900PUK9IU39VCWK54",
+   "row_key": "30e9f3b6ac9ad13c",
+   "row_hash": "41adafcd9c69e152",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "a72a520cb7af5e2d",
+   "entity_name": "Volksbank Oberberg eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900OSV01JOCMF4Z23",
+   "row_key": "0eb5a5ca6b587d5d",
+   "row_hash": "689bcbef31791305",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "97cabfecd1686a26",
+   "entity_name": "Volksbank in der Hohen Mark eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900NK7TIIGQEJ6L07",
+   "row_key": "1c4056c6457b1b3d",
+   "row_hash": "3cfcb8a83f53894c",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "997c9f93831d082e",
+   "entity_name": "Raiffeisen-Volksbank Ebersberg eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900V5E7HEA1LD8V54",
+   "row_key": "beb0b9a5e5474042",
+   "row_hash": "7be85aa1b77132bf",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "f083952366e739a7",
+   "entity_name": "Volksbank Raiffeisenbank Regensburg-Schwandorf eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "5299004D2UMCDTD9JG58",
+   "row_key": "ba0656195f1d769d",
+   "row_hash": "bb6f5474e7ca2c61",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "189e7217e6247df9",
+   "entity_name": "Raiffeisenbank Wittelsbacher Land eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900LF81A0TME61753",
+   "row_key": "c9db557ac836e8b1",
+   "row_hash": "a70f8b4324c0249d",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "86e04ac93015b45e",
+   "entity_name": "Raiffeisenbank Kirchweihtal eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900MNNP2L0BZKDM04",
+   "row_key": "0b3b25894b6e16e0",
+   "row_hash": "4c8e9a1d3f3147bf",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "added",
+   "entry_id": "d39c999d8e02c9a0",
+   "entity_name": "VR Bank Neuburg-Rain eG",
+   "member_state": "DE",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "529900IWU96YBZ2JG374",
+   "row_key": "b426a1dcd31a1d8b",
+   "row_hash": "c3e8f7cfca1c50f3",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "restored",
+   "entry_id": "00d6b8ecc4496f3e",
+   "entity_name": "Penning Financial Services ApS",
+   "member_state": "DK",
+   "wp_url": "",
+   "detail": "listed again after one export without it (missing on 2026-10-19)",
+   "record_version": 2,
+   "lei": "9845000E4A7414709361",
+   "row_key": "38e38829ef948709",
+   "row_hash": "57531d616c8bcdb6",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "7fa0a8c158e8c6ad",
+   "entity_name": "DEBLOCK SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "254900XTUI35BGIBXP21",
+   "row_key": "8c7842d2f2c27d11",
+   "row_hash": "18fd7e8419a3e948",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "bc63550344146be1",
+   "entity_name": "GOin SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "894500LM6DICD790FQ34",
+   "row_key": "413696ff53526c69",
+   "row_hash": "98dd97314e577f68",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "de1307aaca95ccf9",
+   "entity_name": "CACEIS BANK",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "96950023SCR9X9F3L662",
+   "row_key": "69706e19ff4335cb",
+   "row_hash": "092e0affba57fc64",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "4b2263c5d1318679",
+   "entity_name": "BITSTACK DIGITAL ASSETS SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "894500RKZ3TVTPIF7V84",
+   "row_key": "e56d0a1626ca9030",
+   "row_hash": "f3016af7f6987f66",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "1e5047b9d10bd82d",
+   "entity_name": "METAL GEAR SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500PQYLQG3CSJ5041",
+   "row_key": "ddc7b22425329968",
+   "row_hash": "40e51c2b910d3cb7",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "8d68d5679aa2bb13",
+   "entity_name": "COINSHARES ASSET MANAGEMENT",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500DBF3ZL9U0KUA51",
+   "row_key": "d41331b312c0dd9a",
+   "row_hash": "95ef944eabf843bc",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "e337105e45a23268",
+   "entity_name": "FINCTEK UE SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500PTJJZTCE0I3B60",
+   "row_key": "f94e00e79ae0f3cf",
+   "row_hash": "14b41e17fa6d5d91",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "b3d15ed546b8034a",
+   "entity_name": "RELAI EU SASU",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "9695003EKRFOMYXJQL11",
+   "row_key": "5ccc316b437122ae",
+   "row_hash": "26e4a198e3577286",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "3dcf755a0c3784fb",
+   "entity_name": "SOCIETE GENERALE - FORGE",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_serviceCode, ac_comments, ac_lastupdate)",
+   "record_version": 2,
+   "lei": "969500FX8K40ZDW4F377",
+   "row_key": "c86d7ebe44702de9",
+   "row_hash": "ee71859be31ec009",
+   "subtypes": [
+    "services_added",
+    "last_update_changed",
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_serviceCode",
+     "old": "a. providing custody and administration of crypto-assets on behalf of clients | j. providing transfer services for crypto-assets on behalf of clients",
+     "new": "a. providing custody and administration of crypto-assets on behalf of clients | e. execution of orders for crypto-assets on behalf of clients |  j. providing transfer services for crypto-assets on behalf of clients"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_lastupdate",
+     "old": "23/10/2025",
+     "new": "29/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "c6ee665cdfc39fdb",
+   "entity_name": "BANQUE DELUBAC ET CIE",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500A4IPKVUBH3CA90",
+   "row_key": "b77e06ed8a519f3d",
+   "row_hash": "803a766b2dce1857",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "bd7350fabced512b",
+   "entity_name": "COMETH SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "894500R5KSX3ZKIHSA46",
+   "row_key": "8b9991f6f37441a7",
+   "row_hash": "e8f6a3e5c32cb13b",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "80accb93d105863d",
+   "entity_name": "FIPTO PI SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500A0DYUNF5NX9R84",
+   "row_key": "bafe75fc21d29ba9",
+   "row_hash": "f54bfa9baf4fcc1b",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "ccd7aa9f3f4587d2",
+   "entity_name": "HEXARQ SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500TD4VXAOPXPVW02",
+   "row_key": "26e3840b8a4f3cf2",
+   "row_hash": "e7786186e367b8a7",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "3c3aa3111728d639",
+   "entity_name": "BLOCKNODES SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500PZJWT3TD1SUI59",
+   "row_key": "d83cc3d1031c758e",
+   "row_hash": "20f7b66e755278c7",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "9bc50c4d86fffd50",
+   "entity_name": "CIRCLE INTERNET FINANCIAL EUROPE SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500OYUDADGZKCR583",
+   "row_key": "f2a532b8ac37b6ba",
+   "row_hash": "7f29b0d25aaa7a41",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "4f3395bd2444f74d",
+   "entity_name": "DESKOIN SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500QH6WD4FO79B261",
+   "row_key": "aee02ff702c6066d",
+   "row_hash": "0c1525bf4a271168",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "50105d658a419cac",
+   "entity_name": "COINHOUSE SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500E5GFHK2RKF8251",
+   "row_key": "ae0028b4360c5075",
+   "row_hash": "f990fd1865d427ea",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "ef2bf608be9b3748",
+   "entity_name": "QWARKS SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500CMLNBIVUUD9A09",
+   "row_key": "95b3a68b6bdda310",
+   "row_hash": "90f444d2d518dac6",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "5390d3dca030b82f",
+   "entity_name": "PAYTOP SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500VA4A8CRCS2N988",
+   "row_key": "69aa29221976d096",
+   "row_hash": "28571a0065c489be",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "b6e82e890d6ff85b",
+   "entity_name": "RUFIJI CAPITAL SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500FUWSKQEO5J7H72",
+   "row_key": "a5bd97f033055d8f",
+   "row_hash": "48eeff0882f06166",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "f2f5cca240d45e4c",
+   "entity_name": "KEYROCK FR SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "9845001BAFC53ODN8C90",
+   "row_key": "67a4174fb446b406",
+   "row_hash": "c8bd6e22aef9e8c1",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "8cec8c87167bc76a",
+   "entity_name": "Bpifrance Investissement",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "96950082Z6KUVA6TW686",
+   "row_key": "ff977489f8f84a5e",
+   "row_hash": "bd55271d221bac0f",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "953dfda659db0863",
+   "entity_name": "RCUBE ASSET MANAGEMENT",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "529900X4PRL0DZNPT990",
+   "row_key": "6b1a009c6428192d",
+   "row_hash": "44f8eb894ed6d5c8",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "36e1da1a357c354e",
+   "entity_name": "PAYMIUM SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500D241WXU9J7MI33",
+   "row_key": "a056a37852d9e72c",
+   "row_hash": "8df6b6c0a3d66c4b",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "814a7683089088fc",
+   "entity_name": "LEONOD SARL",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500O878F3MGJCYV50",
+   "row_key": "8eb5ba9c68353a3d",
+   "row_hash": "9f121035737c8722",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "149ea249c379742a",
+   "entity_name": "MERIA SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500UJSWU20FEXQ504",
+   "row_key": "7c86ea6ef46ebef8",
+   "row_hash": "a7a09eacc87ab968",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "c845f9446f140185",
+   "entity_name": "ALPHACAP DIGITAL ASSETS SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500ULPB59U51BG334",
+   "row_key": "064426be2c6ad98a",
+   "row_hash": "39951838e52a6447",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "1994376ef3c38872",
+   "entity_name": "FLOWDESK EUROPE SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "984500AB011S3AEF6706",
+   "row_key": "89af1dd1eb654274",
+   "row_hash": "4eb37c5f52350381",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "82e384db0edce39c",
+   "entity_name": "APLO SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments, ac_lastupdate)",
+   "record_version": 2,
+   "lei": "969500YKHZ31GZ7AAU02",
+   "row_key": "164a3b6957f8d2c5",
+   "row_hash": "128a689ae60e02d0",
+   "subtypes": [
+    "last_update_changed",
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_lastupdate",
+     "old": "15/09/2026",
+     "new": "30/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "3328fa5a3921c7b1",
+   "entity_name": "ICEBLOCK SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_comments)",
+   "record_version": 2,
+   "lei": "9695005CVRZDK63ZST85",
+   "row_key": "b918dbd1b65b8203",
+   "row_hash": "1dc188a06eac9ab5",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "86a4a2ad8e1f43b5",
+   "entity_name": "MEREAU FINANCE SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500USEY22T9ZZRQ98",
+   "row_key": "1337881782db9dda",
+   "row_hash": "45835fa07aedddda",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "8e7f61d20893f5d6",
+   "entity_name": "FINARY SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500RQH18PU24DM081",
+   "row_key": "50d6d3745d7a5473",
+   "row_hash": "1c9e6ed2a94f4b35",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "d215da02405a3f42",
+   "entity_name": "WOORTON SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "213800RF9FDNJ92AE175",
+   "row_key": "4c14e34408f10916",
+   "row_hash": "828d835eb9e6aa63",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "b0e77ba733a62e12",
+   "entity_name": "BLOCKCHAIN PROCESS SECURITY (B.P.S.) SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "9695000VFDEG5Z4JIY48",
+   "row_key": "1bfef60d25ce07e1",
+   "row_hash": "4986745bdd8360a3",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "6eb5dbf6af8b77ee",
+   "entity_name": "SHARES FINANCIAL ASSETS SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "9695001LQMTTVPIIQI05",
+   "row_key": "c9312fa2eb02dace",
+   "row_hash": "1553bed5bba4c037",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "f66f8e3810a9b912",
+   "entity_name": "REGULAR FINANCE SAS",
+   "member_state": "FR",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationEndDate, ac_comments)",
+   "record_version": 2,
+   "lei": "969500Y5SNO2WBYDB059",
+   "row_key": "18f2ab9dfa191515",
+   "row_hash": "91c4e32337276b30",
+   "subtypes": [
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "0"
+    },
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "0"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "09bbb0760791adfd",
+   "entity_name": "CHECKSIG S.R.L. SOCIETÀ BENEFIT",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "8156006C715AAACC5D19",
+   "row_key": "8ed0ebf1cd3e5d00",
+   "row_hash": "d13a8658fe1f09d9",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "06-May",
+     "new": "06/05/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "150c5d80ecd39a3c",
+   "entity_name": "OLLIV ITALIA S.R.L.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "81560042B094A85D8F89",
+   "row_key": "5e9d741323a67c59",
+   "row_hash": "fdbc387f8b739f56",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "04-Jun",
+     "new": "04/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "9f30466be64fc5a6",
+   "entity_name": "RIV-DIGITAL S.R.L.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "815600DCB0E8882D2314",
+   "row_key": "70c1b2cbd67aafa1",
+   "row_hash": "e7c699a3d34895c7",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "10-Jun",
+     "new": "10/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "11d8813d80099d5f",
+   "entity_name": "CONIO S.R.L.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "8945000EH59XYZHK0B92",
+   "row_key": "26527ac5a6155c7d",
+   "row_hash": "c749605f927210a3",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "16-Jun",
+     "new": "16/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "e33bcbf11018b334",
+   "entity_name": "BANCA SELLA",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "549300I7OIUB41P86L19",
+   "row_key": "ac5783b8accdfdf5",
+   "row_hash": "04b79c3fea396383",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "27-Apr",
+     "new": "27/04/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "ec92c9047f50d05d",
+   "entity_name": "CRYPTOSMART S.P.A.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "815600C7E86B02BBE483",
+   "row_key": "35aacd2a611b5a5e",
+   "row_hash": "babb0e55198591f6",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "24-Jun",
+     "new": "24/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "48dbd5e38c4f0234",
+   "entity_name": "YOUNG PLATFORM S.P.A.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "815600F1E30AAB016171",
+   "row_key": "326e60e9705c231a",
+   "row_hash": "4908ace2d61cee96",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "30-Jun",
+     "new": "30/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "50003424b0d5a533",
+   "entity_name": "HODLIE S.R.L.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "9845006D4F5D2E5F8554",
+   "row_key": "c344c1a6f380c55b",
+   "row_hash": "aa5422270592447c",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "30-Jun",
+     "new": "30/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "c1dc270103fc267b",
+   "entity_name": "HERCLE S.R.L.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "984500AEBA8A0HQ44988",
+   "row_key": "35bb324ea22ab0ab",
+   "row_hash": "9ab7c56bae95caee",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "30-Jun",
+     "new": "30/06/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "691739bdb4277999",
+   "entity_name": "YOUHODLER ITALY S.R.L.",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_authorisationNotificationDate)",
+   "record_version": 2,
+   "lei": "894500I5LYET12OFII30",
+   "row_key": "0fe322450cf4f463",
+   "row_hash": "09376fa22001cfb6",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_authorisationNotificationDate",
+     "old": "08-Oct",
+     "new": "08/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "24c29304c601230a",
+   "entity_name": "STOKR S.A.",
+   "member_state": "LU",
+   "wp_url": "",
+   "detail": "register row content changed (ac_comments, ac_lastupdate)",
+   "record_version": 2,
+   "lei": "984500BA521C5EMR1D63",
+   "row_key": "8dd67cc241d09590",
+   "row_hash": "e6f1842d04eaf7a1",
+   "subtypes": [
+    "last_update_changed",
+    "comments_changed"
+   ],
+   "changed_fields": [
+    {
+     "field": "ac_comments",
+     "old": "",
+     "new": "The CASP has notified its intention to establish a branch in Germany. The corresponding passporting notification was forwarded to the competent German authorities on 26 October 2026, in accordance with Article 65 of Regulation (EU) 2023/1114 (MiCA)."
+    },
+    {
+     "field": "ac_lastupdate",
+     "old": "25/06/2026",
+     "new": "26/10/2026"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "dc684a3feb00963b",
+   "entity_name": "OKX Europe Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "54930069NLWEIGLHXU42",
+   "row_key": "58f240f39b311a3c",
+   "row_hash": "3b9439c82487c5cd",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Piazzetta Business Plaza, Office Number 4, Floor 2,\nTriq Ghar il-Lembi,\nSliema, SLM 1562,\nMalta",
+     "new": "Piazzetta Business Plaza, Office Number 4, Floor 2,\r\nTriq Ghar il-Lembi,\r\nSliema, SLM 1562,\r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "0356269054981ea9",
+   "entity_name": "BP23 CA Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500DEID7B03J77118",
+   "row_key": "3abbde2d688e3dbf",
+   "row_hash": "f32cac69e6e9ef5e",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "0e7bf24faebad19f",
+   "entity_name": "Foris DAX MT Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "2549005CVR5HH70FDO07",
+   "row_key": "8d2150227b395d0b",
+   "row_hash": "dd4268ce332c2a1d",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "ddd0604b2d124628",
+   "entity_name": "Zillion Bits Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "254900FESD7AF56FOQ37",
+   "row_key": "eb1e957cc9105129",
+   "row_hash": "e6053ee36b30daea",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "bef86e8b3aabdaa6",
+   "entity_name": "Altarius Asset Management Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "5299000X84JRI8MS7D35",
+   "row_key": "c45d84fd18f5461e",
+   "row_hash": "e083f3c64ec3f77c",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 60 - Notification"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "f6e73e0a2084ae12",
+   "entity_name": "Gemini Intergalactic EU Ltd",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "2138002QAMX8PPKSO715",
+   "row_key": "d6a391d1ad5c85d3",
+   "row_hash": "ed8c4bb65d377f44",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "6da18e45e8e5bf4d",
+   "entity_name": "Socios Europe Services Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500EBA2E9980CDD80",
+   "row_key": "39db34bd7e64b149",
+   "row_hash": "65b7bb804b1bfaa5",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "7023fa485a727b08",
+   "entity_name": "Gate Technology Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500D6A0F945BB5A15",
+   "row_key": "23641f38e0f3404d",
+   "row_hash": "4bf5637b53e8b4c6",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "c4a7b55756e029ef",
+   "entity_name": "Blockchain.com Operations (Malta) Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "254900GDCT8070R2VV26",
+   "row_key": "cc4e9c34e84b91c2",
+   "row_hash": "90d38b5fade1f400",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "1caa38b570cb6d74",
+   "entity_name": "Payhound Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_authorisationEndDate, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "9845001DD90AF543DC90",
+   "row_key": "280394b2f86ae4ed",
+   "row_hash": "6b18895281f97f54",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Level 0A, Centris Business Gateway II,\nTriq is-Salib tal-Imriehel, Zone 3, Central Business District,\nBirkirkara, CBD 3020,\nMalta",
+     "new": "Level 0A, Centris Business Gateway II,\r\nTriq is-Salib tal-Imriehel, Zone 3, Central Business District,\r\nBirkirkara, CBD 3020,\r\nMalta"
+    },
+    {
+     "field": "ac_authorisationEndDate",
+     "old": "",
+     "new": "Payhound Limited"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "f57dc57b276da080",
+   "entity_name": "Damex Digital LTD",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "9845008E8QA4CCFE5F68",
+   "row_key": "598fcb55a77e9cef",
+   "row_hash": "73adeda82c47a4d3",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "MK Business Centre 115,\nTriq Il- Wied Mt-04\nFloor 2 \nBKR 9022\nMalta",
+     "new": "MK Business Centre 115,\r\nTriq Il- Wied Mt-04\r\nFloor 2 \r\nBKR 9022\r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "2b4f2117fd6cae06",
+   "entity_name": "System Pay Services (Malta) Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500640Z8ADE893D04",
+   "row_key": "0cad83bf8a340c0c",
+   "row_hash": "3e8cc1e3caf1b589",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Ruby Workspaces Office 3 Pendergardens, \nTriq Sant' Andrija, \nSan Giljan, \nSTJ 9023, \nMalta",
+     "new": "Ruby Workspaces Office 3 Pendergardens, \r\nTriq Sant' Andrija, \r\nSan Giljan, \r\nSTJ 9023, \r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "ec181aca5aae0bab",
+   "entity_name": "Calamatta Cuschieri Investment Services Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "391200EKTIW0OR813R66",
+   "row_key": "38e7589df7337e1a",
+   "row_hash": "bed07f85fed000c6",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 60 - Notification"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "e3a0252c756525fe",
+   "entity_name": "Olmipay Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500F9M4XF7C5E5E25",
+   "row_key": "03119d65238de0fc",
+   "row_hash": "90c4153faaca00d6",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "813506795656b382",
+   "entity_name": "Stable Mint Ltd.",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500A64C0EA64BC554",
+   "row_key": "bae881132da86863",
+   "row_hash": "2b07980ee91c7ce8",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Stable mint Ltd\nLevel 2, The 'Fort', Hardrocks Business Park,\nBurmarrad Road, \nNaxxar, NXR 6345, \nMalta",
+     "new": "Stable mint Ltd\r\nLevel 2, The 'Fort', Hardrocks Business Park,\r\nBurmarrad Road, \r\nNaxxar, NXR 6345, \r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 60 - Notification"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "7a9fdb7cca015464",
+   "entity_name": "OP Digital Services Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "213800ZWEHNKOCS3AC78",
+   "row_key": "ed4f35240da289e9",
+   "row_hash": "3d025665afd3263a",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "a811c4c524d34be8",
+   "entity_name": "Zap (Strike) Europe Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500457TABOA3BZ224",
+   "row_key": "bc98bea7c57640e0",
+   "row_hash": "4e030a93caefa3dc",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "171, \nTriq il-Fran, \nValletta, \nVLT1455,\nMalta",
+     "new": "171, \r\nTriq il-Fran, \r\nValletta, \r\nVLT1455,\r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "96873d8dc741f518",
+   "entity_name": "Legion Malta Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "254900OPT54E6SDS6P25",
+   "row_key": "e11b8684c4377082",
+   "row_hash": "0867f51d8ecd06f7",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "ELITE BUSINESS CENTRE \nTREJQA TA' BOX BOX \nMSIDA \nMSD 1840 \nMalta",
+     "new": "ELITE BUSINESS CENTRE \r\nTREJQA TA' BOX BOX \r\nMSIDA \r\nMSD 1840 \r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "790ed0400e37ae64",
+   "entity_name": "FalconX Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500F6A0762F9LA923",
+   "row_key": "662ff77ec36b3b0e",
+   "row_hash": "7f9a97c2738acbdd",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Trident Park, Notabile Gardens, Nos. 6, Level 4, \nMdina Road, Zone 2, \nCentral Business District, \nBirkirkara, CBD 2010, \nMalta",
+     "new": "Trident Park, Notabile Gardens, Nos. 6, Level 4, \r\nMdina Road, Zone 2, \r\nCentral Business District, \r\nBirkirkara, CBD 2010, \r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "6c29798dd2ebb006",
+   "entity_name": "CF Technologies Ltd",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "98450091A6D61FB36406",
+   "row_key": "419e3e051ffac8af",
+   "row_hash": "3ca87a8bb5c6d372",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "Progetta House Level 0, \n62-64 Triq it-Torri, \nBirkirkara, BKR 4011, \nMalta",
+     "new": "Progetta House Level 0, \r\n62-64 Triq it-Torri, \r\nBirkirkara, BKR 4011, \r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "6f09714810c7e992",
+   "entity_name": "Everest Network Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ae_address, ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500C3A855AC77FE74",
+   "row_key": "dbd3a5962278c8eb",
+   "row_hash": "cd3120cfd7eaad78",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ae_address",
+     "old": "c/o Regus Tower Business Centre 2nd floor\nTRIQ IT- TORRI\nSWATAR BIRKIRKARA\nBKR 4013\nMalta",
+     "new": "c/o Regus Tower Business Centre 2nd floor\r\nTRIQ IT- TORRI\r\nSWATAR BIRKIRKARA\r\nBKR 4013\r\nMalta"
+    },
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "9febb63933044ce6",
+   "entity_name": "Bequant Pro Limited",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "213800Y834JOMU87Z285",
+   "row_key": "94516b0647dd6e57",
+   "row_hash": "3c52f333bfb0a8e1",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "changed",
+   "entry_id": "283ec1daa56bc1fd",
+   "entity_name": "VS Digital Europe Ltd.",
+   "member_state": "MT",
+   "wp_url": "",
+   "detail": "register row content changed (ac_legal_basis)",
+   "record_version": 2,
+   "lei": "984500G55775959B9C37",
+   "row_key": "b5fa3138d92a43a3",
+   "row_hash": "23054974f0cccee1",
+   "subtypes": [],
+   "changed_fields": [
+    {
+     "field": "ac_legal_basis",
+     "old": "",
+     "new": "Article 63 - CASP authorisation"
+    }
+   ]
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "removed",
+   "entry_id": "332ecdf2368f8894",
+   "entity_name": "BCASH SOCIETE ANONYME",
+   "member_state": "GR",
+   "wp_url": "",
+   "detail": "not in two consecutive exports (missing since 2026-10-19)",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "",
+   "row_hash": "4eaf1c88a3ceae8c",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "removed",
+   "entry_id": "8ccb69f681106829",
+   "entity_name": "XENIOS BLOCKCHAIN GROUP S.A.",
+   "member_state": "GR",
+   "wp_url": "",
+   "detail": "not in two consecutive exports (missing since 2026-10-19)",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "",
+   "row_hash": "80fdb12f279a7b1b",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "removed",
+   "entry_id": "21f1f75fcabaf019",
+   "entity_name": "CAPITAL WALLET GREECE S.A.",
+   "member_state": "GR",
+   "wp_url": "",
+   "detail": "not in two consecutive exports (missing since 2026-10-19)",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "",
+   "row_hash": "f28480854d9e62ba",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "casps",
+   "change": "removed",
+   "entry_id": "5e94fbacef244346",
+   "entity_name": "WEB3 Technology B.V.",
+   "member_state": "NL",
+   "wp_url": "",
+   "detail": "not in two consecutive exports (missing since 2026-10-19)",
+   "record_version": 2,
+   "lei": "724500YJVIN0Q94ZZG5",
+   "row_key": "",
+   "row_hash": "f70aa428e992e780",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "8965455ef87bd9dd",
+   "entity_name": "Brelliozo IA",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "3c9bbb07ee2957ac",
+   "row_hash": "f5e494d865ffbafc",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "cf38e3941d91cdb3",
+   "entity_name": "IncomeMax",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "182c96cef9c132dd",
+   "row_hash": "0205dc5057882bf3",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "f6fc1fe64174ddd3",
+   "entity_name": "Tesorvenza",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "6c54d4db36bb5d0c",
+   "row_hash": "c3c57e4ffe7e4d24",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "a1692defefc0f73e",
+   "entity_name": "Solvexpulse53ai",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "7849462b6e78f971",
+   "row_hash": "94e25ce68a730c17",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "039fb2047ec95c13",
+   "entity_name": "Valutixitalia",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "1cf0c1de3fa51a0e",
+   "row_hash": "40bc4f9b752e141e",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "491881d637e9ca6a",
+   "entity_name": "Dashaxid400",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "a66fd90de624e4b9",
+   "row_hash": "f804c9721e666e7d",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "29aad18a6188c4a5",
+   "entity_name": "Sovriapro",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "6960412bae60aad6",
+   "row_hash": "dbadb3fe3c9234b6",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "806ac7acd4eaf539",
+   "entity_name": "Chainexelonfin",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "5eff672c17864b8a",
+   "row_hash": "a41709a1d407c0f0",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "3b1dec9c516b3d3b",
+   "entity_name": "Cardinemodevo",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "ae3f860b3ce1c672",
+   "row_hash": "31ea0012fb4e07d8",
+   "subtypes": [],
+   "changed_fields": []
+  },
+  {
+   "snapshot_date": "2026-11-02",
+   "register_slug": "ncasp",
+   "change": "added",
+   "entry_id": "8b46e6ff8965a016",
+   "entity_name": "Smartbitboost",
+   "member_state": "IT",
+   "wp_url": "",
+   "detail": "",
+   "record_version": 2,
+   "lei": "",
+   "row_key": "3638f51a1e54056b",
+   "row_hash": "7fe88476740a499f",
    "subtypes": [],
    "changed_fields": []
   }
