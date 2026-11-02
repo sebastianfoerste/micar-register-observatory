@@ -7,10 +7,24 @@ on:
 
 permissions: {}
 
+# One run per branch: a new push to a pull request cancels the run it supersedes;
+# pushes to main are never cancelled.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every interpreter pyproject.toml allows (requires-python >= 3.12);
+        # uv installs the requested one itself, so no setup-python step.
+        python: ["3.12", "3.13", "3.14"]
+    env:
+      UV_PYTHON: ${{ matrix.python }}
     permissions:
       contents: read
     steps:

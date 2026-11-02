@@ -65,6 +65,14 @@
           "description": "SHA-256 of the downloaded bytes, as archived under data/raw/<snapshot_date>/; empty when the export was not fetched.",
           "type": "string",
           "pattern": "^([0-9a-f]{64})?$"
+        },
+        "fetched_from": {
+          "description": "Added November 2026. Where the bytes were downloaded from: source_url, or the Wayback Machine's copy of it when ESMA refused the download. Empty in earlier snapshots.",
+          "type": "string"
+        },
+        "archived_at": {
+          "description": "Added November 2026. When the Wayback Machine captured the copy (its Memento-Datetime header, verbatim); empty for a download from ESMA and in earlier snapshots.",
+          "type": "string"
         }
       }
     },

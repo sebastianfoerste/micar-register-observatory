@@ -34,6 +34,6 @@ make install     # uv sync --extra dev
 make check       # ruff, mypy and the offline test suite
 ```
 
-The test suite runs offline against the fixtures in `tests/fixtures/`. They carry ESMA's real column headers with synthetic rows. `make refresh` fetches the live register and rewrites `data/`, so only run it when you mean to.
+The test suite runs offline against the fixtures in `tests/fixtures/`. They carry ESMA's real column headers with synthetic rows. `make refresh` fetches the live register and rewrites `data/`, so only run it when you mean to. While ESMA's CDN refuses GitHub-hosted runners, the maintainer's own machine records the weekly export with `scripts/refresh_from_box.sh` (see [docs/refresh-from-box.md](docs/refresh-from-box.md)); a refresh ESMA refuses falls back to the Wayback Machine's copy and says so in the data.
 
 Keep commits small and focused, with plain messages that say what changed and why.

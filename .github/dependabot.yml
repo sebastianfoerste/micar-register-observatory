@@ -8,3 +8,14 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+  # Keeps uv.lock current: pydantic (the only runtime dependency) and the dev
+  # tools pinned in pyproject.toml's [project.optional-dependencies].
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      python:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]

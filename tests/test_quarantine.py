@@ -169,3 +169,20 @@ def test_the_freshness_gate_reports_a_pending_quarantine(tmp_path: Path) -> None
     assert script.validate(latest, as_of=as_of, max_age_days=14) == []  # not a failure
     quarantined = tmp_path / "data" / "quarantine" / "2026-08-03.json"
     assert script.pending_quarantines(latest) == [quarantined]
+
+
+def test_a_quarantined_export_counts_as_this_weeks_fetch(tmp_path: Path, capsys) -> None:
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    assert cmd_refresh(args_for(tmp_path, "2026-07-27", fixtures_with(tmp_path, "a", 100))) == 0
+    dip = fixtures_with(tmp_path, "dip", 80)
+    assert cmd_refresh(args_for(tmp_path, "2026-08-03", dip)) == 0  # quarantined
+    capsys.readouterr()
+    # The evening fallback after a quarantine fetches nothing...
+    assert cmd_refresh(args_for(tmp_path, "2026-08-03", dip)) == 0
+    assert "::notice title=Export already fetched this week::" in capsys.readouterr().out
+    assert not (tmp_path / "data" / "snapshots" / "2026-08-03.json").exists()
+    # ...but a maintainer who has confirmed the drop records it at once.
+    assert cmd_refresh(args_for(tmp_path, "2026-08-03", dip, accept_shrink=True)) == 0
+    latest = load_latest(tmp_path / "data")
+    assert latest is not None and latest.snapshot_date == "2026-08-03"

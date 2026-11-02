@@ -82,6 +82,7 @@ def test_raw_exports_are_archived_gzipped_with_a_manifest(tmp_path: Path) -> Non
                 "bytes": len(body),
                 "last_modified": "Tue, 07 Oct 2026 09:12:44 GMT",
                 "retrieved_at": "2026-10-19T06:17:03Z",
+                "archived_at": "",
             }
         ],
     }
