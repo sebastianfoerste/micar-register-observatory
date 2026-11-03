@@ -109,7 +109,7 @@ make refresh
 
 ## What this tracks
 
-- **New, changed, missing, removed and restored register entries** per weekly snapshot. A row is `missing` the first time an export does not list it, `removed` once it is absent from two consecutive exports, and `restored` if it is listed again. Records up to the 2026-10-12 snapshot (record version 1, which includes every `removed` record so far) used `removed` for a first absence and `added` for a relisting; see [docs/methodology.md](docs/methodology.md#change-detection). A removal can be a withdrawal, an upstream correction or a changed white-paper URL; the export does not say which.
+- **New, changed, missing, removed and restored register entries** per weekly snapshot. A row is `missing` the first time an export does not list it, `removed` once it is absent from two consecutive exports, and `restored` if it is listed again. Records up to the 2026-10-12 snapshot (record version 1) used `removed` for a first absence and `added` for a relisting; see [docs/methodology.md](docs/methodology.md#change-detection). A removal can be a withdrawal, an upstream correction or a changed white-paper URL; the export does not say which.
 - **Format coverage**: how many linked white papers are XHTML/HTML, JSON, or DOCX (candidates for deterministic linting with [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)) versus PDF or a URL with no recognised file extension (a bare domain, a landing page, or a document served without one). Classification is by link shape only and is marked as candidate, not verified, until a document is fetched.
 - **Machine-readable feed**: `docs/feed.json` carries the current totals and recent changes for anyone building on top.
 
