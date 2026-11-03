@@ -83,6 +83,7 @@ def test_version_1_absences_are_explained_with_their_own_meaning(site: Path) -> 
     )
     digest = render_digest(snapshot, "2026-10-19", [removed])
     assert "## Removed (1)" in digest
+    assert "written up to the 2026-10-12 snapshot (record version 1)" in digest
     assert "record version 1): `removed` means not in this export, for the first time" in digest
     assert "`removed`: not in two consecutive exports" not in digest
 
