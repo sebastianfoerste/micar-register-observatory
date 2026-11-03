@@ -1,10 +1,12 @@
 # Refreshing from a machine of your own
 
-Since 2026-10-26 the scheduled `refresh` workflow has not been able to download
-the ESMA exports: every GitHub-hosted runner gets a CloudFront "Request blocked"
-403 at the CDN edge in front of esma.europa.eu, before the request reaches
-ESMA's server (the 2026-10-26 run, and the same 403 page that archive.org's
-crawler received on 2026-10-22). The same URLs answer 200 from other networks.
+On 2026-10-26 the scheduled `refresh` workflow could not download the ESMA
+exports: the GitHub-hosted runner got a CloudFront "Request blocked" 403 at the
+CDN edge in front of esma.europa.eu, before the request reached ESMA's server
+(the same 403 page that archive.org's crawler received on 2026-10-22), and no
+snapshot was recorded that week. The same URLs answered 200 from other
+networks. The scheduled run of 2026-11-02 downloaded all five exports from ESMA
+directly again.
 The block is not about the request: the observatory identifies itself
 (`User-Agent: micar-register-observatory/0.1 (+repository URL)`), ESMA's
 robots.txt does not exclude the files, and ESMA's legal notice authorises

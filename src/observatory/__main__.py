@@ -16,8 +16,8 @@ A refresh is skipped, and records nothing, when an export was already fetched
 (recorded or quarantined) within the last REFRESH_WINDOW_DAYS days: the weekly
 workflow has a fallback slot that must not add a second snapshot to a week.
 `--force` and `--accept-shrink` fetch anyway.
-An export that ESMA's CDN refuses (a 403 from the CloudFront edge, as every
-GitHub-hosted runner got from 2026-10-26) is taken from the newest copy in the
+An export that ESMA's CDN refuses (a 403 from the CloudFront edge, as the
+GitHub-hosted runner got on 2026-10-26) is taken from the newest copy in the
 Wayback Machine when that copy is at most MAX_ARCHIVE_AGE_DAYS old; the snapshot
 and the feed say so (`fetched_from`, `archived_at`), as do the raw manifest
 (`url`, `archived_at`) and the dashboard. `--no-archive` fails instead of using

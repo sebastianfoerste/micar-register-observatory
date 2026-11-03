@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Refresh the register from this machine and push the result.
 #
-# For a machine that ESMA's CDN answers: GitHub-hosted runners have been refused
-# with a CloudFront 403 since 2026-10-26 (docs/refresh-from-box.md). Safe to run
+# For a machine that ESMA's CDN answers. GitHub-hosted runners were refused with
+# a CloudFront 403 on 2026-10-26 (docs/refresh-from-box.md). Safe to run
 # from cron or a routine, as often as you like: it takes a lock, refuses to touch
 # a clone with local changes, pulls the branch fast-forward only, runs the
 # refresh (which records nothing when an export was fetched this week), then the
