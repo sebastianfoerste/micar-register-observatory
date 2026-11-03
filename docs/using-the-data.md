@@ -14,11 +14,11 @@ All paths are relative to `https://raw.githubusercontent.com/sebastianfoerste/mi
 | `data/exports/changes.csv` | Every change record since 7 July 2026, one per line: added, changed, missing, removed, restored. |
 | `data/changelog.jsonl` | The same records as JSON lines, with the old and new value of every changed column. |
 | `data/latest.json` | The latest snapshot of all five registers, with every ESMA column of every row (`fields`). |
-| `data/snapshots/YYYY-MM-DD.json` | Every weekly snapshot since 7 July 2026, in the same format. |
+| `data/snapshots/YYYY-MM-DD.json` | Every recorded snapshot since 7 July 2026, in the same format: one a week, except the week of 26 October 2026, when the refresh could not download the exports. |
 | `data/raw/YYYY-MM-DD/` | From the 2026-10-19 snapshot: ESMA's exports exactly as downloaded, gzipped, with a manifest of their SHA-256 and HTTP `Last-Modified` header. |
 | `docs/feed.json` | Current totals per register and the last 200 change records. |
 | `docs/changes.atom` | An Atom feed with one entry per weekly snapshot. |
-| `digests/YYYY-MM-DD.md` | A readable note of each week's changes. |
+| `digests/YYYY-MM-DD.md` | A readable note of the changes since the previous recorded snapshot, usually the week before. |
 
 The CSV files are UTF-8 with a header line. Lists are joined with `|` (as in ESMA's own exports) and dates are ISO (`YYYY-MM-DD`); an empty cell means the register gives no value. The exports carry the typed fields only; ESMA's verbatim columns are in the snapshot JSON. Snapshots up to 2026-10-12 kept only the core columns, so dates, services and countries are filled from the first refresh after that.
 
@@ -106,7 +106,7 @@ The answer is the last snapshot recorded on or before the date, the registers th
 ## Following the changes
 
 - Subscribe to `https://raw.githubusercontent.com/sebastianfoerste/micar-register-observatory/main/docs/changes.atom` in a feed reader: one entry per weekly snapshot, linking to its digest.
-- `digests/YYYY-MM-DD.md` lists every change of a week, with old and new values of changed columns.
+- `digests/YYYY-MM-DD.md` lists every change since the previous recorded snapshot, with old and new values of changed columns.
 - `docs/feed.json` says when an export was set aside after a sharp drop in rows (`quarantine`); the totals then stay at the last recorded snapshot.
 - AI agents can query the same data through [eu-reg-mcp](https://github.com/sebastianfoerste/eu-reg-mcp).
 

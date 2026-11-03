@@ -9,7 +9,7 @@ ESMA's meaning of each source column is in its [field description file](https://
 | File | Content | Contract |
 | --- | --- | --- |
 | `data/latest.json` | The latest recorded snapshot of all five registers. | [snapshot v1](../contracts/micar-register.snapshot.v1.schema.json); [v2](../contracts/micar-register.snapshot.v2.schema.json) from the 2026-10-19 snapshot |
-| `data/snapshots/YYYY-MM-DD.json` | Every recorded snapshot, one per weekly refresh since 2026-07-07. | as `latest.json` |
+| `data/snapshots/YYYY-MM-DD.json` | Every recorded snapshot since 2026-07-07: one a week, except the week of 2026-10-26, when the refresh could not download the exports. | as `latest.json` |
 | `data/quarantine/YYYY-MM-DD.json` | An export set aside after a sharp drop in rows; it is not part of the recorded history (see [methodology](methodology.md#quarantine)). | as `latest.json` |
 | `data/raw/YYYY-MM-DD/` | From the 2026-10-19 snapshot: the five exports of a refresh as downloaded, gzipped (`<slug>.csv.gz`), with `manifest.json` (below). Kept for recorded and quarantined exports alike. | [raw manifest v1](../contracts/raw-manifest.v1.schema.json) |
 | `data/changelog.jsonl` | One change record per line, oldest first. | [changelog v1](../contracts/changelog.v1.schema.json), one record per line |
