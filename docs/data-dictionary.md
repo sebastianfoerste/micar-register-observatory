@@ -18,7 +18,7 @@ ESMA's meaning of each source column is in its [field description file](https://
 | `docs/changes.atom` | From the 2026-10-19 snapshot: an Atom feed with one entry per recorded snapshot, newest first (the last 52), linking to its digest. | [Atom (RFC 4287)](https://www.rfc-editor.org/rfc/rfc4287) |
 | `digests/YYYY-MM-DD.md` | From the 2026-10-19 snapshot: a readable note of each recorded snapshot's changes; that refresh also wrote the digests of every earlier snapshot since 2026-07-07. A digest is written once; only the latest is rewritten. | |
 
-Snapshots up to 2026-10-12 carry the v1 fields only; snapshots from 2026-10-19 on carry the v2 fields as well, and remain valid v1 snapshots.
+Snapshots up to 2026-10-12 carry the v1 fields only; snapshots from 2026-10-19 on carry the v2 fields as well (`fetched_from` and `archived_at` from 2026-11-02 on), and remain valid v1 snapshots.
 
 ## Snapshot
 
@@ -41,8 +41,8 @@ Snapshots up to 2026-10-12 carry the v1 fields only; snapshots from 2026-10-19 o
 | `columns` | v2 | The export's header, in ESMA's order. |
 | `source_last_modified` | v2 | The HTTP `Last-Modified` header of the downloaded export, verbatim (for example `Fri, 16 Oct 2026 15:37:13 GMT`): when ESMA last replaced the file. `""` when the server sent none. |
 | `source_sha256` | v2 | SHA-256 of the downloaded bytes; the same bytes are archived under `data/raw/<snapshot_date>/`. |
-| `fetched_from` | v2, November 2026 | Where the bytes were downloaded from: `source_url`, or the Wayback Machine's copy of it (`https://web.archive.org/web/<capture>id_/<source_url>`) when ESMA refused the download (see [methodology](methodology.md#when-esma-does-not-answer)). `""` in snapshots written before November 2026. |
-| `archived_at` | v2, November 2026 | When the Wayback Machine captured the copy: its `Memento-Datetime` header, verbatim (for example `Mon, 02 Nov 2026 07:13:26 GMT`). `""` for a download from ESMA and in earlier snapshots. |
+| `fetched_from` | v2, from the 2026-11-02 snapshot | Where the bytes were downloaded from: `source_url`, or the Wayback Machine's copy of it (`https://web.archive.org/web/<capture>id_/<source_url>`) when ESMA refused the download (see [methodology](methodology.md#when-esma-does-not-answer)). Missing from snapshots up to 2026-10-19, which read it as `""`. |
+| `archived_at` | v2, from the 2026-11-02 snapshot | When the Wayback Machine captured the copy: its `Memento-Datetime` header, verbatim (for example `Mon, 02 Nov 2026 07:13:26 GMT`). `""` for a download from ESMA; missing from snapshots up to 2026-10-19. |
 
 ### Entry (one row of an export)
 
@@ -159,7 +159,7 @@ Written on `changed` records, re-read from the verbatim columns of the old and n
 | `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added with the 2026-10-19 snapshot), `fetched` and `source_last_modified` (added with the 2026-10-19 snapshot; as in the snapshot). |
 | `recent_changes` | The last 200 change records of `data/changelog.jsonl`, oldest first. |
 
-From November 2026 each entry of `registers` also carries `fetched_from` and `archived_at`, as in the snapshot.
+From the 2026-11-02 snapshot on, each entry of `registers` also carries `fetched_from` and `archived_at`, as in the snapshot.
 
 ## CSV exports (`data/exports/`)
 
@@ -184,6 +184,6 @@ UTF-8, comma-separated, with a header line; columns are only ever added at the e
 | --- | --- |
 | `snapshot_date` | The refresh the exports belong to. |
 | `recorded_as` | `snapshot` when the exports became `data/snapshots/<snapshot_date>.json`, `quarantine` when they were set aside as `data/quarantine/<snapshot_date>.json`. |
-| `files` | One object per export: `slug`; `file`, the gzipped export next to the manifest; `url`, where it was downloaded (the ESMA export, or the Wayback Machine's copy of it); `sha256` and `bytes`, of the bytes as downloaded, before compression; `last_modified`, the HTTP `Last-Modified` header verbatim (`""` when the server sent none; for an archived copy, the header ESMA sent the crawler); `retrieved_at`, when the download finished (UTC, `YYYY-MM-DDTHH:MM:SSZ`); `archived_at` (added November 2026), when the Wayback Machine captured the copy, verbatim, `""` for a download from ESMA. |
+| `files` | One object per export: `slug`; `file`, the gzipped export next to the manifest; `url`, where it was downloaded (the ESMA export, or the Wayback Machine's copy of it); `sha256` and `bytes`, of the bytes as downloaded, before compression; `last_modified`, the HTTP `Last-Modified` header verbatim (`""` when the server sent none; for an archived copy, the header ESMA sent the crawler); `retrieved_at`, when the download finished (UTC, `YYYY-MM-DDTHH:MM:SSZ`); `archived_at` (added with the 2026-11-02 snapshot), when the Wayback Machine captured the copy, verbatim, `""` for a download from ESMA. |
 
 `gunzip -c data/raw/<date>/casps.csv.gz | sha256sum` gives the manifest's `sha256`, and the snapshot's `source_sha256` for that register.
