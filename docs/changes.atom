@@ -3,7 +3,7 @@
   <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes</id>
   <title>MiCAR Register Observatory: weekly register changes</title>
   <subtitle>One entry per weekly snapshot of the ESMA interim MiCAR register: what was added, changed, missing, removed or restored.</subtitle>
-  <updated>2026-11-02T00:00:00Z</updated>
+  <updated>2026-11-09T00:00:00Z</updated>
   <link rel="self" type="application/atom+xml" href="https://raw.githubusercontent.com/sebastianfoerste/micar-register-observatory/main/docs/changes.atom" />
   <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory" />
   <author>
@@ -11,6 +11,13 @@
     <uri>https://github.com/sebastianfoerste/micar-register-observatory</uri>
   </author>
   <generator uri="https://github.com/sebastianfoerste/micar-register-observatory">micar-register-observatory</generator>
+  <entry>
+    <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-11-09</id>
+    <title>2026-11-09: 17 added, 58 changed, 7 missing, 5 restored</title>
+    <updated>2026-11-09T00:00:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/sebastianfoerste/micar-register-observatory/blob/main/digests/2026-11-09.md" />
+    <summary type="text">casps: 5 added, 56 changed; ncasp: 1 added; other-wp: 11 added, 2 changed, 7 missing, 5 restored</summary>
+  </entry>
   <entry>
     <id>tag:github.com,2026:sebastianfoerste/micar-register-observatory/changes/2026-11-02</id>
     <title>2026-11-02: 36 added, 88 changed, 7 removed, 1 restored</title>
