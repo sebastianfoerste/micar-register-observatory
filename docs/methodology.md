@@ -7,12 +7,14 @@ The ESMA interim MiCAR register, published as CSV exports at stable URLs and upd
 | Register | Export |
 | --- | --- |
 | White papers — other crypto-assets (Title II) | <https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv> |
-| White papers — e-money tokens (Title IV) | <https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv> |
-| White papers — asset-referenced tokens (Title III) | <https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv> |
+| Issuers of e-money tokens (Title IV) | <https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv> |
+| Issuers of asset-referenced tokens (Title III) | <https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv> |
 | Authorised CASPs | <https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv> |
 | Non-compliant entities | <https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv> |
 
 Field semantics: ESMA's own [field description CSV](https://www.esma.europa.eu/sites/default/files/2024-12/Description_of_the_fields_in_the_interim_MiCA_register.csv). Legal basis for publication: Art. 109 VO (EU) 2023/1114 (MiCAR) for the white-paper, token-issuer and CASP registers; Art. 110 MiCAR for the register of non-compliant entities.
+
+ESMA's MiCA page ([snapshot](../sources/esma/2026-11-14/markets-crypto-assets-regulation-mica.html)) names `ARTZZ.csv` and `EMTWP.csv` as the registers of issuers of asset-referenced tokens and of issuers of e-money tokens, as Art. 109(1)(b) and (c) MiCAR do. The observatory uses those titles from the first refresh after 14 November 2026; stored snapshots, and the editions built from them, keep the titles they were taken with. Art. 109(3)(c) and (4)(c) MiCAR make the white papers part of both registers, and each row of the two files carries a white-paper link field, so each row is counted as a white-paper entry.
 
 ### When ESMA does not answer
 
@@ -55,7 +57,7 @@ From the 2026-10-19 snapshot on, every refresh keeps the five exports exactly as
 
 ## Format coverage
 
-White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` when the URL path ends in none of these (bare domains, landing pages, and documents served without a file extension). The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. A register row can link a landing page rather than the document itself, and an `.html` URL can be such a landing page; the URL alone does not tell the two apart. The quarterly report's headline share counts the first three classes (deep-lint candidates); it is a URL-shape proxy and does not check whether a document carries Inline XBRL (iXBRL) tagging.
+White paper links are classified by URL shape: `.xhtml`/`.html`/`.htm`, `.json`, `.docx` (parseable by [micar-whitepaper-linter](https://github.com/sebastianfoerste/micar-whitepaper-linter)), `.pdf`, or `unspecified` when the URL path ends in none of these (bare domains, landing pages, and documents served without a file extension). A link field that is empty, or holds one of the placeholder values ESMA's field description documents for the e-money token file (`EMT_NO_WP`, an authorised issuer that has not issued a white paper; `EMT_CRIN`, a credit institution that does not need to report white papers), is classified `none`. The observatory does not crawl issuer sites; a class is a candidate until the document is fetched. A register row can link a landing page rather than the document itself, and an `.html` URL can be such a landing page; the URL alone does not tell the two apart. The quarterly report's headline share counts the first three classes (deep-lint candidates); it is a URL-shape proxy and does not check whether a document carries Inline XBRL (iXBRL) tagging.
 
 ## Review gate for findings
 
@@ -66,5 +68,6 @@ Deterministic lint findings about individual, named issuers are not published au
 - The observatory sees what ESMA exports. Upstream corrections, deletions, and re-keyed rows appear as register changes even when nothing changed at the issuer.
 - ESMA may change export URLs or column layouts. A source that fails to download, lacks a required column or falls below its row floor stops the refresh, and the last good snapshot stays in place; added or dropped columns are reported as a source change without stopping it.
 - Format classification is a heuristic on the link, not the served content type.
+- Snapshots up to 2026-11-09 were taken before the observatory recognised ESMA's placeholder values and classified `EMT_NO_WP` as `unspecified`. Two rows of `EMTWP.csv` carry it in every snapshot from 2026-07-07 to 2026-11-09, so the `unspecified` count of each of those snapshots, and of the 2026-Q3 edition, is two too high. Later snapshots classify it as `none`; stored snapshots are not rewritten.
 - The interim register may be superseded by ESMA's final register infrastructure; sources are pinned in `src/observatory/config.py` and are the single place to update.
 - A snapshot taken from the Wayback Machine reflects the export as it was when the archive captured it, up to three days before the snapshot date; a change ESMA made in between appears a week later. The captures are made by others and may stop; the refresh then fails closed unless it runs from a machine ESMA answers.

@@ -78,7 +78,9 @@ SOURCES: list[RegisterSource] = [
         slug="emt-wp",
         min_rows=20,
         filename="EMTWP.csv",
-        title="White papers — e-money tokens (Title IV)",
+        # ESMA's MiCA page names the file so; Art. 109(1)(c) and (4) MiCAR make it
+        # a register of issuers that contains their white papers.
+        title="Issuers of e-money tokens (Title IV)",
         kind="whitepaper",
         columns=(
             "ae_competentAuthority", "ae_homeMemberState", "ae_lei_name", "ae_lei",
@@ -92,7 +94,8 @@ SOURCES: list[RegisterSource] = [
     RegisterSource(
         slug="art-wp",
         filename="ARTZZ.csv",
-        title="White papers — asset-referenced tokens (Title III)",
+        # As for EMTWP.csv: Art. 109(1)(b) and (3) MiCAR.
+        title="Issuers of asset-referenced tokens (Title III)",
         kind="whitepaper",
         columns=(
             "ae_competentAuthority", "ae_homeMemberState", "ae_lei_name", "ae_lei",

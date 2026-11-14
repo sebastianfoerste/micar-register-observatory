@@ -43,6 +43,9 @@ def analyze(snapshot: dict) -> dict:
     register_totals = {
         register.slug: len(register.rows()) for register in model.registers if register.fetched
     }
+    # The title each register carried in this snapshot: an edition rebuilt from
+    # an older snapshot keeps the labels it was published with.
+    register_titles = {register.slug: register.title for register in model.registers}
 
     metrics = {
         "snapshot_date": model.snapshot_date,
@@ -56,6 +59,7 @@ def analyze(snapshot: dict) -> dict:
         "no_recognised_extension_pct": pct(no_extension),
         "member_states": member_states.most_common(),
         "register_totals": register_totals,
+        "register_titles": register_titles,
     }
     metrics["entity_totals"] = entity_totals(model)
     return metrics

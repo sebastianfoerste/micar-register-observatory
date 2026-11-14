@@ -10,6 +10,7 @@ import html
 import re
 from pathlib import Path
 
+from observatory.config import SOURCES
 from observatory.notice import DATA_NOTICE_URL, ESMA_DISCLAIMER, ESMA_PUBLISHER
 
 DATA_START = "<!-- data:start -->"
@@ -34,13 +35,18 @@ _FORMAT_LABELS = {
     "none": "No link in register",
 }
 
-_REGISTER_LABELS = {
-    "other-wp": "White papers — other crypto-assets (Title II)",
-    "emt-wp": "White papers — e-money tokens (Title IV)",
-    "art-wp": "White papers — asset-referenced tokens (Title III)",
-    "casps": "Authorised CASPs",
-    "ncasp": "Non-compliant entities flagged by NCAs",
-}
+# A register is labelled with the title its snapshot recorded, shortened where
+# the table needs it. Snapshots keep the title they were taken with, so the
+# 2026-Q3 edition keeps "White papers — e-money tokens (Title IV)" while
+# editions built from later snapshots read "Issuers of e-money tokens (Title IV)".
+_SHORT_TITLES = {"Authorised crypto-asset service providers (CASPs)": "Authorised CASPs"}
+
+
+def register_label(slug: str, metrics: dict) -> str:
+    title = metrics.get("register_titles", {}).get(slug)
+    if not title:
+        title = next((source.title for source in SOURCES if source.slug == slug), slug)
+    return _SHORT_TITLES.get(title, title)
 
 
 def render_data_section(metrics: dict) -> str:
@@ -89,7 +95,7 @@ def render_data_section(metrics: dict) -> str:
     lines.append("| Register | Entries |")
     lines.append("| --- | ---: |")
     for slug, count in metrics["register_totals"].items():
-        lines.append(f"| {_REGISTER_LABELS.get(slug, slug)} | {count} |")
+        lines.append(f"| {register_label(slug, metrics)} | {count} |")
     lines.append("")
 
     lines.append("#### Home Member States (white papers)")

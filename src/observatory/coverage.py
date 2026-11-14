@@ -12,6 +12,12 @@ from urllib.parse import urlparse
 
 DEEP_LINT_CLASSES = {"xhtml/html", "json", "docx"}
 
+# Values ESMA documents for the e-money token white paper field when a row has
+# no link: an authorised issuer that has not issued a white paper, and a credit
+# institution that does not need to report white papers (field description,
+# sources/esma/2026-11-14/). Without this they parse as a bare domain.
+NO_LINK_VALUES = {"emt_no_wp", "emt_crin"}
+
 _EXTENSION_MAP = {
     ".xhtml": "xhtml/html",
     ".html": "xhtml/html",
@@ -24,7 +30,7 @@ _EXTENSION_MAP = {
 
 def classify_format(wp_url: str) -> str:
     url = wp_url.strip()
-    if not url:
+    if not url or url.lower() in NO_LINK_VALUES:
         return "none"
     if "://" not in url:
         url = "https://" + url
