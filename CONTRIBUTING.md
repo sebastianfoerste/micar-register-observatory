@@ -19,11 +19,11 @@ If ESMA's own file is wrong, the correction has to come from ESMA or the nationa
 
 ## Reporting a source change
 
-ESMA announced that the interim CSV register would be replaced by its IT systems; until then the files can move, gain or lose columns, or change format. Open a [source change](https://github.com/sebastianfoerste/micar-register-observatory/issues/new?template=source-change.yml) issue when that happens. The refresh fails closed on missing columns and on suspicious row counts, so a failed weekly run is often the first sign.
+ESMA announced that the interim CSV register would be replaced by its IT systems; until then the files can move, gain or lose columns, or change format. Open a [source change](https://github.com/sebastianfoerste/micar-register-observatory/issues/new?template=source-change.yml) issue when that happens. The refresh fails closed on missing columns and on suspicious row counts, so a failed weekly run is often the first sign. The source monitor inside the weekly refresh checks the bytes each refresh used, from ESMA or from the Wayback Machine, and opens the issue "ESMA source monitor: findings to review" for a moved file, a lost link, a header or charset change or a sharp drop in rows; the owner follows [the runbook](docs/runbook-esma-source-change.md).
 
 ## Data rules
 
-- **Never hand-edit recorded history**: `data/snapshots/`, `data/latest.json`, `data/changelog.jsonl`, `data/quarantine/` and `data/raw/` are written by the pipeline only.
+- **Never hand-edit recorded history**: `data/snapshots/`, `data/latest.json`, `data/changelog.jsonl`, `data/quarantine/`, `data/raw/` and `data/source-monitor.json` are written by the pipeline only (the runbook names the one case for `monitor --save`).
 - **Generated files are regenerated, not edited**: the README dashboard block, `docs/feed.json`, `docs/changes.atom`, `data/exports/` and `digests/` come from `make render` or the weekly refresh, and the data section of an edition and `docs/index.html` from `make report`.
 - **Schema changes only add fields.** [eu-reg-mcp](https://github.com/sebastianfoerste/eu-reg-mcp) reads `data/latest.json` and `data/changelog.jsonl` from `main`. Never remove or rename a field or change its meaning; update `contracts/` and `docs/data-dictionary.md` in the same pull request. `tests/test_contract.py` fails when a field the code writes is missing from the contracts.
 
