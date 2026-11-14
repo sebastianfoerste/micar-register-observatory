@@ -4,7 +4,9 @@ Written from the snapshot of ESMA's MiCA page of 14 November 2026 and the OJ
 text of MiCAR in sources/, before the titles in config.py were changed.
 """
 
+import csv
 import html
+import io
 import json
 import re
 from pathlib import Path
@@ -50,6 +52,46 @@ def test_a_new_snapshot_is_labelled_with_the_issuer_titles():
     # Without recorded titles the configured ones apply.
     assert register_label("emt-wp", {}) == ISSUER_REGISTERS["emt-wp"]
     assert register_label("casps", {}) == "Authorised CASPs"
+
+
+SOURCES_README = ROOT / "sources" / "README.md"
+FIELD_DESCRIPTION = MICA_PAGE.parent / "Description_of_the_fields_in_the_interim_MiCA_register.csv"
+
+
+def _observed_headers() -> dict[str, tuple[str, ...]]:
+    """The header rows recorded in sources/README.md, nameless columns left out."""
+    headers: dict[str, tuple[str, ...]] = {}
+    for line in SOURCES_README.read_text(encoding="utf-8").splitlines():
+        match = re.match(r"^\| `(\w+\.csv)` \|.*\| `([^`]*)` \|$", line)
+        if match:
+            headers[match[1]] = tuple(name for name in match[2].split(",") if name)
+    return headers
+
+
+def _described_fields() -> dict[str, list[str]]:
+    fields: dict[str, list[str]] = {}
+    text = FIELD_DESCRIPTION.read_bytes().decode("utf-8-sig")
+    for row in list(csv.reader(io.StringIO(text)))[1:]:
+        if len(row) > 1 and row[0]:
+            fields.setdefault(row[0], []).append(row[1])
+    return fields
+
+
+def test_expected_columns_are_the_headers_esma_served():
+    observed = _observed_headers()
+    assert set(observed) == {source.filename for source in SOURCES}
+    for source in SOURCES:
+        assert source.columns == observed[source.filename], source.slug
+
+
+def test_expected_columns_differ_from_the_field_description_only_as_recorded():
+    described = _described_fields()
+    for source in SOURCES:
+        template = source.filename.removesuffix(".csv")
+        expected = list(described[template])
+        if template == "ARTZZ":  # the served file lacks the two DTI columns
+            expected = [name for name in expected if name not in {"ae_DTI_FFG", "ae_DTI"}]
+        assert list(source.columns) == expected, source.slug
 
 
 def test_an_edition_keeps_the_titles_its_snapshot_recorded():

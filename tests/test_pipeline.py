@@ -108,8 +108,10 @@ def test_snapshot_records_the_export_header(tmp_path: Path) -> None:
     snapshot = load_latest(tmp_path / "data")
     assert snapshot is not None
     casps = snapshot.register("casps")
-    assert casps is not None and casps.columns[-1] == "ac_lastupdate"
+    # ESMA's CASP export ends with ac_legal_basis since the 2026-10-19 snapshot.
+    assert casps is not None and casps.columns[-1] == "ac_legal_basis"
     assert casps.entries[0].fields["ac_lastupdate"] == "15/01/2026"
+    assert casps.entries[0].fields["ac_legal_basis"] == "Article 63 - CASP authorisation"
 
 
 def test_refresh_archives_the_exports_it_recorded(tmp_path: Path) -> None:

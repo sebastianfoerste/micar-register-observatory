@@ -52,8 +52,10 @@ class RegisterSource(BaseModel):
     min_rows: int = 0
     # The register's own "last update of the record" column.
     last_update_column: str = "wp_lastupdate"
-    # The header ESMA published when this source was last reviewed; a different
-    # header is reported as a source change but does not stop the refresh.
+    # The header ESMA published when this source was last reviewed (the named
+    # columns, in order; sources/README.md records the review of 14 November
+    # 2026). A different header is reported as a source change, and the source
+    # monitor opens an issue for it, but it does not stop the refresh.
     columns: tuple[str, ...] = ()
 
     @property
@@ -117,7 +119,7 @@ SOURCES: list[RegisterSource] = [
             "ae_lei_cou_code", "ae_commercial_name", "ae_address", "ae_website",
             "ae_website_platform", "ac_authorisationNotificationDate",
             "ac_authorisationEndDate", "ac_serviceCode", "ac_serviceCode_cou",
-            "ac_comments", "ac_lastupdate",
+            "ac_comments", "ac_lastupdate", "ac_legal_basis",
         ),
     ),
     RegisterSource(
