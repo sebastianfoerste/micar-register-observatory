@@ -29,7 +29,10 @@ Outcomes:
 
 A refusal by ESMA is a logged state, not an issue: the refresh goes on with the
 archive's copy. The monitor never changes the refresh's exit status or what the
-refresh records; the refresh's own fail-closed checks decide that.
+refresh records; the refresh's own fail-closed checks decide that. When the
+monitor itself fails (an unreadable data/source-monitor.json, say), the refresh
+gets a failed_report: UNKNOWN, nothing checked, and the saved observation left
+as it was.
 
 Everything here is pure except load_state and save_state: observations are made
 from Download objects, and the check date is a parameter.
@@ -182,6 +185,9 @@ class MonitorReport(BaseModel):
     observations: list[SourceObservation]
     # Sources not observed this time: their previous observation stays the baseline.
     carried_over: list[SourceObservation] = []
+    # Set when the monitor itself failed ("ErrorType: message"): nothing was
+    # checked, and save_state keeps the previous observation.
+    failure: str = ""
 
     def issue_items(self) -> list[str]:
         failed = [f"{c.source_id}: {c.check}: {c.detail}" for c in self.checks if not c.passed]
@@ -202,6 +208,9 @@ class MonitorReport(BaseModel):
         workflow reports the same state once. The error texts are left out:
         they carry times and request ids that change with every run."""
         items = sorted(self.issue_items()) + [f"{s}: not observed" for s in self.unobserved()]
+        if self.failure:
+            # The error type only: its message may carry paths or positions.
+            items.append(f"monitor failed: {self.failure.split(':', 1)[0]}")
         return hashlib.sha256("\n".join(items).encode("utf-8")).hexdigest()[:16]
 
     def to_markdown(self) -> str:
@@ -665,6 +674,20 @@ def run_monitor(
     )
 
 
+def failed_report(checked_on: str, error: BaseException) -> MonitorReport:
+    """The report when the monitor itself failed: nothing was checked, which is
+    UNKNOWN, never a pass. The refresh goes on, and save_state keeps the
+    previous observation."""
+    return MonitorReport(
+        checked_on=checked_on,
+        outcome=Outcome.UNKNOWN,
+        checks=[],
+        classified=[],
+        observations=[],
+        failure=" ".join(f"{type(error).__name__}: {error}".split())[:300],
+    )
+
+
 # --- State -------------------------------------------------------------------
 
 
@@ -682,6 +705,10 @@ def next_state(report: MonitorReport) -> MonitorState:
 
 
 def save_state(path: Path, report: MonitorReport) -> None:
+    """Save this run's observation. A failed run observed nothing, so it saves
+    nothing: the previous observation stays the baseline."""
+    if report.failure:
+        return
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(next_state(report).model_dump_json(indent=1) + "\n", encoding="utf-8")
 
@@ -720,8 +747,26 @@ _VIA = {"esma": "ESMA", "archive": "Wayback Machine copy", "fixture": "fixture"}
 
 
 def render_report(report: MonitorReport) -> str:
+    title = f"## ESMA source monitor, {report.checked_on}: {report.outcome.value.upper()}"
+    if report.failure:
+        return "\n".join(
+            [
+                title,
+                "",
+                "Outcome: the source monitor itself failed, so no source was checked. The "
+                "refresh went on; what it recorded is decided by its own checks. "
+                "`data/source-monitor.json` was left as it was.",
+                "",
+                f"Error: {_cell(report.failure, 300)}",
+                "",
+                f"Runbook: [docs/runbook-esma-source-change.md]({RUNBOOK_URL}).",
+                "",
+                f"<!-- {FINGERPRINT_MARKER}: {report.fingerprint()} -->",
+                "",
+            ]
+        )
     lines = [
-        f"## ESMA source monitor, {report.checked_on}: {report.outcome.value.upper()}",
+        title,
         "",
         f"Outcome: {_HEADLINES[report.outcome]}",
         "",
@@ -794,6 +839,11 @@ def annotation_lines(report: MonitorReport) -> list[str]:
         f"{len(report.issue_items())} finding(s); the report is in the job summary"
     )
     lines = [summary]
+    if report.failure:
+        lines.append(
+            "::error title=ESMA source monitor::the monitor failed and checked nothing; "
+            f"the refresh went on: {' '.join(report.failure.split())[:400]}"
+        )
     for item in report.issue_items():
         lines.append(f"::warning title=ESMA source monitor::{' '.join(item.split())[:400]}")
     for observation in report.observations:

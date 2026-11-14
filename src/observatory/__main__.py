@@ -63,6 +63,7 @@ from observatory.monitor import (
     MonitorReport,
     Outcome,
     annotation_lines,
+    failed_report,
     load_state,
     run_monitor,
     save_state,
@@ -348,7 +349,12 @@ def cmd_refresh(args: argparse.Namespace, environ: Mapping[str, str] = os.enviro
     # The monitor checks the bytes this refresh used, whichever source gave them,
     # and only reports: it never stops the refresh.
     page = fetch_page(archive) if fixtures is None else "not fetched in an offline run"
-    report = check_sources(data_dir, snapshot_date, used, page, enforce_floors=fixtures is None)
+    try:
+        report = check_sources(data_dir, snapshot_date, used, page, enforce_floors=fixtures is None)
+    except Exception as error:  # noqa: BLE001 — a failing monitor reports UNKNOWN, never stops
+        report = failed_report(snapshot_date, error)
+        for line in annotation_lines(report):
+            print(line)
     write_monitor_report(report, monitor_report, environ)
     failed = [r for r in current.registers if not r.fetched]
     if failed:

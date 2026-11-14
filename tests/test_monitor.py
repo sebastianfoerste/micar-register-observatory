@@ -12,6 +12,7 @@ these tests were written from them before classify_source_change:
 """
 
 import json
+import re
 import shutil
 import urllib.error
 from pathlib import Path
@@ -34,12 +35,14 @@ from observatory.monitor import (
     classify_source_change,
     csv_shape,
     effective_charset,
+    failed_report,
     load_state,
     next_state,
     observe_csv,
     observe_page,
     original_url,
     run_monitor,
+    save_state,
 )
 from test_pipeline import FIXTURES, args_for, seed_readme
 
@@ -537,6 +540,63 @@ def test_a_failed_refresh_reports_but_saves_no_observation(tmp_path: Path):
     assert cmd_refresh(args, environ) == 1
     assert not (tmp_path / "data" / STATE_FILE).exists()
     assert outputs(tmp_path / "out")["monitor"] == "unknown"
+
+
+@pytest.mark.parametrize(
+    "state",
+    [
+        # A merge conflict left in the file, and a file of another shape.
+        "<<<<<<< HEAD\n",
+        '{"checked_on": "2026-11-09"}\n',
+    ],
+)
+def test_an_unreadable_monitor_state_never_stops_the_refresh(tmp_path: Path, state: str, capsys):
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    saved = tmp_path / "data" / STATE_FILE
+    saved.write_text(state, encoding="utf-8")
+    environ = {"GITHUB_OUTPUT": str(tmp_path / "out")}
+    args = args_for(tmp_path, "2026-11-16", FIXTURES)
+    args.monitor_report = str(tmp_path / "report.md")
+    assert cmd_refresh(args, environ) == 0
+    assert (tmp_path / "data" / "snapshots" / "2026-11-16.json").exists()
+    # Nothing was observed, so the file is left for the owner to repair.
+    assert saved.read_text(encoding="utf-8") == state
+    handed = outputs(tmp_path / "out")
+    assert handed["monitor"] == "unknown"
+    assert re.fullmatch(r"[0-9a-f]{16}", handed["fingerprint"])
+    assert "the source monitor itself failed" in handed["report"]
+    assert f"{FINGERPRINT_MARKER}: {handed['fingerprint']}" in handed["report"]
+    assert "::error title=ESMA source monitor::the monitor failed" in capsys.readouterr().out
+
+
+def test_a_failing_monitor_never_stops_the_refresh(tmp_path: Path, monkeypatch):
+    def broken(*args: object, **kwargs: object) -> None:
+        raise RuntimeError("unexpected")
+
+    monkeypatch.setattr(cli, "run_monitor", broken)
+    seed_readme(tmp_path)
+    (tmp_path / "data").mkdir()
+    environ = {"GITHUB_OUTPUT": str(tmp_path / "out")}
+    args = args_for(tmp_path, "2026-11-16", FIXTURES)
+    args.monitor_report = str(tmp_path / "report.md")
+    assert cmd_refresh(args, environ) == 0
+    assert (tmp_path / "data" / "snapshots" / "2026-11-16.json").exists()
+    assert not (tmp_path / "data" / STATE_FILE).exists()
+    assert outputs(tmp_path / "out")["monitor"] == "unknown"
+
+
+def test_a_monitor_failure_is_unknown_and_keyed_by_its_error_type(tmp_path: Path):
+    one = failed_report("2026-11-16", ValueError("line 1 column 1"))
+    later = failed_report("2026-11-23", ValueError("line 7 column 2"))
+    other = failed_report("2026-11-16", KeyError("observations"))
+    assert one.outcome is Outcome.UNKNOWN
+    assert one.issue_items() == [] and one.unobserved() == []
+    # The message carries positions and paths; only the error type is compared.
+    assert one.fingerprint() == later.fingerprint() != other.fingerprint()
+    assert one.fingerprint() != run({}).fingerprint()
+    save_state(tmp_path / STATE_FILE, one)
+    assert not (tmp_path / STATE_FILE).exists()
 
 
 def test_a_refresh_esma_refused_records_the_archive_and_logs_the_refusal(
