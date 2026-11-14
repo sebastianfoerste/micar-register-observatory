@@ -119,6 +119,12 @@ Deep-lint findings on individual white papers are deliberately **not** auto-publ
 
 See [docs/methodology.md](docs/methodology.md) for sources, normalization, change detection, and known limitations. Two that matter most: the observatory reflects the register exports as published (upstream corrections appear as "changed" entries), and format classification is a URL-shape heuristic until documents are fetched.
 
+## Data notice
+
+Source: European Securities and Markets Authority (ESMA), interim MiCA register. The dashboard, `data/`, `docs/feed.json`, the digests and the editions republish that register in transformed form, so ESMA's [legal notice](https://www.esma.europa.eu/legal-notice) requires this disclaimer: This document has been drafted using material downloaded from ESMA’s website. ESMA does not endorse this publication and in no way is liable for copyright or other intellectual property rights infringements nor for any damages caused to third parties through this publication.
+
+The MIT licence covers the code only. The observatory's own prose in `editions/` and `docs/` is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). No licence is granted for the register data. [DATA_NOTICE.md](DATA_NOTICE.md) quotes ESMA's legal notice with its URL and retrieval date and sets out what each licence covers.
+
 ## Legal
 
-The underlying data is ESMA's public register. This repository records factual observations about that register; it contains no legal assessment of any issuer or service provider and is not legal advice. Code is MIT-licensed.
+The underlying data is ESMA's public register. This repository records factual observations about that register; it contains no legal assessment of any issuer or service provider and is not legal advice. Code is MIT-licensed; that licence does not extend to the register data or to the prose (see [Data notice](#data-notice)).

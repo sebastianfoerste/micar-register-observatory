@@ -10,6 +10,8 @@ import html
 import re
 from pathlib import Path
 
+from observatory.notice import DATA_NOTICE_URL, ESMA_DISCLAIMER, ESMA_PUBLISHER
+
 DATA_START = "<!-- data:start -->"
 DATA_END = "<!-- data:end -->"
 
@@ -100,6 +102,14 @@ def render_data_section(metrics: dict) -> str:
     remainder = len(metrics["member_states"]) - 12
     if remainder > 0:
         lines.append(f"| ...and {remainder} more | | |")
+    lines.append("")
+
+    # The figures above republish ESMA's register in transformed form, so every
+    # edition carries ESMA's prescribed disclaimer word for word (DATA_NOTICE.md).
+    lines.append(
+        f"Source: {ESMA_PUBLISHER}, interim MiCA register. {ESMA_DISCLAIMER} "
+        f"No licence is granted for the register data; see the [data notice]({DATA_NOTICE_URL})."
+    )
     lines.append("")
     return "\n".join(lines)
 
@@ -202,6 +212,9 @@ reproducible from the observatory commit.</p>
 <h2>Home Member States (top 10)</h2>
 {ms_svg}
 <footer>
+<p>Register data: {html.escape(ESMA_PUBLISHER)}, interim MiCA register.
+{html.escape(ESMA_DISCLAIMER)} No licence is granted for the register data; see the
+<a href="{DATA_NOTICE_URL}">data notice</a>.</p>
 Source: <a href="https://github.com/sebastianfoerste/micar-register-observatory">MiCAR
 Register Observatory</a>. Factual observations about a public register; not legal
 advice. Full report:

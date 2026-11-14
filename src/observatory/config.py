@@ -11,6 +11,13 @@ from pydantic import BaseModel
 
 BASE_URL = "https://www.esma.europa.eu/sites/default/files/2024-12"
 
+# ESMA's MiCA page links the five exports and carries their "Last update" line
+# (sources/esma/2026-11-14/markets-crypto-assets-regulation-mica.html).
+MICA_PAGE_URL = (
+    "https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/"
+    "markets-crypto-assets-regulation-mica"
+)
+
 # ESMA serves the exports through CloudFront, whose edge refused GitHub-hosted
 # runners (and, on 2026-10-22, archive.org's crawler) with a "Request blocked"
 # 403 in late October 2026. The Internet Archive's Wayback Machine keeps dated
