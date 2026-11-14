@@ -192,10 +192,17 @@ class MonitorReport(BaseModel):
         ]
         return failed + differences
 
+    def unobserved(self) -> list[str]:
+        """Sources no check ran on: neither ESMA nor a recent archived copy gave
+        bytes, and ESMA's answer was not a permanent one (that is a finding)."""
+        return sorted(o.source_id for o in self.observations if not o.observed and not o.permanent)
+
     def fingerprint(self) -> str:
-        """Identifies the findings, so that the same findings are reported once."""
-        items = "\n".join(sorted(self.issue_items()))
-        return hashlib.sha256(items.encode("utf-8")).hexdigest()[:16]
+        """Identifies the findings and the unobserved sources, so that the
+        workflow reports the same state once. The error texts are left out:
+        they carry times and request ids that change with every run."""
+        items = sorted(self.issue_items()) + [f"{s}: not observed" for s in self.unobserved()]
+        return hashlib.sha256("\n".join(items).encode("utf-8")).hexdigest()[:16]
 
     def to_markdown(self) -> str:
         return render_report(self)

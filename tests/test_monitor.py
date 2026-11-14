@@ -425,6 +425,23 @@ def test_the_same_findings_have_the_same_fingerprint():
     assert f"<!-- {FINGERPRINT_MARKER}: {one.fingerprint()} -->" in one.to_markdown()
 
 
+def test_an_unobserved_source_changes_the_fingerprint_but_its_error_text_does_not():
+    page = page_download("2026-11-14")
+    good = run({"casps": esma(CASPS_BODY)}, page=page, enforce_floors=False)
+    first = SourceUnavailable(f"{REFUSAL}; Wayback Machine: no archived copy")
+    later = SourceUnavailable("HTTP Error 403: Forbidden (request id 2); Wayback Machine: timeout")
+    one = run({"casps": first}, page=page, enforce_floors=False)
+    two = run({"casps": later}, page=page, enforce_floors=False)
+    assert good.outcome is Outcome.OK
+    assert one.outcome is two.outcome is Outcome.UNKNOWN
+    assert one.unobserved() == ["casps"]
+    # An UNKNOWN week is reported once, and again only when another source goes unobserved.
+    assert one.fingerprint() == two.fingerprint() != good.fingerprint()
+    neither = run({"casps": first}, page=first, enforce_floors=False)
+    assert neither.unobserved() == ["casps", PAGE_SOURCE_ID]
+    assert neither.fingerprint() != one.fingerprint()
+
+
 def test_the_report_says_where_the_bytes_came_from_and_quotes_register_text_inertly():
     body = CASPS_BODY.replace(b"ac_legal_basis", b"@someone|x`y")
     report = run({"casps": archived(body)}, enforce_floors=False)
