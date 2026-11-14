@@ -68,6 +68,35 @@ def test_snapshots_contain_the_cited_wording():
     )
 
 
+def test_readme_states_article_109_as_the_snapshots_do():
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "machine-readable register" not in readme
+    for pinpoint in (
+        "Art. 109(1)",
+        "Art. 109(8)",
+        "Delegated Regulation (EU) 2025/421",
+        "Art. 110a(4)",
+        "Regulation (EU) 2023/2869",
+        "10 January 2030",
+        "Art. 6(10), 19(9) and 51(9)",
+        "Implementing Regulation (EU) 2024/2984",
+    ):
+        assert pinpoint in readme
+    # The Art. 110a(4)(a) cross-reference defect is recorded in the ledger only.
+    assert "point (3)" not in readme
+    ledger = (ROOT / "docs" / "regulatory-claim-ledger.md").read_text(encoding="utf-8")
+    assert "Article 2, point (3)" in ledger
+
+
+def test_the_ledger_keeps_both_kinds_of_evidence():
+    ledger = (ROOT / "docs" / "regulatory-claim-ledger.md").read_text(encoding="utf-8")
+    assert "EUR-Lex 10 November 2026" in ledger
+    assert "OJ snapshot 14 October 2026" in ledger
+    for answer in ("(O1)", "(O2)", "(O3)", "(O4)", "(O5)"):
+        assert answer in ledger
+    assert "pending the owner's review" not in ledger
+
+
 def test_the_english_corrigendum_leaves_the_cited_articles_alone():
     corrigendum = _text("eu/32023R1114R03.xhtml")
     corrected = re.findall(r"On page \d+, (Article \d+\(\d+\))", corrigendum)
