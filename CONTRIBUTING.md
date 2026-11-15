@@ -23,7 +23,7 @@ ESMA announced that the interim CSV register would be replaced by its IT systems
 
 ## Data rules
 
-- **Never hand-edit recorded history**: `data/snapshots/`, `data/latest.json`, `data/changelog.jsonl`, `data/quarantine/`, `data/raw/` and `data/source-monitor.json` are written by the pipeline only (the runbook names the one case for `monitor --save`).
+- **Never hand-edit recorded history**: `data/snapshots/`, `data/latest.json`, `data/changelog.jsonl`, `data/quarantine/`, `data/raw/` and `data/source-monitor.json` are written by the pipeline only (the runbook names the two cases in which `data/source-monitor.json` is restored or recorded again by hand).
 - **Generated files are regenerated, not edited**: the README dashboard block, `docs/feed.json`, `docs/changes.atom`, `data/exports/` and `digests/` come from `make render` or the weekly refresh, and the data section of an edition and `docs/index.html` from `make report`.
 - **Schema changes only add fields.** [eu-reg-mcp](https://github.com/sebastianfoerste/eu-reg-mcp) reads `data/latest.json` and `data/changelog.jsonl` from `main`. Never remove or rename a field or change its meaning; update `contracts/` and `docs/data-dictionary.md` in the same pull request. `tests/test_contract.py` fails when a field the code writes is missing from the contracts.
 
