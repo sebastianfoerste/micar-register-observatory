@@ -101,3 +101,33 @@ def test_an_edition_keeps_the_titles_its_snapshot_recorded():
     assert "| White papers — asset-referenced tokens (Title III) | 0 |" in section
     assert "| Authorised CASPs | 352 |" in section
     assert "Issuers of" not in section
+
+
+def test_the_docs_tie_the_new_labels_and_classes_to_the_change_not_to_a_date():
+    # Which weekly refresh first runs this code depends on when the change is
+    # merged; each stored snapshot records the titles and classes it used.
+    methodology = (ROOT / "docs" / "methodology.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "regulatory-claim-ledger.md").read_text(encoding="utf-8")
+    for text in (methodology, ledger):
+        assert "after 14 November 2026" not in text
+        assert "titles from 14 November 2026" not in text
+    assert "Snapshots up to 2026-11-09 were taken before" not in methodology
+    assert methodology.count("recorded after this change") == 2
+    assert "in snapshots recorded after this change" in ledger
+
+
+def test_the_placeholder_limitation_matches_the_stored_snapshots():
+    # docs/methodology.md: two EMTWP.csv rows carry EMT_NO_WP, classified
+    # `unspecified`, in every snapshot from 2026-07-07 to 2026-11-09.
+    dated = sorted((ROOT / "data" / "snapshots").glob("2026-*.json"))
+    covered = [path for path in dated if "2026-07-07" <= path.stem <= "2026-11-09"]
+    assert covered[0].stem == "2026-07-07" and covered[-1].stem == "2026-11-09"
+    for path in covered:
+        snapshot = json.loads(path.read_text(encoding="utf-8"))
+        emt = next(r for r in snapshot["registers"] if r["slug"] == "emt-wp")
+        placeholders = [
+            entry["format_class"]
+            for entry in emt["entries"]
+            if entry["wp_url"].strip().upper() in {"EMT_NO_WP", "EMT_CRIN"}
+        ]
+        assert placeholders == ["unspecified", "unspecified"], path.stem
