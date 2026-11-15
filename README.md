@@ -125,7 +125,7 @@ See [docs/methodology.md](docs/methodology.md) for sources, normalization, chang
 
 Source: European Securities and Markets Authority (ESMA), interim MiCA register. The dashboard, `data/`, `docs/feed.json`, the digests and the editions republish that register in transformed form, so ESMA's [legal notice](https://www.esma.europa.eu/legal-notice) requires this disclaimer: This document has been drafted using material downloaded from ESMA’s website. ESMA does not endorse this publication and in no way is liable for copyright or other intellectual property rights infringements nor for any damages caused to third parties through this publication.
 
-The MIT licence covers the code only. The observatory's own prose in `editions/` and `docs/` is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). No licence is granted for the register data. [DATA_NOTICE.md](DATA_NOTICE.md) quotes ESMA's legal notice with its URL and retrieval date and sets out what each licence covers.
+The MIT licence covers the code and its documentation files. The observatory's own prose in `editions/` and `docs/` is also licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). No licence is granted for the register data. [DATA_NOTICE.md](DATA_NOTICE.md) quotes ESMA's legal notice with its URL and retrieval date and sets out what each licence covers.
 
 ## Legal
 

@@ -21,7 +21,7 @@
       "type": "string"
     },
     "data_licence": {
-      "description": "Added with the data notice of November 2026. What each licence covers: none for the register data, MIT for the code, CC BY 4.0 for the observatory's own prose.",
+      "description": "Added with the data notice of November 2026. What each licence covers: none for the register data, MIT for the code, CC BY 4.0 or MIT for the observatory's own prose.",
       "type": "string"
     },
     "snapshot_date": {"type": "string", "format": "date"},

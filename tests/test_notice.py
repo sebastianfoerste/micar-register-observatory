@@ -50,7 +50,9 @@ def test_data_notice_quotes_esma_with_url_and_retrieval_date():
     assert "retrieved on 14 November 2026 at 13:22 UTC" in notice
     assert "sources/esma/2026-11-14/legal-notice-and-data-protection.html" in notice
     assert "European Securities and Markets Authority (ESMA)" in notice
-    assert "covers the code in this repository only" in notice
+    assert "covers the code in this repository and reaches its documentation files" in notice
+    assert "only" not in notice.split("**Code.**", 1)[1].split("\n", 1)[0]
+    assert "Neither licence extends to the register data" in notice
     assert CC_BY in notice
     assert "No licence is granted for the register data." in notice
 
@@ -61,7 +63,8 @@ def test_readme_carries_the_short_notice_and_the_licence_scope():
     assert ESMA_SOURCE_SENTENCE in readme
     assert ESMA_ENDORSEMENT_SENTENCE in readme
     assert "(DATA_NOTICE.md)" in readme
-    assert "The MIT licence covers the code only." in readme
+    assert "The MIT licence covers the code and its documentation files." in readme
+    assert "The MIT licence covers the code only." not in readme
     assert CC_BY in readme
     assert "No licence is granted for the register data." in readme
 

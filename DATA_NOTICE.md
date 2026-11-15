@@ -31,8 +31,9 @@ ESMA's MiCA page adds that the crypto-asset white papers listed in its register 
 
 ## What each licence covers
 
-- **Code.** The MIT licence in [`LICENSE`](LICENSE) covers the code in this repository only.
-- **Prose.** The observatory's own prose in [`editions/`](editions/) and [`docs/`](docs/) is licensed under the [Creative Commons Attribution 4.0 International licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). Attribute it to Sebastian Förste, MiCAR Register Observatory, with a link to this repository. The licence does not extend to the register data in any form this repository republishes it, including the generated tables between the `data:start` and `data:end` markers of an edition, to text quoted from ESMA or from EU legal acts, or to the snapshots in [`sources/`](sources/).
+- **Code.** The MIT licence in [`LICENSE`](LICENSE) covers the code in this repository and reaches its documentation files, as its text says.
+- **Prose.** The observatory's own prose in [`editions/`](editions/) and [`docs/`](docs/) is also licensed under the [Creative Commons Attribution 4.0 International licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/); reuse it under either licence. Under CC BY 4.0, attribute it to Sebastian Förste, MiCAR Register Observatory, with a link to this repository.
+- **Data.** Neither licence extends to the register data in any form this repository republishes it, including the generated tables between the `data:start` and `data:end` markers of an edition, to text quoted from ESMA or from EU legal acts, or to the snapshots in [`sources/`](sources/).
 - **Register data.** No licence is granted for the register data. Anyone who reuses it takes it under ESMA's terms quoted above.
 
 The EU legal texts in [`sources/eu/`](sources/eu/) are copies retrieved from the Publications Office of the European Union. Their reuse terms are those of the Publications Office; this notice does not cover them.

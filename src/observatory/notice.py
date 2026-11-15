@@ -30,11 +30,12 @@ ESMA_PUBLISHER = "European Securities and Markets Authority (ESMA)"
 
 ESMA_DISCLAIMER = f"{ESMA_SOURCE_SENTENCE}. {ESMA_ENDORSEMENT_SENTENCE}."
 
-# What each licence covers (owner answer O6 of 10 November 2026): MIT for the
-# code, CC BY 4.0 for the observatory's own prose, nothing for ESMA's data.
+# What each licence covers (owner answer O6 of 10 November 2026, refined on 15 November):
+# MIT for the code; the observatory's own prose under CC BY 4.0 as well, because MIT's
+# "associated documentation files" already reach it; nothing for ESMA's data.
 LICENCE_SUMMARY = (
     "No licence is granted for the register data; ESMA's terms apply. Code: MIT. "
-    f"The observatory's own prose in editions and docs: CC BY 4.0. See {DATA_NOTICE_URL}"
+    f"The observatory's own prose in editions and docs: CC BY 4.0 or MIT. See {DATA_NOTICE_URL}"
 )
 
 
