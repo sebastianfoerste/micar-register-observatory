@@ -97,6 +97,22 @@ def test_the_ledger_keeps_both_kinds_of_evidence():
     assert "pending the owner's review" not in ledger
 
 
+def test_the_ledger_dates_snapshots_as_they_were_committed():
+    # The snapshot row once called 2026-08-24 and 2026-08-31 "the committed
+    # snapshots of that month"; August 2026 has five. Dates the row names must be
+    # committed snapshots, and the two it puts around 26 August the nearest ones.
+    ledger = (ROOT / "docs" / "regulatory-claim-ledger.md").read_text(encoding="utf-8")
+    row = next(line for line in ledger.splitlines() if "never committed" in line)
+    committed = sorted(path.stem for path in (ROOT / "data" / "snapshots").glob("*.json"))
+    assert "2026-08-26" not in committed
+    named = re.findall(r"\b20\d\d-\d\d-\d\d\b", row)
+    assert named and set(named) <= set(committed)
+    before = max(date for date in committed if date < "2026-08-26")
+    after = min(date for date in committed if date > "2026-08-26")
+    assert f"nearest committed snapshots are dated {before} and {after}" in row
+    assert "snapshots of that month" not in row
+
+
 def test_the_english_corrigendum_leaves_the_cited_articles_alone():
     corrigendum = _text("eu/32023R1114R03.xhtml")
     corrected = re.findall(r"On page \d+, (Article \d+\(\d+\))", corrigendum)
