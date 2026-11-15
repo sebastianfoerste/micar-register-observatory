@@ -46,6 +46,13 @@ def test_layout_is_what_the_parser_expects():
         assert re.search(r"^    timeout-minutes: \d+$", job, re.MULTILINE), name
 
 
+def test_refresh_job_leaves_room_for_the_monitor_page_fetch():
+    # In a week when ESMA refuses and archive.org rate-limits, the MiCA page fetch adds
+    # about two minutes to the exports' fetches; a job timeout would lose the snapshot.
+    minutes = re.search(r"^    timeout-minutes: (\d+)$", JOBS["refresh"], re.MULTILINE)
+    assert minutes and int(minutes.group(1)) >= 20
+
+
 def test_every_action_is_pinned_to_a_commit():
     for name, job in JOBS.items():
         for ref in re.findall(r"uses: (\S+)", job):
