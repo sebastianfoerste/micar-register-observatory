@@ -11,6 +11,13 @@ from pydantic import BaseModel
 
 BASE_URL = "https://www.esma.europa.eu/sites/default/files/2024-12"
 
+# ESMA's MiCA page links the five exports and carries their "Last update" line
+# (sources/esma/2026-11-14/markets-crypto-assets-regulation-mica.html).
+MICA_PAGE_URL = (
+    "https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/"
+    "markets-crypto-assets-regulation-mica"
+)
+
 # ESMA serves the exports through CloudFront, whose edge refused GitHub-hosted
 # runners (and, on 2026-10-22, archive.org's crawler) with a "Request blocked"
 # 403 in late October 2026. The Internet Archive's Wayback Machine keeps dated
@@ -45,8 +52,10 @@ class RegisterSource(BaseModel):
     min_rows: int = 0
     # The register's own "last update of the record" column.
     last_update_column: str = "wp_lastupdate"
-    # The header ESMA published when this source was last reviewed; a different
-    # header is reported as a source change but does not stop the refresh.
+    # The header ESMA published when this source was last reviewed (the named
+    # columns, in order; sources/README.md records the review of 14 November
+    # 2026). A different header is reported as a source change, and the source
+    # monitor opens an issue for it, but it does not stop the refresh.
     columns: tuple[str, ...] = ()
 
     @property
@@ -71,7 +80,9 @@ SOURCES: list[RegisterSource] = [
         slug="emt-wp",
         min_rows=20,
         filename="EMTWP.csv",
-        title="White papers — e-money tokens (Title IV)",
+        # ESMA's MiCA page names the file so; Art. 109(1)(c) and (4) MiCAR make it
+        # a register of issuers that contains their white papers.
+        title="Issuers of e-money tokens (Title IV)",
         kind="whitepaper",
         columns=(
             "ae_competentAuthority", "ae_homeMemberState", "ae_lei_name", "ae_lei",
@@ -85,7 +96,8 @@ SOURCES: list[RegisterSource] = [
     RegisterSource(
         slug="art-wp",
         filename="ARTZZ.csv",
-        title="White papers — asset-referenced tokens (Title III)",
+        # As for EMTWP.csv: Art. 109(1)(b) and (3) MiCAR.
+        title="Issuers of asset-referenced tokens (Title III)",
         kind="whitepaper",
         columns=(
             "ae_competentAuthority", "ae_homeMemberState", "ae_lei_name", "ae_lei",
@@ -107,7 +119,7 @@ SOURCES: list[RegisterSource] = [
             "ae_lei_cou_code", "ae_commercial_name", "ae_address", "ae_website",
             "ae_website_platform", "ac_authorisationNotificationDate",
             "ac_authorisationEndDate", "ac_serviceCode", "ac_serviceCode_cou",
-            "ac_comments", "ac_lastupdate",
+            "ac_comments", "ac_lastupdate", "ac_legal_basis",
         ),
     ),
     RegisterSource(

@@ -14,6 +14,7 @@ from observatory.coverage import DEEP_LINT_CLASSES
 from observatory.diff import Shrink
 from observatory.digest import text
 from observatory.models import ChangeRecord, RegisterSnapshot, Snapshot
+from observatory.notice import feed_notice
 
 DASHBOARD_START = "<!-- dashboard:start -->"
 DASHBOARD_END = "<!-- dashboard:end -->"
@@ -240,6 +241,9 @@ def write_feed(
 ) -> None:
     recent = [change.model_dump() for change in changes[-200:]]
     payload = {
+        # ESMA as the source, its prescribed disclaimer and the licence scope
+        # (DATA_NOTICE.md): the feed republishes the register in transformed form.
+        **feed_notice(),
         "snapshot_date": snapshot.snapshot_date,
         "quarantine": quarantine.model_dump() if quarantine else None,
         "registers": [

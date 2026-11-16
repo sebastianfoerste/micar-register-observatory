@@ -2,7 +2,9 @@
 
 A living dashboard of the **ESMA interim MiCAR register**. Every Monday a scheduled job pulls the public register exports (crypto-asset white papers under Titles II–IV, authorised CASPs, non-compliant entities), diffs them against the last snapshot, and rewrites the dashboard below: new filings, changed entries, entries no longer listed (in records after the 2026-10-12 snapshot, counted as removed only after two consecutive absences), and which file formats the white-paper links point to, judged by the URL alone.
 
-The register is public by law: Art. 109 VO (EU) 2023/1114 (MiCAR) requires ESMA to establish a public register of crypto-asset white papers, of issuers of asset-referenced and e-money tokens, and of crypto-asset service providers, and Art. 110 MiCAR a register of entities that provide crypto-asset services in violation of Art. 59 or 61 (the non-compliant entities). The duty to make each white paper available in a machine-readable format sits in the white-paper provisions, Art. 6(10), 19(9) and 51(9) MiCAR, with the forms, formats and templates set by Commission Implementing Regulation (EU) 2024/2984, which applies from 23 December 2025. This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
+The register is public by law. Art. 109(1) of Regulation (EU) 2023/1114 (MiCAR) requires ESMA to establish a register of crypto-asset white papers, of issuers of asset-referenced tokens and e-money tokens, and of crypto-asset service providers; the register must be publicly available on ESMA's website and updated on a regular basis. Art. 110 MiCAR adds a register of entities that provide crypto-asset services in violation of Art. 59 or 61 (the non-compliant entities), publicly available on ESMA's website in a machine-readable format. Within Art. 109, machine-readability enters through the regulatory technical standards under Art. 109(8): Commission Delegated Regulation (EU) 2025/421, which applies from 23 December 2025, specifies the data for classifying white papers in the register and the arrangements that make this data machine-readable. The duty to make each white paper itself available in a machine-readable format sits in the white-paper provisions, Art. 6(10), 19(9) and 51(9) MiCAR, with the forms, formats and templates set by Commission Implementing Regulation (EU) 2024/2984, which also applies from 23 December 2025. From 10 January 2030, Art. 110a(4) MiCAR, inserted by Regulation (EU) 2023/2869, makes the information in both registers accessible on the European single access point (ESAP), in a machine-readable format and with ESMA as the collection body. The [regulatory claim ledger](docs/regulatory-claim-ledger.md) records each pinpoint, checked against the [source snapshots](sources/README.md).
+
+This repository makes the register's weekly movement visible: what appeared, what changed, what disappeared.
 
 ## Dashboard
 
@@ -119,6 +121,12 @@ Deep-lint findings on individual white papers are deliberately **not** auto-publ
 
 See [docs/methodology.md](docs/methodology.md) for sources, normalization, change detection, and known limitations. Two that matter most: the observatory reflects the register exports as published (upstream corrections appear as "changed" entries), and format classification is a URL-shape heuristic until documents are fetched.
 
+## Data notice
+
+Source: European Securities and Markets Authority (ESMA), interim MiCA register. The dashboard, `data/`, `docs/feed.json`, the digests and the editions republish that register in transformed form, so ESMA's [legal notice](https://www.esma.europa.eu/legal-notice) requires this disclaimer: This document has been drafted using material downloaded from ESMA’s website. ESMA does not endorse this publication and in no way is liable for copyright or other intellectual property rights infringements nor for any damages caused to third parties through this publication.
+
+The MIT licence covers the code and its documentation files. The observatory's own prose in `editions/` and `docs/` is also licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). No licence is granted for the register data. [DATA_NOTICE.md](DATA_NOTICE.md) quotes ESMA's legal notice with its URL and retrieval date and sets out what each licence covers.
+
 ## Legal
 
-The underlying data is ESMA's public register. This repository records factual observations about that register; it contains no legal assessment of any issuer or service provider and is not legal advice. Code is MIT-licensed.
+The underlying data is ESMA's public register. This repository records factual observations about that register; it contains no legal assessment of any issuer or service provider and is not legal advice. Code is MIT-licensed; that licence does not extend to the register data or to the prose (see [Data notice](#data-notice)).

@@ -1,0 +1,2 @@
+# Source snapshots are stored byte for byte and are not project code.
+sources/** linguist-vendored -text

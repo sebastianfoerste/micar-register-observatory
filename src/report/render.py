@@ -10,6 +10,9 @@ import html
 import re
 from pathlib import Path
 
+from observatory.config import SOURCES
+from observatory.notice import DATA_NOTICE_URL, ESMA_DISCLAIMER, ESMA_PUBLISHER
+
 DATA_START = "<!-- data:start -->"
 DATA_END = "<!-- data:end -->"
 
@@ -32,13 +35,18 @@ _FORMAT_LABELS = {
     "none": "No link in register",
 }
 
-_REGISTER_LABELS = {
-    "other-wp": "White papers — other crypto-assets (Title II)",
-    "emt-wp": "White papers — e-money tokens (Title IV)",
-    "art-wp": "White papers — asset-referenced tokens (Title III)",
-    "casps": "Authorised CASPs",
-    "ncasp": "Non-compliant entities flagged by NCAs",
-}
+# A register is labelled with the title its snapshot recorded, shortened where
+# the table needs it. Snapshots keep the title they were taken with, so the
+# 2026-Q3 edition keeps "White papers — e-money tokens (Title IV)" while
+# editions built from later snapshots read "Issuers of e-money tokens (Title IV)".
+_SHORT_TITLES = {"Authorised crypto-asset service providers (CASPs)": "Authorised CASPs"}
+
+
+def register_label(slug: str, metrics: dict) -> str:
+    title = metrics.get("register_titles", {}).get(slug)
+    if not title:
+        title = next((source.title for source in SOURCES if source.slug == slug), slug)
+    return _SHORT_TITLES.get(title, title)
 
 
 def render_data_section(metrics: dict) -> str:
@@ -87,7 +95,7 @@ def render_data_section(metrics: dict) -> str:
     lines.append("| Register | Entries |")
     lines.append("| --- | ---: |")
     for slug, count in metrics["register_totals"].items():
-        lines.append(f"| {_REGISTER_LABELS.get(slug, slug)} | {count} |")
+        lines.append(f"| {register_label(slug, metrics)} | {count} |")
     lines.append("")
 
     lines.append("#### Home Member States (white papers)")
@@ -100,6 +108,14 @@ def render_data_section(metrics: dict) -> str:
     remainder = len(metrics["member_states"]) - 12
     if remainder > 0:
         lines.append(f"| ...and {remainder} more | | |")
+    lines.append("")
+
+    # The figures above republish ESMA's register in transformed form, so every
+    # edition carries ESMA's prescribed disclaimer word for word (DATA_NOTICE.md).
+    lines.append(
+        f"Source: {ESMA_PUBLISHER}, interim MiCA register. {ESMA_DISCLAIMER} "
+        f"No licence is granted for the register data; see the [data notice]({DATA_NOTICE_URL})."
+    )
     lines.append("")
     return "\n".join(lines)
 
@@ -202,6 +218,9 @@ reproducible from the observatory commit.</p>
 <h2>Home Member States (top 10)</h2>
 {ms_svg}
 <footer>
+<p>Register data: {html.escape(ESMA_PUBLISHER)}, interim MiCA register.
+{html.escape(ESMA_DISCLAIMER)} No licence is granted for the register data; see the
+<a href="{DATA_NOTICE_URL}">data notice</a>.</p>
 Source: <a href="https://github.com/sebastianfoerste/micar-register-observatory">MiCAR
 Register Observatory</a>. Factual observations about a public register; not legal
 advice. Full report:

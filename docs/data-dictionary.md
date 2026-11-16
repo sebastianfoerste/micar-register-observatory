@@ -154,6 +154,9 @@ Written on `changed` records, re-read from the verbatim columns of the old and n
 
 | Field | Meaning |
 | --- | --- |
+| `source` | Added with the data notice of November 2026. `{"publisher", "dataset", "url"}`: ESMA, its interim MiCA register and ESMA's MiCA page. |
+| `notice` | Added with the data notice of November 2026. ESMA's prescribed disclaimer for transformed and republished material, word for word (see [DATA_NOTICE.md](../DATA_NOTICE.md)). |
+| `data_licence` | Added with the data notice of November 2026. What each licence covers: no licence for the register data, MIT for the code, CC BY 4.0 or MIT for the observatory's own prose. |
 | `snapshot_date` | The snapshot the totals describe. |
 | `quarantine` | Added with the 2026-10-19 snapshot. `null`, or the export set aside after `snapshot_date`: `{"snapshot_date", "shrinks": [{"slug", "before", "after"}]}` with the row counts that triggered it. |
 | `registers` | Per register: `slug`, `title`, `entries` (rows), `entities` (added with the 2026-10-19 snapshot), `fetched` and `source_last_modified` (added with the 2026-10-19 snapshot; as in the snapshot). |

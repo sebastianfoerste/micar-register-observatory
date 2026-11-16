@@ -199,11 +199,40 @@ def test_an_export_esma_keeps_refusing_is_taken_from_the_wayback_machine() -> No
     assert all("micar-register-observatory" in c.get_header("User-agent") for c in calls)
 
 
+def test_an_archived_copy_says_what_esma_answered_and_what_the_archive_served() -> None:
+    blocked = http_error_with(*BLOCKED)
+    opener, _ = scripted_opener([blocked] * 4 + [availability(), archived_copy()])
+    download = fetch_export(SOURCE, opener=opener, sleep=lambda _: None, now=now)
+    assert download.esma_refusal.startswith("HTTP Error 403: Forbidden")
+    assert "server=CloudFront" in download.esma_refusal
+    assert download.content_type == "text/csv"  # ESMA's media type, as the archive replays it
+    assert download.final_url == ARCHIVE_URL  # the fake response does not redirect
+
+
 def test_a_download_from_esma_itself_carries_no_archive_provenance() -> None:
     opener, calls = scripted_opener([http_error(503), b"ok"])
     download = fetch_export(SOURCE, opener=opener, sleep=lambda _: None, now=now)
     assert download.body == b"ok" and download.url == SOURCE.url
     assert download.archived_at == "" and len(calls) == 2
+    assert download.esma_refusal == ""
+
+
+def test_a_download_keeps_the_url_it_was_redirected_to_and_its_content_type() -> None:
+    moved = "https://www.esma.europa.eu/sites/default/files/2026-12/OTHER.csv"
+    answer = response(b"ok", {"Content-Type": "text/csv; charset=utf-8"})
+    answer.geturl = lambda: moved  # type: ignore[attr-defined]
+    download = fetch_export(SOURCE, opener=lambda request, timeout: answer, now=now)
+    assert download.final_url == moved
+    assert download.content_type == "text/csv; charset=utf-8"
+
+
+def test_only_an_answer_outside_the_retryable_codes_is_permanent() -> None:
+    from observatory.fetch import is_permanent
+
+    assert is_permanent(http_error(404))
+    assert not is_permanent(http_error(403))
+    assert not is_permanent(TimeoutError())
+    assert not is_permanent(SourceUnavailable("403; Wayback Machine: none"))
 
 
 def test_an_archived_copy_older_than_the_limit_is_not_used() -> None:

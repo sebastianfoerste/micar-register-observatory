@@ -3,7 +3,9 @@
 Usage:
     python -m observatory refresh [--date YYYY-MM-DD] [--data-dir data] [--fixtures DIR]
                                   [--accept-shrink] [--force] [--no-archive]
+                                  [--monitor-report PATH]
     python -m observatory render  [--data-dir data]
+    python -m observatory monitor [--state PATH] [--report PATH] [--save] [--no-archive]
     python -m observatory asof    (--lei LEI | --name TEXT) [--date YYYY-MM-DD]
                                   [--register SLUG] [--json]
 
@@ -24,6 +26,17 @@ and the feed say so (`fetched_from`, `archived_at`), as do the raw manifest
 an archived copy.
 `asof` prints what the last snapshot recorded on or before a date lists for a
 firm, and the firm's recorded changes up to then.
+
+Every refresh that fetches runs the source monitor (observatory.monitor) on the
+bytes it used, from ESMA or from the archive, and on ESMA's MiCA page. It prints
+annotations, saves the observation to `<data-dir>/source-monitor.json` with
+whatever the refresh records, and never changes the refresh's exit status.
+`--monitor-report PATH` also writes the Markdown report there and, inside GitHub
+Actions, appends it to the job summary and sets the step outputs `monitor`
+(issue, unknown, ok, or skipped when nothing was fetched), `fingerprint` and
+`report`. `monitor` runs the same checks on a fresh download without recording
+anything; it compares with `--state` (default `<data-dir>/source-monitor.json`),
+saves only with `--save`, and exits 1 unless the outcome is ok.
 """
 
 from __future__ import annotations
@@ -32,16 +45,29 @@ import argparse
 import datetime
 import hashlib
 import json
+import os
+import secrets
 import sys
+from collections.abc import Mapping
 from pathlib import Path
 
 from observatory.asof import as_of, render_text
-from observatory.config import SOURCES, RegisterSource
+from observatory.config import MICA_PAGE_URL, SOURCES, RegisterSource
 from observatory.diff import Shrink, diff_snapshots, export_shrinks
 from observatory.digest import write_atom, write_digests
 from observatory.export import write_exports
-from observatory.fetch import Download, fetch_export, utc_now
+from observatory.fetch import Download, fetch_export, fetch_url, utc_now
 from observatory.models import ChangeRecord, RegisterSnapshot, Snapshot
+from observatory.monitor import (
+    STATE_FILE,
+    MonitorReport,
+    Outcome,
+    annotation_lines,
+    failed_report,
+    load_state,
+    run_monitor,
+    save_state,
+)
 from observatory.normalize import column_drift, parse_register
 from observatory.render import Quarantine, render_dashboard, update_readme, write_feed
 from observatory.store import (
@@ -64,15 +90,36 @@ REFRESH_WINDOW_DAYS = 5
 
 def read_fixture(fixtures: Path, source: RegisterSource) -> Download:
     path = fixtures / f"{source.slug}.csv"
-    return Download(body=path.read_bytes(), url=f"fixture:{path.name}", retrieved_at=utc_now())
+    # A fixture stands in for ESMA's file at its configured URL.
+    return Download(
+        body=path.read_bytes(),
+        url=f"fixture:{path.name}",
+        retrieved_at=utc_now(),
+        final_url=source.url,
+        content_type="text/csv",
+    )
+
+
+def fetch_page(archive: bool = True) -> Download | Exception:
+    """ESMA's MiCA page for the source monitor, or the archive's recent copy;
+    the error when neither answers."""
+    try:
+        return fetch_url(MICA_PAGE_URL, archive=archive)
+    except Exception as error:  # noqa: BLE001 — the monitor reports it
+        return error
 
 
 def build_snapshot(
-    snapshot_date: str, fixtures: Path | None, archive: bool = True
+    snapshot_date: str,
+    fixtures: Path | None,
+    archive: bool = True,
+    fetched: dict[str, Download | Exception] | None = None,
 ) -> tuple[Snapshot, dict[str, Download]]:
     """Fetch and parse every source; also return the downloads, by slug.
 
     `archive` allows the Wayback Machine to stand in for an export ESMA refuses.
+    `fetched`, when given, receives every download by slug, including those that
+    failed to parse, or the error that left a source without one.
     """
     registers = []
     downloads: dict[str, Download] = {}
@@ -82,6 +129,8 @@ def build_snapshot(
                 download = read_fixture(fixtures, source)
             else:
                 download = fetch_export(source, archive=archive)
+            if fetched is not None:
+                fetched[source.slug] = download
             if download.archived_at:
                 print(
                     f"::warning title=Archived copy used::{source.slug}: ESMA refused the "
@@ -106,6 +155,8 @@ def build_snapshot(
                 )
             )
         except Exception as error:  # noqa: BLE001 — one failed source must not kill the run
+            if fetched is not None:
+                fetched.setdefault(source.slug, error)
             registers.append(
                 RegisterSnapshot(
                     slug=source.slug,
@@ -222,10 +273,65 @@ def fetched_this_week(data_dir: Path, snapshot_date: str) -> str:
     return newest if 0 <= age <= REFRESH_WINDOW_DAYS else ""
 
 
-def cmd_refresh(args: argparse.Namespace) -> int:
+def write_monitor_report(
+    report: MonitorReport | None, path: str | None, environ: Mapping[str, str]
+) -> None:
+    """Write the report to `path` and, inside GitHub Actions, to the job summary
+    and the step outputs. Nothing happens without `path`, so tests and local
+    runs never write to a workflow's files. No report: nothing was fetched."""
+    if not path:
+        return
+    if report is None:
+        markdown, outcome, fingerprint = "Nothing was fetched, so nothing was checked.\n", "", ""
+    else:
+        markdown, outcome, fingerprint = (
+            report.to_markdown(),
+            report.outcome.value,
+            report.fingerprint(),
+        )
+    Path(path).write_text(markdown, encoding="utf-8")
+    summary = environ.get("GITHUB_STEP_SUMMARY")
+    if summary and report is not None:
+        with open(summary, "a", encoding="utf-8") as handle:
+            handle.write(markdown + "\n")
+    output = environ.get("GITHUB_OUTPUT")
+    if output:
+        # A random delimiter keeps text from ESMA's files from ending the value.
+        delimiter = f"report_{secrets.token_hex(16)}"
+        with open(output, "a", encoding="utf-8") as handle:
+            handle.write(f"monitor={outcome or 'skipped'}\n")
+            handle.write(f"fingerprint={fingerprint}\n")
+            handle.write(f"report<<{delimiter}\n{markdown}\n{delimiter}\n")
+
+
+def check_sources(
+    data_dir: Path,
+    checked_on: str,
+    fetched: Mapping[str, Download | Exception],
+    page: Download | Exception | str,
+    enforce_floors: bool,
+) -> MonitorReport:
+    """Run the source monitor against the last saved observation and announce it."""
+    state = load_state(data_dir / STATE_FILE)
+    report = run_monitor(
+        SOURCES,
+        fetched,
+        page,
+        state.observations if state else [],
+        checked_on=checked_on,
+        previous_checked_on=state.checked_on if state else "",
+        enforce_floors=enforce_floors,
+    )
+    for line in annotation_lines(report):
+        print(line)
+    return report
+
+
+def cmd_refresh(args: argparse.Namespace, environ: Mapping[str, str] = os.environ) -> int:
     data_dir = Path(args.data_dir)
     snapshot_date = args.date or datetime.date.today().isoformat()
     fixtures = Path(args.fixtures) if args.fixtures else None
+    monitor_report = getattr(args, "monitor_report", None)
 
     force = bool(getattr(args, "force", False) or args.accept_shrink)
     recent = "" if force else fetched_this_week(data_dir, snapshot_date)
@@ -234,19 +340,33 @@ def cmd_refresh(args: argparse.Namespace) -> int:
             f"::notice title=Export already fetched this week::an export dated {recent} is "
             f"recorded or quarantined; {snapshot_date} fetches nothing (use --force to fetch)"
         )
+        write_monitor_report(None, monitor_report, environ)
         return 0
 
     archive = not getattr(args, "no_archive", False)
-    current, downloads = build_snapshot(snapshot_date, fixtures, archive=archive)
+    used: dict[str, Download | Exception] = {}
+    current, downloads = build_snapshot(snapshot_date, fixtures, archive=archive, fetched=used)
+    # The monitor checks the bytes this refresh used, whichever source gave them,
+    # and only reports: it never stops the refresh.
+    page = fetch_page(archive) if fixtures is None else "not fetched in an offline run"
+    try:
+        report = check_sources(data_dir, snapshot_date, used, page, enforce_floors=fixtures is None)
+    except Exception as error:  # noqa: BLE001 — a failing monitor reports UNKNOWN, never stops
+        report = failed_report(snapshot_date, error)
+        for line in annotation_lines(report):
+            print(line)
+    write_monitor_report(report, monitor_report, environ)
     failed = [r for r in current.registers if not r.fetched]
     if failed:
         # Fail closed: a partial snapshot would be committed and then trip the
         # freshness gate; better to keep the last good data and fail loudly.
+        # The monitor's observation is not saved either.
         for register in failed:
             print(f"refresh failed: {register.slug}: {register.fetch_error}", file=sys.stderr)
         return 1
 
     report_column_drift(current)
+    save_state(data_dir / STATE_FILE, report)
     previous = load_latest(data_dir)
     unconfirmed = [] if args.accept_shrink else unconfirmed_shrinks(data_dir, previous, current)
     if previous is not None and unconfirmed:
@@ -265,6 +385,35 @@ def cmd_refresh(args: argparse.Namespace) -> int:
         f"{len(changes)} change records"
     )
     return 0
+
+
+def cmd_monitor(args: argparse.Namespace) -> int:
+    """The source monitor on a fresh download, without recording anything."""
+    data_dir = Path(args.data_dir)
+    state_path = Path(args.state) if args.state else data_dir / STATE_FILE
+    archive = not args.no_archive
+    fetched: dict[str, Download | Exception] = {}
+    for source in SOURCES:
+        try:
+            fetched[source.slug] = fetch_export(source, archive=archive)
+        except Exception as error:  # noqa: BLE001 — the monitor reports it
+            fetched[source.slug] = error
+    state = load_state(state_path)
+    report = run_monitor(
+        SOURCES,
+        fetched,
+        fetch_page(archive),
+        state.observations if state else [],
+        checked_on=args.date or datetime.date.today().isoformat(),
+        previous_checked_on=state.checked_on if state else "",
+    )
+    markdown = report.to_markdown()
+    print(markdown)
+    if args.report:
+        Path(args.report).write_text(markdown, encoding="utf-8")
+    if args.save:
+        save_state(state_path, report)
+    return 0 if report.outcome is Outcome.OK else 1
 
 
 def cmd_render(args: argparse.Namespace) -> int:
@@ -319,7 +468,22 @@ def main() -> int:
         action="store_true",
         help="fail when ESMA refuses an export instead of using the Wayback Machine's copy",
     )
+    refresh.add_argument(
+        "--monitor-report",
+        default=None,
+        help="write the source monitor's Markdown report here (and the GitHub step outputs)",
+    )
     refresh.set_defaults(func=cmd_refresh)
+
+    monitor = subparsers.add_parser(
+        "monitor", help="check ESMA's sources now, without recording anything"
+    )
+    monitor.add_argument("--state", default=None, help="observation to compare with")
+    monitor.add_argument("--report", default=None, help="also write the report here")
+    monitor.add_argument("--date", default=None, help="check date for the report")
+    monitor.add_argument("--save", action="store_true", help="save the observation to --state")
+    monitor.add_argument("--no-archive", action="store_true", help="never use archived copies")
+    monitor.set_defaults(func=cmd_monitor)
 
     render = subparsers.add_parser("render")
     render.set_defaults(func=cmd_render)

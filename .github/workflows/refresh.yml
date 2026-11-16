@@ -11,7 +11,8 @@ on:
     - cron: "17 18 * * 1"
   workflow_dispatch:
 
-# Never run two refreshes at once: they would race on data/ and the push.
+# Never run two refreshes at once: they would race on data/ and the push, and
+# two issue jobs could each open the same issue.
 concurrency:
   group: data-writes
   cancel-in-progress: false
@@ -35,9 +36,13 @@ jobs:
   refresh:
     needs: test
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     permissions:
       contents: write
+    outputs:
+      monitor: ${{ steps.refresh.outputs.monitor }}
+      fingerprint: ${{ steps.refresh.outputs.fingerprint }}
+      report: ${{ steps.refresh.outputs.report }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
@@ -48,8 +53,14 @@ jobs:
       # source fails, lacks required columns or falls below its row floor.
       # A refresh from a machine ESMA answers (scripts/refresh_from_box.sh)
       # earlier in the week leaves this run nothing to record.
-      - name: Refresh the register snapshot
-        run: uv run python -m observatory refresh
+      # The source monitor runs inside the refresh, on the bytes the refresh
+      # used, whether ESMA or the archive gave them. It only reports: a refusal
+      # by ESMA is logged, and no finding changes the exit status. Its report
+      # goes to the job summary and, as step outputs, to the issue job below;
+      # its observation is saved to data/source-monitor.json with the snapshot.
+      - name: Refresh the register snapshot and check its sources
+        id: refresh
+        run: uv run python -m observatory refresh --monitor-report "$RUNNER_TEMP/source-monitor.md"
       - name: Freshness gate
         run: uv run python scripts/check_snapshot_freshness.py
       # The new snapshot, changelog, feed, exports and raw archive must still
@@ -74,3 +85,186 @@ jobs:
           stand in. The Monday-evening slot retries on its own; the export can
           be recorded from a machine ESMA answers with
           scripts/refresh_from_box.sh (docs/refresh-from-box.md)."
+
+  # Issues are filed from a job of their own: the token that may write issues
+  # never runs the dependencies, the tests or the download code, and the job
+  # holds no checkout. It runs after a failed refresh too, when the monitor
+  # reported before the refresh stopped.
+  source-monitor-issue:
+    needs: refresh
+    if: always() && (needs.refresh.outputs.monitor == 'issue' || needs.refresh.outputs.monitor == 'unknown')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    defaults:
+      run:
+        # Explicit bash runs with pipefail: a failed gh call stops the step
+        # instead of opening a second issue.
+        shell: bash
+    steps:
+      - name: Open the issue, or comment when the findings changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          FINGERPRINT: ${{ needs.refresh.outputs.fingerprint }}
+          REPORT: ${{ needs.refresh.outputs.report }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="ESMA source monitor: findings to review"
+          if ! [[ "$FINGERPRINT" =~ ^[0-9a-f]{16}$ ]]; then
+            echo "::error title=Source monitor issue::the refresh job handed over no fingerprint"
+            exit 1
+          fi
+          body="$RUNNER_TEMP/issue-body.md"
+          {
+            echo "Workflow run: $RUN_URL"
+            echo
+            printf '%s\n' "$REPORT"
+          } > "$body"
+          # One open issue for the monitor. Later runs comment only when the
+          # findings differ from the last ones posted, so an unchanged finding
+          # is not repeated week after week.
+          number="$(gh issue list --state open --limit 200 --json number,title \
+            --jq "map(select(.title == \"$title\")) | .[0].number // empty")"
+          if [ -z "$number" ]; then
+            gh issue create --title "$title" --body-file "$body"
+            exit 0
+          fi
+          # Only text this workflow posted counts, so nobody else's comment can
+          # silence a report.
+          thread="$RUNNER_TEMP/thread.txt"
+          gh api "repos/$GH_REPO/issues/$number" \
+            --jq 'select(.user.login == "github-actions[bot]") | .body' > "$thread"
+          gh api --paginate "repos/$GH_REPO/issues/$number/comments" \
+            --jq '.[] | select(.user.login == "github-actions[bot]") | .body' >> "$thread"
+          last="$({ grep -oE 'monitor-fingerprint: [0-9a-f]{16}' "$thread" || true; } | tail -n 1 | cut -d ' ' -f 2)"
+          if [ "$last" = "$FINGERPRINT" ]; then
+            echo "Issue #$number already reports these findings ($FINGERPRINT); nothing posted."
+          else
+            gh issue comment "$number" --body-file "$body"
+          fi
+
+  # The plan's fresh-install check for eu-reg-mcp, hosted here because this
+  # workflow runs every week. It reports and never blocks: no job waits for it,
+  # and the step records a failed install instead of failing. It installs the
+  # newest eu-reg-mcp release from PyPI as a user's `uvx eu-reg-mcp` would, with
+  # an override that lifts eu-reg-mcp's own bound on mcp, so the newest mcp is
+  # installed, and imports the server module. It runs the newest packages from
+  # PyPI, so its job holds no token scope and no checkout. The Monday-evening
+  # slot leaves it out: the morning run has already checked that day.
+  eu-reg-mcp-fresh-install:
+    if: github.event_name != 'schedule' || github.event.schedule == '17 6 * * 1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: {}
+    outputs:
+      result: ${{ steps.install.outputs.result }}
+      key: ${{ steps.install.outputs.key }}
+      versions: ${{ steps.install.outputs.versions }}
+      log: ${{ steps.install.outputs.log }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
+        with:
+          # A fresh install: no uv cache restored from an earlier week.
+          enable-cache: false
+      - name: Install eu-reg-mcp with the newest mcp and import its server
+        id: install
+        env:
+          CHECK: |
+            import importlib.metadata as metadata
+            print(f"versions: eu-reg-mcp {metadata.version('eu-reg-mcp')}, mcp {metadata.version('mcp')}")
+            import eu_reg_mcp.server
+            print("import ok")
+        run: |
+          printf 'mcp\n' > "$RUNNER_TEMP/overrides.txt"
+          log="$RUNNER_TEMP/fresh-install.log"
+          if uvx --isolated --no-cache --no-config --python 3.13 \
+            --overrides "$RUNNER_TEMP/overrides.txt" --from eu-reg-mcp \
+            python -I -u -c "$CHECK" > "$log" 2>&1; then
+            result=pass
+          else
+            result=fail
+          fi
+          versions="$({ grep -m 1 '^versions: ' "$log" || echo 'versions: not installed'; } | cut -d ' ' -f 2-)"
+          key="$(printf '%s %s' "$result" "$versions" | sha256sum | cut -c 1-16)"
+          {
+            echo "## eu-reg-mcp fresh install: $result"
+            echo
+            echo "$versions"
+            echo
+            echo '```text'
+            tail -n 40 "$log" | tr '`' "'"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          # The log goes to the issue job with backticks and @ defused, so
+          # package output can neither close the code block nor mention anyone.
+          delimiter="log_$(openssl rand -hex 16)"
+          {
+            echo "result=$result"
+            echo "key=$key"
+            echo "versions=$versions"
+            echo "log<<$delimiter"
+            tail -n 40 "$log" | tr '`@' "'_"
+            echo "$delimiter"
+          } >> "$GITHUB_OUTPUT"
+
+  eu-reg-mcp-fresh-install-issue:
+    needs: eu-reg-mcp-fresh-install
+    if: always() && needs.eu-reg-mcp-fresh-install.outputs.result == 'fail'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Open the issue, or comment when the versions changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          KEY: ${{ needs.eu-reg-mcp-fresh-install.outputs.key }}
+          VERSIONS: ${{ needs.eu-reg-mcp-fresh-install.outputs.versions }}
+          LOG: ${{ needs.eu-reg-mcp-fresh-install.outputs.log }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="eu-reg-mcp fresh install with the newest mcp fails"
+          if ! [[ "$KEY" =~ ^[0-9a-f]{16}$ ]]; then
+            echo "::error title=Fresh-install issue::the install job handed over no key"
+            exit 1
+          fi
+          body="$RUNNER_TEMP/issue-body.md"
+          {
+            echo "Workflow run: $RUN_URL"
+            echo
+            echo "A fresh \`uvx --isolated\` install of the newest eu-reg-mcp release from PyPI, with an override that lifts its bound on \`mcp\`, could not import \`eu_reg_mcp.server\`. Installed: \`${VERSIONS:-unknown}\`. This check only reports; the register refresh does not depend on it."
+            echo
+            echo '```text'
+            printf '%s\n' "${LOG:-no log written}"
+            echo '```'
+            echo
+            echo "<!-- fresh-install-key: $KEY -->"
+          } > "$body"
+          # One open issue; later runs comment only when the installed versions
+          # or the result changed.
+          number="$(gh issue list --state open --limit 200 --json number,title \
+            --jq "map(select(.title == \"$title\")) | .[0].number // empty")"
+          if [ -z "$number" ]; then
+            gh issue create --title "$title" --body-file "$body"
+            exit 0
+          fi
+          thread="$RUNNER_TEMP/thread.txt"
+          gh api "repos/$GH_REPO/issues/$number" \
+            --jq 'select(.user.login == "github-actions[bot]") | .body' > "$thread"
+          gh api --paginate "repos/$GH_REPO/issues/$number/comments" \
+            --jq '.[] | select(.user.login == "github-actions[bot]") | .body' >> "$thread"
+          last="$({ grep -oE 'fresh-install-key: [0-9a-f]{16}' "$thread" || true; } | tail -n 1 | cut -d ' ' -f 2)"
+          if [ "$last" = "$KEY" ]; then
+            echo "Issue #$number already reports this result ($VERSIONS); nothing posted."
+          else
+            gh issue comment "$number" --body-file "$body"
+          fi

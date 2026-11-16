@@ -4,6 +4,7 @@ Machine is used instead, and the download says so."""
 
 from __future__ import annotations
 
+import dataclasses
 import datetime
 import gzip
 import http.client
@@ -63,6 +64,14 @@ class Download:
     # When an archive captured the copy (its Memento-Datetime header, verbatim);
     # empty for a download from ESMA itself.
     archived_at: str = ""
+    # Where the request ended after redirects (for an archived copy, the archive
+    # URL, which names the ESMA URL it is a copy of); empty when unknown.
+    final_url: str = ""
+    # The Content-Type ESMA sent, verbatim (for an archived copy, as the archive
+    # replays it); empty when the server sent none.
+    content_type: str = ""
+    # For an archived copy: what ESMA answered before the archive stood in.
+    esma_refusal: str = ""
 
 
 class ArchiveError(Exception):
@@ -79,6 +88,12 @@ def utc_now() -> str:
 
 def _now() -> datetime.datetime:
     return datetime.datetime.now(datetime.UTC)
+
+
+def is_permanent(error: BaseException) -> bool:
+    """An answer from ESMA that retrying and the archive would only hide: an HTTP
+    error outside RETRYABLE_STATUS, such as a 404 for a file that moved."""
+    return isinstance(error, urllib.error.HTTPError) and error.code not in RETRYABLE_STATUS
 
 
 def _is_retryable(error: Exception) -> bool:
@@ -137,12 +152,13 @@ def _get(
     backoff: float,
     opener: Callable[..., Any],
     sleep: Callable[[float], None],
-) -> tuple[bytes, Any]:
+) -> tuple[bytes, Any, str]:
     """GET `url`, retrying transient errors with exponential backoff.
 
-    Returns the body and the response headers. A gzip-encoded body is decoded:
-    the Wayback Machine serves an export exactly as ESMA sent it to the crawler,
-    compressed when the crawler asked for compression.
+    Returns the body, the response headers and the URL the request ended at after
+    redirects. A gzip-encoded body is decoded: the Wayback Machine serves an
+    export exactly as ESMA sent it to the crawler, compressed when the crawler
+    asked for compression.
     """
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     for attempt in range(1, attempts + 1):
@@ -156,7 +172,9 @@ def _get(
                         body = gzip.decompress(body)
                     except (OSError, EOFError):
                         pass  # not gzip after all; the parser judges the bytes
-                return body, headers
+                geturl = getattr(response, "geturl", None)
+                final = geturl() if callable(geturl) else ""
+                return body, headers, str(final or url)
         except Exception as error:  # noqa: BLE001 — classified below
             if attempt == attempts or not _is_retryable(error):
                 if isinstance(error, urllib.error.HTTPError):
@@ -171,6 +189,26 @@ def _value(headers: Any, name: str) -> str:
     return str(value or "")
 
 
+def download_url(
+    url: str,
+    timeout: int = 60,
+    attempts: int = 4,
+    backoff: float = 2.0,
+    opener: Callable[..., Any] = urllib.request.urlopen,
+    sleep: Callable[[float], None] = time.sleep,
+) -> Download:
+    """Fetch `url` from ESMA, retrying transient errors with backoff."""
+    body, headers, final = _get(url, timeout, attempts, backoff, opener, sleep)
+    return Download(
+        body=body,
+        url=url,
+        last_modified=_value(headers, "Last-Modified"),
+        retrieved_at=utc_now(),
+        final_url=final,
+        content_type=_value(headers, "Content-Type"),
+    )
+
+
 def download_source(
     source: RegisterSource,
     timeout: int = 60,
@@ -180,13 +218,7 @@ def download_source(
     sleep: Callable[[float], None] = time.sleep,
 ) -> Download:
     """Fetch one source from ESMA, retrying transient errors with backoff."""
-    body, headers = _get(source.url, timeout, attempts, backoff, opener, sleep)
-    return Download(
-        body=body,
-        url=source.url,
-        last_modified=_value(headers, "Last-Modified"),
-        retrieved_at=utc_now(),
-    )
+    return download_url(source.url, timeout, attempts, backoff, opener, sleep)
 
 
 def fetch_source(
@@ -217,6 +249,48 @@ def archive_timestamp(payload: bytes, url: str) -> str:
     return timestamp
 
 
+def download_archived_url(
+    original: str,
+    timeout: int = 60,
+    attempts: int = 4,
+    backoff: float = 2.0,
+    opener: Callable[..., Any] = urllib.request.urlopen,
+    sleep: Callable[[float], None] = time.sleep,
+    now: Callable[[], datetime.datetime] = _now,
+) -> Download:
+    """The newest copy of `original` in the Wayback Machine, when it was captured
+    within the last MAX_ARCHIVE_AGE_DAYS days; ArchiveError otherwise.
+
+    The download's `url` is the archive URL, `last_modified` the Last-Modified
+    header ESMA sent the crawler and `archived_at` the capture time.
+    """
+    lookup = ARCHIVE_AVAILABILITY_URL.format(url=original)
+    answer, _, _ = _get(lookup, timeout, attempts, backoff, opener, sleep)
+    timestamp = archive_timestamp(answer, original)
+    captured = datetime.datetime.strptime(timestamp, _ARCHIVE_TIMESTAMP).replace(
+        tzinfo=datetime.UTC
+    )
+    if now() - captured > datetime.timedelta(days=MAX_ARCHIVE_AGE_DAYS):
+        raise ArchiveError(
+            f"the newest archived copy of {original} was captured on "
+            f"{captured:%Y-%m-%d}, more than {MAX_ARCHIVE_AGE_DAYS} days ago"
+        )
+    url = ARCHIVE_FILE_URL.format(timestamp=timestamp, url=original)
+    body, headers, final = _get(url, timeout, attempts, backoff, opener, sleep)
+    return Download(
+        body=body,
+        url=url,
+        last_modified=_value(headers, "X-Archive-Orig-Last-Modified"),
+        retrieved_at=utc_now(),
+        archived_at=_value(headers, "Memento-Datetime")
+        or captured.strftime("%a, %d %b %Y %H:%M:%S GMT"),
+        final_url=final,
+        # In `id_` mode the archive replays ESMA's Content-Type as its own.
+        content_type=_value(headers, "X-Archive-Orig-Content-Type")
+        or _value(headers, "Content-Type"),
+    )
+
+
 def download_archived(
     source: RegisterSource,
     timeout: int = 60,
@@ -226,33 +300,42 @@ def download_archived(
     sleep: Callable[[float], None] = time.sleep,
     now: Callable[[], datetime.datetime] = _now,
 ) -> Download:
-    """The newest copy of the export in the Wayback Machine, when it was captured
-    within the last MAX_ARCHIVE_AGE_DAYS days; ArchiveError otherwise.
+    """The newest recent copy of the export in the Wayback Machine."""
+    return download_archived_url(source.url, timeout, attempts, backoff, opener, sleep, now)
 
-    The download's `url` is the archive URL, `last_modified` the Last-Modified
-    header ESMA sent the crawler and `archived_at` the capture time.
+
+def fetch_url(
+    url: str,
+    archive: bool = True,
+    timeout: int = 60,
+    attempts: int = 4,
+    backoff: float = 2.0,
+    opener: Callable[..., Any] = urllib.request.urlopen,
+    sleep: Callable[[float], None] = time.sleep,
+    now: Callable[[], datetime.datetime] = _now,
+) -> Download:
+    """`url` from ESMA; when ESMA refuses or fails for every attempt and
+    `archive` is set, the newest recent copy in the Wayback Machine, with what
+    ESMA answered in `esma_refusal`.
+
+    A permanent answer from ESMA (404: the file moved) is raised as it is: an
+    archived copy would hide a source change. When both fail, the error names
+    what ESMA said and why no archived copy could stand in. The archive is
+    retried more slowly and fewer times (ARCHIVE_BACKOFF, ARCHIVE_ATTEMPTS):
+    archive.org rate-limits with 429, and the whole refresh has a time budget.
     """
-    lookup = ARCHIVE_AVAILABILITY_URL.format(url=source.url)
-    answer, _ = _get(lookup, timeout, attempts, backoff, opener, sleep)
-    timestamp = archive_timestamp(answer, source.url)
-    captured = datetime.datetime.strptime(timestamp, _ARCHIVE_TIMESTAMP).replace(
-        tzinfo=datetime.UTC
-    )
-    if now() - captured > datetime.timedelta(days=MAX_ARCHIVE_AGE_DAYS):
-        raise ArchiveError(
-            f"the newest archived copy of {source.url} was captured on "
-            f"{captured:%Y-%m-%d}, more than {MAX_ARCHIVE_AGE_DAYS} days ago"
-        )
-    url = ARCHIVE_FILE_URL.format(timestamp=timestamp, url=source.url)
-    body, headers = _get(url, timeout, attempts, backoff, opener, sleep)
-    return Download(
-        body=body,
-        url=url,
-        last_modified=_value(headers, "X-Archive-Orig-Last-Modified"),
-        retrieved_at=utc_now(),
-        archived_at=_value(headers, "Memento-Datetime")
-        or captured.strftime("%a, %d %b %Y %H:%M:%S GMT"),
-    )
+    try:
+        return download_url(url, timeout, attempts, backoff, opener, sleep)
+    except Exception as error:  # noqa: BLE001 — classified below
+        if not archive or not _is_retryable(error):
+            raise
+        slower = max(backoff, ARCHIVE_BACKOFF)
+        fewer = min(attempts, ARCHIVE_ATTEMPTS)
+        try:
+            copy = download_archived_url(url, timeout, fewer, slower, opener, sleep, now)
+        except Exception as fallback:  # noqa: BLE001 — reported with the first error
+            raise SourceUnavailable(f"{error}; Wayback Machine: {fallback}") from error
+        return dataclasses.replace(copy, esma_refusal=" ".join(str(error).split())[:300])
 
 
 def fetch_export(
@@ -265,23 +348,5 @@ def fetch_export(
     sleep: Callable[[float], None] = time.sleep,
     now: Callable[[], datetime.datetime] = _now,
 ) -> Download:
-    """The export from ESMA; when ESMA refuses or fails for every attempt and
-    `archive` is set, the newest recent copy in the Wayback Machine.
-
-    A permanent answer from ESMA (404: the file moved) is raised as it is: an
-    archived copy would hide a source change. When both fail, the error names
-    what ESMA said and why no archived copy could stand in. The archive is
-    retried more slowly and fewer times (ARCHIVE_BACKOFF, ARCHIVE_ATTEMPTS):
-    archive.org rate-limits with 429, and the whole refresh has a time budget.
-    """
-    try:
-        return download_source(source, timeout, attempts, backoff, opener, sleep)
-    except Exception as error:  # noqa: BLE001 — classified below
-        if not archive or not _is_retryable(error):
-            raise
-        slower = max(backoff, ARCHIVE_BACKOFF)
-        fewer = min(attempts, ARCHIVE_ATTEMPTS)
-        try:
-            return download_archived(source, timeout, fewer, slower, opener, sleep, now)
-        except Exception as fallback:  # noqa: BLE001 — reported with the first error
-            raise SourceUnavailable(f"{error}; Wayback Machine: {fallback}") from error
+    """The export from ESMA, or the archive's recent copy of it (see fetch_url)."""
+    return fetch_url(source.url, archive, timeout, attempts, backoff, opener, sleep, now)
