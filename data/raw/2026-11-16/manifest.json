@@ -1,0 +1,56 @@
+{
+ "snapshot_date": "2026-11-16",
+ "recorded_as": "snapshot",
+ "files": [
+  {
+   "slug": "other-wp",
+   "file": "other-wp.csv.gz",
+   "url": "https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv",
+   "sha256": "bd9b22a03d4ade4442757d01ffa81859bd9235a998476f0388653b2136a8bd36",
+   "bytes": 254839,
+   "last_modified": "Wed, 11 Nov 2026 13:56:41 GMT",
+   "retrieved_at": "2026-11-16T15:59:19Z",
+   "archived_at": ""
+  },
+  {
+   "slug": "emt-wp",
+   "file": "emt-wp.csv.gz",
+   "url": "https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv",
+   "sha256": "53dfa4ee351a70b91be80b2e3ecb086268df262e388b0d0c4d42665959e434f4",
+   "bytes": 18252,
+   "last_modified": "Wed, 11 Nov 2026 13:56:02 GMT",
+   "retrieved_at": "2026-11-16T15:59:19Z",
+   "archived_at": ""
+  },
+  {
+   "slug": "art-wp",
+   "file": "art-wp.csv.gz",
+   "url": "https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv",
+   "sha256": "fa1ef4da123e3d49642c69f90a81a88f6c2cc2a0b9471b2108e4dfc635ca7c67",
+   "bytes": 276,
+   "last_modified": "Fri, 14 Feb 2025 15:37:53 GMT",
+   "retrieved_at": "2026-11-16T15:59:19Z",
+   "archived_at": ""
+  },
+  {
+   "slug": "casps",
+   "file": "casps.csv.gz",
+   "url": "https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv",
+   "sha256": "e0a73cab442a1bedf84a9fbfe756f7a2779bf48050c4d147c4971788d4279be3",
+   "bytes": 201399,
+   "last_modified": "Wed, 11 Nov 2026 13:55:41 GMT",
+   "retrieved_at": "2026-11-16T15:59:20Z",
+   "archived_at": ""
+  },
+  {
+   "slug": "ncasp",
+   "file": "ncasp.csv.gz",
+   "url": "https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv",
+   "sha256": "7ef652213f2982e34b8b7e5a194c5dd2ee9edf01ebe1d610db863536d1f5729c",
+   "bytes": 38783,
+   "last_modified": "Wed, 11 Nov 2026 13:56:20 GMT",
+   "retrieved_at": "2026-11-16T15:59:20Z",
+   "archived_at": ""
+  }
+ ]
+}

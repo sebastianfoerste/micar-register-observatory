@@ -2091,3 +2091,121 @@ trading on its behalf pursuant to Article 4 of MiCA",FR,https://anita.ink/micawp
 2026-11-09,casps,changed,a67c6c4aa8e15ddc,097900CAKA0000233454,Okazio s.r.o.,SK,,,ac_legal_basis,register row content changed (ac_legal_basis),2,c8d14b466c39632e,ef818b5bff333927
 2026-11-09,casps,added,8b9a6902958433da,3157002JBFAI478MD587,"Tatra banka, a.s.",SK,,,,,2,75577fa47eaabb4c,2079419b73fdba24
 2026-11-09,ncasp,added,7a3f0a389fa601ba,,Renditanzia,IT,,,,,2,dbd0f93c8ac65973,0db936204be7e357
+2026-11-16,other-wp,added,7540f882c433b4a9,,Teroxx Rewards Ltd,CY,https://abloxx.com/en,,,,2,15a231a8d0b2f6fc,07adbc24bc5d7384
+2026-11-16,other-wp,changed,632df9e998b648eb,,Number Go Up Technologies,FI,https://www.ngut.eu/whitepapers/SWAN.html,offer_countries_added,ae_offerCode_cou,register row content changed (ae_offerCode_cou),2,994cca1b54823142,31db8591f69dbdaf
+2026-11-16,other-wp,added,c216ce2275f10b5f,,IBRL BVI Ltd,FI,https://doublezero.xyz/whitepaper-mica.pdfac,,,,2,5fc51250d0ca3266,c859e308ada9593b
+2026-11-16,other-wp,changed,1d0bb4e23b3cee53,,Gevulot Oy,FI,https://zkcloud.com/whitepaper,offer_countries_added,ae_offerCode_cou,register row content changed (ae_offerCode_cou),2,43698641310cda6f,c106546d423ad0e1
+2026-11-16,other-wp,added,f2ac109b2b3049fe,,InvestTWLGF Oy,FI,https://twlgf.com/twlgf-crypto-asset-description/,,,,2,7b88f0b4233a629c,e8984ada1a791daf
+2026-11-16,other-wp,changed,c103fe867a9339a1,,Investlitiumlic Oy,FI,https://www.litiumlic.com/litiumlic-kryptovaran-kuvaus-litiumlic-crypto-asset-description/,offer_countries_added,ae_offerCode_cou,register row content changed (ae_offerCode_cou),2,191e9e41e40294cc,4e6648b9e681a8f6
+2026-11-16,other-wp,added,d4b13ccf66b686e6,984500483FC4701CH604,Knowledge Process SA,FR,https://kno.academy/whitepaper,,,,2,8c109558612d8bbb,d9230761bccfd134
+2026-11-16,other-wp,added,e86f8111151d6191,,SELF Technology Limited,IE,https://docs.self.app/micawhitepaper,,,,2,68ccaa0e883265f4,bb90032288413cf1
+2026-11-16,other-wp,added,3844702dca63e94a,9845004BE14DFCFB9516,BitUtility S.A.,IE,bitutility.micarwhitepapers.eu,,,,2,629edd1fbfc2b88f,24f4798855df5b45
+2026-11-16,other-wp,added,99637b2e59d6e6d1,2549005ICRB8P6S7T350,Strato Foundation,IE,https://strato.nexus/mica,,,,2,7acb038bee9c5eb7,9e7cf98bb097010a
+2026-11-16,other-wp,added,2c926afef9696f66,,Bera Chain Foundation,MT,https://my.okx.com/whitepaper/berachain-bera.xhtml,modification_noted,,,2,73f683f152ae93cd,a2fdda196d9eea12
+2026-11-16,other-wp,added,2a0a51f12e976ed0,,Layer 69 Inc.,MT,https://docs.dogeos.com/token,,,,2,adf59525711c6ef7,60dca7be830cf001
+2026-11-16,other-wp,added,e639a537c172bb95,,Kor Technologies Issuer Inc.,MT,https://www.korprotocol.io/mica,modification_noted,,,2,767dd358090cee25,8b5ae0d8a1caa7eb
+2026-11-16,other-wp,added,1f1a15139a8618be,,Bright Signal Invest AS,NO,https://disclosuretoken.com,modification_noted,,,2,84f3e8fdf72659c8,817628549a5b4352
+2026-11-16,other-wp,missing,c85b607c3884a63b,,Abloxx Token Ltd.,CY,https://abloxx.com/en,,,not in this export; recorded as removed if the next export also lacks it,2,f9f7ac44a30f96c5,f72571b881a9c34f
+2026-11-16,other-wp,missing,d88a123dbb827260,,Planck Network ($PLANCK),CY,https://plancknetwork.com/whitepaper.pdf,,,not in this export; recorded as removed if the next export also lacks it,2,e56dc1ab346cf5b5,6ac54be17b8f90a9
+2026-11-16,other-wp,missing,e83f33914834ea72,,Punta Parana Foundation,FI,https://doublezero.xyz/whitepaper-mica.pdf,,,not in this export; recorded as removed if the next export also lacks it,2,8da54201cd0bad9d,a9dd8bcb971eda24
+2026-11-16,other-wp,missing,361111c5e2880825,,InvestTWLGF Oy,FI,https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-asset-description/,,,not in this export; recorded as removed if the next export also lacks it,2,a6447b8f69ff1ae6,62b0c085efcaa2a7
+2026-11-16,other-wp,missing,0de2ce0b7629adbb,,Bright Signal Invest AS,NO,https://brightsignal.no,,,not in this export; recorded as removed if the next export also lacks it,2,54d357f3384dd13a,5797730f5a0426d4
+2026-11-16,other-wp,removed,e1f44a37dd78a040,,Yellow Token,IE,https://docs.yellow.org/assets/YELLOW_MiCA_White_Paper_v.1.2.pdf,,,not in two consecutive exports (missing since 2026-11-09),2,fb6769529fd46bab,389276802e82efa1
+2026-11-16,other-wp,removed,6a6868a03f755e2a,,FUN,IE,https://docs.sport.fun/usdfun-token/mica-whitepaper,,,not in two consecutive exports (missing since 2026-11-09),2,12a972ad7872d202,0869f2fd45418d86
+2026-11-16,other-wp,removed,269b7241d5b12e76,,GOATED,IE,https://www.goat.network/micar-white-paper,,,not in two consecutive exports (missing since 2026-11-09),2,9daf9a12eb6cf8c4,447b9dd2aea7a063
+2026-11-16,other-wp,removed,863f90ef3bbaf118,,Keeta,IE,https://keeta.com/MiCA_Whitepaper.pdf,,,not in two consecutive exports (missing since 2026-11-09),2,61655235846617a6,3effdb26f624fa7e
+2026-11-16,other-wp,removed,7eecdd9285a8e9d9,,$ROAM,IE,https://weroam.xyz/roam_micar_whitepaper,,,not in two consecutive exports (missing since 2026-11-09),2,3112232222dc9acb,f5258e13f5339e53
+2026-11-16,other-wp,removed,6d25b49a378feb53,,ATH,IE,https://docs.aethir.com/whitepaper,,,not in two consecutive exports (missing since 2026-11-09),2,c01d5d6ac64639ca,9a2cdbc288ec4aaa
+2026-11-16,other-wp,removed,f7abf93d01568813,,Bright Signal Invest AS,NO,,,,not in two consecutive exports (missing since 2026-11-09),2,79f99a0784a467e2,c62be4256e961751
+2026-11-16,emt-wp,changed,30ffa29dac6e4909,969500FX8K40ZDW4F377,Société Générale - Forge,FR,https://www.sgforge.com/wp-content/uploads/2025/10/EURCV-WP-Ethereum-Solana_XRPL_Stellar_2025.10.14.pdf,last_update_changed,ae_DTI|wp_lastupdate,"register row content changed (ae_DTI, wp_lastupdate)",2,8e3d559781b93d28,c6c9c905ec03f2ab
+2026-11-16,emt-wp,changed,b3c34ac08b857f94,969500FX8K40ZDW4F377,Société Générale - Forge,FR,https://www.sgforge.com/wp-content/uploads/2025/08/SG-Forge-USDCV-White-Paper_V2.0_Ethereum_Solana_11082025.pdf,last_update_changed,ae_DTI|wp_lastupdate,"register row content changed (ae_DTI, wp_lastupdate)",2,8a59d6ec20c12f88,46d3913879df564d
+2026-11-16,emt-wp,changed,42d9cf0da277d2eb,724500GVWT7QULV8CR59,Fiat Republic Netherlands,NL,https://fiatrepublic.com/about/eaglenetcoin/,,ae_lei_cou_code|ae_website|ac_authorisationNotificationDate|ae_exemption48_4|ae_exemption48_5,"register row content changed (ae_lei_cou_code, ae_website, ac_authorisationNotificationDate, ae_exemption48_4, ae_exemption48_5)",2,ff5dcdf09c754ae9,7ec64072712ef039
+2026-11-16,emt-wp,changed,42d9cf0da277d2eb,724500GVWT7QULV8CR59,Fiat Republic Netherlands,NL,https://fiatrepublic.com/about/eaglenetcoin/,,ae_lei_cou_code|ae_website|ac_authorisationNotificationDate|ae_exemption48_4|ae_exemption48_5,"register row content changed (ae_lei_cou_code, ae_website, ac_authorisationNotificationDate, ae_exemption48_4, ae_exemption48_5)",2,ff5dcdf09c754ae9,e1e88a3914e47257
+2026-11-16,emt-wp,changed,42d9cf0da277d2eb,724500GVWT7QULV8CR59,Fiat Republic Netherlands,NL,https://fiatrepublic.com/about/eaglenetcoin/,,ae_lei_cou_code|ac_authorisationNotificationDate|ae_exemption48_4|ae_exemption48_5,"register row content changed (ae_lei_cou_code, ac_authorisationNotificationDate, ae_exemption48_4, ae_exemption48_5)",2,ff5dcdf09c754ae9,2cc7fb704da1e9e1
+2026-11-16,emt-wp,changed,2aeaeca10d01ed57,7245008P1HPUPVM7XL94,Quantoz Payments B.V,NL,https://www.quantoz.com/resources,,ae_lei_cou_code|ac_authorisationNotificationDate|ae_exemption48_4|ae_exemption48_5,"register row content changed (ae_lei_cou_code, ac_authorisationNotificationDate, ae_exemption48_4, ae_exemption48_5)",2,36ac4e921eacfd0a,73f6609e1ee5731e
+2026-11-16,emt-wp,changed,2aeaeca10d01ed57,7245008P1HPUPVM7XL94,Quantoz Payments B.V,NL,https://www.quantoz.com/resources,,ae_lei_cou_code|ac_authorisationNotificationDate|ae_exemption48_4|ae_exemption48_5,"register row content changed (ae_lei_cou_code, ac_authorisationNotificationDate, ae_exemption48_4, ae_exemption48_5)",2,36ac4e921eacfd0a,8fc1cb8483b3049c
+2026-11-16,emt-wp,changed,2aeaeca10d01ed57,7245008P1HPUPVM7XL94,Quantoz Payments B.V,NL,https://www.quantoz.com/resources,,ae_lei_cou_code|ac_authorisationNotificationDate|ae_exemption48_4|ae_exemption48_5,"register row content changed (ae_lei_cou_code, ac_authorisationNotificationDate, ae_exemption48_4, ae_exemption48_5)",2,36ac4e921eacfd0a,3982375af68aa65a
+2026-11-16,emt-wp,changed,190b81c887f000ad,72450039GAIN4MNI4V12,Aplauz NL B.V.,NL,https://www.weur.io,,ae_website,register row content changed (ae_website),2,f3ffa3974ef9a37f,f8706c015e46d631
+2026-11-16,emt-wp,added,f34798189f12997c,724500LOOWQMIDXTS391,"Qivalis B.V.
+Qivalis B.V.
+Qivalis B.V.",NL,https://qivalis.eu/trust-center/white-paper,,,,2,004a824307908a90,29e6df89c4858860
+2026-11-16,casps,changed,feda8e0df7eac300,529900B4G0EGK7Z9KT45,KuCoin EU Exchange GmbH,AT,,last_update_changed,ae_address|ac_lastupdate,"register row content changed (ae_address, ac_lastupdate)",2,cafb14f15452c9e5,c2ae4f23683ffee0
+2026-11-16,casps,added,aab65c5e46816d42,529900EEGMA1G5Y2DT85,Transak GmbH,AT,,,,,2,2d1ba012e8543729,9ad6b0c1be72ad5a
+2026-11-16,casps,changed,40d2d8b07e32bd32,213800GIFQMSV7HROS23,eToro (Europe) Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,41a815656bbccb63,a1b46782cec51489
+2026-11-16,casps,changed,1eea524bdfb6bb1f,2138005C815T9EZU4C75,COLLECT & EXCHANGE CY LTD,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,1dae77c1b5c7ff07,7d26930f47507889
+2026-11-16,casps,changed,1f1caea4287bbeb9,21380045KC28948FNE32,Trading 212 Markets Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,f4f9693e9906c2ef,d36feb60b54e87be
+2026-11-16,casps,changed,b6901cb927b4c2a5,549300LZMQXXYV4JJ603,Stratos Europe Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,6815583decf5cb33,3040742e7e9b4169
+2026-11-16,casps,changed,7c4b76ffc3a89ec9,549300ET4IUR6RCZOL84,Revolut Digital Assets (Europe) Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,c81d6c57e1228644,c2f32672840e7db2
+2026-11-16,casps,changed,dae8909d8b45f22f,636700PBO692C1R9V561,TEROXX DIGITAL ASSET LTD,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,76824ec9f0231815,3110c9db7f316162
+2026-11-16,casps,changed,a0e8905d5feda713,984500C46B3B7B69Y904,CAPITAL VAULT LTD,CY,,last_update_changed,ae_address|ac_lastupdate|ac_legal_basis,"register row content changed (ae_address, ac_lastupdate, ac_legal_basis)",2,c6ef034bbc23f4c2,6d4b63306c2adfe3
+2026-11-16,casps,changed,05820cb5bc87381e,984500EBL33F46CBF732,PELICAN EXCHANGE EUROPE (CY) LTD,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,914883da568948dc,7fbb3bcb14aacfa7
+2026-11-16,casps,changed,c6992a372bf866e9,259400HM2TR4U3LF5D43,XTB Limited,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,e9f42e59178102b1,27da75c03ae808c0
+2026-11-16,casps,changed,a0144f2fbb64a1ab,25490004TC93R20KW073,Noemon Finance Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,bdb93544da9cfc28,f7e6c18355e1cea6
+2026-11-16,casps,changed,fe34ae73124f1a5b,213800QT8WZK738XGX35,Trading.com Markets EU Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,8e7a89904fc3d165,ddd95c02bbfb807d
+2026-11-16,casps,changed,bba5267e6f187a31,213800186TP6OZSHUV17,J2TX Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,aba563613e66aba5,8a82637c9ffec7ab
+2026-11-16,casps,changed,e6ed609d3d0f88da,254900K8AF5VMJFMZN69,S.K. DASK KRYPTO LTD,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,58d1a9b2067441a4,bcaf4f637e38d74b
+2026-11-16,casps,changed,c62fbaa81cd7fd91,984500DCB2AF415E5Y71,NAGA X,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,8cc45dd00e3622fc,f8c61feeba259cce
+2026-11-16,casps,changed,d43e1081a1630949,213800V83W83UL8WR118,Ronin EM Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,eaf3b2a155ee3508,bca22c9c9ff5a3c2
+2026-11-16,casps,changed,2f9fa20ab73f7de0,984500I2EA955E934537,Krypto Knight Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,dd3ba70fc7daaf00,036b198b7dad5087
+2026-11-16,casps,changed,1166792da848521e,9845007E2C96JA7B8653,TRIA BRIDGE LIMITED (ex Tokenomica Bridge Ltd),CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,a281d47f981c5286,f21af02434175f86
+2026-11-16,casps,changed,be29a231fe89312c,254900JFRZG8P67ZHI74,NOEMON TECH LTD,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,2acaeca64083c5dc,8169fb30adae8ad1
+2026-11-16,casps,changed,f12e839a7fcec894,894500FFZOA2AVGYOA88,Unlimit Crypto Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,7c35514dc1933c05,41789f5bcd7a1937
+2026-11-16,casps,changed,93c322f5300fbd85,254900J8O1555O3B2T92,COMPLYCRYPTO DEPOSITORY EU LIMITED,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,d46d57be92f9e5fc,b4a6a15e34cf2fd8
+2026-11-16,casps,changed,d45bd7cdf16594bd,9845009846V10FGD4840,Brilliantscope Trading Limited,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,90e6a873766e0f15,207a2dcfe8d612e7
+2026-11-16,casps,changed,dc577737b6271ffb,254900YI6BJ1QQQZIY62,SG Digital Assets Limited,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,af82c3e87e1966a4,3f8a029e68b8fffe
+2026-11-16,casps,changed,7446c41217202ec4,2138005EFA978Y43G944,PM MTF LTD,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,1c7a407da17dd301,460a694c16ff1369
+2026-11-16,casps,changed,4c0101b0ba3337f9,549300ZCGZNVDA6R3Y84,Aquilla Nummus Ltd,CY,,,ac_legal_basis,register row content changed (ac_legal_basis),2,f1ed88497acf1d3b,8eab6e246b761193
+2026-11-16,casps,changed,0faad8b0a4ea16d5,213800IWLH982X74LO71,Cloverum Finance (CY) Limited,CY,,last_update_changed,ae_address|ac_lastupdate|ac_legal_basis,"register row content changed (ae_address, ac_lastupdate, ac_legal_basis)",2,a26cc4d07fdaa2ab,5f6ac8909442295d
+2026-11-16,casps,added,40e129400285b083,213800HP6KZ9XS1D1U57,VSMARKETS LTD,CY,,,,,2,e1e2ff70c51c0353,aeb194f46d92107c
+2026-11-16,casps,added,b1da68ce8e4ad50d,5299008B0QO7XEHUSF18,Raiffeisenbank Landshuter Land eG,DE,,,,,2,0aab2950288b6e42,839d9273e9be4016
+2026-11-16,casps,added,424e0241c97b8c5a,529900C850VGJ80C6E84,VR-Bank Passau eG,DE,,,,,2,c1da2dc75fb1e7cb,2a0836e06956bff4
+2026-11-16,casps,added,b9c84101390cf128,529900U7HFGPGXW9JB86,Volksbank Erft eG,DE,,,,,2,dcb53f0e9295a0b0,329316b89d980ac6
+2026-11-16,casps,added,a5c8df3d77dc9093,529900AOT7DX392W5U75,Volksbank Ettlingen eG,DE,,,,,2,480be2361d980939,004ba1e6c35e5c6c
+2026-11-16,casps,added,697f41cb996d8070,529900S90ZQ3HED40876,Raiffeisenbank Aresing-Gerolsbach eG,DE,,,,,2,708ba854cd0a72d9,36fb339194fb801b
+2026-11-16,casps,changed,285bb6aac273ed57,7CUNS533WID6K7DGFI87,CAIXABANK S.A.,ES,,,ae_address,register row content changed (ae_address),2,1aefeb4459d90509,c5848e7417fa6fc4
+2026-11-16,casps,changed,bc97325847c24d22,89450026TTLUZJV1XM36,DUE NETWORK S.L.,ES,,,ae_address,register row content changed (ae_address),2,afdb29374697d282,fa9bbf5052ddafe6
+2026-11-16,casps,changed,4d7e3974706a1113,959800B6XCG14MKLTJ51,CROSSMINT EUROPE S.L.,ES,,,ae_address,register row content changed (ae_address),2,0d766b44e8f48614,506bec8c501cd625
+2026-11-16,casps,changed,22aa1e0f26344f27,959800AZN23P7F30C189,CRIPTAN TRADE S.L.,ES,,,ae_address,register row content changed (ae_address),2,553398736cd7fbd2,a85af048d35f4f18
+2026-11-16,casps,changed,273e1f670a1c8ec7,959800U0R44NN5DJC930,MINOS GLOBAL S.L.,ES,,,ae_address,register row content changed (ae_address),2,41a5974be854e14b,b33368095b455e78
+2026-11-16,casps,changed,279ec93f50b6bb59,59800G0P3PV13KLX615,PROSEGUR CUSTODIA DE ACTIVOS DIGITALES S.L.U.,ES,,,ae_address,register row content changed (ae_address),2,973084850e048847,61517d80b066177d
+2026-11-16,casps,changed,c43f74e9c3983154,549300746K71T6YJCV41,FINTECH PAYMENTS PSC S.L.,ES,,,ae_address,register row content changed (ae_address),2,73aa4aff36424e2a,932fa844610631cf
+2026-11-16,casps,changed,6a7c809348f47711,959800BLRZ4Z36U5HK79,PRAKMA MARKETS S.L.,ES,,,ae_address,register row content changed (ae_address),2,118351083eef3c52,ef929360099a0ae7
+2026-11-16,casps,added,978354265c146f0a,54930056IRBXK0Q1FP96,"ABANCA CORPORACION BANCARIA, S.A.",ES,,,,,2,00fcd806a3716a0b,333682cd14f8f6cd
+2026-11-16,casps,added,69c07c3d12036396,984500B702FE8F637752,Tiwala Solutions Korlátolt Felelősségű Társaság,HU,,,,,2,04fd89a2536a2bec,47f597ac5f44d1b4
+2026-11-16,casps,changed,49152afec6e5fe49,254900GTP4UXQO1UMI36,"Robinhood Europe, UAB",LT,,comments_changed,ae_lei_name|ae_address|ac_serviceCode|ac_serviceCode_cou|ac_comments|ac_legal_basis,"register row content changed (ae_lei_name, ae_address, ac_serviceCode, ac_serviceCode_cou, ac_comments, ac_legal_basis)",2,f8ca766ad214cd9e,633b958f51ed5ac0
+2026-11-16,casps,changed,19023d73f3e06d6a,6488907MV9XAA08E4E40,"UAB ""Decentralized""",LT,,comments_changed,ae_lei_name|ae_address|ac_serviceCode|ac_serviceCode_cou|ac_comments|ac_legal_basis,"register row content changed (ae_lei_name, ae_address, ac_serviceCode, ac_serviceCode_cou, ac_comments, ac_legal_basis)",2,027004bc832364e0,0d936e276219ffc1
+2026-11-16,casps,changed,4c6eb5d09ec0a5df,894500IY99QLL9M0SR28,Nuvei Liquidity UAB,LT,,comments_changed,ae_commercial_name|ae_address|ac_serviceCode|ac_serviceCode_cou|ac_comments|ac_legal_basis,"register row content changed (ae_commercial_name, ae_address, ac_serviceCode, ac_serviceCode_cou, ac_comments, ac_legal_basis)",2,4cdfd118ebfaa885,a53406532ef4588f
+2026-11-16,casps,changed,fa7cc7ff437fa823,894500R6HJP62BZX4M89,UAB Micar assets,LT,,service_countries_added|last_update_changed,ae_commercial_name|ae_address|ae_website|ac_serviceCode|ac_serviceCode_cou|ac_lastupdate|ac_legal_basis,"register row content changed (ae_commercial_name, ae_address, ae_website, ac_serviceCode, ac_serviceCode_cou, ac_lastupdate, ac_legal_basis)",2,6227dfaeb4a0b1d5,2588e8edfd10b743
+2026-11-16,casps,changed,db8987d0a6cfce76,875500ONK4E5XGIP7O24,"Newrails, UAB",LT,,,ac_legal_basis,register row content changed (ac_legal_basis),2,d7a3756cdd7f25e2,3789a52725add291
+2026-11-16,casps,changed,a9161f937b66d2e3,254900XFMACGD0L7AI73,UAB BLUE EMI LT,LT,,last_update_changed,ae_commercial_name|ac_lastupdate|ac_legal_basis,"register row content changed (ae_commercial_name, ac_lastupdate, ac_legal_basis)",2,a314ec555b031503,e0014e403003a0f3
+2026-11-16,casps,added,7a902247c6be655d,894500HTR904ROVYPH84,UAB DriveWealth Europe,LT,,,,,2,6408145ae03821d1,ed65f6802d9de587
+2026-11-16,casps,changed,70a282057b7c9a76,31570000GC0U68O6PA08,FINTECH SK s. r. o.,SK,,last_update_changed,ae_address|ac_lastupdate,"register row content changed (ae_address, ac_lastupdate)",2,9c9a87dbfc9a8099,f162bbad77af7620
+2026-11-16,ncasp,added,15e37a0a8cf7e04c,894500P8WM0P9VCBYI09,TONWEX UAB,LT,,,,,2,2fabe0cb85f76668,1c19d9d15538b1d7
+2026-11-16,ncasp,added,025fdaaad803ae60,,Blocknet Finance UAB,LT,,,,,2,6aad675982a1ff95,efedd6c5a9149c60
+2026-11-16,ncasp,added,98079013e5761f86,894500NEDIAHQSAMPI59,UAB SwiftHorizon,LT,,,,,2,f55ebaac07c234f2,7e495a57b83cb197
+2026-11-16,ncasp,added,71819bb03a2a75b7,9845009DC2IB0EV1D425,Flipchain UAB,LT,,,,,2,5771b5aa6442e588,dbcd407eb7f2e46c
+2026-11-16,ncasp,added,a74e972f7c308e13,,"UAB ""E-gates""",LT,,,,,2,12e656dc0593b763,25ec046983997e1c
+2026-11-16,ncasp,added,c13805febf76dce2,,Coailray UAB,LT,,,,,2,efa78bc903685a7a,aaf6c68b28e94d34
+2026-11-16,ncasp,added,9036d75eddb44cd0,,Bitstore Europe UAB,LT,,,,,2,afc04eaaa3794740,36ac4d38732f47f2
+2026-11-16,ncasp,added,a3d0f8d80a6f4a6a,,UAB Veetrblox,LT,,,,,2,f16eb9ceb0863ae9,919110c3ccfb3a6c
+2026-11-16,ncasp,added,a9155f53e0d77f3f,,MultiExchange UAB,LT,,,,,2,987e44ee79d5ba2f,fe70bc4940b8e173
+2026-11-16,ncasp,added,a3b6a2849b878195,,"UAB ""Sapion Solution""",LT,,,,,2,24cb27474b2a626d,175b2322f922c0ef
+2026-11-16,ncasp,added,239eda9991aecb5a,,"UAB ""Coincierge holdings""",LT,,,,,2,d1222d1bd9c8b9b4,5c7b9050cab43e38
+2026-11-16,ncasp,added,79748c786f568611,,Liq Finance UAB,LT,,,,,2,0ff7cf31e4354d41,2b48729e9a3670fe
+2026-11-16,ncasp,added,7d25246f816d35da,,UAB IO Ready,LT,,,,,2,3887f1e10991a618,7a4e35f28554a2fe
+2026-11-16,ncasp,added,b7fddfdcbcc48630,,Orange stream UAB,LT,,,,,2,06e80507835d4050,19f3108d339b6b4c
+2026-11-16,ncasp,added,473617ab4dbaeb3a,8945004KA01ECR292U16,FundFy Investment Club UAB,LT,,,,,2,e321f70a79a13e6a,f4e00bb19cbaaa15
+2026-11-16,ncasp,added,45fc225c925ce22d,,"UAB ""Unich Global""",LT,,,,,2,d6dc0c05348a6c2b,dc2b0412d8178d00
+2026-11-16,ncasp,added,4e9a0b66e816bf45,984500DI4B9F1D0E0446,HUMB UAB,LT,,,,,2,6a0202f32f3b68b8,23f8c13fe316fa50
+2026-11-16,ncasp,added,505a9036c65083e9,,Cvetpay UAB,LT,,,,,2,6699745c9465b116,ca754cacd1ee0d3a
+2026-11-16,ncasp,added,5cead46ff68dce97,,Wct pay UAB,LT,,,,,2,fec79e7ee2855384,d8670388b2d0e0c3
+2026-11-16,ncasp,added,a894c4f8cc632eaf,,GoFin Technology UAB,LT,,,,,2,cde12545387ecc99,9c07f22c0828f0c2
+2026-11-16,ncasp,added,0023d8634945300c,,Euchanges UAB,LT,,,,,2,901b2d2afe7a1400,490534a31e33d958
+2026-11-16,ncasp,added,cb92e1c037a76cb4,,Beaver Dealer UAB,LT,,,,,2,3dc074422c35a88c,72234ed39d845306
+2026-11-16,ncasp,added,211a314a3d54a99d,,BlackFort Pay UAB,LT,,,,,2,c491d9b5cd75884d,79029a1a49825430
+2026-11-16,ncasp,added,cdb96dd3c470d985,,POD Europe UAB,LT,,,,,2,ea139414157a8504,e4b68c1bfab7341f
+2026-11-16,ncasp,added,9554a6568ab1890a,,Europe Exchange UAB,LT,,,,,2,3c86d4d34cee1edb,4eadfbf2d2233bf9
+2026-11-16,ncasp,added,5588ea1577ffe0ab,,Xpay Global UAB,LT,,,,,2,edb1a16b40d670d6,8ff999e577dd7cb3
+2026-11-16,ncasp,added,b83cd66a1e97bcd5,6488H93NCIV501IU5239,UAB ROQQU TECHNOLOGIES,LT,,,,,2,3a318192666cab1c,b9db1ab2aefa8444
+2026-11-16,ncasp,changed,c175634a9d073f78,,MEXC Global,NL,,last_update_changed,ae_decision_date|ae_lastupdate,"register row content changed (ae_decision_date, ae_lastupdate)",2,c175634a9d073f78,cab22d6e61e92fc6
+2026-11-16,ncasp,changed,9421b9467ff9448b,,LWEX,SK,,last_update_changed,ae_decision_date|ae_lastupdate,"register row content changed (ae_decision_date, ae_lastupdate)",2,9421b9467ff9448b,249fe9e5a3d4a965

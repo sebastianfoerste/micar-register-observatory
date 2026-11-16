@@ -9,21 +9,21 @@ This repository makes the register's weekly movement visible: what appeared, wha
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-11-09** (refreshed weekly from the public ESMA interim MiCAR register)
+**Register snapshot: 2026-11-16** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 
 | Register | Rows | Entities | Source status |
 | --- | ---: | ---: | --- |
-| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 1071 | 668 | ok (file modified 2026-11-05) |
-| [White papers — e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 50 | 25 | ok (file modified 2026-11-05) |
-| [White papers — asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | 0 | ok (file modified 2025-02-14) |
-| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 397 | 394 | ok (file modified 2026-11-05) |
-| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 189 | 186 | ok (file modified 2026-11-05) |
+| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 1077 | 672 | ok (file modified 2026-11-11) |
+| [Issuers of e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 51 | 26 | ok (file modified 2026-11-11) |
+| [Issuers of asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | 0 | ok (file modified 2025-02-14) |
+| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 407 | 404 | ok (file modified 2026-11-11) |
+| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 216 | 213 | ok (file modified 2026-11-11) |
 
 Rows are lines of the register export; entities are distinct LEIs, or names where a row has none. One entity can have several rows: several white papers, or a second CASP authorisation.
 
-CASP register: 394 firms in 397 rows, 2 of them with a withdrawal date (`ac_authorisationEndDate`).
+CASP register: 404 firms in 407 rows, 2 of them with a withdrawal date (`ac_authorisationEndDate`).
 
 ### White paper format coverage
 
@@ -31,57 +31,57 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 
 | Linked format | Count | Deep-lint candidate |
 | --- | ---: | --- |
-| No recognised file extension (bare domain, landing page or other page) | 670 | no |
-| PDF | 267 | no |
-| XHTML / HTML | 182 | yes |
-| No link in register | 2 | no |
+| No recognised file extension (bare domain, landing page or other page) | 676 | no |
+| PDF | 265 | no |
+| XHTML / HTML | 183 | yes |
+| No link in register | 4 | no |
 
 ### Home Member States (white papers)
 
 | Member State | White papers |
 | --- | ---: |
-| IE | 405 |
+| IE | 408 |
 | DE | 177 |
-| MT | 173 |
-| NL | 97 |
+| MT | 176 |
+| NL | 98 |
 | LI | 74 |
 | LU | 60 |
-| FR | 39 |
+| FR | 40 |
 | LV | 15 |
 | AT | 10 |
 | FI | 10 |
 | ...and 15 more | |
 
-### Changes in this snapshot (2026-11-09)
+### Changes in this snapshot (2026-11-16)
 
 | Change | Register | Entity | MS | Link |
 | --- | --- | --- | --- | --- |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/sapien-ffg...](https://white-paper.crypto-risk-metrics.com/en/sapien-ffg-nff56qpxf/index.html) |
-| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/de/towns-ffg-...](https://white-paper.crypto-risk-metrics.com/de/towns-ffg-rszx7tvdd/index.html) |
-| changed | other-wp | HSTW PTE. LTD. | IE | [https://docs.holdstation.com/holdstation/micar-white-pape...](https://docs.holdstation.com/holdstation/micar-white-paper/micar-whitepaper) |
-| changed | other-wp | TX Issuer Ltd | IE | [http://tx.org/WP-MICA](http://tx.org/WP-MICA) |
-| restored | other-wp | Layer3 Fintech Ltd. | IE | [https://docs.yellow.org/assets/YELLOW\_MiCA\_White\_Paper\_v....](https://docs.yellow.org/assets/YELLOW_MiCA_White_Paper_v.1.2.pdf) |
-| restored | other-wp | Sport.Fun Panama Corp | IE | [https://docs.sport.fun/usdfun-token/mica-whitepaper](https://docs.sport.fun/usdfun-token/mica-whitepaper) |
-| restored | other-wp | GOAT Foundation | IE | [https://www.goat.network/micar-white-paper](https://www.goat.network/micar-white-paper) |
-| restored | other-wp | Keeta Token Genesis LLC | IE | [https://keeta.com/MiCA\_Whitepaper.pdf](https://keeta.com/MiCA_Whitepaper.pdf) |
-| restored | other-wp | MetaBlox Technologies inc. | IE | [https://weroam.xyz/roam\_micar\_whitepaper](https://weroam.xyz/roam_micar_whitepaper) |
-| added | other-wp | Aethir Network Foundation Company | IE | [https://docs.aethir.com/whitepaper](https://docs.aethir.com/whitepaper) |
-| added | other-wp | Theo Research Ltd | IE | [https://theo.eunice.ai/mica\_whitepaper](https://theo.eunice.ai/mica_whitepaper) |
-| added | other-wp | The AntSeed Foundation | IE | [https://antseed.com/mika/whitepaper.xhtml](https://antseed.com/mika/whitepaper.xhtml) |
-| added | other-wp | Anoma Foundation | IE | [https://docs.anoma.foundation/mica-whitepaper-2.pdf](https://docs.anoma.foundation/mica-whitepaper-2.pdf) |
-| added | other-wp | Anoma Foundation | IE | [https://docs.anoma.foundation/mica-whitepaper-1.pdf](https://docs.anoma.foundation/mica-whitepaper-1.pdf) |
-| added | other-wp | Pairo Foundation | IE | [https://www.pairofoundation.com/white-paper/](https://www.pairofoundation.com/white-paper/) |
-| added | other-wp | Pairo Foundation | IE | [https://www.pairofoundation.com/white-paper/](https://www.pairofoundation.com/white-paper/) |
-| added | other-wp | PVP Group Limited | IE | [https://c8ntinuum.com/whitepaper](https://c8ntinuum.com/whitepaper) |
-| added | other-wp | Bright Signal Invest AS | NO | [https://brightsignal.no](https://brightsignal.no) |
-| missing | other-wp | Yellow Token | IE | [https://docs.yellow.org/assets/YELLOW\_MiCA\_White\_Paper\_v....](https://docs.yellow.org/assets/YELLOW_MiCA_White_Paper_v.1.2.pdf) |
-| missing | other-wp | FUN | IE | [https://docs.sport.fun/usdfun-token/mica-whitepaper](https://docs.sport.fun/usdfun-token/mica-whitepaper) |
-| missing | other-wp | GOATED | IE | [https://www.goat.network/micar-white-paper](https://www.goat.network/micar-white-paper) |
-| missing | other-wp | Keeta | IE | [https://keeta.com/MiCA\_Whitepaper.pdf](https://keeta.com/MiCA_Whitepaper.pdf) |
-| missing | other-wp | $ROAM | IE | [https://weroam.xyz/roam\_micar\_whitepaper](https://weroam.xyz/roam_micar_whitepaper) |
-| missing | other-wp | ATH | IE | [https://docs.aethir.com/whitepaper](https://docs.aethir.com/whitepaper) |
-| missing | other-wp | Bright Signal Invest AS | NO |  |
-| ...and 62 more (see `data/changelog.jsonl`) | | | | |
+| added | other-wp | Teroxx Rewards Ltd | CY | [https://abloxx.com/en](https://abloxx.com/en) |
+| changed | other-wp | Number Go Up Technologies | FI | [https://www.ngut.eu/whitepapers/SWAN.html](https://www.ngut.eu/whitepapers/SWAN.html) |
+| added | other-wp | IBRL BVI Ltd | FI | [https://doublezero.xyz/whitepaper-mica.pdfac](https://doublezero.xyz/whitepaper-mica.pdfac) |
+| changed | other-wp | Gevulot Oy | FI | [https://zkcloud.com/whitepaper](https://zkcloud.com/whitepaper) |
+| added | other-wp | InvestTWLGF Oy | FI | [https://twlgf.com/twlgf-crypto-asset-description/](https://twlgf.com/twlgf-crypto-asset-description/) |
+| changed | other-wp | Investlitiumlic Oy | FI | [https://www.litiumlic.com/litiumlic-kryptovaran-kuvaus-li...](https://www.litiumlic.com/litiumlic-kryptovaran-kuvaus-litiumlic-crypto-asset-description/) |
+| added | other-wp | Knowledge Process SA | FR | [https://kno.academy/whitepaper](https://kno.academy/whitepaper) |
+| added | other-wp | SELF Technology Limited | IE | [https://docs.self.app/micawhitepaper](https://docs.self.app/micawhitepaper) |
+| added | other-wp | BitUtility S.A. | IE | [bitutility.micarwhitepapers.eu](https://bitutility.micarwhitepapers.eu) |
+| added | other-wp | Strato Foundation | IE | [https://strato.nexus/mica](https://strato.nexus/mica) |
+| added | other-wp | Bera Chain Foundation | MT | [https://my.okx.com/whitepaper/berachain-bera.xhtml](https://my.okx.com/whitepaper/berachain-bera.xhtml) |
+| added | other-wp | Layer 69 Inc. | MT | [https://docs.dogeos.com/token](https://docs.dogeos.com/token) |
+| added | other-wp | Kor Technologies Issuer Inc. | MT | [https://www.korprotocol.io/mica](https://www.korprotocol.io/mica) |
+| added | other-wp | Bright Signal Invest AS | NO | [https://disclosuretoken.com](https://disclosuretoken.com) |
+| missing | other-wp | Abloxx Token Ltd. | CY | [https://abloxx.com/en](https://abloxx.com/en) |
+| missing | other-wp | Planck Network ($PLANCK) | CY | [https://plancknetwork.com/whitepaper.pdf](https://plancknetwork.com/whitepaper.pdf) |
+| missing | other-wp | Punta Parana Foundation | FI | [https://doublezero.xyz/whitepaper-mica.pdf](https://doublezero.xyz/whitepaper-mica.pdf) |
+| missing | other-wp | InvestTWLGF Oy | FI | [https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-a...](https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-asset-description/) |
+| missing | other-wp | Bright Signal Invest AS | NO | [https://brightsignal.no](https://brightsignal.no) |
+| removed | other-wp | Yellow Token | IE | [https://docs.yellow.org/assets/YELLOW\_MiCA\_White\_Paper\_v....](https://docs.yellow.org/assets/YELLOW_MiCA_White_Paper_v.1.2.pdf) |
+| removed | other-wp | FUN | IE | [https://docs.sport.fun/usdfun-token/mica-whitepaper](https://docs.sport.fun/usdfun-token/mica-whitepaper) |
+| removed | other-wp | GOATED | IE | [https://www.goat.network/micar-white-paper](https://www.goat.network/micar-white-paper) |
+| removed | other-wp | Keeta | IE | [https://keeta.com/MiCA\_Whitepaper.pdf](https://keeta.com/MiCA_Whitepaper.pdf) |
+| removed | other-wp | $ROAM | IE | [https://weroam.xyz/roam\_micar\_whitepaper](https://weroam.xyz/roam_micar_whitepaper) |
+| removed | other-wp | ATH | IE | [https://docs.aethir.com/whitepaper](https://docs.aethir.com/whitepaper) |
+| ...and 91 more (see `data/changelog.jsonl`) | | | | |
 
 `missing`: not in this export for the first time. `removed`: not in two consecutive exports. `restored`: listed again after an absence.
 <!-- dashboard:end -->
