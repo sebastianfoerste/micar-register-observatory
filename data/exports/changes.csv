@@ -2209,3 +2209,22 @@ Qivalis B.V.",NL,https://qivalis.eu/trust-center/white-paper,,,,2,004a824307908a
 2026-11-16,ncasp,added,b83cd66a1e97bcd5,6488H93NCIV501IU5239,UAB ROQQU TECHNOLOGIES,LT,,,,,2,3a318192666cab1c,b9db1ab2aefa8444
 2026-11-16,ncasp,changed,c175634a9d073f78,,MEXC Global,NL,,last_update_changed,ae_decision_date|ae_lastupdate,"register row content changed (ae_decision_date, ae_lastupdate)",2,c175634a9d073f78,cab22d6e61e92fc6
 2026-11-16,ncasp,changed,9421b9467ff9448b,,LWEX,SK,,last_update_changed,ae_decision_date|ae_lastupdate,"register row content changed (ae_decision_date, ae_lastupdate)",2,9421b9467ff9448b,249fe9e5a3d4a965
+2026-11-23,other-wp,added,0518f18915962433,3912004VJULS6O5MBQ84,Heldfor GmbH,DE,https://www.heldfor.com/whitepaper,modification_noted,,,2,09b1971119654835,6fae58054a6d7d88
+2026-11-23,other-wp,added,c43222a6df5efd29,39120077M9TG0O1FE242,Crypto Risk Metrics GmbH,DE,https://white-paper.crypto-risk-metrics.com/de/awe-network-ffg-l305txrs8/index.html,,,,2,a225473d0dbdc162,4e084fc78f7d1dd3
+2026-11-23,other-wp,added,a6bd5781ab573b16,39120077M9TG0O1FE242,Crypto Risk Metrics GmbH,DE,https://white-paper.crypto-risk-metrics.com/en/caldera-ffg-fbj51gpw2/index.html,,,,2,4a6023c52ccb066e,5b0473685512fe85
+2026-11-23,other-wp,changed,72ed86bc68acf67d,254900K2K2V7IFXGI402,infinifi Foundation,NL,https://www.infinifi.micarwhitepapers.eu,last_update_changed,wp_lastupdate,register row content changed (wp_lastupdate),2,e3999afbaa8890e0,b62c73c7d019692d
+2026-11-23,other-wp,changed,446d88e8fd60c358,9845000EA369FA3E9I63,CANOPY NETWORK CORP.,NL,https://canopy.micarwhitepapers.eu,last_update_changed,wp_lastupdate,register row content changed (wp_lastupdate),2,cf1694e9c9cb2607,b062807eda8cc711
+2026-11-23,other-wp,changed,6f056f429f1d8552,984500A2B7H9288E1D90,Asimov Ltd,NL,https://genlayer.micarwhitepapers.eu,last_update_changed,wp_lastupdate,register row content changed (wp_lastupdate),2,cacfbbfc9746738e,e4f464f2bf5e7c10
+2026-11-23,other-wp,added,ca4787342da3b30d,984500145VDDDBXOE128,Bright Signal Invest AS,NO,https://disclosuretoken.com,modification_noted,,,2,8ae84f747a841de1,233fa668a6533b0b
+2026-11-23,other-wp,missing,1f1a15139a8618be,,Bright Signal Invest AS,NO,https://disclosuretoken.com,,,not in this export; recorded as removed if the next export also lacks it,2,84f3e8fdf72659c8,817628549a5b4352
+2026-11-23,other-wp,removed,c85b607c3884a63b,,Abloxx Token Ltd.,CY,https://abloxx.com/en,,,not in two consecutive exports (missing since 2026-11-16),2,f9f7ac44a30f96c5,f72571b881a9c34f
+2026-11-23,other-wp,removed,d88a123dbb827260,,Planck Network ($PLANCK),CY,https://plancknetwork.com/whitepaper.pdf,,,not in two consecutive exports (missing since 2026-11-16),2,e56dc1ab346cf5b5,6ac54be17b8f90a9
+2026-11-23,other-wp,removed,e83f33914834ea72,,Punta Parana Foundation,FI,https://doublezero.xyz/whitepaper-mica.pdf,,,not in two consecutive exports (missing since 2026-11-16),2,8da54201cd0bad9d,a9dd8bcb971eda24
+2026-11-23,other-wp,removed,361111c5e2880825,,InvestTWLGF Oy,FI,https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-asset-description/,,,not in two consecutive exports (missing since 2026-11-16),2,a6447b8f69ff1ae6,62b0c085efcaa2a7
+2026-11-23,other-wp,removed,0de2ce0b7629adbb,,Bright Signal Invest AS,NO,https://brightsignal.no,,,not in two consecutive exports (missing since 2026-11-16),2,54d357f3384dd13a,5797730f5a0426d4
+2026-11-23,casps,changed,04501a8ea3bdd9a4,254900ERDZ4CZ5IF7P56,WB-Shields Innovations GmbH,AT,,,ae_address,register row content changed (ae_address),2,c20b3157bf4b2215,4ae4cd16006eaa09
+2026-11-23,casps,added,98939c47acfac5f5,529900U2YWMWH2WVJA75,Volksbank Magdeburg eG,DE,,,,,2,2a4bc997f29b0e20,1a45b8fec780e1ce
+2026-11-23,casps,changed,04d0a89a5b26263c,21380099RT73NFBYS559,Sparkasse Bank Malta Plc,MT,,last_update_changed|comments_changed,ac_comments|ac_lastupdate,"register row content changed (ac_comments, ac_lastupdate)",2,038237cfb956a188,ebe6355e1b8c300f
+2026-11-23,casps,changed,f85b6a955c7ac0d4,549300OOZDNZ3F2XJW21,Hidden Road Partners CIV NL B.V.,NL,,last_update_changed,ae_commercial_name|ac_lastupdate,"register row content changed (ae_commercial_name, ac_lastupdate)",2,dce3a7b1d869998e,d74b403ba4231ccb
+2026-11-23,casps,added,cfbd7f1da5539bd3,254900QWGNL1STBZDC19,"Uphold Digital Assets Europe, Unipessoal Lda",PT,,,,,2,a13bf4773d964c77,141d8eee11f2c9fb
+2026-11-23,ncasp,added,066bcb938d45e6b7,,Swipelux OÜ,EE,,,,,2,e993aa8c1c801dd0,7b05a2bc4af64a6c

@@ -1,5 +1,5 @@
 {
- "checked_on": "2026-11-16",
+ "checked_on": "2026-11-23",
  "observations": [
   {
    "source_id": "other-wp",
@@ -15,8 +15,8 @@
    "final_url": "https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv",
    "content_type": "text/csv",
    "charset": "utf-8",
-   "last_modified": "Wed, 11 Nov 2026 13:56:41 GMT",
-   "content_length": 254839,
+   "last_modified": "Wed, 18 Nov 2026 15:02:49 GMT",
+   "content_length": 256050,
    "csv_header": [
     "ae_competentAuthority",
     "ae_homeMemberState",
@@ -32,7 +32,7 @@
     "wp_comments",
     "wp_lastupdate"
    ],
-   "row_count": 1077,
+   "row_count": 1080,
    "last_update_line": null,
    "linked_csv_urls": null
   },
@@ -50,7 +50,7 @@
    "final_url": "https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv",
    "content_type": "text/csv",
    "charset": "utf-8",
-   "last_modified": "Wed, 11 Nov 2026 13:56:02 GMT",
+   "last_modified": "Wed, 18 Nov 2026 15:03:15 GMT",
    "content_length": 18252,
    "csv_header": [
     "ae_competentAuthority",
@@ -129,8 +129,8 @@
    "final_url": "https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv",
    "content_type": "text/csv",
    "charset": "utf-8",
-   "last_modified": "Wed, 11 Nov 2026 13:55:41 GMT",
-   "content_length": 201399,
+   "last_modified": "Fri, 20 Nov 2026 14:25:32 GMT",
+   "content_length": 201660,
    "csv_header": [
     "ae_competentAuthority",
     "ae_homeMemberState",
@@ -149,7 +149,7 @@
     "ac_lastupdate",
     "ac_legal_basis"
    ],
-   "row_count": 407,
+   "row_count": 409,
    "last_update_line": null,
    "linked_csv_urls": null
   },
@@ -167,8 +167,8 @@
    "final_url": "https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv",
    "content_type": "text/csv",
    "charset": "utf-8",
-   "last_modified": "Wed, 11 Nov 2026 13:56:20 GMT",
-   "content_length": 38783,
+   "last_modified": "Wed, 18 Nov 2026 15:02:15 GMT",
+   "content_length": 39220,
    "csv_header": [
     "ae_competentAuthority",
     "ae_homeMemberState",
@@ -183,7 +183,7 @@
     "ae_comments",
     "ae_lastupdate"
    ],
-   "row_count": 216,
+   "row_count": 217,
    "last_update_line": null,
    "linked_csv_urls": null
   },
@@ -201,11 +201,11 @@
    "final_url": "https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica",
    "content_type": "text/html; charset=utf-8",
    "charset": "utf-8",
-   "last_modified": "Mon, 16 Nov 2026 15:56:42 GMT",
-   "content_length": 90174,
+   "last_modified": "Mon, 23 Nov 2026 18:12:06 GMT",
+   "content_length": 90294,
    "csv_header": null,
    "row_count": null,
-   "last_update_line": "Last update: 11 November 2026",
+   "last_update_line": "Last update: 18 November 2026",
    "linked_csv_urls": [
     "https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv",
     "https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv",

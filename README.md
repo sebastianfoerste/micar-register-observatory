@@ -9,21 +9,21 @@ This repository makes the register's weekly movement visible: what appeared, wha
 ## Dashboard
 
 <!-- dashboard:start -->
-**Register snapshot: 2026-11-16** (refreshed weekly from the public ESMA interim MiCAR register)
+**Register snapshot: 2026-11-23** (refreshed weekly from the public ESMA interim MiCAR register)
 
 ### Register totals
 
 | Register | Rows | Entities | Source status |
 | --- | ---: | ---: | --- |
-| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 1077 | 672 | ok (file modified 2026-11-11) |
-| [Issuers of e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 51 | 26 | ok (file modified 2026-11-11) |
+| [White papers — other crypto-assets (Title II)](https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv) | 1080 | 672 | ok (file modified 2026-11-18) |
+| [Issuers of e-money tokens (Title IV)](https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv) | 51 | 26 | ok (file modified 2026-11-18) |
 | [Issuers of asset-referenced tokens (Title III)](https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv) | 0 | 0 | ok (file modified 2025-02-14) |
-| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 407 | 404 | ok (file modified 2026-11-11) |
-| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 216 | 213 | ok (file modified 2026-11-11) |
+| [Authorised crypto-asset service providers (CASPs)](https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv) | 409 | 406 | ok (file modified 2026-11-20) |
+| [Non-compliant entities flagged by NCAs](https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv) | 217 | 214 | ok (file modified 2026-11-18) |
 
 Rows are lines of the register export; entities are distinct LEIs, or names where a row has none. One entity can have several rows: several white papers, or a second CASP authorisation.
 
-CASP register: 404 firms in 407 rows, 2 of them with a withdrawal date (`ac_authorisationEndDate`).
+CASP register: 406 firms in 409 rows, 2 of them with a withdrawal date (`ac_authorisationEndDate`).
 
 ### White paper format coverage
 
@@ -31,9 +31,9 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 
 | Linked format | Count | Deep-lint candidate |
 | --- | ---: | --- |
-| No recognised file extension (bare domain, landing page or other page) | 676 | no |
+| No recognised file extension (bare domain, landing page or other page) | 677 | no |
 | PDF | 265 | no |
-| XHTML / HTML | 183 | yes |
+| XHTML / HTML | 185 | yes |
 | No link in register | 4 | no |
 
 ### Home Member States (white papers)
@@ -41,7 +41,7 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 | Member State | White papers |
 | --- | ---: |
 | IE | 408 |
-| DE | 177 |
+| DE | 180 |
 | MT | 176 |
 | NL | 98 |
 | LI | 74 |
@@ -52,36 +52,29 @@ Classified by link shape only; a format is a deep-lint candidate, not a verified
 | FI | 10 |
 | ...and 15 more | |
 
-### Changes in this snapshot (2026-11-16)
+### Changes in this snapshot (2026-11-23)
 
 | Change | Register | Entity | MS | Link |
 | --- | --- | --- | --- | --- |
-| added | other-wp | Teroxx Rewards Ltd | CY | [https://abloxx.com/en](https://abloxx.com/en) |
-| changed | other-wp | Number Go Up Technologies | FI | [https://www.ngut.eu/whitepapers/SWAN.html](https://www.ngut.eu/whitepapers/SWAN.html) |
-| added | other-wp | IBRL BVI Ltd | FI | [https://doublezero.xyz/whitepaper-mica.pdfac](https://doublezero.xyz/whitepaper-mica.pdfac) |
-| changed | other-wp | Gevulot Oy | FI | [https://zkcloud.com/whitepaper](https://zkcloud.com/whitepaper) |
-| added | other-wp | InvestTWLGF Oy | FI | [https://twlgf.com/twlgf-crypto-asset-description/](https://twlgf.com/twlgf-crypto-asset-description/) |
-| changed | other-wp | Investlitiumlic Oy | FI | [https://www.litiumlic.com/litiumlic-kryptovaran-kuvaus-li...](https://www.litiumlic.com/litiumlic-kryptovaran-kuvaus-litiumlic-crypto-asset-description/) |
-| added | other-wp | Knowledge Process SA | FR | [https://kno.academy/whitepaper](https://kno.academy/whitepaper) |
-| added | other-wp | SELF Technology Limited | IE | [https://docs.self.app/micawhitepaper](https://docs.self.app/micawhitepaper) |
-| added | other-wp | BitUtility S.A. | IE | [bitutility.micarwhitepapers.eu](https://bitutility.micarwhitepapers.eu) |
-| added | other-wp | Strato Foundation | IE | [https://strato.nexus/mica](https://strato.nexus/mica) |
-| added | other-wp | Bera Chain Foundation | MT | [https://my.okx.com/whitepaper/berachain-bera.xhtml](https://my.okx.com/whitepaper/berachain-bera.xhtml) |
-| added | other-wp | Layer 69 Inc. | MT | [https://docs.dogeos.com/token](https://docs.dogeos.com/token) |
-| added | other-wp | Kor Technologies Issuer Inc. | MT | [https://www.korprotocol.io/mica](https://www.korprotocol.io/mica) |
+| added | other-wp | Heldfor GmbH | DE | [https://www.heldfor.com/whitepaper](https://www.heldfor.com/whitepaper) |
+| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/de/awe-networ...](https://white-paper.crypto-risk-metrics.com/de/awe-network-ffg-l305txrs8/index.html) |
+| added | other-wp | Crypto Risk Metrics GmbH | DE | [https://white-paper.crypto-risk-metrics.com/en/caldera-ff...](https://white-paper.crypto-risk-metrics.com/en/caldera-ffg-fbj51gpw2/index.html) |
+| changed | other-wp | infinifi Foundation | NL | [https://www.infinifi.micarwhitepapers.eu](https://www.infinifi.micarwhitepapers.eu) |
+| changed | other-wp | CANOPY NETWORK CORP. | NL | [https://canopy.micarwhitepapers.eu](https://canopy.micarwhitepapers.eu) |
+| changed | other-wp | Asimov Ltd | NL | [https://genlayer.micarwhitepapers.eu](https://genlayer.micarwhitepapers.eu) |
 | added | other-wp | Bright Signal Invest AS | NO | [https://disclosuretoken.com](https://disclosuretoken.com) |
-| missing | other-wp | Abloxx Token Ltd. | CY | [https://abloxx.com/en](https://abloxx.com/en) |
-| missing | other-wp | Planck Network ($PLANCK) | CY | [https://plancknetwork.com/whitepaper.pdf](https://plancknetwork.com/whitepaper.pdf) |
-| missing | other-wp | Punta Parana Foundation | FI | [https://doublezero.xyz/whitepaper-mica.pdf](https://doublezero.xyz/whitepaper-mica.pdf) |
-| missing | other-wp | InvestTWLGF Oy | FI | [https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-a...](https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-asset-description/) |
-| missing | other-wp | Bright Signal Invest AS | NO | [https://brightsignal.no](https://brightsignal.no) |
-| removed | other-wp | Yellow Token | IE | [https://docs.yellow.org/assets/YELLOW\_MiCA\_White\_Paper\_v....](https://docs.yellow.org/assets/YELLOW_MiCA_White_Paper_v.1.2.pdf) |
-| removed | other-wp | FUN | IE | [https://docs.sport.fun/usdfun-token/mica-whitepaper](https://docs.sport.fun/usdfun-token/mica-whitepaper) |
-| removed | other-wp | GOATED | IE | [https://www.goat.network/micar-white-paper](https://www.goat.network/micar-white-paper) |
-| removed | other-wp | Keeta | IE | [https://keeta.com/MiCA\_Whitepaper.pdf](https://keeta.com/MiCA_Whitepaper.pdf) |
-| removed | other-wp | $ROAM | IE | [https://weroam.xyz/roam\_micar\_whitepaper](https://weroam.xyz/roam_micar_whitepaper) |
-| removed | other-wp | ATH | IE | [https://docs.aethir.com/whitepaper](https://docs.aethir.com/whitepaper) |
-| ...and 91 more (see `data/changelog.jsonl`) | | | | |
+| missing | other-wp | Bright Signal Invest AS | NO | [https://disclosuretoken.com](https://disclosuretoken.com) |
+| removed | other-wp | Abloxx Token Ltd. | CY | [https://abloxx.com/en](https://abloxx.com/en) |
+| removed | other-wp | Planck Network ($PLANCK) | CY | [https://plancknetwork.com/whitepaper.pdf](https://plancknetwork.com/whitepaper.pdf) |
+| removed | other-wp | Punta Parana Foundation | FI | [https://doublezero.xyz/whitepaper-mica.pdf](https://doublezero.xyz/whitepaper-mica.pdf) |
+| removed | other-wp | InvestTWLGF Oy | FI | [https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-a...](https://twlgf.com/twlgf-kryptovaran-kuvaus-twlgf-crypto-asset-description/) |
+| removed | other-wp | Bright Signal Invest AS | NO | [https://brightsignal.no](https://brightsignal.no) |
+| changed | casps | WB-Shields Innovations GmbH | AT |  |
+| added | casps | Volksbank Magdeburg eG | DE |  |
+| changed | casps | Sparkasse Bank Malta Plc | MT |  |
+| changed | casps | Hidden Road Partners CIV NL B.V. | NL |  |
+| added | casps | Uphold Digital Assets Europe, Unipessoal Lda | PT |  |
+| added | ncasp | Swipelux OÜ | EE |  |
 
 `missing`: not in this export for the first time. `removed`: not in two consecutive exports. `restored`: listed again after an absence.
 <!-- dashboard:end -->
